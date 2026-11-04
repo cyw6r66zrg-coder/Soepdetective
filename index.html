@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Soepdetective: interactieve les bij de wortelsoep van Good Soup, voor groep 5 tot en met 8.">
+<link rel="icon" href="img/ing-wortel.webp">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style>
+<title>Soepdetective</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800&display=swap">
+<style>
+/* Layout: één podium (zoals een Canva-dia) met verloopbalk als kop; boven niveau + stappen, onder vorige/volgende. Bewust één lichte, crèmekleurige wereld, net als de les. */
+:root{
+  color-scheme: light;
+  --cream:#FFF4D6;      /* achtergrond dia */
+  --card:#FDF4E3;       /* kaartjes, gelijk aan achtergrond illustraties */
+  --paper:#FFFFFF;
+  --ink:#3B2B22;        /* bruine tekst uit de les */
+  --muted:#7A6555;
+  --orange:#F47B20;
+  --orange-dark:#B9520F;
+  --green:#4F8F3A;
+  --green-soft:#E6F2DD;
+  --purple:#7650A6;
+  --red:#D1352B;
+  --red-soft:#FCE7E1;
+  --sun:#F9C406;
+  --magenta:#E41D9A;
+  --line:#EBD9B8;
+  --band:linear-gradient(100deg,#F9C406 0%,#F49A28 30%,#EE6A56 58%,#E41D9A 100%);
+  --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
+  --body:"Nunito","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weight:700;font-size:clamp(16px,1.45vw,21px);line-height:1.4;margin:0}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid var(--purple);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0;max-width:62ch}
+img{max-width:100%}
+
+.app{max-width:1360px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 20px;min-height:100%;display:flex;flex-direction:column;gap:12px}
+
+/* ---- top ---- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;border:0;background:none;padding:0;text-align:left}
+.brand img{width:52px;height:52px;border-radius:50%;background:var(--card);border:3px solid var(--orange);object-fit:contain;padding:5px}
+.brand b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(24px,2.4vw,34px);line-height:1}
+.brand small{display:block;color:var(--muted);font-size:.75em}
+.level{display:flex;background:var(--paper);border:3px solid var(--orange);border-radius:999px;overflow:hidden}
+.level button{border:0;background:none;padding:7px 18px;font-weight:800;font-size:16px;color:var(--orange-dark)}
+.level button[aria-pressed="true"]{background:var(--orange);color:#fff}
+
+.stepsWrap{overflow-x:auto;padding-bottom:4px}
+.steps{display:flex;gap:6px;min-width:max-content}
+.step{border:2px solid var(--line);background:var(--paper);border-radius:999px;padding:3px 12px 3px 3px;display:flex;align-items:center;gap:7px;font-size:14px;white-space:nowrap;color:var(--muted)}
+.step i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--card);font-family:var(--display);font-weight:800}
+.step.done i{background:var(--green);color:#fff}
+.step.on{background:var(--band);border-color:transparent;color:#fff}
+.step.on i{background:#fff;color:var(--ink)}
+
+/* ---- podium ---- */
+.stage{flex:1;background:var(--cream);border-radius:22px;box-shadow:0 2px 0 var(--line),0 18px 40px -24px rgba(59,43,34,.45);overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+.band{background:var(--band);color:#fff;padding:clamp(14px,2vw,26px) clamp(18px,3vw,44px)}
+.band h2{font-size:clamp(28px,3.4vw,52px);text-shadow:0 2px 0 rgba(0,0,0,.08)}
+.inner{padding:clamp(18px,2.8vw,40px) clamp(18px,3vw,44px);display:flex;flex-direction:column;gap:clamp(14px,1.8vw,24px)}
+.label{font-size:.78em;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.btn,.ghost{border-radius:999px;padding:9px 24px;font-weight:800;border:3px solid var(--orange)}
+.btn{background:var(--orange);color:#fff}
+.ghost{background:var(--paper);color:var(--orange-dark)}
+.btn:active,.ghost:active{transform:translateY(2px)}
+.btn:disabled,.ghost:disabled{opacity:.4;cursor:default}
+
+/* tekstballon met wortel */
+.say{display:flex;align-items:center;gap:10px}
+.say img{width:clamp(52px,5vw,72px);height:clamp(52px,5vw,72px);border-radius:50%;object-fit:contain;padding:5px;background:var(--card);border:3px solid var(--orange);flex:none}
+.bubble{position:relative;background:var(--paper);border:3px solid var(--line);border-radius:18px;padding:10px 16px}
+.say.ok .bubble{background:var(--green-soft);border-color:var(--green)}
+.say.no .bubble{background:var(--red-soft);border-color:var(--red);color:var(--red)}
+.say.win .bubble{background:var(--sun);border-color:var(--sun);font-size:1.1em}
+.say.win img{animation:hop .5s ease-in-out 3}
+@keyframes hop{50%{transform:translateY(-10px) rotate(6deg)}}
+
+.count{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.slots{display:flex;gap:6px}
+.slot{width:22px;height:22px;border-radius:50%;border:3px solid var(--green);background:var(--paper)}
+.slot.full{background:var(--green)}
+.onthoud{background:var(--ink);color:#fff;border-radius:18px;padding:16px 20px;display:flex;gap:16px;align-items:center}
+.onthoud b{font-family:var(--display);font-size:1.3em;color:var(--sun);flex:none}
+
+/* ---- start ---- */
+.cover{flex:1;position:relative;min-height:clamp(380px,48vw,620px);display:flex;align-items:center;background:url(img/cover.webp) right center/cover no-repeat}
+.cover::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--cream) 0%,var(--cream) 42%,rgba(255,244,214,.75) 55%,rgba(255,244,214,0) 70%)}
+.coverText{position:relative;padding:clamp(20px,4vw,64px);display:flex;flex-direction:column;gap:18px;max-width:640px}
+.coverText h1{font-size:clamp(46px,6.4vw,104px);line-height:.95}
+.coverText .kv{color:var(--orange-dark);font-size:1.15em}
+.coverText .kv span{display:block;font-size:.7em;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.big{background:var(--band);color:#fff;border:0;border-radius:999px;font-family:var(--display);font-weight:800;font-size:clamp(26px,2.6vw,36px);padding:8px 44px;align-self:flex-start;box-shadow:0 6px 0 var(--orange-dark)}
+.big:active{transform:translateY(4px);box-shadow:0 2px 0 var(--orange-dark)}
+.soon{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.soon span{border:2px dashed var(--line);border-radius:999px;padding:2px 12px;font-size:.8em;color:var(--muted);background:rgba(255,255,255,.6)}
+.soon b{border:2px solid var(--orange);border-radius:999px;padding:2px 12px;font-size:.8em;background:var(--orange);color:#fff}
+
+/* ---- proeven ---- */
+.taste{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(16px,3vw,40px);align-items:center}
+.cloud{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.word{border:0;background:none;padding:2px 6px;font-family:var(--display);font-weight:800;font-size:clamp(30px,3.6vw,56px);color:var(--wc);transform:rotate(var(--r));transition:transform .15s}
+.word[aria-pressed="true"]{background:var(--wc);color:#fff;border-radius:16px;transform:rotate(var(--r)) scale(1.08)}
+.soupimg{width:100%;max-width:520px;justify-self:center;border-radius:20px}
+.chosen{background:var(--green-soft);border:3px solid var(--green);border-radius:18px;padding:12px 16px}
+
+/* ---- lekker ---- */
+.faces{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1.5vw,24px)}
+.face{border:3px solid transparent;border-radius:22px;background:none;padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:4px;transition:transform .15s}
+.face img{width:100%;max-width:170px;aspect-ratio:1;object-fit:contain}
+.face b{font-family:var(--display);font-size:clamp(22px,2vw,30px);line-height:1;color:var(--orange-dark)}
+.face:hover{transform:translateY(-4px)}
+.face:active{transform:scale(.96)}
+.bars{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,1.5vw,24px);align-items:end;height:70px}
+.bars span{background:var(--band);border-radius:10px 10px 3px 3px;min-height:4px;transition:height .3s}
+
+/* ---- speur ---- */
+.kitchen{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(16px,3vw,40px);align-items:start}
+.tray{display:grid;grid-template-columns:repeat(var(--cols,5),1fr);gap:clamp(8px,1vw,14px)}
+.ing,.card{border:3px solid var(--orange);border-radius:18px;background:var(--card);padding:6px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:2px;font-family:var(--display);font-weight:800;font-size:clamp(16px,1.5vw,24px);touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;position:relative;transition:transform .15s,opacity .2s}
+.ing img,.card img{width:100%;aspect-ratio:1;object-fit:contain;pointer-events:none}
+.ing img{padding:8%}
+.ing span,.card span{pointer-events:none;text-align:center;line-height:1.1}
+.ing:not(:disabled):hover,.card:not(:disabled):hover{transform:translateY(-3px) rotate(-1.5deg)}
+.ing.wrong{opacity:.35;cursor:default;border-color:var(--line)}
+.ing.wrong::after{content:"×";position:absolute;top:4px;right:10px;color:var(--red);font-size:1.6em;line-height:1}
+.ing.gone{border:3px dashed var(--line);background:transparent;min-height:120px}
+.ing:disabled:not(.wrong){cursor:default}
+.lifted{opacity:.3}
+.shake{animation:shake .4s}
+.ghost-drag{position:fixed;z-index:30;width:120px;height:120px;translate:-50% -50%;pointer-events:none;rotate:-8deg;filter:drop-shadow(0 10px 8px rgba(59,43,34,.3))}
+.ghost-drag img{width:100%;height:100%;object-fit:contain}
+.ghost-drag .gtext{background:var(--paper);border:3px solid var(--orange);border-radius:14px;padding:6px 12px;font-size:17px;white-space:nowrap;display:inline-block;translate:-25% 30%}
+.panwrap{display:flex;flex-direction:column;gap:10px}
+.pan{position:relative;border-radius:24px;padding:8px;transition:background .2s}
+.hover{background:#FFE9A8!important;outline:4px dashed var(--orange)}
+.panart{display:block;width:88%;height:auto;margin:16% auto 0}
+.plons .panart{animation:plons .45s}
+.floaters{position:absolute;left:12%;right:12%;top:2%;height:34%;display:flex;flex-wrap:wrap;justify-content:center;align-items:flex-end;gap:0 2%}
+.floaters img{height:62%;max-width:16%;object-fit:contain;animation:bob 2.4s ease-in-out infinite;filter:drop-shadow(0 6px 4px rgba(59,43,34,.25))}
+.floaters img:nth-child(2n){animation-delay:.6s}
+
+/* ---- kernvraag ---- */
+.kern{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(16px,3vw,40px);align-items:start}
+.kernside{display:flex;flex-direction:column;gap:14px;min-width:0}
+.vote{flex-direction:column;align-items:stretch}
+.detbox{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/9;background:url(img/detective.webp) center/cover;max-width:100%}
+.detbox .ans{position:absolute;left:3%;top:6%;bottom:6%;width:46%;background:rgba(185,82,15,.88);color:#fff;border-radius:18px;padding:clamp(10px,1.4vw,20px);font-size:clamp(14px,1.3vw,20px);display:flex;flex-direction:column;gap:.6em;overflow:auto}
+.detbox .ans h3{font-size:1.4em;color:var(--sun)}
+.vote{display:flex;gap:10px;flex-wrap:wrap}
+.vote button{border:3px solid var(--orange);background:var(--paper);border-radius:16px;padding:8px 16px;display:flex;gap:8px;align-items:center}
+.vote button b{font-family:var(--display);background:var(--orange);color:#fff;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none}
+.vote button em{font-style:normal;color:var(--muted)}
+.bodies{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.body{position:relative;border:3px solid var(--orange);border-radius:20px;background:var(--card);padding:10px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.body img{width:clamp(100px,12vw,180px);aspect-ratio:1;object-fit:contain}
+.body small{font-size:.75em;line-height:1.3;font-weight:600}
+.body.yes{background:var(--green-soft);border-color:var(--green)}
+.body.nope{border-color:var(--line);opacity:.75}
+.mark{position:absolute;top:-14px;right:10px;border-radius:999px;padding:0 12px;font-family:var(--display);font-weight:800;transform:rotate(4deg)}
+.mark.ok{background:var(--green);color:#fff}
+.mark.no{background:var(--paper);color:var(--red);border:2px solid var(--red)}
+.items{display:flex;gap:10px;flex-wrap:wrap}
+.item{border:3px solid var(--orange);border-radius:16px;background:var(--paper);padding:8px 14px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:grab;text-align:left;max-width:100%}
+.item.sel{background:var(--sun);border-color:var(--sun);transform:translateY(-3px) rotate(-1.5deg)}
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.bin{border:3px solid var(--bc);border-radius:20px;background:var(--card);padding:10px;min-height:140px;display:flex;flex-direction:column;gap:8px;text-align:left}
+.bin h3{color:var(--bc);text-align:center;font-size:clamp(24px,2.2vw,34px)}
+.placed{background:var(--paper);border:2px solid var(--bc);border-radius:12px;padding:6px 10px;font-size:.85em;animation:pop .3s}
+.placed small{display:block;font-weight:600;color:var(--muted)}
+
+/* ---- rassen ---- */
+.match{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(16px,3vw,40px);align-items:start}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.card.sel{background:var(--sun);border-color:var(--sun);transform:translateY(-4px) rotate(-2deg)}
+.card.paired{border-color:var(--green);background:var(--green-soft);cursor:default}
+.names{display:grid;grid-template-columns:1fr;gap:8px}
+.name{border:3px solid var(--line);border-radius:16px;background:var(--paper);padding:8px 14px;text-align:left;display:flex;align-items:center;gap:10px}
+.name b{font-family:var(--display);font-size:1.25em;color:var(--orange-dark);line-height:1}
+.name small{display:block;font-weight:600;font-size:.82em}
+.name img{width:52px;height:52px;flex:none;border-radius:10px}
+.name.done{border-color:var(--green);background:var(--green-soft);cursor:default}
+.name.done b{color:var(--green)}
+
+/* ---- quiz ---- */
+.quiz{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(16px,3vw,40px);align-items:start}
+.quiz figure{margin:0}
+.quiz figure img{width:100%;border-radius:20px;display:block}
+.qcount{color:var(--muted)}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{border:3px solid var(--orange);border-radius:18px;background:var(--paper);padding:10px 14px;display:flex;align-items:center;gap:14px;text-align:left;position:relative;transition:opacity .3s,transform .3s}
+.opt .l{font-family:var(--display);font-weight:800;font-size:1.6em;width:52px;height:52px;border-radius:14px;background:var(--orange);color:#fff;display:grid;place-items:center;flex:none}
+.opt:not(:disabled):hover{transform:translateX(4px)}
+.opt:disabled{cursor:default}
+.opts.revealed .opt{opacity:.35}
+.opts.revealed .opt.good{opacity:1;border-color:var(--green);background:var(--green-soft)}
+.opts.revealed .opt.good .l{background:var(--green)}
+.opts.revealed .opt.bad{opacity:1;border-color:var(--red);background:var(--red-soft);animation:shake .4s}
+.opts.revealed .opt.bad .l{background:var(--red)}
+.fact{border-radius:18px;padding:14px 18px;background:var(--green-soft);border:3px solid var(--green);display:flex;flex-direction:column;gap:4px}
+.fact b{font-family:var(--display);font-size:1.2em;color:var(--green)}
+.fact.miss{background:var(--red-soft);border-color:var(--red)}
+.fact.miss b{color:var(--red)}
+
+/* ---- kunst ---- */
+.art{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(18px,3vw,40px);align-items:start}
+.frame{margin:0;display:flex;flex-direction:column;gap:8px}
+.imgbtn{border:14px solid var(--orange);border-radius:4px;background:#2a2118;padding:0;display:block;width:100%;cursor:zoom-in}
+.imgbtn img{display:block;width:100%;height:auto}
+figcaption{font-size:.85em;color:var(--muted)}
+figcaption b{color:var(--ink)}
+.look{display:flex;flex-direction:column;gap:10px;padding:0;margin:0;list-style:none}
+.look li{border:3px solid var(--line);border-radius:16px;padding:10px 14px;display:flex;gap:12px;align-items:flex-start;background:var(--paper)}
+.look .k{flex:none;width:38px;height:38px;border-radius:50%;background:var(--purple);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:20px}
+.look li.hid{border-style:dashed;background:transparent;color:var(--muted);align-items:center}
+.look li.hid .k{background:var(--line)}
+.lq{display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.expl{background:#EFE7F7;border-radius:12px;padding:8px 12px;font-size:.88em;font-weight:600}
+.expl b{display:block;color:var(--purple);font-weight:800}
+.small{padding:4px 14px;font-size:.85em}
+.lightbox{position:fixed;inset:0;z-index:20;background:rgba(30,20,14,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lightbox img{max-width:100%;max-height:calc(100% - 80px);object-fit:contain;border:10px solid var(--orange)}
+
+/* ---- creatief ---- */
+.create{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(16px,3vw,40px);align-items:start}
+.assign{display:flex;flex-direction:column;gap:14px}
+.tag{align-self:flex-start;background:var(--green);color:#fff;border-radius:999px;padding:2px 14px;font-size:.85em}
+.assign ol{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:10px;font-size:1.08em}
+.assign li::marker{font-family:var(--display);font-weight:800;color:var(--orange)}
+.need{display:flex;gap:8px;flex-wrap:wrap}
+.need span{border:2px solid var(--orange);border-radius:999px;padding:2px 12px;background:var(--paper);font-size:.85em}
+.example{margin:0;display:flex;flex-direction:column;gap:6px;align-items:center}
+.example img{width:100%;border-radius:12px;display:block}
+.example figcaption{color:var(--green);font-style:italic;font-size:1em}
+
+/* ---- nav ---- */
+.nav{display:flex;justify-content:space-between;gap:12px}
+.nav button{border-radius:999px;padding:10px 30px;font-weight:800;border:3px solid var(--orange);background:var(--paper);color:var(--orange-dark)}
+.nav .next{background:var(--orange);color:#fff}
+.nav button:disabled{opacity:.35;cursor:default}
+
+.confetti{position:fixed;inset:0;pointer-events:none;z-index:40;overflow:hidden}
+.confetti i{position:absolute;top:-20px;width:12px;height:18px;border-radius:3px;animation:fall 1.6s ease-in forwards}
+
+@keyframes shake{0%,100%{translate:0}25%{translate:-8px}75%{translate:8px}}
+@keyframes plons{35%{transform:translateY(6px) scale(1.02,.97)}}
+@keyframes bob{50%{transform:translateY(-6px)}}
+@keyframes pop{0%{transform:scale(.6);opacity:0}}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+
+@media (max-width:820px){
+  .taste,.kitchen,.kern,.match,.quiz,.art,.create{grid-template-columns:1fr}
+  .tray,.cards{grid-template-columns:repeat(4,1fr)}
+  .cover{background:url(img/cover.webp) top center/100% auto no-repeat;padding-top:44vw;align-items:flex-start}
+  .cover::before{background:linear-gradient(180deg,rgba(255,244,214,0) 0,rgba(255,244,214,0) 38vw,var(--cream) 56vw)}
+  .detbox{aspect-ratio:auto;min-height:420px;background-position:75% center}
+  .detbox .ans{position:relative;left:auto;top:auto;bottom:auto;width:auto;margin:12px}
+}
+@media (max-width:520px){
+  .tray,.cards{grid-template-columns:repeat(2,1fr)}
+  .faces{grid-template-columns:repeat(3,1fr)}
+  .bars{display:none}
+  .bodies{grid-template-columns:repeat(2,1fr)}
+  .bins{grid-template-columns:1fr}
+  .level button{padding:6px 12px;font-size:14px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <button class="brand" id="home" aria-label="Naar het begin">
+      <img src="img/ing-wortel.webp" alt="">
+      <span><b>Soepdetective</b><small id="sub">Wortelsoep</small></span>
+    </button>
+    <div class="level" role="group" aria-label="Niveau">
+      <button data-niveau="g56" aria-pressed="true">Groep 5-6</button>
+      <button data-niveau="g78" aria-pressed="false">Groep 7-8</button>
+    </div>
+  </header>
+  <div class="stepsWrap" id="stepsWrap" hidden><nav class="steps" id="steps" aria-label="Onderdelen van de les"></nav></div>
+  <main class="stage" id="stage" aria-live="polite"></main>
+  <footer class="nav">
+    <button id="prev">Vorige</button>
+    <button id="next" class="next">Volgende</button>
+  </footer>
+</div>
+
+<script>
+/* ============ INHOUD: wortelsoep. Tekst die per niveau verschilt: { g56:"…", g78:"…" } ============ */
+const ING = {
+  wortel:"Wortel", ui:"Ui", bleekselderij:"Bleekselderij", zoeteaardappel:"Zoete aardappel", knoflook:"Knoflook", zout:"Zout", water:"Water",
+  banaan:"Banaan", broccoli:"Broccoli", aardbei:"Aardbei", gember:"Gember", aardappel:"Aardappel"
+};
+const LES = {
+  naam:"Wortelsoep",
+  speurvraag:"Kun je van wortels beter in het donker zien?",
+  stappen:[
+    {id:"proef",  naam:"Proeven"},
+    {id:"lekker", naam:"Hoe lekker?"},
+    {id:"speur",  naam:"Wat zit erin?"},
+    {id:"speurvraag", naam:"Speurvraag"},
+    {id:"lichaam", naam:"Je lichaam"},
+    {id:"rassen", naam:"Wortelrassen"},
+    {id:"quiz",   naam:"Wist je dat…"},
+    {id:"kunst",  naam:"Kijk-kunst"},
+    {id:"maak",   naam:"Aan de slag"}
+  ],
+  proef:{
+    titel:"Neem een hapje… wat proef jij?",
+    vraag:{ g56:"Tik op de woorden die bij de soep passen.", g78:"Kies drie woorden en maak er samen één zin van." },
+    woorden:{
+      g56:[["zoet","#F47B20","-5deg"],["glad","#4F8F3A","5deg"],["warm","#7650A6","-4deg"],["dik","#3B2B22","4deg"],["hartig","#F47B20","-3deg"],["romig","#4F8F3A","5deg"],["pittig","#7650A6","-5deg"],["zacht","#3B2B22","4deg"]],
+      g78:[["zoet","#F47B20","-5deg"],["glad","#4F8F3A","5deg"],["warm","#7650A6","-4deg"],["dik","#3B2B22","4deg"],["hartig","#F47B20","-3deg"],["romig","#4F8F3A","5deg"],["pittig","#7650A6","-5deg"],["zacht","#3B2B22","4deg"],["kruidig","#D1352B","3deg"],["fris","#4F8F3A","-4deg"],["aards","#B9520F","5deg"],["fluweelzacht","#7650A6","-3deg"]]
+    }
+  },
+  lekker:{
+    titel:"Hoe lekker vind jij de soep?",
+    gezichten:[["bah","smiley-bah"],["niet lekker","smiley-nietlekker"],["gaat wel","smiley-gaatwel"],["lekker","smiley-lekker"],["heerlijk","smiley-heerlijk"]],
+    vertel:{ g56:"Vertel het de klas: “Ik vind hem lekker, want…” of “Ik vind hem niet lekker, want…”", g78:"Vertel het de klas: wat maakt dat jij hem wel of niet lekker vindt? Komt het door de smaak, de kleur of hoe hij in je mond voelt?" }
+  },
+  speur:{ titel:"Speur mee: wat zit er in de soep?", goed:["wortel","ui","bleekselderij","zoeteaardappel","knoflook","zout","water"],
+    fout:{ g56:["banaan","broccoli","aardbei"], g78:["banaan","broccoli","aardbei","gember","aardappel"] } },
+  kern:{
+    titel:"Kun je van wortels beter in het donker zien?",
+    wat:"Wat denk jij? Kies samen A, B of C. Tik daarna op het antwoord van de klas.",
+    antwoord:["Wortels zitten vol met een oranje superstofje. Daar maakt je lichaam vitamine A van. En die heb je nodig om goed te zien, ook als het een beetje donker is.",
+              "Maar let op: eet je een hele zak wortels, dan krijg je géén nachtkijker-ogen. Een kat word je er niet van!",
+              "Dus: wortels houden je ogen gezond. Handig, maar geen toverkracht."]
+  },
+  lichaam:{
+    titel:{ g56:"Wortels helpen je lichaam bij twee dingen", g78:"Wortels en je lichaam: feit of fabel?" },
+    onthoud:"Wortels houden je ogen gezond en helpen je om niet ziek te worden. Handig, maar geen toverkracht.",
+    act:{
+      g56:{ type:"kaarten", v:"Bij welke twee dingen helpen wortels? Tik een plaatje aan.", opties:[
+        {key:"ogen",   naam:"Je ogen",      goed:true,  uitleg:"Ja! Van het oranje stofje maakt je lichaam vitamine A. Die heb je nodig om goed te zien."},
+        {key:"afweer", naam:"Niet ziek worden", goed:true, uitleg:"Ja! Vitamine A helpt je lichaam ook om ziektes buiten de deur te houden."},
+        {key:"haar",   naam:"Lang haar",    goed:false, uitleg:"Nee, van wortels krijg je geen langer haar."},
+        {key:"oren",   naam:"Beter horen",  goed:false, uitleg:"Nee, je oren hebben niks aan extra wortels."},
+        {key:"spieren",naam:"Sterke spieren",goed:false,uitleg:"Niet echt. Voor spieren heb je vooral eiwit nodig, uit bonen, ei, vis of vlees."},
+        {key:"rennen", naam:"Harder rennen", goed:false, uitleg:"Nee, je wordt er niet sneller van. Wel gezonder!"}
+      ]},
+      g78:{ type:"sorteer", v:"Feit of fabel? Sleep elk kaartje naar het goede vak (of tik het kaartje en dan het vak).", bakken:[
+        {id:"feit", naam:"Feit", kleur:"#4F8F3A"}, {id:"fabel", naam:"Fabel", kleur:"#7650A6"}],
+        items:[
+          {naam:"Wortels zitten vol met een oranje kleurstof: bètacaroteen.", bak:"feit"},
+          {naam:"Je lichaam maakt van bètacaroteen vitamine A.", bak:"feit"},
+          {naam:"Heb je te weinig vitamine A, dan zie je slechter in het donker.", bak:"feit"},
+          {naam:"Hoe meer wortels je eet, hoe beter je in het donker ziet.", bak:"fabel", uitleg:"Heb je genoeg, dan helpt extra niet meer."},
+          {naam:"Van een zak wortels per dag krijg je nachtkijker-ogen, net als een kat.", bak:"fabel"},
+          {naam:"Konijnen eten in het echt vooral wortels.", bak:"fabel", uitleg:"Ze eten vooral hooi."}
+        ]}
+    }
+  },
+  rassen:{
+    titel:"Ken jij deze wortels?",
+    v:{ g56:"Elke wortel heeft een eigen naam. Lees de hint, tik op het plaatje en daarna op de naam. Of sleep het plaatje naar de naam.",
+        g78:"Acht wortelrassen! Lees de hints goed: vorm en kleur verraden welke wortel het is. Tik of sleep het plaatje naar de goede naam." },
+    lijst:[
+      {key:"nantes", naam:"Nantes", hint:"Recht als een stok, met een stompe punt. Lekker zoet!"},
+      {key:"chantenay", naam:"Chantenay", hint:"Kort en dik. Hij groeit zelfs in harde grond."},
+      {key:"parijsemarkt", naam:"Parijse Markt", hint:"Zo rond als een golfbal! Past in een bloempot."},
+      {key:"amsterdamsebak", naam:"Amsterdamse Bak", hint:"Een echte Nederlander: klein, dun en snel klaar."},
+      {key:"purplehaze", naam:"Purple Haze", hint:"Paars van buiten, oranje vanbinnen. Verrassing!"},
+      {key:"atomicred", naam:"Atomic Red", hint:"Rood door hetzelfde kleurstofje als in tomaten."},
+      {key:"yellowstone", naam:"Yellowstone", hint:"Zo geel als de zon en lekker zoet."},
+      {key:"lunarwhite", naam:"Lunar White", hint:"Bijna geen kleurstof, daarom is hij wit."}
+    ],
+    g56:["parijsemarkt","purplehaze","atomicred","lunarwhite"],
+    slot:"Super! Wortels zijn er in allerlei vormen en kleuren."
+  },
+  quiz:{
+    g56:[
+      { v:"Welk stuk van de plant eet je als je een wortel eet?", a:["Het stuk onder de grond","De bloem","De blaadjes"], goed:0, img:"voorraadkast",
+        weetje:"Je eet het stuk van de plant dat onder de grond zit. Daar bewaart de plant zijn suiker, net als in een geheime voorraadkast. Daarom is een wortel zo lekker zoet!" },
+      { v:"Hoe lang duurt het voordat een wortel dik genoeg is voor de soep?", a:["3 dagen","3 maanden","3 jaar"], goed:1, img:"groei",
+        weetje:"Eerst een piepklein zaadje. Dan een sprietje. Dan een plantje. Na zo'n 3 maanden is de wortel dik genoeg voor jouw soep!" },
+      { v:"Wat eet een konijn het allermeest?", a:["Wortels","Sla","Hooi"], goed:2, img:"konijn",
+        weetje:"In tekenfilms knabbelen konijnen de hele dag op wortels. Maar echt? Voor een konijn is een wortel snoep. Hooi is zijn échte eten!" }
+    ],
+    g78:[
+      { v:"Waarom smaakt een wortel zoet?", a:["Boeren spuiten er suiker op","De plant bewaart er zijn suiker in","Hij zuigt suiker op uit de grond"], goed:1, img:"voorraadkast",
+        weetje:"Je eet het stuk van de plant dat onder de grond zit. Daar bewaart de plant zijn suiker, net als in een geheime voorraadkast. Daarom is een wortel zo lekker zoet!" },
+      { v:"Hoe lang groeit een wortel van zaadje tot oogst?", a:["Ongeveer 3 weken","Ongeveer 3 maanden","Ongeveer een jaar"], goed:1, img:"groei",
+        weetje:"Eerst een piepklein zaadje. Dan een sprietje. Dan een plantje. Na zo'n 3 maanden is de wortel dik genoeg voor jouw soep!" },
+      { v:"Waarom krijgt een konijn maar af en toe een wortel?", a:["Er zit veel suiker in","Hij wordt er blind van","Wortels zijn giftig voor konijnen"], goed:0, img:"konijn",
+        weetje:"Voor een konijn is een wortel snoep. Hooi is zijn échte eten!" }
+    ]
+  },
+  kunst:{
+    titel:"Kijk-kunst: De groentemarkt", maker:"Hendrick Sorgh", jaar:"1664", plek:"Rijksmuseum, Amsterdam",
+    intro:"Geschilderd door Hendrick Sorgh, in 1664. Dat is al ruim 350 jaar geleden!",
+    vragen:{
+      g56:[
+        {v:"Wat zie je allemaal? Kun jij de wortels vinden?", uitleg:"Vooraan liggen wortels, kool en pompoenen. Smullen!"},
+        {v:"Wie zijn de mensen? Wat doen ze?", uitleg:"Kijk naar hun handen en gezichten. Wie verkoopt er groente, en wie komt er kopen?"},
+        {v:"Waar zou deze markt zijn?", uitleg:"Het is een markt aan een gracht, in een Nederlandse stad. Zie jij het schip en de huizen?"}
+      ],
+      g78:[
+        {v:"Wat zie je allemaal? Kun jij de wortels vinden?", uitleg:"Vooraan liggen wortels, kool en pompoenen. Smullen!"},
+        {v:"Wie zijn de mensen? Wat doen ze?", uitleg:"Kijk naar hun handen en gezichten. Wie verkoopt er groente, en wie komt er kopen?"},
+        {v:"Waar zou deze markt zijn?", uitleg:"Het is een markt aan een gracht, in een Nederlandse stad. Zie jij het schip en de huizen?"},
+        {v:"Waarom zou de schilder de groente zo groot vooraan hebben geschilderd?", uitleg:"Bedenk het samen: waar kijk je als eerste naar? Wat wilde de schilder dat jij zag?"}
+      ]
+    }
+  },
+  maak:{
+    titel:"Aan de slag: de wortelfamilie!",
+    stappen:{
+      g56:["Teken met vetkrijt op zwart papier een wortelfamilie: oranje, paars, geel en wit.","Geef elke wortel een gezicht en een grappige naam.","Waar zijn de wortels en wat zijn ze aan het doen?"],
+      g78:["Teken met vetkrijt op zwart papier een wortelfamilie: oranje, paars, geel en wit.","Geef elke wortel een gezicht en een grappige naam.","Waar zijn de wortels en wat zijn ze aan het doen?","Schrijf bij elke wortel één weetje dat je vandaag hebt geleerd."]
+    },
+    nodig:["Vetkrijt","Zwart papier"]
+  }
+};
+const BINNENKORT = ["Tomatensoep","Doperwtensoep","Broccolisoep","Bloemkoolsoep","Maïssoep","Pompoensoep"];
+
+
+/* ============ STAAT ============ */
+const vers = () => ({ woorden:new Set(), stemmen:[0,0,0,0,0], inPan:new Set(), fout:new Set(), volgorde:null, melding:null, schud:null, plons:false,
+  wat:[0,0,0], kernOpen:false, kaartOpen:new Set(), geplaatst:{}, sortSel:null, sortVolgorde:null, sortMelding:null, sortSchud:null,
+  paren:new Set(), sel:null, naamVolgorde:null, rasMelding:null, misser:null, q:0, gekozen:null, kijk:0, uitleg:new Set(), groot:false });
+const state = { niveau:"g56", scherm:-1, ...vers() };
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const L = x => (x && typeof x==="object" && "g56" in x) ? x[state.niveau] : x;
+const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
+const img = (n, alt="") => `<img src="img/${n}.webp" alt="${esc(alt)}" draggable="false">`;
+const zeg = (t, soort="") => `<div class="say ${soort}"><img src="img/ing-wortel.webp" alt=""><div class="bubble">${t}</div></div>`;
+const verder = () => { const n = LES.stappen[state.scherm+1]; return n ? `<button class="btn" data-go="${state.scherm+1}">Verder: ${esc(n.naam)}</button>` : ""; };
+const band = t => `<div class="band"><h2>${esc(t)}</h2></div>`;
+const rassen = () => state.niveau==="g56" ? LES.rassen.lijst.filter(x=>LES.rassen.g56.includes(x.key)) : LES.rassen.lijst;
+
+function confetti(){
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const c=document.createElement("div"); c.className="confetti";
+  const kl=["#F9C406","#F47B20","#EE6A56","#E41D9A","#4F8F3A","#7650A6"];
+  for(let i=0;i<60;i++){ const s=document.createElement("i"); s.style.left=Math.random()*100+"%"; s.style.background=kl[i%kl.length]; s.style.animationDelay=(Math.random()*.5)+"s"; c.appendChild(s); }
+  document.body.appendChild(c); setTimeout(()=>c.remove(),2400);
+}
+const pan = () => `<img class="panart" src="img/pan.webp" alt="Een pan met wortelsoep" draggable="false">`;
+
+/* ============ SCHERMEN ============ */
+const SCHERM = {};
+SCHERM.start = () => `<section class="cover">
+  <div class="coverText">
+    <h1>Soepdetective: Wortelsoep</h1>
+    <p class="kv"><span>Speurvraag van vandaag</span>${esc(LES.speurvraag)}</p>
+    <button class="big" data-go="0">Start de les</button>
+    <div class="soon"><b>Wortelsoep</b>${BINNENKORT.map(s=>`<span>${s} · binnenkort</span>`).join("")}</div>
+  </div></section>`;
+
+SCHERM.proef = () => {
+  const p = LES.proef, w = L(p.woorden);
+  const cloud = w.map(([t,c,r])=>`<button class="word" style="--wc:${c};--r:${r}" data-word="${t}" aria-pressed="${state.woorden.has(t)}">${t}</button>`).join("");
+  const g = [...state.woorden];
+  return band(p.titel) + `<div class="inner">
+    ${zeg(esc(L(p.vraag)))}
+    <div class="taste">
+      <div class="cloud">${cloud}</div>
+      ${img("soep","Een kom wortelsoep").replace("<img","<img class=\"soupimg\"")}
+    </div>
+    ${g.length ? `<div class="chosen">Onze soep is ${g.map(esc).join(", ")}.</div>` : ""}
+    <div class="row">${verder()}</div></div>`;
+};
+
+SCHERM.lekker = () => {
+  const l = LES.lekker, max = Math.max(1,...state.stemmen);
+  return band(l.titel) + `<div class="inner">
+    <div class="bars" aria-hidden="true">${state.stemmen.map(n=>`<span style="height:${Math.round(n/max*100)}%"></span>`).join("")}</div>
+    <div class="faces">${l.gezichten.map(([n,f],i)=>`<button class="face" data-vote="${i}" aria-label="${n}: één stem erbij">${img(f)}<b>${state.stemmen[i]}</b>${n}</button>`).join("")}</div>
+    ${zeg(esc(L(l.vertel)))}
+    <div class="row"><button class="ghost" id="voteReset">Opnieuw tellen</button>${verder()}</div></div>`;
+};
+
+SCHERM.speur = () => {
+  const d = LES.speur;
+  if (!state.volgorde) state.volgorde = shuffle([...d.goed,...L(d.fout)]);
+  const n=d.goed.length, gev=d.goed.filter(k=>state.inPan.has(k)).length, klaar=gev===n;
+  const tray = state.volgorde.map(k=>{
+    if (state.inPan.has(k)) return `<div class="ing gone" aria-hidden="true"></div>`;
+    const fout = state.fout.has(k);
+    return `<button class="ing ${fout?"wrong":""} ${state.schud===k?"shake":""}" data-ing="${k}" ${fout||klaar?"disabled":""} aria-label="${ING[k]} in de pan doen">${img("ing-"+k)}<span>${ING[k]}</span></button>`;
+  }).join("");
+  const msg = klaar ? zeg(`Opgelost! In de soep zitten wortel, zoete aardappel, ui, bleekselderij, knoflook, water en een snufje zout.`,"win")
+    : state.melding ? zeg(esc(state.melding.t), state.melding.ok?"ok":"no")
+    : zeg(state.niveau==="g56" ? "Wat proef je? Sleep een ingrediënt naar de pan, of tik erop." : "Zeven zitten erin, vijf niet. Let op: er liggen twee soorten aardappel! Sleep of tik.");
+  const h = band(d.titel) + `<div class="inner"><div class="kitchen">
+    <div class="tray" style="--cols:${state.niveau==="g56"?5:4}">${tray}</div>
+    <div class="panwrap">
+      <div class="count"><span>In de soep: <b>${gev} van ${n}</b></span><span class="slots">${d.goed.map((_,i)=>`<span class="slot ${i<gev?"full":""}"></span>`).join("")}</span></div>
+      <div class="pan ${state.plons?"plons":""}" id="pan">${pan()}<div class="floaters">${[...state.inPan].map(k=>img("ing-"+k)).join("")}</div></div>
+      ${msg}
+    </div></div>
+    <div class="row">${klaar ? verder() : `<button class="ghost" id="panAll">Toon het antwoord</button>`}<button class="ghost" id="panReset">Opnieuw</button></div></div>`;
+  state.schud=null; return h;
+};
+
+SCHERM.speurvraag = () => {
+  const k = LES.kern, opties = [["Ja, veel beter","A"],["Een beetje","B"],["Nee, niet beter","C"]];
+  return band(k.titel) + `<div class="inner">
+    <div class="kern">
+      <div class="detbox" role="img" aria-label="De detective-wortel onderzoekt een wortel met een vergrootglas">
+        ${state.kernOpen ? `<div class="ans"><h3>Opgelost!</h3>${k.antwoord.map(p=>`<p>${esc(p)}</p>`).join("")}</div>` : ""}
+      </div>
+      <div class="kernside">
+        ${zeg(esc(k.wat))}
+        <div class="vote">${opties.map(([t,l],i)=>`<button data-wat="${i}" aria-label="${t}: één stem erbij"><b>${l}</b>${t} <em>${state.wat[i]}</em></button>`).join("")}</div>
+        <div class="row">${state.kernOpen ? verder() : `<button class="btn" id="kernOpen">Onthul het antwoord</button>`}</div>
+      </div>
+    </div></div>`;
+};
+SCHERM.lichaam = () => {
+  const l = LES.lichaam, a = L(l.act), klaar = kernKlaar(a);
+  return band(L(l.titel)) + `<div class="inner">
+    ${zeg(esc(a.v))}
+    ${a.type==="kaarten" ? actKaarten(a) : actSorteer(a)}
+    ${klaar ? `<div class="onthoud"><b>Onthoud!</b><p>${esc(l.onthoud)}</p></div>` : ""}
+    <div class="row">${klaar ? verder() : ""}</div></div>`;
+};
+function kernKlaar(a){
+  if (a.type==="kaarten") return a.opties.filter(o=>o.goed).every(o=>state.kaartOpen.has(o.key));
+  return a.items.every((_,i)=>state.geplaatst[i]);
+}
+function actKaarten(a){
+  const goed = a.opties.filter(o=>o.goed), gev = goed.filter(o=>state.kaartOpen.has(o.key)).length, klaar = gev===goed.length;
+  return `<div class="count"><span>Gevonden: <b>${gev} van ${goed.length}</b></span><span class="slots">${goed.map((_,i)=>`<span class="slot ${i<gev?"full":""}"></span>`).join("")}</span></div>
+    <div class="bodies">${a.opties.map(o=>{ const open=state.kaartOpen.has(o.key);
+      return `<button class="body ${open?(o.goed?"yes":"nope"):""}" data-kaart="${o.key}" ${open||klaar?"disabled":""}>${img("lijf-"+o.key, o.naam)}<b>${esc(o.naam)}</b>
+        ${open?`<small>${esc(o.uitleg)}</small><span class="mark ${o.goed?"ok":"no"}">${o.goed?"Klopt!":"Nee"}</span>`:""}</button>`; }).join("")}</div>
+    ${klaar ? "" : `<div class="row"><button class="ghost" id="kaartAll">Toon het antwoord</button></div>`}`;
+}
+function actSorteer(a){
+  if (!state.sortVolgorde) state.sortVolgorde = shuffle(a.items.map((_,i)=>i));
+  const open = state.sortVolgorde.filter(i=>!state.geplaatst[i]);
+  const n=a.items.length, gedaan=Object.keys(state.geplaatst).length;
+  const msg = gedaan===n ? zeg("Alles staat op de goede plek!","win")
+    : state.sortMelding ? zeg(esc(state.sortMelding.t), state.sortMelding.ok?"ok":"no")
+    : state.sortSel!==null ? zeg("Tik nu op het goede vak.") : "";
+  const h = `<div class="count"><span>Geplaatst: <b>${gedaan} van ${n}</b></span></div>
+    ${open.length?`<div class="items">${open.map(i=>`<button class="item ${state.sortSel===i?"sel":""} ${state.sortSchud===i?"shake":""}" data-item="${i}">${esc(a.items[i].naam)}</button>`).join("")}</div>`:""}
+    <div class="bins">${a.bakken.map(b=>`<button class="bin" style="--bc:${b.kleur}" data-bak="${b.id}"><h3>${b.naam}</h3>${
+      a.items.map((it,i)=>[it,i]).filter(([,i])=>state.geplaatst[i]===b.id).map(([it])=>`<div class="placed">${esc(it.naam)}${it.uitleg?`<small>${esc(it.uitleg)}</small>`:""}</div>`).join("")}</button>`).join("")}</div>
+    ${msg}
+    ${gedaan<n?`<div class="row"><button class="ghost" id="sortAll">Toon het antwoord</button></div>`:""}`;
+  state.sortSchud=null; return h;
+}
+
+SCHERM.rassen = () => {
+  const r = LES.rassen, lijst = rassen();
+  if (!state.naamVolgorde) state.naamVolgorde = shuffle(lijst.map(x=>x.key));
+  const klaar = state.paren.size===lijst.length;
+  const cards = lijst.map(x=>{ const p=state.paren.has(x.key);
+    return `<button class="card ${p?"paired":""} ${state.sel===x.key?"sel":""}" data-ras="${x.key}" ${p||klaar?"disabled":""} aria-label="${p?esc(x.naam):"Kies deze wortel"}">${img("ras-"+x.key)}<span>${p?esc(x.naam):"?"}</span></button>`; }).join("");
+  const names = state.naamVolgorde.map(k=>{ const x=lijst.find(y=>y.key===k), p=state.paren.has(k);
+    return `<button class="name ${p?"done":""} ${state.misser===k?"shake":""}" data-naam="${k}" ${p?"disabled":""}>${p?img("ras-"+k):""}<span><b>${esc(x.naam)}</b><small>${esc(x.hint)}</small></span></button>`; }).join("");
+  const msg = klaar ? zeg(esc(r.slot),"win")
+    : state.rasMelding ? zeg(esc(state.rasMelding.t), state.rasMelding.ok?"ok":"no")
+    : state.sel ? zeg("Tik nu op de naam die erbij hoort.") : zeg(esc(L(r.v)));
+  state.misser=null;
+  return band(r.titel) + `<div class="inner">
+    ${msg}
+    <div class="count"><span>Gevonden: <b>${state.paren.size} van ${lijst.length}</b></span><span class="slots">${lijst.map((_,i)=>`<span class="slot ${i<state.paren.size?"full":""}"></span>`).join("")}</span></div>
+    <div class="match"><div class="cards" style="${lijst.length===4?"grid-template-columns:repeat(2,1fr)":""}">${cards}</div><div class="names">${names}</div></div>
+    <div class="row">${klaar ? verder() : `<button class="ghost" id="rasAll">Toon het antwoord</button>`}</div></div>`;
+};
+
+SCHERM.quiz = () => {
+  const lijst = L(LES.quiz), q = lijst[state.q], done = state.gekozen!==null, juist = done && state.gekozen===q.goed;
+  const last = state.q===lijst.length-1;
+  return band("Wist je dat…") + `<div class="inner">
+    <span class="qcount">Vraag ${state.q+1} van ${lijst.length}</span>
+    <h2 style="font-size:clamp(26px,2.8vw,42px)">${esc(q.v)}</h2>
+    <div class="quiz">
+      <figure>${img(q.img,"")}</figure>
+      <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+        <div class="opts ${done?"revealed":""}">${q.a.map((t,i)=>{
+          const cls = done && i===q.goed ? "good" : done && i===state.gekozen ? "bad" : "";
+          return `<button class="opt ${cls}" data-ans="${i}" ${done?"disabled":""}><span class="l">${"ABC"[i]}</span><span>${esc(t)}</span></button>`; }).join("")}</div>
+        ${done ? `<div class="fact ${juist?"":"miss"}"><b>${juist?"Goed zo!":"Bijna! Het goede antwoord is "+"ABC"[q.goed]+"."}</b><p>${esc(q.weetje)}</p></div>`
+               : zeg("Kies samen A, B of C. Tik daarna op het antwoord van de klas.")}
+        <div class="row">${done ? (last ? verder() : `<button class="btn" id="nextQ">Volgende vraag</button>`) : ""}${state.q>0?`<button class="ghost" id="prevQ">Vorige vraag</button>`:""}</div>
+      </div>
+    </div></div>`;
+};
+
+SCHERM.kunst = () => {
+  const k = LES.kunst, vr = L(k.vragen);
+  const items = vr.map((v,i)=>{
+    if (i>=state.kijk) return `<li class="hid"><span class="k">${i+1}</span><span>Kijkvraag ${i+1}</span></li>`;
+    const ex = state.uitleg.has(i) ? `<div class="expl"><b>Kijk mee</b>${esc(v.uitleg)}</div>` : `<button class="ghost small" data-expl="${i}">Kijk mee</button>`;
+    return `<li><span class="k">${i+1}</span><div class="lq"><span>${esc(v.v)}</span>${ex}</div></li>`;
+  }).join("");
+  return band(k.titel) + `<div class="inner"><div class="art">
+    <figure class="frame">
+      <button class="imgbtn" id="zoom" aria-label="Schilderij groot tonen">${img("groentemarkt","De groentemarkt, geschilderd door Hendrick Sorgh")}</button>
+      <figcaption><b>De groentemarkt</b> · ${k.maker}, ${k.jaar} · ${k.plek}. Tik op het schilderij om het groot te zien.</figcaption>
+    </figure>
+    <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
+      <p>${esc(k.intro)}</p>
+      <ol class="look">${items}</ol>
+      <div class="row">${state.kijk<vr.length ? `<button class="btn" id="kijkNext">${state.kijk===0?"Eerste kijkvraag":"Volgende kijkvraag"}</button>` : verder()}</div>
+    </div></div>
+    ${state.groot ? `<div class="lightbox">${img("groentemarkt","De groentemarkt")}<button class="ghost" id="closeZoom">Sluiten</button></div>` : ""}</div>`;
+};
+
+SCHERM.maak = () => {
+  const m = LES.maak;
+  return band(m.titel) + `<div class="inner"><div class="create">
+    <div class="assign">
+      <span class="tag">Optioneel</span>
+      <ol>${L(m.stappen).map(s=>`<li>${esc(s)}</li>`).join("")}</ol>
+      <div class="label">Wat heb je nodig?</div>
+      <div class="need">${m.nodig.map(s=>`<span>${s}</span>`).join("")}</div>
+      ${zeg("Ik ben benieuwd hoe jouw wortelfamilie eruitziet!")}
+    </div>
+    <figure class="example">${img("voorbeeld","Voorbeeldtekening: vier wortels met gezichtjes in vetkrijt op zwart papier")}<figcaption>Voorbeeld</figcaption></figure>
+  </div></div>`;
+};
+
+/* ============ RENDER ============ */
+function render(){
+  document.querySelectorAll("[data-niveau]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.niveau===state.niveau));
+  $("#sub").textContent = "Wortelsoep · " + (state.niveau==="g56"?"groep 5-6":"groep 7-8");
+  const st = $("#stage");
+  $("#prev").disabled = state.scherm<0;
+  if (state.scherm<0){ $("#stepsWrap").hidden=true; st.innerHTML=SCHERM.start(); $("#next").textContent="Start"; return; }
+  $("#stepsWrap").hidden=false;
+  $("#steps").innerHTML = LES.stappen.map((o,i)=>`<button class="step ${i===state.scherm?"on":i<state.scherm?"done":""}" data-go="${i}"><i>${i<state.scherm?"✓":i+1}</i>${esc(o.naam)}</button>`).join("");
+  const on=$("#steps .on"); if(on) on.scrollIntoView({block:"nearest",inline:"nearest"});
+  st.innerHTML = SCHERM[LES.stappen[state.scherm].id]();
+  $("#next").textContent = state.scherm===LES.stappen.length-1 ? "Klaar" : "Volgende";
+  after(LES.stappen[state.scherm].id);
+}
+function after(id){
+  if (id==="speur") document.querySelectorAll(".ing[data-ing]:not(:disabled)").forEach(el=>
+    drag(el, ()=>[$("#pan")], ()=>probeer(el.dataset.ing), img("ing-"+el.dataset.ing)));
+  if (id==="lichaam"){ const a=L(LES.lichaam.act); if (a.type==="sorteer") document.querySelectorAll(".item[data-item]").forEach(el=>{
+    const i=+el.dataset.item;
+    drag(el, ()=>[...document.querySelectorAll(".bin")], t=>{ if(!t){ state.sortSel = state.sortSel===i?null:i; state.sortMelding=null; render(); } else plaats(i,t.dataset.bak); },
+      `<span class="gtext">${esc(a.items[i].naam.slice(0,34))}${a.items[i].naam.length>34?"…":""}</span>`, true); }); }
+  if (id==="rassen") document.querySelectorAll(".card[data-ras]:not(:disabled)").forEach(el=>{
+    const k=el.dataset.ras;
+    drag(el, ()=>[...document.querySelectorAll(".name:not(:disabled)")], t=>{ if(!t){ state.sel = state.sel===k?null:k; state.rasMelding=null; render(); } else koppel(k,t.dataset.naam); }, img("ras-"+k), true);
+  });
+}
+function drag(el, targets, onDrop, ghostHTML, tapGivesNull){
+  el.addEventListener("pointerdown", e=>{
+    if (e.button>0) return; e.preventDefault();
+    const sx=e.clientX, sy=e.clientY; let ghost=null, moved=false;
+    const hit = ev => targets().find(t=>{ const r=t.getBoundingClientRect(); return ev.clientX>r.left&&ev.clientX<r.right&&ev.clientY>r.top&&ev.clientY<r.bottom; }) || null;
+    const move = ev=>{
+      if(!moved && Math.hypot(ev.clientX-sx,ev.clientY-sy)<8) return;
+      if(!moved){ moved=true; el.classList.add("lifted"); ghost=document.createElement("div"); ghost.className="ghost-drag"; ghost.innerHTML=ghostHTML; document.body.appendChild(ghost); }
+      ghost.style.left=ev.clientX+"px"; ghost.style.top=ev.clientY+"px";
+      const h=hit(ev); targets().forEach(t=>t.classList.toggle("hover",t===h));
+    };
+    const up = ev=>{
+      removeEventListener("pointermove",move); removeEventListener("pointerup",up); removeEventListener("pointercancel",up);
+      if(ghost) ghost.remove(); el.classList.remove("lifted"); targets().forEach(t=>t.classList.remove("hover"));
+      if(!moved){ onDrop(tapGivesNull?null:true); return; }
+      const h=hit(ev); if(h) onDrop(h);
+    };
+    addEventListener("pointermove",move); addEventListener("pointerup",up); addEventListener("pointercancel",up);
+  });
+  el.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); onDrop(tapGivesNull?null:true); } });
+}
+function probeer(k){
+  const d=LES.speur;
+  if (d.goed.includes(k)){
+    state.inPan.add(k); state.plons=true;
+    const rest = d.goed.filter(x=>!state.inPan.has(x)).length;
+    state.melding={ok:true,t:`Ja! ${ING[k]} zit erin.`+(rest?` Nog ${rest} te gaan.`:"")};
+    if(!rest) confetti();
+  } else { state.fout.add(k); state.schud=k; state.melding={ok:false,t:`Nee, ${ING[k].toLowerCase()} zit er niet in.`}; }
+  render(); state.plons=false;
+}
+function plaats(i,bak){
+  const a=L(LES.lichaam.act), it=a.items[i];
+  if (it.bak===bak){ state.geplaatst[i]=bak; state.sortMelding={ok:true,t:`Ja! Dat is een ${bak}.`}; if(Object.keys(state.geplaatst).length===a.items.length) confetti(); }
+  else { state.sortSchud=i; state.sortMelding={ok:false,t:"Hmm, kijk nog eens goed. Probeer het andere vak!"}; }
+  state.sortSel=null; render();
+}
+function koppel(k,naam){
+  const x=LES.rassen.lijst.find(y=>y.key===k);
+  if (k===naam){ state.paren.add(k); state.rasMelding={ok:true,t:`Ja! Dat is de ${x.naam}.`}; if(state.paren.size===rassen().length) confetti(); }
+  else { state.misser=naam; state.rasMelding={ok:false,t:"Nee, die past niet. Kijk nog eens naar de vorm en de kleur."}; }
+  state.sel=null; render();
+}
+function go(i){ state.scherm=Math.max(-1,Math.min(LES.stappen.length-1,i)); render(); window.scrollTo({top:0}); }
+
+$("#next").addEventListener("click",()=>{ if(state.scherm===LES.stappen.length-1){ Object.assign(state,vers()); go(-1); return; } go(state.scherm+1); });
+$("#prev").addEventListener("click",()=>go(state.scherm-1));
+$("#home").addEventListener("click",()=>{ Object.assign(state,vers()); go(-1); });
+
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button"); if(!t||t.disabled) return; const d=t.dataset;
+  if(d.go!==undefined){ go(+d.go); return; }
+  if(d.niveau){ if(state.niveau!==d.niveau){ state.niveau=d.niveau; Object.assign(state,vers()); render(); } return; }
+  if(d.word){ state.woorden.has(d.word)?state.woorden.delete(d.word):state.woorden.add(d.word); render(); return; }
+  if(d.vote!==undefined){ state.stemmen[+d.vote]++; render(); return; }
+  if(t.id==="voteReset"){ state.stemmen=[0,0,0,0,0]; render(); return; }
+  if(t.id==="panReset"){ Object.assign(state,{inPan:new Set(),fout:new Set(),volgorde:null,melding:null}); render(); return; }
+  if(t.id==="panAll"){ LES.speur.goed.forEach(k=>state.inPan.add(k)); state.melding=null; render(); return; }
+  if(d.wat!==undefined){ state.wat[+d.wat]++; render(); return; }
+  if(t.id==="kernOpen"){ state.kernOpen=true; confetti(); render(); return; }
+  if(d.kaart){ state.kaartOpen.add(d.kaart); if(kernKlaar(L(LES.lichaam.act))) confetti(); render(); return; }
+  if(t.id==="kaartAll"){ L(LES.lichaam.act).opties.forEach(o=>{ if(o.goed) state.kaartOpen.add(o.key); }); render(); return; }
+  if(d.bak){ if(state.sortSel!==null) plaats(state.sortSel,d.bak); else { state.sortMelding={ok:false,t:"Kies eerst een kaartje."}; render(); } return; }
+  if(t.id==="sortAll"){ L(LES.lichaam.act).items.forEach((it,i)=>state.geplaatst[i]=it.bak); state.sortMelding=null; render(); return; }
+  if(d.naam){ if(state.sel) koppel(state.sel,d.naam); else { state.rasMelding={ok:false,t:"Kies eerst een plaatje."}; render(); } return; }
+  if(t.id==="rasAll"){ rassen().forEach(x=>state.paren.add(x.key)); state.sel=null; render(); return; }
+  if(d.ans!==undefined && state.gekozen===null){ state.gekozen=+d.ans; if(state.gekozen===L(LES.quiz)[state.q].goed) confetti(); render(); return; }
+  if(t.id==="nextQ"){ state.q++; state.gekozen=null; render(); return; }
+  if(t.id==="prevQ"){ state.q--; state.gekozen=null; render(); return; }
+  if(t.id==="kijkNext"){ state.kijk++; render(); return; }
+  if(d.expl!==undefined){ state.uitleg.add(+d.expl); render(); return; }
+  if(t.id==="zoom"){ state.groot=true; render(); return; }
+  if(t.id==="closeZoom"){ state.groot=false; render(); return; }
+});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape"&&state.groot){ state.groot=false; render(); return; }
+  if(e.key==="ArrowRight") $("#next").click();
+  if(e.key==="ArrowLeft"&&state.scherm>=0) go(state.scherm-1);
+});
+render();
+</script>
+
+</body>
+</html>
