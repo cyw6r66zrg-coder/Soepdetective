@@ -6,7 +6,7 @@
    ========================================================================== */
 const SOEPEN = [
   { id:"wortel",    naam:"Wortelsoep",      klaar:true  },
-  { id:"tomaat",    naam:"Tomatensoep",     klaar:false },
+  { id:"tomaat",    naam:"Tomatensoep",     klaar:true  },
   { id:"doperwt",   naam:"Doperwtensoep",   klaar:false },
   { id:"broccoli",  naam:"Broccolisoep",    klaar:false },
   { id:"bloemkool", naam:"Bloemkoolsoep",   klaar:false },
@@ -16,7 +16,8 @@ const SOEPEN = [
 
 const INGREDIENTEN = {
   wortel:"Wortel", ui:"Ui", bleekselderij:"Bleekselderij", zoeteaardappel:"Zoete aardappel", knoflook:"Knoflook", zout:"Zout", water:"Water",
-  banaan:"Banaan", broccoli:"Broccoli", aardbei:"Aardbei", gember:"Gember", aardappel:"Aardappel"
+  banaan:"Banaan", broccoli:"Broccoli", aardbei:"Aardbei", gember:"Gember", aardappel:"Aardappel",
+  tomaat:"Tomaat", basilicum:"Basilicum", paprika:"Paprika"
 };
 
 const LESSEN = {};   // elke soepen/<id>/les.js vult hier LESSEN.<id> = { … }
