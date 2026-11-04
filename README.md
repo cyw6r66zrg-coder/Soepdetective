@@ -14,6 +14,7 @@ img/ingredienten/          ingrediënten, gedeeld door alle soepen (ui.webp, kno
 img/lichaam/               lichaamskaartjes (ogen.webp, spieren.webp …)
 img/algemeen/              smileys
 tools/controleer.js        controleert of elke soep compleet is
+fonts/                     lettertypes Baloo 2 en Nunito (zelf gehost, SIL Open Font License)
 ```
 
 Een soep open je direct met `#<id>` achter het adres, bijvoorbeeld `…/index.html#wortel`.

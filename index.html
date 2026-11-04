@@ -7,10 +7,12 @@
 <link rel="icon" href="img/ingredienten/wortel.webp">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style>
 <title>Soepdetective</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@600;700;800&display=swap">
+<link rel="preload" href="fonts/baloo2.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/nunito.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+/* Lettertypes staan in de site zelf (geen Google Fonts): geen gegevens van leerlingen naar derden. Licentie: SIL Open Font License. */
+@font-face{font-family:"Baloo 2";font-style:normal;font-weight:600 800;font-display:swap;src:url(fonts/baloo2.woff2) format("woff2")}
+@font-face{font-family:"Nunito";font-style:normal;font-weight:600 800;font-display:swap;src:url(fonts/nunito.woff2) format("woff2")}
 /* Layout: één podium (zoals een Canva-dia) met verloopbalk als kop; boven niveau + stappen, onder vorige/volgende. Bewust één lichte, crèmekleurige wereld, net als de les. */
 :root{
   color-scheme: light;
