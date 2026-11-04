@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Soepdetective: interactieve les bij de wortelsoep van Good Soup, voor groep 5 tot en met 8.">
-<link rel="icon" href="img/ing-wortel.webp">
+<meta name="description" content="Soepdetective: interactieve lessen bij de soepen van Good Soup, voor groep 5 tot en met 8.">
+<link rel="icon" href="img/ingredienten/wortel.webp">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style>
 <title>Soepdetective</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,7 +75,7 @@ img{max-width:100%}
 .btn:active,.ghost:active{transform:translateY(2px)}
 .btn:disabled,.ghost:disabled{opacity:.4;cursor:default}
 
-/* tekstballon met wortel */
+/* tekstballon met mascotte */
 .say{display:flex;align-items:center;gap:10px}
 .say img{width:clamp(52px,5vw,72px);height:clamp(52px,5vw,72px);border-radius:50%;object-fit:contain;padding:5px;background:var(--card);border:3px solid var(--orange);flex:none}
 .bubble{position:relative;background:var(--paper);border:3px solid var(--line);border-radius:18px;padding:10px 16px}
@@ -93,7 +93,7 @@ img{max-width:100%}
 .onthoud b{font-family:var(--display);font-size:1.3em;color:var(--sun);flex:none}
 
 /* ---- start ---- */
-.cover{flex:1;position:relative;min-height:clamp(380px,48vw,620px);display:flex;align-items:center;background:url(img/cover.webp) right center/cover no-repeat}
+.cover{flex:1;position:relative;min-height:clamp(380px,48vw,620px);display:flex;align-items:center;background:var(--cover) right center/cover no-repeat}
 .cover::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--cream) 0%,var(--cream) 42%,rgba(255,244,214,.75) 55%,rgba(255,244,214,0) 70%)}
 .coverText{position:relative;padding:clamp(20px,4vw,64px);display:flex;flex-direction:column;gap:18px;max-width:640px}
 .coverText h1{font-size:clamp(46px,6.4vw,104px);line-height:.95}
@@ -101,9 +101,15 @@ img{max-width:100%}
 .coverText .kv span{display:block;font-size:.7em;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .big{background:var(--band);color:#fff;border:0;border-radius:999px;font-family:var(--display);font-weight:800;font-size:clamp(26px,2.6vw,36px);padding:8px 44px;align-self:flex-start;box-shadow:0 6px 0 var(--orange-dark)}
 .big:active{transform:translateY(4px);box-shadow:0 2px 0 var(--orange-dark)}
-.soon{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.soon span{border:2px dashed var(--line);border-radius:999px;padding:2px 12px;font-size:.8em;color:var(--muted);background:rgba(255,255,255,.6)}
-.soon b{border:2px solid var(--orange);border-radius:999px;padding:2px 12px;font-size:.8em;background:var(--orange);color:#fff}
+.coverText .ghost.small{align-self:flex-start}
+.kiezer{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:clamp(12px,1.6vw,20px)}
+.soepkaart{border:3px solid var(--orange);border-radius:20px;background:var(--card);padding:10px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--display);font-weight:800;font-size:clamp(18px,1.6vw,24px);color:var(--ink);text-align:center}
+.soepkaart img{width:100%;aspect-ratio:1;object-fit:contain}
+button.soepkaart{cursor:pointer;transition:transform .15s}
+button.soepkaart:hover{transform:translateY(-3px)}
+.soepkaart.later{border:3px dashed var(--line);background:rgba(255,255,255,.5);color:var(--muted)}
+.soepkaart .leeg{width:100%;aspect-ratio:1;border-radius:14px;background:repeating-linear-gradient(45deg,rgba(0,0,0,.03) 0 12px,transparent 12px 24px)}
+.soepkaart small{font-family:var(--body,inherit);font-size:.7em;font-weight:700}
 
 /* ---- proeven ---- */
 .taste{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(16px,3vw,40px);align-items:center}
@@ -153,7 +159,7 @@ img{max-width:100%}
 .kern{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(16px,3vw,40px);align-items:start}
 .kernside{display:flex;flex-direction:column;gap:14px;min-width:0}
 .vote{flex-direction:column;align-items:stretch}
-.detbox{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/9;background:url(img/detective.webp) center/cover;max-width:100%}
+.detbox{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:16/9;background:center/cover no-repeat;max-width:100%}
 .detbox .ans{position:absolute;left:3%;top:6%;bottom:6%;width:46%;background:rgba(185,82,15,.88);color:#fff;border-radius:18px;padding:clamp(10px,1.4vw,20px);font-size:clamp(14px,1.3vw,20px);display:flex;flex-direction:column;gap:.6em;overflow:auto}
 .detbox .ans h3{font-size:1.4em;color:var(--sun)}
 .vote{display:flex;gap:10px;flex-wrap:wrap}
@@ -178,7 +184,7 @@ img{max-width:100%}
 .placed{background:var(--paper);border:2px solid var(--bc);border-radius:12px;padding:6px 10px;font-size:.85em;animation:pop .3s}
 .placed small{display:block;font-weight:600;color:var(--muted)}
 
-/* ---- rassen ---- */
+/* ---- koppelen (bv. wortelrassen) ---- */
 .match{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(16px,3vw,40px);align-items:start}
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .card.sel{background:var(--sun);border-color:var(--sun);transform:translateY(-4px) rotate(-2deg)}
@@ -260,7 +266,7 @@ figcaption b{color:var(--ink)}
 @media (max-width:820px){
   .taste,.kitchen,.kern,.match,.quiz,.art,.create{grid-template-columns:1fr}
   .tray,.cards{grid-template-columns:repeat(4,1fr)}
-  .cover{background:url(img/cover.webp) top center/100% auto no-repeat;padding-top:44vw;align-items:flex-start}
+  .cover{background:var(--cover) top center/100% auto no-repeat;padding-top:44vw;align-items:flex-start}
   .cover::before{background:linear-gradient(180deg,rgba(255,244,214,0) 0,rgba(255,244,214,0) 38vw,var(--cream) 56vw)}
   .detbox{aspect-ratio:auto;min-height:420px;background-position:75% center}
   .detbox .ans{position:relative;left:auto;top:auto;bottom:auto;width:auto;margin:12px}
@@ -281,8 +287,8 @@ figcaption b{color:var(--ink)}
 <div class="app">
   <header class="top">
     <button class="brand" id="home" aria-label="Naar het begin">
-      <img src="img/ing-wortel.webp" alt="">
-      <span><b>Soepdetective</b><small id="sub">Wortelsoep</small></span>
+      <img id="brandImg" src="img/ingredienten/wortel.webp" alt="">
+      <span><b>Soepdetective</b><small id="sub">Kies een soep</small></span>
     </button>
     <div class="level" role="group" aria-label="Niveau">
       <button data-niveau="g56" aria-pressed="true">Groep 5-6</button>
@@ -297,150 +303,34 @@ figcaption b{color:var(--ink)}
   </footer>
 </div>
 
+<script src="soepen/soepen.js"></script>
 <script>
-/* ============ INHOUD: wortelsoep. Tekst die per niveau verschilt: { g56:"…", g78:"…" } ============ */
-const ING = {
-  wortel:"Wortel", ui:"Ui", bleekselderij:"Bleekselderij", zoeteaardappel:"Zoete aardappel", knoflook:"Knoflook", zout:"Zout", water:"Water",
-  banaan:"Banaan", broccoli:"Broccoli", aardbei:"Aardbei", gember:"Gember", aardappel:"Aardappel"
-};
-const LES = {
-  naam:"Wortelsoep",
-  speurvraag:"Kun je van wortels beter in het donker zien?",
-  stappen:[
-    {id:"proef",  naam:"Proeven"},
-    {id:"lekker", naam:"Hoe lekker?"},
-    {id:"speur",  naam:"Wat zit erin?"},
-    {id:"speurvraag", naam:"Speurvraag"},
-    {id:"lichaam", naam:"Je lichaam"},
-    {id:"rassen", naam:"Wortelrassen"},
-    {id:"quiz",   naam:"Wist je dat…"},
-    {id:"kunst",  naam:"Kijk-kunst"},
-    {id:"maak",   naam:"Aan de slag"}
-  ],
-  proef:{
-    titel:"Neem een hapje… wat proef jij?",
-    vraag:{ g56:"Tik op de woorden die bij de soep passen.", g78:"Kies drie woorden en maak er samen één zin van." },
-    woorden:{
-      g56:[["zoet","#F47B20","-5deg"],["glad","#4F8F3A","5deg"],["warm","#7650A6","-4deg"],["dik","#3B2B22","4deg"],["hartig","#F47B20","-3deg"],["romig","#4F8F3A","5deg"],["pittig","#7650A6","-5deg"],["zacht","#3B2B22","4deg"]],
-      g78:[["zoet","#F47B20","-5deg"],["glad","#4F8F3A","5deg"],["warm","#7650A6","-4deg"],["dik","#3B2B22","4deg"],["hartig","#F47B20","-3deg"],["romig","#4F8F3A","5deg"],["pittig","#7650A6","-5deg"],["zacht","#3B2B22","4deg"],["kruidig","#D1352B","3deg"],["fris","#4F8F3A","-4deg"],["aards","#B9520F","5deg"],["fluweelzacht","#7650A6","-3deg"]]
-    }
-  },
-  lekker:{
-    titel:"Hoe lekker vind jij de soep?",
-    gezichten:[["bah","smiley-bah"],["niet lekker","smiley-nietlekker"],["gaat wel","smiley-gaatwel"],["lekker","smiley-lekker"],["heerlijk","smiley-heerlijk"]],
-    vertel:{ g56:"Vertel het de klas: “Ik vind hem lekker, want…” of “Ik vind hem niet lekker, want…”", g78:"Vertel het de klas: wat maakt dat jij hem wel of niet lekker vindt? Komt het door de smaak, de kleur of hoe hij in je mond voelt?" }
-  },
-  speur:{ titel:"Speur mee: wat zit er in de soep?", goed:["wortel","ui","bleekselderij","zoeteaardappel","knoflook","zout","water"],
-    fout:{ g56:["banaan","broccoli","aardbei"], g78:["banaan","broccoli","aardbei","gember","aardappel"] } },
-  kern:{
-    titel:"Kun je van wortels beter in het donker zien?",
-    wat:"Wat denk jij? Kies samen A, B of C. Tik daarna op het antwoord van de klas.",
-    antwoord:["Wortels zitten vol met een oranje superstofje. Daar maakt je lichaam vitamine A van. En die heb je nodig om goed te zien, ook als het een beetje donker is.",
-              "Maar let op: eet je een hele zak wortels, dan krijg je géén nachtkijker-ogen. Een kat word je er niet van!",
-              "Dus: wortels houden je ogen gezond. Handig, maar geen toverkracht."]
-  },
-  lichaam:{
-    titel:{ g56:"Wortels helpen je lichaam bij twee dingen", g78:"Wortels en je lichaam: feit of fabel?" },
-    onthoud:"Wortels houden je ogen gezond en helpen je om niet ziek te worden. Handig, maar geen toverkracht.",
-    act:{
-      g56:{ type:"kaarten", v:"Bij welke twee dingen helpen wortels? Tik een plaatje aan.", opties:[
-        {key:"ogen",   naam:"Je ogen",      goed:true,  uitleg:"Ja! Van het oranje stofje maakt je lichaam vitamine A. Die heb je nodig om goed te zien."},
-        {key:"afweer", naam:"Niet ziek worden", goed:true, uitleg:"Ja! Vitamine A helpt je lichaam ook om ziektes buiten de deur te houden."},
-        {key:"haar",   naam:"Lang haar",    goed:false, uitleg:"Nee, van wortels krijg je geen langer haar."},
-        {key:"oren",   naam:"Beter horen",  goed:false, uitleg:"Nee, je oren hebben niks aan extra wortels."},
-        {key:"spieren",naam:"Sterke spieren",goed:false,uitleg:"Niet echt. Voor spieren heb je vooral eiwit nodig, uit bonen, ei, vis of vlees."},
-        {key:"rennen", naam:"Harder rennen", goed:false, uitleg:"Nee, je wordt er niet sneller van. Wel gezonder!"}
-      ]},
-      g78:{ type:"sorteer", v:"Feit of fabel? Sleep elk kaartje naar het goede vak (of tik het kaartje en dan het vak).", bakken:[
-        {id:"feit", naam:"Feit", kleur:"#4F8F3A"}, {id:"fabel", naam:"Fabel", kleur:"#7650A6"}],
-        items:[
-          {naam:"Wortels zitten vol met een oranje kleurstof: bètacaroteen.", bak:"feit"},
-          {naam:"Je lichaam maakt van bètacaroteen vitamine A.", bak:"feit"},
-          {naam:"Heb je te weinig vitamine A, dan zie je slechter in het donker.", bak:"feit"},
-          {naam:"Hoe meer wortels je eet, hoe beter je in het donker ziet.", bak:"fabel", uitleg:"Heb je genoeg, dan helpt extra niet meer."},
-          {naam:"Van een zak wortels per dag krijg je nachtkijker-ogen, net als een kat.", bak:"fabel"},
-          {naam:"Konijnen eten in het echt vooral wortels.", bak:"fabel", uitleg:"Ze eten vooral hooi."}
-        ]}
-    }
-  },
-  rassen:{
-    titel:"Ken jij deze wortels?",
-    v:{ g56:"Elke wortel heeft een eigen naam. Lees de hint, tik op het plaatje en daarna op de naam. Of sleep het plaatje naar de naam.",
-        g78:"Acht wortelrassen! Lees de hints goed: vorm en kleur verraden welke wortel het is. Tik of sleep het plaatje naar de goede naam." },
-    lijst:[
-      {key:"nantes", naam:"Nantes", hint:"Recht als een stok, met een stompe punt. Lekker zoet!"},
-      {key:"chantenay", naam:"Chantenay", hint:"Kort en dik. Hij groeit zelfs in harde grond."},
-      {key:"parijsemarkt", naam:"Parijse Markt", hint:"Zo rond als een golfbal! Past in een bloempot."},
-      {key:"amsterdamsebak", naam:"Amsterdamse Bak", hint:"Een echte Nederlander: klein, dun en snel klaar."},
-      {key:"purplehaze", naam:"Purple Haze", hint:"Paars van buiten, oranje vanbinnen. Verrassing!"},
-      {key:"atomicred", naam:"Atomic Red", hint:"Rood door hetzelfde kleurstofje als in tomaten."},
-      {key:"yellowstone", naam:"Yellowstone", hint:"Zo geel als de zon en lekker zoet."},
-      {key:"lunarwhite", naam:"Lunar White", hint:"Bijna geen kleurstof, daarom is hij wit."}
-    ],
-    g56:["parijsemarkt","purplehaze","atomicred","lunarwhite"],
-    slot:"Super! Wortels zijn er in allerlei vormen en kleuren."
-  },
-  quiz:{
-    g56:[
-      { v:"Welk stuk van de plant eet je als je een wortel eet?", a:["Het stuk onder de grond","De bloem","De blaadjes"], goed:0, img:"voorraadkast",
-        weetje:"Je eet het stuk van de plant dat onder de grond zit. Daar bewaart de plant zijn suiker, net als in een geheime voorraadkast. Daarom is een wortel zo lekker zoet!" },
-      { v:"Hoe lang duurt het voordat een wortel dik genoeg is voor de soep?", a:["3 dagen","3 maanden","3 jaar"], goed:1, img:"groei",
-        weetje:"Eerst een piepklein zaadje. Dan een sprietje. Dan een plantje. Na zo'n 3 maanden is de wortel dik genoeg voor jouw soep!" },
-      { v:"Wat eet een konijn het allermeest?", a:["Wortels","Sla","Hooi"], goed:2, img:"konijn",
-        weetje:"In tekenfilms knabbelen konijnen de hele dag op wortels. Maar echt? Voor een konijn is een wortel snoep. Hooi is zijn échte eten!" }
-    ],
-    g78:[
-      { v:"Waarom smaakt een wortel zoet?", a:["Boeren spuiten er suiker op","De plant bewaart er zijn suiker in","Hij zuigt suiker op uit de grond"], goed:1, img:"voorraadkast",
-        weetje:"Je eet het stuk van de plant dat onder de grond zit. Daar bewaart de plant zijn suiker, net als in een geheime voorraadkast. Daarom is een wortel zo lekker zoet!" },
-      { v:"Hoe lang groeit een wortel van zaadje tot oogst?", a:["Ongeveer 3 weken","Ongeveer 3 maanden","Ongeveer een jaar"], goed:1, img:"groei",
-        weetje:"Eerst een piepklein zaadje. Dan een sprietje. Dan een plantje. Na zo'n 3 maanden is de wortel dik genoeg voor jouw soep!" },
-      { v:"Waarom krijgt een konijn maar af en toe een wortel?", a:["Er zit veel suiker in","Hij wordt er blind van","Wortels zijn giftig voor konijnen"], goed:0, img:"konijn",
-        weetje:"Voor een konijn is een wortel snoep. Hooi is zijn échte eten!" }
-    ]
-  },
-  kunst:{
-    titel:"Kijk-kunst: De groentemarkt", maker:"Hendrick Sorgh", jaar:"1664", plek:"Rijksmuseum, Amsterdam",
-    intro:"Geschilderd door Hendrick Sorgh, in 1664. Dat is al ruim 350 jaar geleden!",
-    vragen:{
-      g56:[
-        {v:"Wat zie je allemaal? Kun jij de wortels vinden?", uitleg:"Vooraan liggen wortels, kool en pompoenen. Smullen!"},
-        {v:"Wie zijn de mensen? Wat doen ze?", uitleg:"Kijk naar hun handen en gezichten. Wie verkoopt er groente, en wie komt er kopen?"},
-        {v:"Waar zou deze markt zijn?", uitleg:"Het is een markt aan een gracht, in een Nederlandse stad. Zie jij het schip en de huizen?"}
-      ],
-      g78:[
-        {v:"Wat zie je allemaal? Kun jij de wortels vinden?", uitleg:"Vooraan liggen wortels, kool en pompoenen. Smullen!"},
-        {v:"Wie zijn de mensen? Wat doen ze?", uitleg:"Kijk naar hun handen en gezichten. Wie verkoopt er groente, en wie komt er kopen?"},
-        {v:"Waar zou deze markt zijn?", uitleg:"Het is een markt aan een gracht, in een Nederlandse stad. Zie jij het schip en de huizen?"},
-        {v:"Waarom zou de schilder de groente zo groot vooraan hebben geschilderd?", uitleg:"Bedenk het samen: waar kijk je als eerste naar? Wat wilde de schilder dat jij zag?"}
-      ]
-    }
-  },
-  maak:{
-    titel:"Aan de slag: de wortelfamilie!",
-    stappen:{
-      g56:["Teken met vetkrijt op zwart papier een wortelfamilie: oranje, paars, geel en wit.","Geef elke wortel een gezicht en een grappige naam.","Waar zijn de wortels en wat zijn ze aan het doen?"],
-      g78:["Teken met vetkrijt op zwart papier een wortelfamilie: oranje, paars, geel en wit.","Geef elke wortel een gezicht en een grappige naam.","Waar zijn de wortels en wat zijn ze aan het doen?","Schrijf bij elke wortel één weetje dat je vandaag hebt geleerd."]
-    },
-    nodig:["Vetkrijt","Zwart papier"]
-  }
-};
-const BINNENKORT = ["Tomatensoep","Doperwtensoep","Broccolisoep","Bloemkoolsoep","Maïssoep","Pompoensoep"];
-
+/* ============ INHOUD ============
+   De lesinhoud staat NIET hier, maar per soep in soepen/<id>/les.js.
+   Overzicht van alle soepen + gedeelde ingrediënten: soepen/soepen.js.
+   ================================= */
+let LES = null;   // de les van de gekozen soep (LESSEN[state.soep])
 
 /* ============ STAAT ============ */
 const vers = () => ({ woorden:new Set(), stemmen:[0,0,0,0,0], inPan:new Set(), fout:new Set(), volgorde:null, melding:null, schud:null, plons:false,
   wat:[0,0,0], kernOpen:false, kaartOpen:new Set(), geplaatst:{}, sortSel:null, sortVolgorde:null, sortMelding:null, sortSchud:null,
   paren:new Set(), sel:null, naamVolgorde:null, rasMelding:null, misser:null, q:0, gekozen:null, kijk:0, uitleg:new Set(), groot:false });
-const state = { niveau:"g56", scherm:-1, ...vers() };
+const state = { niveau:"g56", soep:null, scherm:-1, ...vers() };
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const L = x => (x && typeof x==="object" && "g56" in x) ? x[state.niveau] : x;
 const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
-const img = (n, alt="") => `<img src="img/${n}.webp" alt="${esc(alt)}" draggable="false">`;
-const zeg = (t, soort="") => `<div class="say ${soort}"><img src="img/ing-wortel.webp" alt=""><div class="bubble">${t}</div></div>`;
+const pad = {
+  soep: n => `soepen/${state.soep}/img/${n}.webp`,   // alleen voor deze soep
+  ing:  k => `img/ingredienten/${k}.webp`,           // gedeeld door alle soepen
+  lijf: k => `img/lichaam/${k}.webp`,
+  alg:  n => `img/algemeen/${n}.webp`
+};
+const img = (src, alt="") => `<img src="${src}" alt="${esc(alt)}" draggable="false">`;
+const zeg = (t, soort="") => `<div class="say ${soort}"><img src="${pad.ing(LES ? LES.mascotte : "wortel")}" alt=""><div class="bubble">${t}</div></div>`;
 const verder = () => { const n = LES.stappen[state.scherm+1]; return n ? `<button class="btn" data-go="${state.scherm+1}">Verder: ${esc(n.naam)}</button>` : ""; };
 const band = t => `<div class="band"><h2>${esc(t)}</h2></div>`;
-const rassen = () => state.niveau==="g56" ? LES.rassen.lijst.filter(x=>LES.rassen.g56.includes(x.key)) : LES.rassen.lijst;
+const koppelLijst = () => { const k=LES.koppel; return state.niveau==="g56" && k.g56 ? k.lijst.filter(x=>k.g56.includes(x.key)) : k.lijst; };
 
 function confetti(){
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -449,16 +339,21 @@ function confetti(){
   for(let i=0;i<60;i++){ const s=document.createElement("i"); s.style.left=Math.random()*100+"%"; s.style.background=kl[i%kl.length]; s.style.animationDelay=(Math.random()*.5)+"s"; c.appendChild(s); }
   document.body.appendChild(c); setTimeout(()=>c.remove(),2400);
 }
-const pan = () => `<img class="panart" src="img/pan.webp" alt="Een pan met wortelsoep" draggable="false">`;
+const pan = () => `<img class="panart" src="${pad.soep("pan")}" alt="Een pan met ${esc(LES.naam.toLowerCase())}" draggable="false">`;
 
 /* ============ SCHERMEN ============ */
 const SCHERM = {};
-SCHERM.start = () => `<section class="cover">
+SCHERM.kiezer = () => band("Welke soep onderzoeken we vandaag?") + `<div class="inner">
+  <div class="kiezer">${SOEPEN.map(s=> s.klaar
+    ? `<button class="soepkaart" data-soep="${s.id}"><img src="soepen/${s.id}/img/soep.webp" alt="" draggable="false"><b>${esc(s.naam)}</b></button>`
+    : `<div class="soepkaart later" aria-disabled="true"><span class="leeg"></span><b>${esc(s.naam)}</b><small>binnenkort</small></div>`).join("")}</div>
+  ${state.laadFout ? zeg(esc(state.laadFout),"no") : ""}</div>`;
+SCHERM.start = () => `<section class="cover" style="--cover:url('${pad.soep("cover")}')">
   <div class="coverText">
-    <h1>Soepdetective: Wortelsoep</h1>
+    <h1>Soepdetective: ${esc(LES.naam)}</h1>
     <p class="kv"><span>Speurvraag van vandaag</span>${esc(LES.speurvraag)}</p>
     <button class="big" data-go="0">Start de les</button>
-    <div class="soon"><b>Wortelsoep</b>${BINNENKORT.map(s=>`<span>${s} · binnenkort</span>`).join("")}</div>
+    <button class="ghost small" data-kies>Andere soep kiezen</button>
   </div></section>`;
 
 SCHERM.proef = () => {
@@ -469,7 +364,7 @@ SCHERM.proef = () => {
     ${zeg(esc(L(p.vraag)))}
     <div class="taste">
       <div class="cloud">${cloud}</div>
-      ${img("soep","Een kom wortelsoep").replace("<img","<img class=\"soupimg\"")}
+      ${img(pad.soep("soep"),"Een kom "+LES.naam.toLowerCase()).replace("<img","<img class=\"soupimg\"")}
     </div>
     ${g.length ? `<div class="chosen">Onze soep is ${g.map(esc).join(", ")}.</div>` : ""}
     <div class="row">${verder()}</div></div>`;
@@ -479,7 +374,7 @@ SCHERM.lekker = () => {
   const l = LES.lekker, max = Math.max(1,...state.stemmen);
   return band(l.titel) + `<div class="inner">
     <div class="bars" aria-hidden="true">${state.stemmen.map(n=>`<span style="height:${Math.round(n/max*100)}%"></span>`).join("")}</div>
-    <div class="faces">${l.gezichten.map(([n,f],i)=>`<button class="face" data-vote="${i}" aria-label="${n}: één stem erbij">${img(f)}<b>${state.stemmen[i]}</b>${n}</button>`).join("")}</div>
+    <div class="faces">${l.gezichten.map(([n,f],i)=>`<button class="face" data-vote="${i}" aria-label="${n}: één stem erbij">${img(pad.alg(f))}<b>${state.stemmen[i]}</b>${n}</button>`).join("")}</div>
     ${zeg(esc(L(l.vertel)))}
     <div class="row"><button class="ghost" id="voteReset">Opnieuw tellen</button>${verder()}</div></div>`;
 };
@@ -491,16 +386,16 @@ SCHERM.speur = () => {
   const tray = state.volgorde.map(k=>{
     if (state.inPan.has(k)) return `<div class="ing gone" aria-hidden="true"></div>`;
     const fout = state.fout.has(k);
-    return `<button class="ing ${fout?"wrong":""} ${state.schud===k?"shake":""}" data-ing="${k}" ${fout||klaar?"disabled":""} aria-label="${ING[k]} in de pan doen">${img("ing-"+k)}<span>${ING[k]}</span></button>`;
+    return `<button class="ing ${fout?"wrong":""} ${state.schud===k?"shake":""}" data-ing="${k}" ${fout||klaar?"disabled":""} aria-label="${INGREDIENTEN[k]} in de pan doen">${img(pad.ing(k))}<span>${INGREDIENTEN[k]}</span></button>`;
   }).join("");
-  const msg = klaar ? zeg(`Opgelost! In de soep zitten wortel, zoete aardappel, ui, bleekselderij, knoflook, water en een snufje zout.`,"win")
+  const msg = klaar ? zeg(esc(d.opgelost),"win")
     : state.melding ? zeg(esc(state.melding.t), state.melding.ok?"ok":"no")
-    : zeg(state.niveau==="g56" ? "Wat proef je? Sleep een ingrediënt naar de pan, of tik erop." : "Zeven zitten erin, vijf niet. Let op: er liggen twee soorten aardappel! Sleep of tik.");
+    : zeg(esc(L(d.hint)));
   const h = band(d.titel) + `<div class="inner"><div class="kitchen">
     <div class="tray" style="--cols:${state.niveau==="g56"?5:4}">${tray}</div>
     <div class="panwrap">
       <div class="count"><span>In de soep: <b>${gev} van ${n}</b></span><span class="slots">${d.goed.map((_,i)=>`<span class="slot ${i<gev?"full":""}"></span>`).join("")}</span></div>
-      <div class="pan ${state.plons?"plons":""}" id="pan">${pan()}<div class="floaters">${[...state.inPan].map(k=>img("ing-"+k)).join("")}</div></div>
+      <div class="pan ${state.plons?"plons":""}" id="pan">${pan()}<div class="floaters">${[...state.inPan].map(k=>img(pad.ing(k))).join("")}</div></div>
       ${msg}
     </div></div>
     <div class="row">${klaar ? verder() : `<button class="ghost" id="panAll">Toon het antwoord</button>`}<button class="ghost" id="panReset">Opnieuw</button></div></div>`;
@@ -508,10 +403,10 @@ SCHERM.speur = () => {
 };
 
 SCHERM.speurvraag = () => {
-  const k = LES.kern, opties = [["Ja, veel beter","A"],["Een beetje","B"],["Nee, niet beter","C"]];
+  const k = LES.kern, opties = k.opties.map((t,i)=>[t,"ABC"[i]]);
   return band(k.titel) + `<div class="inner">
     <div class="kern">
-      <div class="detbox" role="img" aria-label="De detective-wortel onderzoekt een wortel met een vergrootglas">
+      <div class="detbox" role="img" aria-label="${esc(k.beeldAlt)}" style="background-image:url('${pad.soep("detective")}')">
         ${state.kernOpen ? `<div class="ans"><h3>Opgelost!</h3>${k.antwoord.map(p=>`<p>${esc(p)}</p>`).join("")}</div>` : ""}
       </div>
       <div class="kernside">
@@ -537,7 +432,7 @@ function actKaarten(a){
   const goed = a.opties.filter(o=>o.goed), gev = goed.filter(o=>state.kaartOpen.has(o.key)).length, klaar = gev===goed.length;
   return `<div class="count"><span>Gevonden: <b>${gev} van ${goed.length}</b></span><span class="slots">${goed.map((_,i)=>`<span class="slot ${i<gev?"full":""}"></span>`).join("")}</span></div>
     <div class="bodies">${a.opties.map(o=>{ const open=state.kaartOpen.has(o.key);
-      return `<button class="body ${open?(o.goed?"yes":"nope"):""}" data-kaart="${o.key}" ${open||klaar?"disabled":""}>${img("lijf-"+o.key, o.naam)}<b>${esc(o.naam)}</b>
+      return `<button class="body ${open?(o.goed?"yes":"nope"):""}" data-kaart="${o.key}" ${open||klaar?"disabled":""}>${img(pad.lijf(o.key), o.naam)}<b>${esc(o.naam)}</b>
         ${open?`<small>${esc(o.uitleg)}</small><span class="mark ${o.goed?"ok":"no"}">${o.goed?"Klopt!":"Nee"}</span>`:""}</button>`; }).join("")}</div>
     ${klaar ? "" : `<div class="row"><button class="ghost" id="kaartAll">Toon het antwoord</button></div>`}`;
 }
@@ -557,14 +452,14 @@ function actSorteer(a){
   state.sortSchud=null; return h;
 }
 
-SCHERM.rassen = () => {
-  const r = LES.rassen, lijst = rassen();
+SCHERM.koppel = () => {
+  const r = LES.koppel, lijst = koppelLijst();
   if (!state.naamVolgorde) state.naamVolgorde = shuffle(lijst.map(x=>x.key));
   const klaar = state.paren.size===lijst.length;
   const cards = lijst.map(x=>{ const p=state.paren.has(x.key);
-    return `<button class="card ${p?"paired":""} ${state.sel===x.key?"sel":""}" data-ras="${x.key}" ${p||klaar?"disabled":""} aria-label="${p?esc(x.naam):"Kies deze wortel"}">${img("ras-"+x.key)}<span>${p?esc(x.naam):"?"}</span></button>`; }).join("");
+    return `<button class="card ${p?"paired":""} ${state.sel===x.key?"sel":""}" data-ras="${x.key}" ${p||klaar?"disabled":""} aria-label="${p?esc(x.naam):"Kies dit plaatje"}">${img(pad.soep("koppel-"+x.key))}<span>${p?esc(x.naam):"?"}</span></button>`; }).join("");
   const names = state.naamVolgorde.map(k=>{ const x=lijst.find(y=>y.key===k), p=state.paren.has(k);
-    return `<button class="name ${p?"done":""} ${state.misser===k?"shake":""}" data-naam="${k}" ${p?"disabled":""}>${p?img("ras-"+k):""}<span><b>${esc(x.naam)}</b><small>${esc(x.hint)}</small></span></button>`; }).join("");
+    return `<button class="name ${p?"done":""} ${state.misser===k?"shake":""}" data-naam="${k}" ${p?"disabled":""}>${p?img(pad.soep("koppel-"+k)):""}<span><b>${esc(x.naam)}</b><small>${esc(x.hint)}</small></span></button>`; }).join("");
   const msg = klaar ? zeg(esc(r.slot),"win")
     : state.rasMelding ? zeg(esc(state.rasMelding.t), state.rasMelding.ok?"ok":"no")
     : state.sel ? zeg("Tik nu op de naam die erbij hoort.") : zeg(esc(L(r.v)));
@@ -583,7 +478,7 @@ SCHERM.quiz = () => {
     <span class="qcount">Vraag ${state.q+1} van ${lijst.length}</span>
     <h2 style="font-size:clamp(26px,2.8vw,42px)">${esc(q.v)}</h2>
     <div class="quiz">
-      <figure>${img(q.img,"")}</figure>
+      <figure>${img(pad.soep(q.img),"")}</figure>
       <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
         <div class="opts ${done?"revealed":""}">${q.a.map((t,i)=>{
           const cls = done && i===q.goed ? "good" : done && i===state.gekozen ? "bad" : "";
@@ -604,15 +499,15 @@ SCHERM.kunst = () => {
   }).join("");
   return band(k.titel) + `<div class="inner"><div class="art">
     <figure class="frame">
-      <button class="imgbtn" id="zoom" aria-label="Schilderij groot tonen">${img("groentemarkt","De groentemarkt, geschilderd door Hendrick Sorgh")}</button>
-      <figcaption><b>De groentemarkt</b> · ${k.maker}, ${k.jaar} · ${k.plek}. Tik op het schilderij om het groot te zien.</figcaption>
+      <button class="imgbtn" id="zoom" aria-label="Schilderij groot tonen">${img(pad.soep("kunst"),k.werk+", geschilderd door "+k.maker)}</button>
+      <figcaption><b>${esc(k.werk)}</b> · ${k.maker}, ${k.jaar} · ${k.plek}. Tik op het schilderij om het groot te zien.</figcaption>
     </figure>
     <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
       <p>${esc(k.intro)}</p>
       <ol class="look">${items}</ol>
       <div class="row">${state.kijk<vr.length ? `<button class="btn" id="kijkNext">${state.kijk===0?"Eerste kijkvraag":"Volgende kijkvraag"}</button>` : verder()}</div>
     </div></div>
-    ${state.groot ? `<div class="lightbox">${img("groentemarkt","De groentemarkt")}<button class="ghost" id="closeZoom">Sluiten</button></div>` : ""}</div>`;
+    ${state.groot ? `<div class="lightbox">${img(pad.soep("kunst"),k.werk)}<button class="ghost" id="closeZoom">Sluiten</button></div>` : ""}</div>`;
 };
 
 SCHERM.maak = () => {
@@ -623,18 +518,22 @@ SCHERM.maak = () => {
       <ol>${L(m.stappen).map(s=>`<li>${esc(s)}</li>`).join("")}</ol>
       <div class="label">Wat heb je nodig?</div>
       <div class="need">${m.nodig.map(s=>`<span>${s}</span>`).join("")}</div>
-      ${zeg("Ik ben benieuwd hoe jouw wortelfamilie eruitziet!")}
+      ${m.zeg ? zeg(esc(m.zeg)) : ""}
     </div>
-    <figure class="example">${img("voorbeeld","Voorbeeldtekening: vier wortels met gezichtjes in vetkrijt op zwart papier")}<figcaption>Voorbeeld</figcaption></figure>
+    <figure class="example">${img(pad.soep("voorbeeld"),m.voorbeeldAlt)}<figcaption>Voorbeeld</figcaption></figure>
   </div></div>`;
 };
 
 /* ============ RENDER ============ */
 function render(){
   document.querySelectorAll("[data-niveau]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.niveau===state.niveau));
-  $("#sub").textContent = "Wortelsoep · " + (state.niveau==="g56"?"groep 5-6":"groep 7-8");
-  const st = $("#stage");
-  $("#prev").disabled = state.scherm<0;
+  const groep = state.niveau==="g56"?"groep 5-6":"groep 7-8", st = $("#stage");
+  $("#sub").textContent = (LES ? LES.naam : "Kies een soep") + " · " + groep;
+  $("#brandImg").src = pad.ing(LES ? LES.mascotte : "wortel");
+  document.title = LES ? "Soepdetective · " + LES.naam : "Soepdetective";
+  if (!LES){ $("#stepsWrap").hidden=true; st.innerHTML=SCHERM.kiezer(); $("#prev").disabled=true; $("#next").disabled=true; $("#next").textContent="Start"; return; }
+  $("#next").disabled = false;
+  $("#prev").disabled = false;
   if (state.scherm<0){ $("#stepsWrap").hidden=true; st.innerHTML=SCHERM.start(); $("#next").textContent="Start"; return; }
   $("#stepsWrap").hidden=false;
   $("#steps").innerHTML = LES.stappen.map((o,i)=>`<button class="step ${i===state.scherm?"on":i<state.scherm?"done":""}" data-go="${i}"><i>${i<state.scherm?"✓":i+1}</i>${esc(o.naam)}</button>`).join("");
@@ -645,14 +544,14 @@ function render(){
 }
 function after(id){
   if (id==="speur") document.querySelectorAll(".ing[data-ing]:not(:disabled)").forEach(el=>
-    drag(el, ()=>[$("#pan")], ()=>probeer(el.dataset.ing), img("ing-"+el.dataset.ing)));
+    drag(el, ()=>[$("#pan")], ()=>probeer(el.dataset.ing), img(pad.ing(el.dataset.ing))));
   if (id==="lichaam"){ const a=L(LES.lichaam.act); if (a.type==="sorteer") document.querySelectorAll(".item[data-item]").forEach(el=>{
     const i=+el.dataset.item;
     drag(el, ()=>[...document.querySelectorAll(".bin")], t=>{ if(!t){ state.sortSel = state.sortSel===i?null:i; state.sortMelding=null; render(); } else plaats(i,t.dataset.bak); },
       `<span class="gtext">${esc(a.items[i].naam.slice(0,34))}${a.items[i].naam.length>34?"…":""}</span>`, true); }); }
-  if (id==="rassen") document.querySelectorAll(".card[data-ras]:not(:disabled)").forEach(el=>{
+  if (id==="koppel") document.querySelectorAll(".card[data-ras]:not(:disabled)").forEach(el=>{
     const k=el.dataset.ras;
-    drag(el, ()=>[...document.querySelectorAll(".name:not(:disabled)")], t=>{ if(!t){ state.sel = state.sel===k?null:k; state.rasMelding=null; render(); } else koppel(k,t.dataset.naam); }, img("ras-"+k), true);
+    drag(el, ()=>[...document.querySelectorAll(".name:not(:disabled)")], t=>{ if(!t){ state.sel = state.sel===k?null:k; state.rasMelding=null; render(); } else koppel(k,t.dataset.naam); }, img(pad.soep("koppel-"+k)), true);
   });
 }
 function drag(el, targets, onDrop, ghostHTML, tapGivesNull){
@@ -681,9 +580,9 @@ function probeer(k){
   if (d.goed.includes(k)){
     state.inPan.add(k); state.plons=true;
     const rest = d.goed.filter(x=>!state.inPan.has(x)).length;
-    state.melding={ok:true,t:`Ja! ${ING[k]} zit erin.`+(rest?` Nog ${rest} te gaan.`:"")};
+    state.melding={ok:true,t:`Ja! ${INGREDIENTEN[k]} zit erin.`+(rest?` Nog ${rest} te gaan.`:"")};
     if(!rest) confetti();
-  } else { state.fout.add(k); state.schud=k; state.melding={ok:false,t:`Nee, ${ING[k].toLowerCase()} zit er niet in.`}; }
+  } else { state.fout.add(k); state.schud=k; state.melding={ok:false,t:`Nee, ${INGREDIENTEN[k].toLowerCase()} zit er niet in.`}; }
   render(); state.plons=false;
 }
 function plaats(i,bak){
@@ -693,19 +592,40 @@ function plaats(i,bak){
   state.sortSel=null; render();
 }
 function koppel(k,naam){
-  const x=LES.rassen.lijst.find(y=>y.key===k);
-  if (k===naam){ state.paren.add(k); state.rasMelding={ok:true,t:`Ja! Dat is de ${x.naam}.`}; if(state.paren.size===rassen().length) confetti(); }
-  else { state.misser=naam; state.rasMelding={ok:false,t:"Nee, die past niet. Kijk nog eens naar de vorm en de kleur."}; }
+  const r=LES.koppel, x=r.lijst.find(y=>y.key===k);
+  if (k===naam){ state.paren.add(k); state.rasMelding={ok:true,t:r.goedZo.replace("{naam}",x.naam)}; if(state.paren.size===koppelLijst().length) confetti(); }
+  else { state.misser=naam; state.rasMelding={ok:false,t:r.mis}; }
   state.sel=null; render();
 }
-function go(i){ state.scherm=Math.max(-1,Math.min(LES.stappen.length-1,i)); render(); window.scrollTo({top:0}); }
+function go(i){ if(!LES) return; if(i<-1){ naarKiezer(); return; } state.scherm=Math.min(LES.stappen.length-1,i); render(); window.scrollTo({top:0}); }
 
-$("#next").addEventListener("click",()=>{ if(state.scherm===LES.stappen.length-1){ Object.assign(state,vers()); go(-1); return; } go(state.scherm+1); });
+/* ============ SOEP KIEZEN ============
+   De soep staat in de url (#wortel), zodat je een les direct kunt delen of als bladwijzer opslaan. */
+function laadSoep(id){
+  return new Promise((ok,nee)=>{
+    if (LESSEN[id]) return ok();
+    const s=document.createElement("script"); s.src=`soepen/${id}/les.js`;
+    s.onload=()=>LESSEN[id]?ok():nee(); s.onerror=nee; document.head.appendChild(s);
+  });
+}
+async function openSoep(id){
+  const soep = SOEPEN.find(s=>s.id===id && s.klaar);
+  if (!soep){ naarKiezer(); return; }
+  try { await laadSoep(id); } catch { LES=null; state.soep=null; Object.assign(state,vers()); state.laadFout=`Oeps, de ${soep.naam.toLowerCase()} kon niet geladen worden.`; render(); return; }
+  state.soep=id; state.laadFout=null; LES=LESSEN[id]; Object.assign(state,vers()); state.scherm=-1; render(); window.scrollTo({top:0});
+}
+function naarKiezer(){ LES=null; state.soep=null; Object.assign(state,vers()); state.scherm=-1; if(location.hash) history.pushState(null,"",location.pathname+location.search); render(); }
+const vanUrl = () => { const id=decodeURIComponent(location.hash.slice(1)); id ? openSoep(id) : naarKiezer(); };
+addEventListener("hashchange", vanUrl);
+
+$("#next").addEventListener("click",()=>{ if(!LES) return; if(state.scherm===LES.stappen.length-1){ Object.assign(state,vers()); go(-1); return; } go(state.scherm+1); });
 $("#prev").addEventListener("click",()=>go(state.scherm-1));
-$("#home").addEventListener("click",()=>{ Object.assign(state,vers()); go(-1); });
+$("#home").addEventListener("click",naarKiezer);
 
 document.addEventListener("click",e=>{
   const t=e.target.closest("button"); if(!t||t.disabled) return; const d=t.dataset;
+  if(d.soep){ if(location.hash==="#"+d.soep) openSoep(d.soep); else location.hash=d.soep; return; }
+  if(d.kies!==undefined){ naarKiezer(); return; }
   if(d.go!==undefined){ go(+d.go); return; }
   if(d.niveau){ if(state.niveau!==d.niveau){ state.niveau=d.niveau; Object.assign(state,vers()); render(); } return; }
   if(d.word){ state.woorden.has(d.word)?state.woorden.delete(d.word):state.woorden.add(d.word); render(); return; }
@@ -720,7 +640,7 @@ document.addEventListener("click",e=>{
   if(d.bak){ if(state.sortSel!==null) plaats(state.sortSel,d.bak); else { state.sortMelding={ok:false,t:"Kies eerst een kaartje."}; render(); } return; }
   if(t.id==="sortAll"){ L(LES.lichaam.act).items.forEach((it,i)=>state.geplaatst[i]=it.bak); state.sortMelding=null; render(); return; }
   if(d.naam){ if(state.sel) koppel(state.sel,d.naam); else { state.rasMelding={ok:false,t:"Kies eerst een plaatje."}; render(); } return; }
-  if(t.id==="rasAll"){ rassen().forEach(x=>state.paren.add(x.key)); state.sel=null; render(); return; }
+  if(t.id==="rasAll"){ koppelLijst().forEach(x=>state.paren.add(x.key)); state.sel=null; render(); return; }
   if(d.ans!==undefined && state.gekozen===null){ state.gekozen=+d.ans; if(state.gekozen===L(LES.quiz)[state.q].goed) confetti(); render(); return; }
   if(t.id==="nextQ"){ state.q++; state.gekozen=null; render(); return; }
   if(t.id==="prevQ"){ state.q--; state.gekozen=null; render(); return; }
@@ -731,10 +651,11 @@ document.addEventListener("click",e=>{
 });
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&state.groot){ state.groot=false; render(); return; }
+  if(!LES) return;
   if(e.key==="ArrowRight") $("#next").click();
   if(e.key==="ArrowLeft"&&state.scherm>=0) go(state.scherm-1);
 });
-render();
+vanUrl();
 </script>
 
 </body>
