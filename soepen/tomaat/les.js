@@ -15,9 +15,9 @@ LESSEN.tomaat = {
     {id:"lekker", naam:"Hoe lekker?"},
     {id:"speur",  naam:"Wat zit erin?"},
     {id:"speurvraag", naam:"Speurvraag"},
-    {id:"lichaam", naam:"Je lichaam"},
     {id:"koppel", naam:"Tomatensoorten"},
     {id:"quiz",   naam:"Wist je dat…"},
+    {id:"lichaam", naam:"Je lichaam"},   // na de quiz: feit of fabel werkt als overhoring
     {id:"kunst",  naam:"Kijk-kunst"},
     {id:"maak",   naam:"Aan de slag"}
   ],
@@ -49,6 +49,7 @@ LESSEN.tomaat = {
               "Dus: allebei goed! Voor de plant is hij een vrucht, voor de kok een groente."]
   },
   lichaam:{
+    plaatje:"rijp",   // illustratie bij feit of fabel (een plaatje uit soepen/tomaat/img/)
     titel:{ g56:"Tomaten helpen je lichaam bij twee dingen", g78:"Tomaten en je lichaam: feit of fabel?" },
     onthoud:"In tomaten zit vitamine C. Die helpt je om niet ziek te worden, en helpt wondjes te genezen.",
     act:{
@@ -101,7 +102,7 @@ LESSEN.tomaat = {
         weetje:"Een jonge tomaat is groen. Als hij rijp wordt, maakt hij een rood kleurstofje: lycopeen. Hoe rijper, hoe roder!" }
     ],
     g78:[
-      { v:"Hoe lang geleden kwam de tomaat naar Europa?", a:["Ongeveer 50 jaar","Ongeveer 500 jaar","Ongeveer 5000 jaar"], goed:1, img:"zuidamerika",
+      { v:"Ontdekkingsreizigers namen de tomaat mee van Zuid-Amerika naar Europa. Hoe lang geleden was dat?", a:["Ongeveer 50 jaar","Ongeveer 500 jaar","Ongeveer 5000 jaar"], goed:1, img:"zuidamerika",
         weetje:"De tomaat komt uit de Andes in Zuid-Amerika. In de 16e eeuw, zo'n 500 jaar geleden, kwam hij naar Europa. Eerst durfde bijna niemand hem te eten!" },
       { v:"Hoe kan een Nederlandse kas ook in de winter tomaten kweken?", a:["De tomaten slapen in de winter","De kweker regelt warmte en licht","Ze komen stiekem uit Spanje"], goed:1, img:"kas",
         weetje:"In een kas kan de kweker de warmte regelen, en met lampen geeft hij extra licht. Zo groeien er het hele jaar tomaten." },

@@ -13,9 +13,9 @@ LESSEN.wortel = {
     {id:"lekker", naam:"Hoe lekker?"},
     {id:"speur",  naam:"Wat zit erin?"},
     {id:"speurvraag", naam:"Speurvraag"},
-    {id:"lichaam", naam:"Je lichaam"},
     {id:"koppel", naam:"Wortelrassen"},
     {id:"quiz",   naam:"Wist je dat…"},
+    {id:"lichaam", naam:"Je lichaam"},   // na de quiz: feit of fabel werkt als overhoring
     {id:"kunst",  naam:"Kijk-kunst"},
     {id:"maak",   naam:"Aan de slag"}
   ],
@@ -47,6 +47,7 @@ LESSEN.wortel = {
               "Dus: wortels houden je ogen gezond. Handig, maar geen toverkracht."]
   },
   lichaam:{
+    plaatje:"voorraadkast",   // illustratie bij feit of fabel (een plaatje uit soepen/wortel/img/)
     titel:{ g56:"Wortels helpen je lichaam bij twee dingen", g78:"Wortels en je lichaam: feit of fabel?" },
     onthoud:"Wortels houden je ogen gezond en helpen je om niet ziek te worden. Handig, maar geen toverkracht.",
     act:{

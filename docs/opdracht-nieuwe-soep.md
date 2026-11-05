@@ -31,6 +31,9 @@ Bestaande ingrediënten (niet opnieuw maken): wortel, ui, bleekselderij, zoeteaa
 - Tekst die per niveau verschilt: `{ g56:"…", g78:"…" }`.
 - `mascotte` = de sleutel van het hoofdingrediënt (bijv. `"tomaat"`).
 - `speur.goed` = echte ingrediënten, `speur.fout` = afleiders. Alle sleutels moeten bestaan of nieuw meegeleverd worden.
+- `lichaam.plaatje`: naam van een plaatje uit deze soep (bijv. een quizplaatje) als illustratie bij feit of fabel.
+- Volgorde van `stappen`: zoals bij de wortelsoep, met `lichaam` ná `quiz` (feit of fabel als overhoring).
+- Quizvragen moeten zonder voorkennis te snappen zijn: geef context in de vraag zelf.
 - `lichaam`, kaartjes voor groep 5-6: kies uit de bestaande lichaamsplaatjes `ogen, afweer, haar, oren, spieren, rennen`. Een ander lichaamsdeel? Lever dan `img/lichaam/<sleutel>.png` mee.
 - `koppel`: 4 tot 8 rassen of soorten van het hoofdingrediënt, met hints over vorm en kleur. `g56` = de 4 makkelijkste.
 - `kunst`: een **bestaand** kunstwerk, met maker, jaartal en museum. Controleer die gegevens bij het museum zelf en geef de bron.
@@ -42,7 +45,7 @@ Bestaande ingrediënten (niet opnieuw maken): wortel, ui, bleekselderij, zoeteaa
 |---|---|---|
 | `soepen/<id>/img/cover.png` | 1024×576 (16:9) | vol; links leeg/licht voor de titel, mascotte-detective rechts |
 | `soepen/<id>/img/detective.png` | 1024×576 (16:9) | vol |
-| `soepen/<id>/img/soep.png` | 700×700 | crème `#FDF4E3`, kom soep |
+| `soepen/<id>/img/soep.png` | 700×700 | crème `#FDF4E3`, kom soep (Claude Code haalt de achtergrond weg) |
 | `soepen/<id>/img/pan.png` | 500×460 | **transparant**, pan met de soep |
 | `soepen/<id>/img/koppel-<key>.png` | 300×300 | crème `#FDF4E3`, één per item in `koppel.lijst` |
 | `soepen/<id>/img/<quiz-img>.png` | 1000×750 (4:3) | vol; namen zoals in `quiz[…].img` |

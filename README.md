@@ -14,6 +14,7 @@ img/ingredienten/          ingrediënten, gedeeld door alle soepen (ui.webp, kno
 img/lichaam/               lichaamskaartjes (ogen.webp, spieren.webp …)
 img/algemeen/              smileys
 tools/controleer.js        controleert of elke soep compleet is
+tools/vrijstaand.py        haalt de achtergrond van een plaatje weg (bv. de kom soep)
 tools/bijsnijden.py        snijdt lege randen van ingrediënt- en lichaamsplaatjes weg (zelfde grootte)
 docs/opdracht-nieuwe-soep.md  opdracht om in Claude-chat een nieuwe soep te laten maken
 fonts/                     lettertypes Baloo 2 en Nunito (zelf gehost, SIL Open Font License)
@@ -37,7 +38,8 @@ Een soep open je direct met `#<id>` achter het adres, bijvoorbeeld `…/index.ht
    - `voorbeeld`: voorbeeld van de opdracht
 4. Nieuwe ingrediënten krijgen een naam in `INGREDIENTEN` (in `soepen/soepen.js`)
    en een plaatje `img/ingredienten/<sleutel>.webp`. Bestaande (ui, zout, water …) hergebruik je.
-5. Zet de soep in `soepen/soepen.js` op `klaar:true`.
+5. Zet de soep in `soepen/soepen.js` op `klaar:true` en geef hem een lichte `kleur` voor het kaartje op de beginpagina.
+   Haal de achtergrond van de kom weg: `python3 tools/vrijstaand.py soepen/<id>/img/soep.webp`.
 6. Controleer: `node tools/controleer.js`. Dat moet "Alles in orde." geven.
 
 Een scherm overslaan? Haal het weg uit `stappen` in `les.js`.

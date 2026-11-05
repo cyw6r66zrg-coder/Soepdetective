@@ -32,6 +32,7 @@ for (const soep of SOEPEN.filter(s => s.klaar)) {
   }
   if (L.speur) { L.speur.goed.forEach(k => ing.add(k)); niveaus(L.speur.fout).flat().forEach(k => ing.add(k)); }
   if (L.kern) plaatjes.add("detective");
+  if (L.lichaam && L.lichaam.plaatje) plaatjes.add(L.lichaam.plaatje);
   if (L.lichaam) niveaus(L.lichaam.act).forEach(a => a && a.type === "kaarten" && a.opties.forEach(o => lijf.add(o.key)));
   if (L.koppel) L.koppel.lijst.forEach(x => plaatjes.add("koppel-" + x.key));
   if (L.quiz) niveaus(L.quiz).flat().forEach(q => plaatjes.add(q.img));

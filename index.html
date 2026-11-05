@@ -33,7 +33,7 @@
   --sun:#F9C406;
   --magenta:#E41D9A;
   --line:#EBD9B8;
-  --band:linear-gradient(100deg,#F9C406 0%,#F49A28 30%,#EE6A56 58%,#E41D9A 100%);
+  --band:#F47B20;       /* effen oranje: banner, actieve stap, startknop, stemmenbalkjes */
   --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
   --body:"Nunito","Segoe UI",system-ui,sans-serif;
 }
@@ -106,14 +106,20 @@ img{max-width:100%}
 .big{background:var(--band);color:#fff;border:0;border-radius:999px;font-family:var(--display);font-weight:800;font-size:clamp(26px,calc(var(--vw)*2.6),36px);padding:8px 44px;align-self:flex-start;box-shadow:0 6px 0 var(--orange-dark)}
 .big:active{transform:translateY(4px);box-shadow:0 2px 0 var(--orange-dark)}
 .coverText .ghost.small{align-self:flex-start}
-.kiezer{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:clamp(12px,calc(var(--vw)*1.6),20px)}
-.soepkaart{border:3px solid var(--orange);border-radius:20px;background:var(--card);padding:10px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--display);font-weight:800;font-size:clamp(18px,calc(var(--vw)*1.6),24px);color:var(--ink);text-align:center}
-.soepkaart img{width:100%;aspect-ratio:1;object-fit:contain}
+.kiezer{display:flex;flex-direction:column;gap:clamp(12px,calc(var(--vw)*1.6),20px)}
+.klaarrij{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:inherit}
+.laterrij{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:10px}
+.soepkaart{container-type:inline-size;border:3px solid var(--orange);border-radius:20px;background:var(--kleur,var(--card));padding:10px 10px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--display);font-weight:800;font-size:clamp(18px,calc(var(--vw)*1.6),24px);color:var(--ink);text-align:center}
+.soepkaart img{width:100%;aspect-ratio:1;object-fit:contain;filter:drop-shadow(0 8px 10px rgba(59,43,34,.18))}
+.soepkaart b{font-size:min(30px,12.5cqi);white-space:nowrap;line-height:1.1}   /* naam past altijd op één regel */
 button.soepkaart{cursor:pointer;transition:transform .15s}
 button.soepkaart:hover{transform:translateY(-3px)}
-.soepkaart.later{border:3px dashed var(--line);background:rgba(255,255,255,.5);color:var(--muted)}
-.soepkaart .leeg{width:100%;aspect-ratio:1;border-radius:14px;background:repeating-linear-gradient(45deg,rgba(0,0,0,.03) 0 12px,transparent 12px 24px)}
-.soepkaart small{font-family:var(--body,inherit);font-size:.7em;font-weight:700}
+.soepkaart.later{border:3px dashed rgba(59,43,34,.18);color:var(--muted)}
+.soepkaart.later{padding:10px 8px;justify-content:center}
+.soepkaart.later>*{opacity:.75}
+.soepkaart.later b{font-size:min(22px,12cqi)}
+.soepkaart .leeg{width:100%;aspect-ratio:1;border-radius:14px;background:repeating-linear-gradient(45deg,rgba(255,255,255,.35) 0 12px,transparent 12px 24px)}
+.soepkaart small{font-family:var(--body,inherit);font-size:min(18px,8cqi);font-weight:700;margin-top:-4px}
 
 /* ---- proeven ---- */
 .taste{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(16px,calc(var(--vw)*3),40px);align-items:center}
@@ -132,6 +138,9 @@ button.soepkaart:hover{transform:translateY(-3px)}
 .face:active{transform:scale(.96)}
 .bars{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(8px,calc(var(--vw)*1.5),24px);align-items:end;height:70px}
 .bars span{background:var(--band);border-radius:10px 10px 3px 3px;min-height:4px;transition:height .3s}
+.sortkop{display:flex;gap:16px;align-items:center;justify-content:space-between}
+.sortkopl{display:flex;flex-direction:column;gap:10px;min-width:0}
+.sortbeeld{height:150px;width:320px;flex:none;object-fit:cover;object-position:center 62%;border-radius:16px}
 
 /* ---- speur ---- */
 .kitchen{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(16px,calc(var(--vw)*3),40px);align-items:start}
@@ -298,6 +307,17 @@ html.dia .band{padding:16px 44px}
 html.dia .band h2{font-size:46px}
 html.dia .inner{padding:22px 44px 24px;gap:16px}
 html.dia .say img{width:60px;height:60px}
+/* beginscherm: 4 kolommen, 2 rijen, plaatjes vullen de hoogte */
+html.dia .kiezer{flex:1 1 0;min-height:0}
+html.dia .klaarrij{flex:1 1 0;min-height:0;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,400px)}   /* beschikbare soepen groot */
+html.dia .laterrij{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr)}                             /* binnenkort: kleine rij */
+html.dia .soepkaart{min-height:0;padding:14px 14px 16px}
+html.dia .klaarrij .soepkaart img{flex:1 1 0;min-height:0;aspect-ratio:auto}
+/* hoe lekker: balkjes krijgen alle vrije ruimte, smileys en tekst schuiven naar onder */
+html.dia .lekker .bars{flex:1 1 0;height:auto;min-height:80px}
+html.dia .lekker .face{padding:4px 6px}
+html.dia .lekker .face img{max-width:140px}
+html.dia .sortbeeld{height:150px;width:340px}
 /* het hoofdblok van elk scherm vult de resterende hoogte; plaatjes passen zich aan die hoogte aan */
 html.dia :is(.taste,.kitchen,.kern,.match,.quiz,.art,.create){flex:1 1 0;min-height:0;grid-template-rows:minmax(0,1fr);align-items:stretch}
 html.dia :is(.taste,.kitchen,.kern,.match,.quiz,.art,.create)>*{min-height:0}
@@ -340,8 +360,12 @@ html.dia .name img{width:44px;height:44px}
 html.dia .quiz figure{height:100%;display:flex;align-items:flex-start}
 html.dia .quiz figure img{width:100%;height:100%;object-fit:contain;object-position:top}
 html.dia .quiz h2{font-size:38px!important}
-html.dia .opt{padding:8px 14px}
-html.dia .opt .l{width:46px;height:46px}
+html.dia .inner:has(.quiz) h2{font-size:34px!important;max-width:none}
+html.dia .opts{gap:10px}
+html.dia .opt{padding:6px 14px}
+html.dia .opt .l{width:42px;height:42px;font-size:1.4em}
+html.dia .fact{padding:10px 16px;gap:2px}
+html.dia .fact p{max-width:none}
 /* kunst: het schilderij past zich aan de hoogte aan, lijst blijft om het schilderij */
 html.dia .frame{height:100%;min-height:0}
 html.dia .imgbtn{flex:1 1 0;min-height:0;width:fit-content;max-width:100%;align-self:center;border-width:12px}
@@ -415,11 +439,16 @@ const pan = () => `<img class="panart" src="${pad.soep("pan")}" alt="Een pan met
 
 /* ============ SCHERMEN ============ */
 const SCHERM = {};
-SCHERM.kiezer = () => band("Welke soep onderzoeken we vandaag?") + `<div class="inner">
-  <div class="kiezer">${SOEPEN.map(s=> s.klaar
-    ? `<button class="soepkaart" data-soep="${s.id}"><img src="soepen/${s.id}/img/soep.webp" alt="" draggable="false"><b>${esc(s.naam)}</b></button>`
-    : `<div class="soepkaart later" aria-disabled="true"><span class="leeg"></span><b>${esc(s.naam)}</b><small>binnenkort</small></div>`).join("")}</div>
+SCHERM.kiezer = () => {
+  const kaart = s => `<button class="soepkaart" style="--kleur:${s.kleur||"var(--card)"}" data-soep="${s.id}"><img src="soepen/${s.id}/img/soep.webp" alt="" draggable="false"><b>${esc(s.naam)}</b></button>`;
+  const later = s => `<div class="soepkaart later" style="--kleur:${s.kleur||"var(--card)"}" aria-disabled="true"><b>${esc(s.naam)}</b><small>binnenkort</small></div>`;
+  return band("Welke soep onderzoeken we vandaag?") + `<div class="inner">
+  <div class="kiezer">
+    <div class="klaarrij">${SOEPEN.filter(s=>s.klaar).map(kaart).join("")}</div>
+    ${SOEPEN.some(s=>!s.klaar) ? `<div class="laterrij">${SOEPEN.filter(s=>!s.klaar).map(later).join("")}</div>` : ""}
+  </div>
   ${state.laadFout ? zeg(esc(state.laadFout),"no") : ""}</div>`;
+};
 SCHERM.start = () => `<section class="cover" style="--cover:url('${pad.soep("cover")}')">
   <div class="coverText">
     <h1>Soepdetective: ${esc(LES.naam)}</h1>
@@ -444,7 +473,7 @@ SCHERM.proef = () => {
 
 SCHERM.lekker = () => {
   const l = LES.lekker, max = Math.max(1,...state.stemmen);
-  return band(l.titel) + `<div class="inner">
+  return band(l.titel) + `<div class="inner lekker">
     <div class="bars" aria-hidden="true">${state.stemmen.map(n=>`<span style="height:${Math.round(n/max*100)}%"></span>`).join("")}</div>
     <div class="faces">${l.gezichten.map(([n,f],i)=>`<button class="face" data-vote="${i}" aria-label="${n}: één stem erbij">${img(pad.alg(f))}<b>${state.stemmen[i]}</b>${n}</button>`).join("")}</div>
     ${zeg(esc(L(l.vertel)))}
@@ -491,8 +520,7 @@ SCHERM.speurvraag = () => {
 SCHERM.lichaam = () => {
   const l = LES.lichaam, a = L(l.act), klaar = kernKlaar(a);
   return band(L(l.titel)) + `<div class="inner">
-    ${zeg(esc(a.v))}
-    ${a.type==="kaarten" ? actKaarten(a) : actSorteer(a)}
+    ${a.type==="kaarten" ? zeg(esc(a.v)) + actKaarten(a) : actSorteer(a, zeg(esc(a.v)), l.plaatje)}
     ${klaar ? `<div class="onthoud"><b>Onthoud!</b><p>${esc(l.onthoud)}</p></div>` : ""}
     <div class="row">${klaar ? verder() : ""}</div></div>`;
 };
@@ -508,14 +536,15 @@ function actKaarten(a){
         ${open?`<small>${esc(o.uitleg)}</small><span class="mark ${o.goed?"ok":"no"}">${o.goed?"Klopt!":"Nee"}</span>`:""}</button>`; }).join("")}</div>
     ${klaar ? "" : `<div class="row"><button class="ghost" id="kaartAll">Toon het antwoord</button></div>`}`;
 }
-function actSorteer(a){
+function actSorteer(a, opdracht, plaatje){
   if (!state.sortVolgorde) state.sortVolgorde = shuffle(a.items.map((_,i)=>i));
   const open = state.sortVolgorde.filter(i=>!state.geplaatst[i]);
   const n=a.items.length, gedaan=Object.keys(state.geplaatst).length;
   const msg = gedaan===n ? ""   /* klaar: confetti + "Onthoud!" zeggen genoeg, en zo past het op het bord */
     : state.sortMelding ? zeg(esc(state.sortMelding.t), state.sortMelding.ok?"ok":"no")
     : state.sortSel!==null ? zeg("Tik nu op het goede vak.") : "";
-  const h = `<div class="count"><span>Geplaatst: <b>${gedaan} van ${n}</b></span></div>
+  const h = `<div class="sortkop"><div class="sortkopl">${opdracht}<div class="count"><span>Geplaatst: <b>${gedaan} van ${n}</b></span></div></div>
+    ${plaatje ? `<img class="sortbeeld" src="${pad.soep(plaatje)}" alt="" draggable="false">` : ""}</div>
     ${open.length?`<div class="items">${open.map(i=>`<button class="item ${state.sortSel===i?"sel":""} ${state.sortSchud===i?"shake":""}" data-item="${i}">${esc(a.items[i].naam)}</button>`).join("")}</div>`:""}
     <div class="bins">${a.bakken.map(b=>`<button class="bin" style="--bc:${b.kleur}" data-bak="${b.id}"><h3>${b.naam}</h3>${
       a.items.map((it,i)=>[it,i]).filter(([,i])=>state.geplaatst[i]===b.id).map(([it])=>`<div class="placed">${esc(it.naam)}${it.uitleg?`<small>${esc(it.uitleg)}</small>`:""}</div>`).join("")}</button>`).join("")}</div>
