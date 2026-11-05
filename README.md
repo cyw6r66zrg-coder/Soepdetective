@@ -52,3 +52,9 @@ python3 -m http.server 8000
 ```
 
 en open daarna http://localhost:8000.
+
+## Bronnen kunstwerken (publiek domein)
+
+- Wortelsoep: Hendrick Sorgh, *De groentemarkt*, 1664. Rijksmuseum, Amsterdam (SK-A-717).
+- Tomatensoep: Luis Egidio Meléndez, *Bodegón: pepinos, tomates y recipientes*, 1774. Museo del Prado, Madrid (P000930).
+  Afbeelding: Wikimedia Commons, `Bodegón_con_pepinos_y_tomates-Meléndez.jpg`.
