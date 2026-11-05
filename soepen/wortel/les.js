@@ -47,7 +47,7 @@ LESSEN.wortel = {
               "Dus: wortels houden je ogen gezond. Handig, maar geen toverkracht."]
   },
   lichaam:{
-    plaatje:"voorraadkast",   // illustratie bij feit of fabel (een plaatje uit soepen/wortel/img/)
+    plaatje:"feitfabel",   // illustratie bij feit of fabel (een plaatje uit soepen/wortel/img/)
     titel:{ g56:"Wortels helpen je lichaam bij twee dingen", g78:"Wortels en je lichaam: feit of fabel?" },
     onthoud:"Wortels houden je ogen gezond en helpen je om niet ziek te worden. Handig, maar geen toverkracht.",
     act:{

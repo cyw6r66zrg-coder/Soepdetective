@@ -49,7 +49,7 @@ LESSEN.tomaat = {
               "Dus: allebei goed! Voor de plant is hij een vrucht, voor de kok een groente."]
   },
   lichaam:{
-    plaatje:"rijp",   // illustratie bij feit of fabel (een plaatje uit soepen/tomaat/img/)
+    plaatje:"feitfabel",   // illustratie bij feit of fabel (een plaatje uit soepen/tomaat/img/)
     titel:{ g56:"Tomaten helpen je lichaam bij twee dingen", g78:"Tomaten en je lichaam: feit of fabel?" },
     onthoud:"In tomaten zit vitamine C. Die helpt je om niet ziek te worden, en helpt wondjes te genezen.",
     act:{
