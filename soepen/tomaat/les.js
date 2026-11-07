@@ -21,6 +21,11 @@ LESSEN.tomaat = {
     {id:"kunst",  naam:"Kijk-kunst"},
     {id:"maak",   naam:"Aan de slag"}
   ],
+  onderbouw:{   // groep 1-2
+    kleur:"rood",     // oranje / rood / groen / geel
+    textuur:"glad",     // glad / stukjes
+    // raad: welke groenten bij "Wie ben ik?" langskomen (zat-erin bepaalt speur.goed). Leeg laten = automatisch.
+  },
   proef:{
     titel:"Neem een hapje… wat proef jij?",
     vraag:{ g56:"Tik op de woorden die bij de soep passen.", g78:"Kies drie woorden en maak er samen één zin van." },
