@@ -37,6 +37,9 @@ for (const soep of SOEPEN.filter(s => s.klaar)) {
   if (L.koppel) L.koppel.lijst.forEach(x => plaatjes.add("koppel-" + x.key));
   if (L.quiz) niveaus(L.quiz).flat().forEach(q => plaatjes.add(q.img));
   if (L.kunst) plaatjes.add("kunst");
+  const sp = L.onderbouw && L.onderbouw.spel;   // kleuterles: plaatjes van het soepspel
+  if (sp) { if (!["volgorde","pluk"].includes(sp.type)) fout(`onderbouw.spel.type "${sp.type}" bestaat niet (kan: volgorde, pluk)`);
+    (sp.stappen || sp.items || []).forEach(x => plaatjes.add(x.img)); }
   if (L.maak) plaatjes.add("voorbeeld");
 
   for (const k of ing) {

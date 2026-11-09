@@ -19,10 +19,15 @@ LESSEN.wortel = {
     {id:"kunst",  naam:"Kijk-kunst"},
     {id:"maak",   naam:"Aan de slag"}
   ],
-  onderbouw:{   // groep 1-2
-    kleur:"oranje",     // oranje / rood / groen / geel
-    textuur:"glad",     // glad / stukjes
-    // raad: welke groenten bij "Wie ben ik?" langskomen (zat-erin bepaalt speur.goed). Leeg laten = automatisch.
+  onderbouw:{   // groep 1-2: korte les op het digibord. Vast: Hoe lekker? en De durfpot. Per soep:
+    // raad: groenten voor "Wie ben ik?" (weglaten = automatisch uit speur, false = stap overslaan)
+    spel:{ type:"volgorde", naam:"Hoe groeit een wortel?", titel:"Hoe groeit een wortel?",
+      stappen:[ {img:"ob-groei-1", naam:"het zaadje"}, {img:"ob-groei-2", naam:"het sprietje"},
+                {img:"ob-groei-3", naam:"het plantje"}, {img:"ob-groei-4", naam:"de wortel"} ],
+      klaar:"Goed zo! Uit een piepklein zaadje groeit een grote wortel.",
+      start:"Een wortel groeit onder de grond. Wat komt er eerst? Kom maar tikken!",
+      verder:"En wat komt daarna? Kijk goed: wat wordt groter?",
+      slot:"Een wortel groeit onder de grond, daar bewaart hij zijn suiker. Daarom is hij zo zoet! Hoe lang zou het duren voordat hij zo groot is? (Ongeveer 3 maanden.)" },
   },
   proef:{
     titel:"Neem een hapje… wat proef jij?",

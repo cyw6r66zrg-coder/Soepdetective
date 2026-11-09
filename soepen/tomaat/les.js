@@ -21,10 +21,16 @@ LESSEN.tomaat = {
     {id:"kunst",  naam:"Kijk-kunst"},
     {id:"maak",   naam:"Aan de slag"}
   ],
-  onderbouw:{   // groep 1-2
-    kleur:"rood",     // oranje / rood / groen / geel
-    textuur:"glad",     // glad / stukjes
-    // raad: welke groenten bij "Wie ben ik?" langskomen (zat-erin bepaalt speur.goed). Leeg laten = automatisch.
+  onderbouw:{   // groep 1-2: korte les op het digibord. Vast: Hoe lekker? en De durfpot. Per soep:
+    // raad: groenten voor "Wie ben ik?" (weglaten = automatisch uit speur, false = stap overslaan)
+    spel:{ type:"pluk", naam:"Welke tomaten zijn rijp?", titel:"Welke tomaten zijn rijp?",
+      items:[ {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false}, {img:"ob-rijp-3", goed:false},
+              {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false} ],
+      goedZo:"Ja! Die is rood, die is rijp.",
+      mis:"Nog niet rijp! Die moet nog even groeien in de zon.",
+      klaar:"Goed zo! Alle rode tomaten zitten in de mand.",
+      start:"Pluk alleen de rijpe tomaten. Hoe zie je of een tomaat rijp is?",
+      slot:"Een tomaat begint groen. In de zon wordt hij geel, dan oranje en dan rood. Rood is rijp: dan is hij zoet en lekker!" },
   },
   proef:{
     titel:"Neem een hapje… wat proef jij?",
