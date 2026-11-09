@@ -21,8 +21,10 @@ LESSEN.tomaat = {
     {id:"kunst",  naam:"Kijk-kunst"},
     {id:"maak",   naam:"Aan de slag"}
   ],
-  onderbouw:{   // groep 1-2: korte les op het digibord. Vast: Hoe lekker? en De durfpot. Per soep:
-    // raad: groenten voor "Wie ben ik?" (weglaten = automatisch uit speur, false = stap overslaan)
+  onderbouw:{   // groep 1-2: korte les op het digibord, terwijl de soep nog op tafel staat
+    kleur:"rood",     // kleur van de soep: oranje / groen / paars → mengspel, rood / geel / blauw → kleurenjacht
+    kleurspel:{ type:"zoek", items:[ {k:"aardbei",goed:true}, {k:"banaan",goed:false}, {k:"paprika",goed:true}, {k:"broccoli",goed:false},
+                                     {k:"ui",goed:false}, {k:"tomaat",goed:true}, {k:"basilicum",goed:false}, {k:"wortel",goed:false} ] },
     spel:{ type:"pluk", naam:"Welke tomaten zijn rijp?", titel:"Welke tomaten zijn rijp?",
       items:[ {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false}, {img:"ob-rijp-3", goed:false},
               {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false} ],

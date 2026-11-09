@@ -19,8 +19,8 @@ LESSEN.wortel = {
     {id:"kunst",  naam:"Kijk-kunst"},
     {id:"maak",   naam:"Aan de slag"}
   ],
-  onderbouw:{   // groep 1-2: korte les op het digibord. Vast: Hoe lekker? en De durfpot. Per soep:
-    // raad: groenten voor "Wie ben ik?" (weglaten = automatisch uit speur, false = stap overslaan)
+  onderbouw:{   // groep 1-2: korte les op het digibord, terwijl de soep nog op tafel staat
+    kleur:"oranje",   // kleur van de soep: oranje / groen / paars → mengspel, rood / geel / blauw → kleurenjacht
     spel:{ type:"volgorde", naam:"Hoe groeit een wortel?", titel:"Hoe groeit een wortel?",
       stappen:[ {img:"ob-groei-1", naam:"het zaadje"}, {img:"ob-groei-2", naam:"het sprietje"},
                 {img:"ob-groei-3", naam:"het plantje"}, {img:"ob-groei-4", naam:"de wortel"} ],
