@@ -5,7 +5,7 @@
    Afbeeldingen van deze soep staan in soepen/pompoen/img/.
    LET OP: de ingrediënten (speur.goed) zijn een AANNAME op basis van gangbare recepten.
    Controleer ze op het etiket van Good Soup voordat de soep op klaar:true gaat.
-   LET OP: maker en jaartal van het kunstwerk nog controleren bij het Rijksmuseum (SK-A-2058).
+   Kunstwerk: Floris van Schooten, Stilleven met vruchten en groenten, ca. 1630, Rijksmuseum SK-A-2058 (publiek domein).
    ========================================================================== */
 LESSEN.pompoen = {
   naam:"Pompoensoep",
@@ -19,7 +19,7 @@ LESSEN.pompoen = {
     {id:"koppel", naam:"Pompoensoorten"},
     {id:"quiz",   naam:"Wist je dat…"},
     {id:"lichaam", naam:"Je lichaam"},   // na de quiz: feit of fabel werkt als overhoring
-    {id:"kunst",  naam:"Kijk-kunst"},
+    // {id:"kunst",  naam:"Kijk-kunst"},   // TIJDELIJK UIT: kunst.webp (Van Schooten, Rijksmuseum SK-A-2058) moet nog gedownload worden
     {id:"maak",   naam:"Aan de slag"}
   ],
   onderbouw:{   // onderbouw: korte les op het digibord, terwijl de soep nog op tafel staat
@@ -137,8 +137,8 @@ LESSEN.pompoen = {
     ]
   },
   kunst:{
-    titel:"Kijk-kunst: Groente en vruchten", werk:"Stilleven met groente en vruchten", maker:"(controleren)", jaar:"(controleren)", plek:"Rijksmuseum, Amsterdam",
-    intro:"Een schilderij vol groente uit het Rijksmuseum. Kijk goed: er ligt ook een pompoen!",
+    titel:"Kijk-kunst: Groente en vruchten", werk:"Stilleven met vruchten en groenten", maker:"Floris van Schooten", jaar:"ca. 1630", plek:"Rijksmuseum, Amsterdam",
+    intro:"Geschilderd door Floris van Schooten, rond 1630. Dat is bijna 400 jaar geleden! Kijk goed: er ligt ook een pompoen.",
     vragen:{
       g56:[
         {v:"Wat zie je allemaal? Kun jij de pompoen vinden?", uitleg:"Er liggen heel veel groenten: wortels, kolen, uien, bieten, erwten, en een pompoen."},
