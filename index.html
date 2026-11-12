@@ -466,6 +466,18 @@ button.obvormknop:not(:disabled):hover{transform:scale(1.12)}
 .obvormkeus .vormsvg{fill:#3B1F0E}
 .obvormkeus.gekozen{border-color:var(--green);border-width:6px;background:var(--green-soft);transform:scale(1.06)}
 .obvormkeus:not(:disabled):hover{transform:translateY(-3px)}
+/* memory */
+.obmemory{display:grid;grid-template-columns:repeat(var(--k),minmax(0,1fr));gap:14px;flex:1 1 auto;min-height:0;max-width:900px;width:100%;margin:0 auto}
+.obmemkaart{container-type:size;position:relative;aspect-ratio:1;border:0;padding:0;background:none;perspective:800px;min-height:0}
+.obmemkaart>span{position:absolute;inset:0;border-radius:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;backface-visibility:hidden;transition:transform .45s}
+.obmemkaart .achter{background:var(--orange);border:4px solid var(--orange-dark);font-size:clamp(36px,calc(var(--vw)*4),60px)}
+.obmemkaart .voor{background:var(--card);border:4px solid var(--orange);transform:rotateY(180deg);padding:8px;gap:2px}
+.obmemkaart .voor img{flex:1 1 0;min-height:0;width:100%;object-fit:contain}
+.obmemkaart .voor b{font-family:var(--display);font-size:min(22px,12cqi);line-height:1;white-space:nowrap}
+.obmemkaart.open .achter{transform:rotateY(180deg)}
+.obmemkaart.open .voor{transform:rotateY(360deg)}
+.obmemkaart.paar .voor{border-color:var(--green);background:var(--green-soft)}
+.obmemkaart:not(:disabled):hover .achter{transform:translateY(-3px)}
 /* pop */
 .obpop{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:center;flex:1 1 auto;min-height:0}
 .obpopvlak{position:relative;height:100%;min-height:320px}
@@ -498,6 +510,8 @@ button.obvormknop:not(:disabled):hover{transform:scale(1.12)}
 html.dia .obles{gap:18px}
 html.dia .obles.lekker .face img{max-width:170px}
 html.dia .obraad,html.dia .obpluk,html.dia .obdurf,html.dia .obsoep,html.dia .oberin,html.dia .obzoek,html.dia .obgoed,html.dia .obkleurwortels,html.dia .obvormspel,html.dia .obtel,html.dia .obpop{flex:1 1 0}
+html.dia .obmemory{flex:1 1 0;min-height:0;aspect-ratio:calc(var(--k) / var(--r));height:100%;width:auto;max-width:100%;grid-template-rows:repeat(var(--r),minmax(0,1fr))}
+html.dia .obmemkaart{aspect-ratio:auto}
 html.dia .obspel{flex:1 1 0;height:auto}
 @media (max-width:820px){
   .obraad,.obspel,.obpluk,.obdurf,.obsoep,.oberin{grid-template-columns:1fr}
@@ -624,7 +638,7 @@ html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:
 let LES = null;   // de les van de gekozen soep (LESSEN[state.soep])
 
 /* ============ STAAT ============ */
-const vers = () => ({ obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obRonde:0, obGeteld:[], obTelKeus:null, obGepopt:[], obSterren:0, obSchud:null, obMelding:null,
+const vers = () => ({ obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obRonde:0, obGeteld:[], obTelKeus:null, obGepopt:[], obMem:null, obOpen:[], obPaar:[], obBezig:false, obSterren:0, obSchud:null, obMelding:null,
   woorden:new Set(), stemmen:[0,0,0,0,0], inPan:new Set(), fout:new Set(), volgorde:null, melding:null, schud:null, plons:false,
   wat:[0,0,0], kernOpen:false, kaartOpen:new Set(), geplaatst:{}, sortSel:null, sortVolgorde:null, sortMelding:null, sortSchud:null,
   paren:new Set(), sel:null, naamVolgorde:null, rasMelding:null, misser:null, q:0, gekozen:null, kijk:0, uitleg:new Set(), groot:false });
@@ -865,6 +879,7 @@ const stappen = () => {
   const s=[{id:"ob-proef", naam:"Hoe proeft het?"}, {id:"ob-lekker", naam:"Hoe lekker?"},
     {id:"ob-schaduw", naam:"Wie ben ik?"}, {id:"ob-erin", naam:"Wat zit erin?"}];
   obSpellen().forEach((sp,nr)=>s.push({id:"ob-spel", nr, naam:sp.naam}));
+  s.push({id:"ob-memory", naam:"Memory"});   // vaste afsluiter voor elke soep, met de ingrediënten van de soep
   return s;
 };
 const obSpellen = () => { const o=ob(); return o.spellen || (o.spel ? [o.spel] : []); };
@@ -1128,6 +1143,20 @@ SPEL.pop = sp => {
     ${juf(klaar ? sp.slot : sp.start)}</div>`;
 };
 
+/* ---- Memory: vaste laatste dia. Paren van de ingrediënten van deze soep (les.js → onderbouw.memory om zelf te kiezen). ---- */
+const obMemoryKeys = () => { const o=ob(); return (o.memory || (typeof obErin==="function" ? obErin() : obGoed())).slice(0,6); };
+SCHERM["ob-memory"] = () => {
+  if (!state.obMem) state.obMem = shuffle(obMemoryKeys().flatMap(k=>[k,k]));
+  const deck=state.obMem, n=deck.length/2, klaar=state.obPaar.length===n;
+  return band(klaar ? "Alle paren gevonden!" : "Memory") + `<div class="inner obles"><div class="obmemory" style="--k:${deck.length>8?4:deck.length/2};--r:${Math.ceil(deck.length/(deck.length>8?4:deck.length/2))}">
+    ${deck.map((k,i)=>{ const open=state.obOpen.includes(i)||state.obPaar.includes(k);
+      return `<button class="obmemkaart ${open?"open":""} ${state.obPaar.includes(k)?"paar":""}" data-obmem="${i}" ${open||state.obBezig?"disabled":""} aria-label="${open?esc(INGREDIENTEN[k]):"Kaartje omdraaien"}">
+        <span class="achter">🔍</span><span class="voor">${img(pad.ing(k),"")}<b>${esc(INGREDIENTEN[k])}</b></span></button>`; }).join("")}
+  </div>
+    <div class="row obrow">${klaar ? `<button class="ghost" id="obMemOpnieuw">Nog een keer!</button>` : `<span class="obteller">${state.obPaar.length} van ${n}</span>`}${obFb()}</div>
+    ${juf(klaar ? "Goed zo! Welke groenten zaten er allemaal in de soep? Noem ze nog eens!" : "Om de beurt mag iemand twee kaartjes omdraaien. Zijn ze hetzelfde? Dan heb je een paar! Zeg hardop wat je ziet.")}</div>`;
+};
+
 /* ---- de durfpot: vast eindritueel. De sterren blijven op dit apparaat bewaard, zodat de pot week na week voller wordt. ---- */
 const POT_KEY = "soepdetective-durfpot";
 const potLees = () => { try { return Math.max(0, parseInt(localStorage.getItem(POT_KEY)||"0",10)||0); } catch { return 0; } };
@@ -1315,6 +1344,13 @@ document.addEventListener("click",e=>{
   if(d.obplek){ state.obGezicht={...state.obGezicht,[d.obplek]:d.obkeusvorm}; render(); return; }
   if(t.id==="obLichtAan"){ state.obLicht=true; confetti(); render(); return; }
   if(t.id==="obLichtUit"){ state.obLicht=false; state.obGezicht={}; render(); return; }
+  if(d.obmem!==undefined){ const i=+d.obmem; if(state.obBezig||state.obOpen.includes(i)) return; state.obOpen.push(i); state.obMelding=null;
+    if(state.obOpen.length===2){ const [a,b]=state.obOpen, ka=state.obMem[a], kb=state.obMem[b];
+      if(ka===kb){ state.obPaar.push(ka); state.obOpen=[]; state.obMelding={ok:true,t:`Een paar: ${INGREDIENTEN[ka].toLowerCase()}!`};
+        if(state.obPaar.length===state.obMem.length/2) confetti(); }
+      else { state.obBezig=true; render(); setTimeout(()=>{ state.obOpen=[]; state.obBezig=false; render(); }, 1400); return; } }
+    render(); return; }
+  if(t.id==="obMemOpnieuw"){ Object.assign(state,{obMem:null,obOpen:[],obPaar:[],obBezig:false,obMelding:null}); render(); return; }
   if(d.obpop!==undefined){ const i=+d.obpop; if(!state.obGepopt.includes(i)) state.obGepopt.push(i); if(state.obGepopt.length===spelNu().aantal) confetti(); render(); return; }
   if(t.id==="obPopOpnieuw"){ state.obGepopt=[]; render(); return; }
   if(d.obtel!==undefined){ const i=+d.obtel; if(!state.obGeteld.includes(i)) state.obGeteld.push(i); state.obMelding=null; render(); return; }
