@@ -79,7 +79,7 @@ LESSEN.tomaat = {
         items:[
           {naam:"Een tomaat is eigenlijk een vrucht.", bak:"feit"},
           {naam:"In tomaten zit vitamine C.", bak:"feit"},
-          {naam:"De rode kleur van een tomaat heet lycopeen.", bak:"feit"},
+          {naam:"Het rode kleurstofje in een tomaat heet lycopeen.", bak:"feit"},
           {naam:"Tomaten en aardappels zijn familie van elkaar.", bak:"feit", uitleg:"Allebei horen ze bij de nachtschadefamilie."},
           {naam:"Tomaten komen oorspronkelijk uit Italië.", bak:"fabel", uitleg:"Ze komen uit Zuid-Amerika. Italië leerde ze pas later kennen."},
           {naam:"Tomaten groeien onder de grond, net als aardappels.", bak:"fabel", uitleg:"Ze hangen aan de plant, boven de grond."}
@@ -116,7 +116,7 @@ LESSEN.tomaat = {
     ],
     g78:[
       { v:"Ontdekkingsreizigers namen de tomaat mee van Zuid-Amerika naar Europa. Hoe lang geleden was dat?", a:["Ongeveer 50 jaar","Ongeveer 500 jaar","Ongeveer 5000 jaar"], goed:1, img:"zuidamerika",
-        weetje:"De tomaat komt uit de Andes in Zuid-Amerika. In de 16e eeuw, zo'n 500 jaar geleden, kwam hij naar Europa. Eerst durfde bijna niemand hem te eten!" },
+        weetje:"De tomaat komt uit de Andes in Zuid-Amerika. In de 16e eeuw, zo'n 500 jaar geleden, kwam hij naar Europa. In sommige landen durfden mensen hem eerst niet te eten!" },
       { v:"Hoe kan een Nederlandse kas ook in de winter tomaten kweken?", a:["De tomaten slapen in de winter","De kweker regelt warmte en licht","Ze komen stiekem uit Spanje"], goed:1, img:"kas",
         weetje:"In een kas kan de kweker de warmte regelen, en met lampen geeft hij extra licht. Zo groeien er het hele jaar tomaten." },
       { v:"Wat is lycopeen?", a:["Een soort tomaat","Het rode kleurstofje in tomaten","Een ziekte van tomatenplanten"], goed:1, img:"rijp",
@@ -128,14 +128,14 @@ LESSEN.tomaat = {
     intro:"Geschilderd door Luis Egidio Meléndez, een Spaanse schilder, in 1774. Dat is al bijna 250 jaar geleden!",
     vragen:{
       g56:[
-        {v:"Wat zie je allemaal? Kun jij de tomaten vinden?", uitleg:"Er liggen tomaten en komkommers, met een kom, borden en flesjes voor olie en azijn."},
+        {v:"Wat zie je allemaal? Kun jij de tomaten vinden?", uitleg:"Er liggen tomaten en komkommers. Erachter staan een kom, een bord, een fles, een kruik en een zoutvaatje."},
         {v:"Welke kleuren zie je? Welke kleur valt het meest op?", uitleg:"Het rood van de tomaten springt eruit, tegen de donkere achtergrond."},
-        {v:"Wat zou iemand met deze spullen gaan maken?", uitleg:"Met tomaten, komkommer, olie, azijn en zout maak je… een salade!"}
+        {v:"Wat zou iemand met deze spullen gaan maken?", uitleg:"Met tomaten, komkommer en een beetje zout maak je… een salade!"}
       ],
       g78:[
-        {v:"Wat zie je allemaal? Kun jij de tomaten vinden?", uitleg:"Er liggen tomaten en komkommers, met een kom, borden en flesjes voor olie en azijn."},
+        {v:"Wat zie je allemaal? Kun jij de tomaten vinden?", uitleg:"Er liggen tomaten en komkommers. Erachter staan een kom, een bord, een fles, een kruik en een zoutvaatje."},
         {v:"Hoe laat de schilder zien dat de tomaten glanzen en rond zijn?", uitleg:"Kijk naar de lichte vlekjes en de schaduwen. Zo lijkt het alsof je ze kunt pakken."},
-        {v:"Wat zou iemand met deze spullen gaan maken?", uitleg:"Met tomaten, komkommer, olie, azijn en zout maak je… een salade!"},
+        {v:"Wat zou iemand met deze spullen gaan maken?", uitleg:"Met tomaten, komkommer en een beetje zout maak je… een salade!"},
         {v:"Waarom zou de schilder de achtergrond zo donker hebben gemaakt?", uitleg:"Bedenk het samen: wat gebeurt er met de kleuren vooraan als alles erachter donker is?"}
       ]
     }
