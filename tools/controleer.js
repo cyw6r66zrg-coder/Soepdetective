@@ -1,5 +1,6 @@
 /* Controleert alle soepen die op klaar:true staan.
-   Gebruik (in de hoofdmap):  node tools/controleer.js
+   Gebruik (in de hoofdmap):  node tools/controleer.js          (alleen soepen op klaar:true)
+                              node tools/controleer.js --alles  (ook soepen in de maak)
    Meldt ontbrekende onderdelen, ontbrekende plaatjes en ingrediënten zonder naam. */
 const fs = require("fs"), path = require("path"), vm = require("vm");
 const root = path.join(__dirname, "..");
@@ -13,7 +14,9 @@ const DATA = { speurvraag: "kern" };            // scherm "speurvraag" leest LES
 const niveaus = x => (x && typeof x === "object" && "g56" in x) ? [x.g56, x.g78] : [x];
 let fouten = 0;
 
-for (const soep of SOEPEN.filter(s => s.klaar)) {
+// node tools/controleer.js --alles  → controleert ook soepen die nog niet klaar zijn (handig tijdens het maken)
+const alles = process.argv.includes("--alles");
+for (const soep of SOEPEN.filter(s => s.klaar || (alles && fs.existsSync(path.join(root, `soepen/${s.id}/les.js`))))) {
   const f = `soepen/${soep.id}/les.js`, fout = t => { fouten++; console.log(`  ✗ ${t}`); };
   console.log(`\n${soep.naam} (${f})`);
   if (!fs.existsSync(path.join(root, f))) { fout("les.js ontbreekt"); continue; }
@@ -39,8 +42,9 @@ for (const soep of SOEPEN.filter(s => s.klaar)) {
   if (L.kunst) plaatjes.add("kunst");
   const ob = L.onderbouw || {}, spellen = ob.spellen || (ob.spel ? [ob.spel] : []);   // kleuterles: plaatjes van de spellen
   spellen.forEach((sp, nr) => {
-    if (!["volgorde","pluk","goedvoor","kleuren","sorteer"].includes(sp.type)) fout(`onderbouw.spellen[${nr}].type "${sp.type}" bestaat niet (kan: volgorde, pluk, goedvoor, kleuren, sorteer)`);
+    if (!["volgorde","pluk","goedvoor","kleuren","sorteer","vormen","maakgezicht"].includes(sp.type)) fout(`onderbouw.spellen[${nr}].type "${sp.type}" bestaat niet (kan: volgorde, pluk, goedvoor, kleuren, sorteer, vormen, maakgezicht)`);
     (sp.stappen || sp.items || []).forEach(x => { if (x.img) plaatjes.add(x.img); if (x.ing) ing.add(x.ing); });
+    if (sp.basis) plaatjes.add(sp.basis);
     (sp.opties || []).forEach(x => lijf.add(x.lijf));
   });
   if (L.maak) plaatjes.add("voorbeeld");

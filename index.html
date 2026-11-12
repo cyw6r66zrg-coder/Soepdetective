@@ -436,13 +436,37 @@ figcaption b{color:var(--ink)}
 .obbakin{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center}
 .obmini img{width:72px;height:72px;object-fit:contain}
 .obmini .emo{font-size:58px}
+/* vormen in de pompoen */
+.obvormspel{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:28px;align-items:center;flex:1 1 auto;min-height:0}
+.obvormvlak{position:relative;height:100%;max-height:520px;aspect-ratio:1;justify-self:center;min-height:0;border-radius:30px;transition:background .6s}
+.obvormvlak>img{width:100%;height:100%;object-fit:contain;transition:filter .6s}
+.obvormvlak.licht{background:radial-gradient(circle,#3a2a40 0,#1c1424 70%)}
+.obvormvlak.licht>img{filter:brightness(.55) saturate(1.2)}
+.obvormknop{position:absolute;translate:-50% -50%;aspect-ratio:1;border:0;background:none;padding:0;transition:transform .15s}
+button.obvormknop:not(:disabled):hover{transform:scale(1.12)}
+.vormsvg{width:100%;height:100%;display:block;overflow:visible}
+.obvormknop .vormsvg{fill:#3B1F0E;stroke:#8A3E0B;stroke-width:4;filter:drop-shadow(0 2px 0 rgba(255,255,255,.25))}
+.obvormknop.aan .vormsvg{fill:#FFD54A;stroke:#FFF3B0;filter:drop-shadow(0 0 10px #FFC400) drop-shadow(0 0 20px #FFB000)}
+.obvormzij{display:flex;flex-direction:column;gap:20px;align-items:center}
+.obvormvraag{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--display);font-size:44px;color:var(--orange-dark)}
+.vormsvg.voorbeeld{width:150px;height:150px;fill:none;stroke:var(--orange-dark);stroke-width:7;stroke-linejoin:round}
+.obvormlijst{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.obvormlijst span{display:flex;align-items:center;gap:6px;border:3px solid var(--line);border-radius:999px;padding:4px 14px 4px 6px;font-family:var(--display);font-size:22px;color:var(--muted);background:var(--paper)}
+.obvormlijst span.aan{border-color:var(--green);color:var(--green);background:var(--green-soft)}
+.vormsvg.klein{width:28px;height:28px;fill:currentColor}
+.obplek{display:flex;align-items:center;gap:12px}
+.obplekemo{font-size:52px;width:70px;text-align:center}
+.obvormkeus{width:clamp(70px,calc(var(--vw)*7.5),112px);aspect-ratio:1;border:4px solid var(--orange);border-radius:20px;background:var(--paper);padding:14px;transition:transform .15s}
+.obvormkeus .vormsvg{fill:#3B1F0E}
+.obvormkeus.gekozen{border-color:var(--green);border-width:6px;background:var(--green-soft);transform:scale(1.06)}
+.obvormkeus:not(:disabled):hover{transform:translateY(-3px)}
 html.dia .obles{gap:18px}
 html.dia .obles.lekker .face img{max-width:170px}
-html.dia .obraad,html.dia .obpluk,html.dia .obdurf,html.dia .obsoep,html.dia .oberin,html.dia .obzoek,html.dia .obgoed,html.dia .obkleurwortels{flex:1 1 0}
+html.dia .obraad,html.dia .obpluk,html.dia .obdurf,html.dia .obsoep,html.dia .oberin,html.dia .obzoek,html.dia .obgoed,html.dia .obkleurwortels,html.dia .obvormspel{flex:1 1 0}
 html.dia .obspel{flex:1 1 0;height:auto}
 @media (max-width:820px){
   .obraad,.obspel,.obpluk,.obdurf,.obsoep,.oberin{grid-template-columns:1fr}
-  .obzoek,.obgroenten,.obkleurwortels,.obgoed{grid-template-columns:repeat(3,minmax(0,1fr))}.obitems{grid-template-columns:repeat(4,minmax(0,1fr))}.obsmaken{gap:10px}.obpotten{gap:12px}.obplus{font-size:40px;gap:10px}
+  .obzoek,.obgroenten,.obkleurwortels,.obgoed{grid-template-columns:repeat(3,minmax(0,1fr))}.obvormspel{grid-template-columns:1fr}.obvormvlak{height:auto;width:100%}.obitems{grid-template-columns:repeat(4,minmax(0,1fr))}.obsmaken{gap:10px}.obpotten{gap:12px}.obplus{font-size:40px;gap:10px}
   .obrij{flex-wrap:wrap}.obpijl{display:none}
   .obstruik{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
@@ -565,7 +589,7 @@ html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:
 let LES = null;   // de les van de gekozen soep (LESSEN[state.soep])
 
 /* ============ STAAT ============ */
-const vers = () => ({ obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obSterren:0, obSchud:null, obMelding:null,
+const vers = () => ({ obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obSterren:0, obSchud:null, obMelding:null,
   woorden:new Set(), stemmen:[0,0,0,0,0], inPan:new Set(), fout:new Set(), volgorde:null, melding:null, schud:null, plons:false,
   wat:[0,0,0], kernOpen:false, kaartOpen:new Set(), geplaatst:{}, sortSel:null, sortVolgorde:null, sortMelding:null, sortSchud:null,
   paren:new Set(), sel:null, naamVolgorde:null, rasMelding:null, misser:null, q:0, gekozen:null, kijk:0, uitleg:new Set(), groot:false });
@@ -980,6 +1004,45 @@ function obPlaats(i, bak){
   state.obSel=null; render(); state.obSchud=null;
 }
 
+/* ---- vormen: getekend in de code (altijd scherp), voor de pompoenspellen ---- */
+const VORM = {
+  driehoek:`<path d="M50 8 L94 90 L6 90 Z"/>`,
+  rondje:`<circle cx="50" cy="50" r="44"/>`,
+  vierkant:`<rect x="10" y="10" width="80" height="80" rx="6"/>`,
+  ster:`<path d="M50 5 L61 38 L96 38 L68 59 L79 93 L50 72 L21 93 L32 59 L4 38 L39 38 Z"/>`,
+  hartje:`<path d="M50 90 C20 68 4 50 4 30 C4 14 16 4 30 4 C40 4 47 10 50 18 C53 10 60 4 70 4 C84 4 96 14 96 30 C96 50 80 68 50 90 Z"/>`,
+  maan:`<path d="M4 26 Q50 104 96 26 Q50 70 4 26 Z"/>`
+};
+const vormSvg = (v, klas="") => `<svg class="vormsvg ${klas}" viewBox="0 0 100 100" aria-hidden="true">${VORM[v]||""}</svg>`;
+
+// VORMEN: in de pompoen zijn vormen gesneden. "Waar is de ster?" Tik de goede vorm. sp.vormen = [{vorm, x, y, s}] (x, y, s in % van het plaatje)
+SPEL.vormen = sp => {
+  if (!state.obMix) state.obMix = shuffle(sp.vormen.map((_,i)=>i));
+  const klaar = state.obGevonden.length===sp.vormen.length, nu = klaar ? null : sp.vormen[state.obMix[state.obGevonden.length]];
+  return band(klaar ? sp.titel : `Waar is ${nu.vorm==="ster"||nu.vorm==="maan"?"de":"het"} ${nu.vorm}?`) + `<div class="inner obles"><div class="obvormspel">
+    <div class="obvormvlak">${img(pad.soep(sp.basis),"Pompoen met uitgesneden vormen")}${sp.vormen.map((v,i)=>{ const gev=state.obGevonden.includes(i);
+      return `<button class="obvormknop ${gev?"aan":""} ${state.obSchud===i?"shake":""}" data-obvorm="${i}" ${gev||klaar?"disabled":""} style="left:${v.x}%;top:${v.y}%;width:${v.s}%" aria-label="${v.vorm}">${vormSvg(v.vorm)}</button>`; }).join("")}</div>
+    <div class="obvormzij">${nu ? `<div class="obvormvraag">${vormSvg(nu.vorm,"voorbeeld")}<b>${nu.vorm}</b></div>` : ""}
+      <div class="obvormlijst">${sp.vormen.map((v,i)=>`<span class="${state.obGevonden.includes(i)?"aan":""}">${vormSvg(v.vorm,"klein")}${v.vorm}</span>`).join("")}</div></div>
+  </div>
+    <div class="row obrow">${klaar ? verder() : ""}${obFb()}</div>
+    ${juf(klaar ? sp.slot : sp.start)}</div>`;
+};
+
+// MAAK GEZICHT: kies vormen voor ogen, neus en mond; daarna gaat het lampje aan. sp.plekken = [{id, emo, keuzes:[vorm…]}]
+const GEZICHT = { ogen:[{x:31,y:36,s:17},{x:69,y:36,s:17}], neus:[{x:50,y:55,s:12}], mond:[{x:50,y:73,s:30}] };
+SPEL.maakgezicht = sp => {
+  const g=state.obGezicht, compleet=sp.plekken.every(pl=>g[pl.id]), licht=state.obLicht;
+  return band(licht ? "Het lampje is aan!" : sp.titel) + `<div class="inner obles"><div class="obvormspel">
+    <div class="obvormvlak ${licht?"licht":""}">${img(pad.soep(sp.basis),"Pompoen")}${sp.plekken.map(pl=> g[pl.id] ? (GEZICHT[pl.id]||[]).map(pos=>
+      `<span class="obvormknop gezet ${licht?"aan":""}" style="left:${pos.x}%;top:${pos.y}%;width:${pos.s}%">${vormSvg(g[pl.id])}</span>`).join("") : "").join("")}</div>
+    <div class="obvormzij">${sp.plekken.map(pl=>`<div class="obplek"><span class="obplekemo">${pl.emo}</span>${pl.keuzes.map(v=>
+      `<button class="obvormkeus ${g[pl.id]===v?"gekozen":""}" data-obplek="${pl.id}" data-obkeusvorm="${v}" aria-label="${pl.id}: ${v}" ${licht?"disabled":""}>${vormSvg(v)}</button>`).join("")}</div>`).join("")}</div>
+  </div>
+    <div class="row obrow">${licht ? `${verder()}<button class="ghost" id="obLichtUit">Nog een lampion</button>` : (compleet ? `<button class="btn obgroot" id="obLichtAan">💡 Lampje aan!</button>` : "")}</div>
+    ${juf(licht ? sp.slot : sp.start)}</div>`;
+};
+
 /* ---- de durfpot: vast eindritueel. De sterren blijven op dit apparaat bewaard, zodat de pot week na week voller wordt. ---- */
 const POT_KEY = "soepdetective-durfpot";
 const potLees = () => { try { return Math.max(0, parseInt(localStorage.getItem(POT_KEY)||"0",10)||0); } catch { return 0; } };
@@ -1080,7 +1143,7 @@ function koppel(k,naam){
   state.sel=null; render();
 }
 function go(i){ if(!LES) return; state.obMelding=null;
-  if (i!==state.scherm) Object.assign(state,{obRij:[],obMix:null,obGeplukt:[],obGoedKeus:null,obGoedNee:[],obGevonden:[],obGeplaatst:{},obSel:null});   /* elk spel begint fris */
+  if (i!==state.scherm) Object.assign(state,{obRij:[],obMix:null,obGeplukt:[],obGoedKeus:null,obGoedNee:[],obGevonden:[],obGeplaatst:{},obSel:null,obGezicht:{},obLicht:false});   /* elk spel begint fris */
   if(i<-1){ naarKiezer(); return; } state.scherm=Math.min(stappen().length-1,i); render(); window.scrollTo({top:0}); }
 
 /* ============ SOEP KIEZEN ============
@@ -1159,6 +1222,14 @@ document.addEventListener("click",e=>{
       state.obMelding={ok:true,t:klaar?`Goed zo! Je hebt alles gevonden wat ${ob().kleur} is.`:`Ja! ${INGREDIENTEN[it.k]} is ook ${ob().kleur}.`}; if(klaar) confetti(); }
     else { state.obSchud=i; state.obMelding={ok:false,t:`Nee, ${INGREDIENTEN[it.k].toLowerCase()} is niet ${ob().kleur}.`}; }
     render(); state.obSchud=null; return; }
+  if(d.obvorm!==undefined){ const sp=spelNu(), i=+d.obvorm, nu=state.obMix[state.obGevonden.length], v=sp.vormen[i].vorm, lw=x=>(x==="ster"||x==="maan")?"de":"het";
+    if(i===nu){ state.obGevonden.push(i); const klaar=state.obGevonden.length===sp.vormen.length;
+      state.obMelding={ok:true,t:klaar?(sp.klaar||"Goed zo! Je hebt alle vormen gevonden."):`Ja! Dat is ${lw(v)} ${v}.`}; if(klaar) confetti(); }
+    else { state.obSchud=i; const zoek=sp.vormen[nu].vorm; state.obMelding={ok:false,t:`Nee, dat is ${lw(v)} ${v}. Zoek ${lw(zoek)} ${zoek}!`}; }
+    render(); state.obSchud=null; return; }
+  if(d.obplek){ state.obGezicht={...state.obGezicht,[d.obplek]:d.obkeusvorm}; render(); return; }
+  if(t.id==="obLichtAan"){ state.obLicht=true; confetti(); render(); return; }
+  if(t.id==="obLichtUit"){ state.obLicht=false; state.obGezicht={}; render(); return; }
   if(d.obsmaak){ const k=d.obsmaak; state.obSmaak = state.obSmaak.includes(k) ? state.obSmaak.filter(x=>x!==k) : [...state.obSmaak,k]; render(); return; }
   if(t.id==="obSmaakToon"){ state.obSmaakToon=true; render(); return; }
   if(d.obgoed){ const o=spelNu().opties.find(x=>x.lijf===d.obgoed); state.obGoedKeus=d.obgoed;
