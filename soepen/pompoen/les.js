@@ -5,7 +5,7 @@
    Afbeeldingen van deze soep staan in soepen/pompoen/img/.
    LET OP: de ingrediënten (speur.goed) zijn een AANNAME op basis van gangbare recepten.
    Controleer ze op het etiket van Good Soup voordat de soep op klaar:true gaat.
-   Kunstwerk: Floris van Schooten, Stilleven met vruchten en groenten, ca. 1630, Rijksmuseum SK-A-2058 (publiek domein).
+   Kunstwerk: Yayoi Kusama, Pumpkin (1994), Naoshima. Auteursrechtelijk beschermd: alleen een link, geen afbeelding.
    ========================================================================== */
 LESSEN.pompoen = {
   naam:"Pompoensoep",
@@ -19,7 +19,7 @@ LESSEN.pompoen = {
     {id:"koppel", naam:"Pompoensoorten"},
     {id:"quiz",   naam:"Wist je dat…"},
     {id:"lichaam", naam:"Je lichaam"},   // na de quiz: feit of fabel werkt als overhoring
-    // {id:"kunst",  naam:"Kijk-kunst"},   // TIJDELIJK UIT: kunst.webp (Van Schooten, Rijksmuseum SK-A-2058) moet nog gedownload worden
+    {id:"kunst",  naam:"Kijk-kunst"},
     {id:"maak",   naam:"Aan de slag"}
   ],
   onderbouw:{   // onderbouw: korte les op het digibord, terwijl de soep nog op tafel staat
@@ -137,30 +137,33 @@ LESSEN.pompoen = {
     ]
   },
   kunst:{
-    titel:"Kijk-kunst: Groente en vruchten", werk:"Stilleven met vruchten en groenten", maker:"Floris van Schooten", jaar:"ca. 1630", plek:"Rijksmuseum, Amsterdam",
-    intro:"Geschilderd door Floris van Schooten, rond 1630. Dat is bijna 400 jaar geleden! Kijk goed: er ligt ook een pompoen.",
+    // Kusama (1929-2026): auteursrecht tot 2096. Daarom tonen we het werk niet zelf, maar openen we de officiële pagina.
+    titel:"Kijk-kunst: Yayoi Kusama", werk:"Pumpkin (Pompoen)", maker:"Yayoi Kusama", jaar:"1994", plek:"eiland Naoshima, Japan",
+    link:"https://benesse-artsite.jp/en/story/20210611-1661.html",
+    linkUitleg:"Opent de website van Benesse Art Site Naoshima, waar de pompoen staat.",
+    intro:"Yayoi Kusama was een beroemde kunstenaar uit Japan. Ze hield heel erg van stippen én van pompoenen. Deze grote gele pompoen staat aan zee, op een eiland in Japan.",
     vragen:{
       g56:[
-        {v:"Wat zie je allemaal? Kun jij de pompoen vinden?", uitleg:"Er liggen heel veel groenten: wortels, kolen, uien, bieten, erwten, en een pompoen."},
-        {v:"Welke groenten ken jij? Welke heb je weleens gegeten?", uitleg:"Zie je de wortels? Die zitten ook in de pompoensoep!"},
-        {v:"Kijk naar de achtergrond. Wat zie je daar?", uitleg:"Achter de groenten is een ander tafereel geschilderd, met mensen aan tafel."}
+        {v:"Wat zie je? Wat valt je als eerste op?", uitleg:"Een grote gele pompoen vol zwarte stippen, op een pier aan zee."},
+        {v:"Kijk naar de stippen. Zijn ze allemaal even groot?", uitleg:"Nee! Bovenaan zijn ze klein, in het midden worden ze groter. Zo lijkt de pompoen extra rond."},
+        {v:"Hoe groot denk je dat de pompoen is? Groter dan jij?", uitleg:"Hij is ongeveer 2 meter hoog: groter dan een volwassene!"}
       ],
       g78:[
-        {v:"Wat zie je allemaal? Kun jij de pompoen vinden?", uitleg:"Er liggen heel veel groenten: wortels, kolen, uien, bieten, erwten, en een pompoen."},
-        {v:"Welke groenten ken jij? Welke heb je weleens gegeten?", uitleg:"Zie je de wortels? Die zitten ook in de pompoensoep!"},
-        {v:"Kijk naar de achtergrond. Wat zie je daar?", uitleg:"Achter de groenten is een ander tafereel geschilderd, met mensen aan tafel."},
-        {v:"Waarom zou de schilder de groente groot vooraan hebben geschilderd?", uitleg:"Bedenk het samen: waar kijk je als eerste naar? Wat wilde de schilder dat jij zag?"}
+        {v:"Wat zie je? Wat valt je als eerste op?", uitleg:"Een grote gele pompoen vol zwarte stippen, op een pier aan zee."},
+        {v:"Kijk naar de stippen. Zijn ze allemaal even groot? Wat doet dat met de vorm?", uitleg:"Ze worden groter en kleiner. Daardoor lijkt de pompoen bol en rond, net als een echte."},
+        {v:"Kusama zei dat pompoenen haar aan vroeger deden denken. Waarom zou een kunstenaar steeds hetzelfde onderwerp kiezen?", uitleg:"Haar familie had een kwekerij. Ze tekende als kind al pompoenen, en bleef dat haar hele leven doen."},
+        {v:"In 2021 sleurde een tyfoon de pompoen de zee in. Er kwam een nieuwe. Waarom zouden mensen hem zo graag terug wilden?", uitleg:"Hij was het symbool van het eiland geworden. Mensen reizen van ver om hem te zien."}
       ]
     }
   },
   maak:{
-    titel:"Aan de slag: een pompoen vol vormen!",
+    titel:"Aan de slag: een stippenpompoen!",
     stappen:{
-      g56:["Knip een grote pompoen uit oranje papier.","Knip ogen, een neus en een mond uit zwart papier. Gebruik vormen: driehoeken, rondjes, sterren.","Plak het gezicht op je pompoen en teken een groen steeltje en een rank."],
-      g78:["Knip een grote pompoen uit oranje papier.","Knip ogen, een neus en een mond uit zwart papier. Gebruik minstens vier verschillende vormen.","Herhaal één vorm als patroon, bijvoorbeeld een rij sterretjes op de wang.","Plak alles op en teken een groen steeltje en een rank met krulletjes."]
+      g56:["Teken een grote pompoen op geel papier en knip hem uit.","Maak zwarte stippen: druk met de achterkant van een potlood of een kurk in zwarte verf.","Maak bovenaan kleine stippen en in het midden grote. Zie je hoe rond je pompoen wordt?"],
+      g78:["Teken een grote pompoen op geel papier en knip hem uit.","Maak zwarte stippen met een kurk, een dop of een penseel.","Laat de stippen groter en kleiner worden, zodat je pompoen bol lijkt, net als bij Kusama.","Bedenk: wat is jouw lievelingsvorm? Maak een tweede pompoen met die vorm in plaats van stippen."]
     },
-    nodig:["Oranje papier","Zwart papier","Schaar","Lijm","Groen potlood"],
-    zeg:"Ik ben benieuwd welke vormen jij kiest voor jouw pompoen!",
-    voorbeeldAlt:"Voorbeeld: een pompoen van oranje papier met ogen, neus en mond in vormen van zwart papier"
+    nodig:["Geel papier","Zwarte verf","Kurk of potlood","Schaar"],
+    zeg:"Ik ben benieuwd hoe rond jij je pompoen kunt laten lijken!",
+    voorbeeldAlt:"Voorbeeld: een gele papieren pompoen met zwarte stippen in verschillende maten"
   }
 };

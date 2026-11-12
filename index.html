@@ -254,6 +254,11 @@ figcaption b{color:var(--ink)}
 .lightbox{position:fixed;inset:0;z-index:20;background:rgba(30,20,14,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 .lightbox img{max-width:100%;max-height:calc(100% - 80px);object-fit:contain;border:10px solid var(--orange)}
 
+.kunstlink{position:relative;overflow:hidden;border-radius:24px;background:#F9C406;min-height:clamp(260px,calc(var(--vw)*26),420px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:28px;text-align:center;color:#1a1a1a}
+.kunstlink>b{position:relative;font-family:var(--display);font-size:clamp(28px,calc(var(--vw)*3),44px);line-height:1.05}
+.kunstlink>span:not(.kunststip),.kunstlink>small{position:relative;font-weight:700;background:rgba(249,196,6,.85);border-radius:8px;padding:0 6px}
+.kunstlink>a{position:relative;text-decoration:none}
+.kunststip i{position:absolute;left:var(--x);top:var(--y);translate:-50% -50%;width:var(--s);height:var(--s);border-radius:50%;background:#1a1a1a;opacity:.85}
 /* ---- creatief ---- */
 .create{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(16px,calc(var(--vw)*3),40px);align-items:start}
 .assign{display:flex;flex-direction:column;gap:14px}
@@ -784,17 +789,26 @@ SCHERM.kunst = () => {
     const ex = state.uitleg.has(i) ? `<div class="expl"><b>Kijk mee</b>${esc(v.uitleg)}</div>` : `<button class="ghost small" data-expl="${i}">Kijk mee</button>`;
     return `<li><span class="k">${i+1}</span><div class="lq"><span>${esc(v.v)}</span>${ex}</div></li>`;
   }).join("");
-  return band(k.titel) + `<div class="inner"><div class="art">
-    <figure class="frame">
+  /* Kunst met auteursrecht (bv. Kusama): we tonen het werk niet zelf, maar openen de officiële bron (k.link). */
+  const beeld = k.link
+    ? `<figure class="frame"><div class="kunstlink">
+        <span class="kunststip" aria-hidden="true">${[[4,6,26],[16,4,14],[30,8,20],[52,3,12],[70,7,24],[86,5,16],[95,14,12],[3,28,14],[94,34,20],[6,52,22],[92,58,14],[4,78,16],[94,80,24],[14,92,20],[34,94,12],[58,90,22],[78,93,14]].map(([x,y,d])=>`<i style="--x:${x}%;--y:${y}%;--s:${d}px"></i>`).join("")}</span>
+        <b>${esc(k.werk)}</b><span>${esc(k.maker)} · ${esc(k.jaar)}</span>
+        <a class="btn obgroot" href="${esc(k.link)}" target="_blank" rel="noopener">Bekijk het kunstwerk ↗</a>
+        <small>${esc(k.linkUitleg||"Opent de officiële website in een nieuw tabblad.")}</small></div>
+        <figcaption><b>${esc(k.werk)}</b> · ${esc(k.maker)}, ${esc(k.jaar)} · ${esc(k.plek)}</figcaption></figure>`
+    : `<figure class="frame">
       <button class="imgbtn" id="zoom" aria-label="Schilderij groot tonen">${img(pad.soep("kunst"),k.werk+", geschilderd door "+k.maker)}</button>
       <figcaption><b>${esc(k.werk)}</b> · ${k.maker}, ${k.jaar} · ${k.plek}. Tik op het schilderij om het groot te zien.</figcaption>
-    </figure>
+    </figure>`;
+  return band(k.titel) + `<div class="inner"><div class="art">
+    ${beeld}
     <div style="display:flex;flex-direction:column;gap:14px;min-width:0">
       <p>${esc(k.intro)}</p>
       <ol class="look">${items}</ol>
       <div class="row">${state.kijk<vr.length ? `<button class="btn" id="kijkNext">${state.kijk===0?"Eerste kijkvraag":"Volgende kijkvraag"}</button>` : verder()}</div>
     </div></div>
-    ${state.groot ? `<div class="lightbox">${img(pad.soep("kunst"),k.werk)}<button class="ghost" id="closeZoom">Sluiten</button></div>` : ""}</div>`;
+    ${state.groot && !k.link ? `<div class="lightbox">${img(pad.soep("kunst"),k.werk)}<button class="ghost" id="closeZoom">Sluiten</button></div>` : ""}</div>`;
 };
 
 SCHERM.maak = () => {

@@ -39,7 +39,7 @@ for (const soep of SOEPEN.filter(s => s.klaar || (alles && fs.existsSync(path.jo
   if (L.lichaam) niveaus(L.lichaam.act).forEach(a => a && a.type === "kaarten" && a.opties.forEach(o => lijf.add(o.key)));
   if (L.koppel) L.koppel.lijst.forEach(x => plaatjes.add("koppel-" + x.key));
   if (L.quiz) niveaus(L.quiz).flat().forEach(q => plaatjes.add(q.img));
-  if (L.kunst && (L.stappen||[]).some(st => st.id==="kunst")) plaatjes.add("kunst");   // alleen als de dia ook in de les staat
+  if (L.kunst && !L.kunst.link && (L.stappen||[]).some(st => st.id==="kunst")) plaatjes.add("kunst");   // met link (auteursrecht) geen eigen plaatje   // alleen als de dia ook in de les staat
   const ob = L.onderbouw || {}, spellen = ob.spellen || (ob.spel ? [ob.spel] : []);   // kleuterles: plaatjes van de spellen
   spellen.forEach((sp, nr) => {
     if (!["volgorde","pluk","goedvoor","kleuren","sorteer","vormen","maakgezicht"].includes(sp.type)) fout(`onderbouw.spellen[${nr}].type "${sp.type}" bestaat niet (kan: volgorde, pluk, goedvoor, kleuren, sorteer, vormen, maakgezicht)`);
