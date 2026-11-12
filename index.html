@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">   <!-- testfase: niet in Google. Weghalen als de site officieel live gaat. -->
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="Soepdetective: interactieve lessen bij de soepen van Good Soup, voor groep 5 tot en met 8.">
+<meta name="description" content="Soepdetective: interactieve lessen bij de soepen van Good Soup, voor de onderbouw, middenbouw en bovenbouw.">
 <link rel="icon" href="img/ingredienten/wortel.webp">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style>
 <title>Soepdetective</title>
@@ -296,6 +296,7 @@ figcaption b{color:var(--ink)}
   .bodies{grid-template-columns:repeat(2,1fr)}
   .bins{grid-template-columns:1fr}
   .level button{padding:6px 12px;font-size:14px}
+  .vol{display:none!important}   /* volledig scherm is voor het digibord, niet voor de telefoon */
 }
 
 /* ---- onderbouw: alles groot en laag op het bord ---- */
@@ -541,9 +542,9 @@ html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:
     <div class="topr">
     <button class="vol" id="vol" hidden aria-label="Volledig scherm aan of uit" title="Volledig scherm">⛶</button>
     <div class="level" role="group" aria-label="Niveau">
-      <button data-niveau="g12" aria-pressed="false">Groep 1-2</button>
-      <button data-niveau="g56" aria-pressed="true">Groep 5-6</button>
-      <button data-niveau="g78" aria-pressed="false">Groep 7-8</button>
+      <button data-niveau="g12" aria-pressed="false" title="Groep 1-2">Onderbouw</button>
+      <button data-niveau="g56" aria-pressed="true" title="Groep 5-6">Middenbouw</button>
+      <button data-niveau="g78" aria-pressed="false" title="Groep 7-8">Bovenbouw</button>
     </div>
     </div>
   </header>
@@ -612,7 +613,7 @@ SCHERM.kiezer = () => {
 SCHERM.start = () => `<section class="cover" style="--cover:url('${pad.soep("cover")}')">
   <div class="coverText">
     <h1>Soepdetective: ${esc(LES.naam)}</h1>
-    ${state.niveau==="g12" ? `<p class="kv"><span>Kleuterles · ongeveer 10 minuten</span>Wat hebben we vandaag gegeten?</p>` : `<p class="kv"><span>Speurvraag van vandaag</span>${esc(LES.speurvraag)}</p>`}
+    ${state.niveau==="g12" ? `<p class="kv"><span>Onderbouw · ongeveer 15 minuten</span>Wat hebben we vandaag gegeten?</p>` : `<p class="kv"><span>Speurvraag van vandaag</span>${esc(LES.speurvraag)}</p>`}
     <button class="big" data-go="0">Start de les</button>
     <button class="ghost small" data-kies>Andere soep kiezen</button>
   </div></section>`;
@@ -1003,7 +1004,7 @@ SCHERM["ob-durf"] = () => {
 /* ============ RENDER ============ */
 function render(){
   document.querySelectorAll("[data-niveau]").forEach(b=>b.setAttribute("aria-pressed", b.dataset.niveau===state.niveau));
-  const groep = {g12:"groep 1-2",g56:"groep 5-6",g78:"groep 7-8"}[state.niveau], st = $("#stage");
+  const groep = {g12:"onderbouw",g56:"middenbouw",g78:"bovenbouw"}[state.niveau], st = $("#stage");
   $("#sub").textContent = (LES ? LES.naam : "Kies een soep") + " · " + groep;
   $("#brandImg").src = pad.ing(LES ? LES.mascotte : "wortel");
   document.title = LES ? "Soepdetective · " + LES.naam : "Soepdetective";

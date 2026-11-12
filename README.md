@@ -1,6 +1,6 @@
 # Soepdetective
 
-Interactieve lessen bij de soepen van Good Soup, voor groep 5 t/m 8 (OBSH).
+Interactieve lessen bij de soepen van Good Soup, voor de onderbouw (groep 1-2), middenbouw (groep 5-6) en bovenbouw (groep 7-8) (OBSH).
 Klaar: **Wortelsoep**. Andere soepen volgen.
 
 ## Opbouw
