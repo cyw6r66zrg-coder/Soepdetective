@@ -55,7 +55,7 @@ img{max-width:100%}
 .brand b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(24px,calc(var(--vw)*2.4),34px);line-height:1}
 .brand small{display:block;color:var(--muted);font-size:.75em}
 .topr{display:flex;align-items:center;gap:10px}
-.vol{width:44px;height:44px;border-radius:50%;border:3px solid var(--orange);background:var(--paper);color:var(--orange-dark);font-size:22px;line-height:1;display:grid;place-items:center;padding:0}
+.vol{font-size:20px;width:44px;height:44px;border-radius:50%;border:3px solid var(--orange);background:var(--paper);color:var(--orange-dark);font-size:22px;line-height:1;display:grid;place-items:center;padding:0}
 .level{display:flex;background:var(--paper);border:3px solid var(--orange);border-radius:999px;overflow:hidden}
 .level button{border:0;background:none;padding:7px 18px;font-weight:800;font-size:16px;color:var(--orange-dark)}
 .level button[aria-pressed="true"]{background:var(--orange);color:#fff}
@@ -613,6 +613,7 @@ html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:
       <span><b>Soepdetective</b><small id="sub">Kies een soep</small></span>
     </button>
     <div class="topr">
+    <button class="vol" id="geluidKnop" aria-label="Geluid aan of uit" title="Geluid aan of uit">🔊</button>
     <button class="vol" id="vol" hidden aria-label="Volledig scherm aan of uit" title="Volledig scherm">⛶</button>
     <div class="level" role="group" aria-label="Niveau">
       <button data-niveau="g12" aria-pressed="false" title="Groep 1-2">Onderbouw</button>
@@ -662,7 +663,55 @@ const raster = n => { const rows = n<=10 ? 2 : 3; return { rows, cols: Math.ceil
 const band = t => `<div class="band"><h2>${esc(t)}</h2></div>`;
 const koppelLijst = () => { const k=LES.koppel; return state.niveau==="g56" && k.g56 ? k.lijst.filter(x=>k.g56.includes(x.key)) : k.lijst; };
 
+/* ============ GELUID ============
+   Korte geluidjes, in de code gemaakt (Web Audio): geen bestanden, geen auteursrecht.
+   Alleen na een tik of sleep van een kind/leerkracht. Uit te zetten met de knop 🔊 (bewaard op dit apparaat). */
+let audio=null, klankNu=null, interactie=0;
+let geluidAan = bewaard("soepdetective-geluid")!=="uit";
+function toon(f, start, duur, {type="sine", vol=.18, naar=null}={}){
+  const t=audio.currentTime+start, o=audio.createOscillator(), g=audio.createGain();
+  o.type=type; o.frequency.setValueAtTime(f,t); if(naar) o.frequency.exponentialRampToValueAtTime(naar,t+duur);
+  g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(vol,t+.012); g.gain.exponentialRampToValueAtTime(.0001,t+duur);
+  o.connect(g).connect(audio.destination); o.start(t); o.stop(t+duur+.02);
+}
+function ruis(start, duur, vol=.2, filter=1200){
+  const t=audio.currentTime+start, n=Math.floor(audio.sampleRate*duur), buf=audio.createBuffer(1,n,audio.sampleRate), d=buf.getChannelData(0);
+  for(let i=0;i<n;i++) d[i]=(Math.random()*2-1)*(1-i/n);
+  const s=audio.createBufferSource(), f=audio.createBiquadFilter(), g=audio.createGain();
+  s.buffer=buf; f.type="bandpass"; f.frequency.value=filter; g.gain.value=vol; s.connect(f).connect(g).connect(audio.destination); s.start(t);
+}
+const KLANK = {
+  goed:  ()=>{ toon(784,0,.16); toon(1175,.09,.28); },
+  fout:  ()=>{ toon(220,0,.22,{type:"triangle",vol:.16,naar:180}); },
+  klaar: ()=>{ [523,659,784,1047].forEach((f,i)=>toon(f,i*.09,.3,{vol:.15})); },
+  plons: ()=>{ toon(420,0,.25,{vol:.14,naar:120}); ruis(.02,.18,.12,900); },
+  pop:   ()=>{ ruis(0,.07,.35,2400); toon(900,0,.08,{type:"square",vol:.06,naar:300}); },
+  flip:  ()=>{ ruis(0,.06,.12,3500); },
+  tik:   ()=>{ toon(1400,0,.05,{vol:.08}); },
+  licht: ()=>{ [1568,2093,2637,3136].forEach((f,i)=>toon(f,i*.07,.35,{vol:.07})); }
+};
+function speel(naam){
+  klankNu=naam;
+  if(!geluidAan || !KLANK[naam]) return;
+  try { audio = audio || new (window.AudioContext||window.webkitAudioContext)(); if(audio.state==="suspended") audio.resume(); KLANK[naam](); } catch {}
+}
+// Elke tik of sleep telt als 'interactie': alleen dan mag er geluid klinken.
+addEventListener("pointerdown", ()=>{ interactie=performance.now(); klankNu=null; }, true);
+addEventListener("keydown", ()=>{ interactie=performance.now(); klankNu=null; }, true);
+// Na elke render: is er een nieuwe melding (goed/fout) door een tik? Dan het bijpassende geluidje, tenzij er al een specifiek geluid klonk.
+let laatsteMelding="";
+function geluidBijMelding(){
+  const el=document.querySelector("#stage .obfb, #stage .say.ok .bubble, #stage .say.no .bubble, #stage .say.win .bubble, #stage .fact, #stage .obkleur.goed, #stage .obkleur.mis");
+  const sleutel = el ? (el.className+"|"+el.textContent) : "";
+  if (sleutel && sleutel!==laatsteMelding && performance.now()-interactie<1500 && !klankNu) {
+    const fout = el.matches(".no, .say.no .bubble, .fact.miss, .obkleur.mis") || !!el.closest(".say.no");
+    speel(fout ? "fout" : "goed");
+  }
+  laatsteMelding=sleutel;
+}
+
 function confetti(){
+  if (klankNu!=="licht" && klankNu!=="stil") speel("klaar");
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const c=document.createElement("div"); c.className="confetti";
   const kl=["#F9C406","#F47B20","#EE6A56","#E41D9A","#4F8F3A","#7650A6"];
@@ -986,7 +1035,7 @@ SCHERM["ob-erin"] = () => {
     ${juf(klaar ? "Welke groente proef jij het best in de soep? En wist je dat er ook water en een snufje zout in gaan?" : "Wat zou er in de soep zitten? Proef nog eens! Sleep het naar de pan, of tik erop.")}</div>`;
 };
 function obInPan(k){
-  if (obErin().includes(k)) { state.obPan.push(k); const nog=obErin().filter(x=>!state.obPan.includes(x)).length;
+  if (obErin().includes(k)) { speel("plons"); state.obPan.push(k); const nog=obErin().filter(x=>!state.obPan.includes(x)).length;
     state.obMelding={ok:true,t:nog?`Ja! ${INGREDIENTEN[k]} gaat in de soep.`:"Goed zo! Alles zit in de pan."}; if(!nog) confetti(); }
   else { state.obNee.push(k); state.obSchud=k; state.obMelding={ok:false,t:`Nee hoor, ${INGREDIENTEN[k].toLowerCase()} gaat er niet in!`}; }
   render(); state.obSchud=null;
@@ -1195,6 +1244,7 @@ function render(){
   st.innerHTML = SCHERM[stappen()[state.scherm].id]();
   $("#next").textContent = state.scherm===stappen().length-1 ? "Klaar" : "Volgende";
   after(stappen()[state.scherm].id);
+  geluidBijMelding();
 }
 function after(id){
   if (id==="ob-spel" && spelNu().type==="sorteer") document.querySelectorAll(".obitem[data-obitem]").forEach(el=>{ const i=+el.dataset.obitem;
@@ -1237,6 +1287,7 @@ function drag(el, targets, onDrop, ghostHTML, tapGivesNull){
 function probeer(k){
   const d=LES.speur;
   if (d.goed.includes(k)){
+    speel("plons");
     state.inPan.add(k); state.plons=true;
     const rest = d.goed.filter(x=>!state.inPan.has(x)).length;
     state.melding={ok:true,t:`Ja! ${INGREDIENTEN[k]} zit erin.`+(rest?` Nog ${rest} te gaan.`:"")};
@@ -1299,16 +1350,17 @@ $("#home").addEventListener("click",naarKiezer);
 
 document.addEventListener("click",e=>{
   const t=e.target.closest("button"); if(!t||t.disabled) return; const d=t.dataset;
+  if (/All$/.test(t.id)) klankNu="stil";   // "Toon het antwoord": geen beloningsgeluid
   if(d.soep){ if(location.hash==="#"+d.soep) openSoep(d.soep); else location.hash=d.soep; return; }
   if(d.kies!==undefined){ naarKiezer(); return; }
   if(d.go!==undefined){ go(+d.go); return; }
   if(d.niveau){ if(state.niveau!==d.niveau){ const wissel=(state.niveau==="g12")!==(d.niveau==="g12"); state.niveau=d.niveau; bewaard("soepdetective-niveau", d.niveau); Object.assign(state,vers()); if(wissel && state.scherm>=0) state.scherm=-1; render(); } return; }
   if(d.word){ state.woorden.has(d.word)?state.woorden.delete(d.word):state.woorden.add(d.word); render(); return; }
-  if(d.vote!==undefined){ state.stemmen[+d.vote]++; render(); return; }
+  if(d.vote!==undefined){ speel("tik"); state.stemmen[+d.vote]++; render(); return; }
   if(t.id==="voteReset"){ state.stemmen=[0,0,0,0,0]; render(); return; }
   if(t.id==="panReset"){ Object.assign(state,{inPan:new Set(),fout:new Set(),volgorde:null,melding:null}); render(); return; }
   if(t.id==="panAll"){ LES.speur.goed.forEach(k=>state.inPan.add(k)); state.melding=null; render(); return; }
-  if(d.wat!==undefined){ state.wat[+d.wat]++; render(); return; }
+  if(d.wat!==undefined){ speel("tik"); state.wat[+d.wat]++; render(); return; }
   if(t.id==="kernOpen"){ state.kernOpen=true; confetti(); render(); return; }
   if(d.kaart){ state.kaartOpen.add(d.kaart); if(kernKlaar(L(LES.lichaam.act))) confetti(); render(); return; }
   if(t.id==="kaartAll"){ L(LES.lichaam.act).opties.forEach(o=>{ if(o.goed) state.kaartOpen.add(o.key); }); render(); return; }
@@ -1342,18 +1394,18 @@ document.addEventListener("click",e=>{
     else { state.obSchud=i; const zoek=sp.vormen[nu].vorm; state.obMelding={ok:false,t:`Nee, dat is ${lw(v)} ${v}. Zoek ${lw(zoek)} ${zoek}!`}; }
     render(); state.obSchud=null; return; }
   if(d.obplek){ state.obGezicht={...state.obGezicht,[d.obplek]:d.obkeusvorm}; render(); return; }
-  if(t.id==="obLichtAan"){ state.obLicht=true; confetti(); render(); return; }
+  if(t.id==="obLichtAan"){ state.obLicht=true; speel("licht"); confetti(); render(); return; }
   if(t.id==="obLichtUit"){ state.obLicht=false; state.obGezicht={}; render(); return; }
-  if(d.obmem!==undefined){ const i=+d.obmem; if(state.obBezig||state.obOpen.includes(i)) return; state.obOpen.push(i); state.obMelding=null;
+  if(d.obmem!==undefined){ const i=+d.obmem; if(state.obBezig||state.obOpen.includes(i)) return; speel("flip"); state.obOpen.push(i); state.obMelding=null;
     if(state.obOpen.length===2){ const [a,b]=state.obOpen, ka=state.obMem[a], kb=state.obMem[b];
-      if(ka===kb){ state.obPaar.push(ka); state.obOpen=[]; state.obMelding={ok:true,t:`Een paar: ${INGREDIENTEN[ka].toLowerCase()}!`};
+      if(ka===kb){ state.obPaar.push(ka); if(state.obPaar.length<state.obMem.length/2) setTimeout(()=>speel("goed"),120); state.obOpen=[]; state.obMelding={ok:true,t:`Een paar: ${INGREDIENTEN[ka].toLowerCase()}!`};
         if(state.obPaar.length===state.obMem.length/2) confetti(); }
       else { state.obBezig=true; render(); setTimeout(()=>{ state.obOpen=[]; state.obBezig=false; render(); }, 1400); return; } }
     render(); return; }
   if(t.id==="obMemOpnieuw"){ Object.assign(state,{obMem:null,obOpen:[],obPaar:[],obBezig:false,obMelding:null}); render(); return; }
-  if(d.obpop!==undefined){ const i=+d.obpop; if(!state.obGepopt.includes(i)) state.obGepopt.push(i); if(state.obGepopt.length===spelNu().aantal) confetti(); render(); return; }
+  if(d.obpop!==undefined){ speel("pop"); const i=+d.obpop; if(!state.obGepopt.includes(i)) state.obGepopt.push(i); if(state.obGepopt.length===spelNu().aantal) confetti(); render(); return; }
   if(t.id==="obPopOpnieuw"){ state.obGepopt=[]; render(); return; }
-  if(d.obtel!==undefined){ const i=+d.obtel; if(!state.obGeteld.includes(i)) state.obGeteld.push(i); state.obMelding=null; render(); return; }
+  if(d.obtel!==undefined){ speel("tik"); const i=+d.obtel; if(!state.obGeteld.includes(i)) state.obGeteld.push(i); state.obMelding=null; render(); return; }
   if(d.obtelgetal){ const sp=spelNu(), n=sp.rondes[state.obRonde], g=+d.obtelgetal; state.obTelKeus=g;
     if(g===n){ state.obMelding={ok:true,t:`Ja! Het zijn ${n} roosjes.`}; confetti(); }
     else { state.obSchud=g; state.obMelding={ok:false,t:"Tel nog eens samen. Wijs ze maar aan!"}; }
@@ -1370,7 +1422,7 @@ document.addEventListener("click",e=>{
     render(); state.obSchud=null; return; }
   if(d.obbak){ if(state.obSel!==null) obPlaats(state.obSel,d.obbak); else { state.obMelding={ok:false,t:"Kies eerst een plaatje."}; render(); } return; }
   if(t.id==="obSorteerAlles"){ spelNu().items.forEach((it,i)=>state.obGeplaatst[i]=it.bak); state.obMelding=null; state.obSel=null; render(); return; }
-  if(d.obstem!==undefined){ state.obStem[+d.obstem]++; render(); return; }
+  if(d.obstem!==undefined){ speel("tik"); state.obStem[+d.obstem]++; render(); return; }
   if(t.id==="obStemReset"){ state.obStem=[0,0,0]; render(); return; }
   if(t.id==="obOnthul"||t.id==="obOnthul2"){ state.obOnthuld=true; render(); return; }
   if(t.id==="obVolgende"){ state.obI++; state.obOnthuld=false; if(state.obI>=obSchaduwen().length) confetti(); render(); return; }
@@ -1411,6 +1463,9 @@ function schaal(){
   app.style.transform = `translate(-50%,-50%) scale(${k})`;
 }
 addEventListener("resize", schaal);
+const toonGeluidKnop = () => { $("#geluidKnop").textContent = geluidAan ? "🔊" : "🔇"; $("#geluidKnop").setAttribute("aria-pressed", geluidAan); };
+$("#geluidKnop").addEventListener("click", ()=>{ geluidAan=!geluidAan; bewaard("soepdetective-geluid", geluidAan?"aan":"uit"); toonGeluidKnop(); if(geluidAan) speel("tik"); });
+toonGeluidKnop();
 // Volledig scherm: geeft de les op het digibord de meeste ruimte. Knop alleen tonen waar het kan.
 if (document.fullscreenEnabled) { $("#vol").hidden=false;
   $("#vol").addEventListener("click", ()=>{ (document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen()).catch(()=>{}); }); }
