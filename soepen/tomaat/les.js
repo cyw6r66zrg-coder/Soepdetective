@@ -142,7 +142,7 @@ LESSEN.tomaat = {
     ]
   },
   galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
-    g56:{ woord:"CHERRYTOMAAT", tip:"Zo klein als een knikker. In één hap op!", uitleg:"Cherrytomaatjes zijn de kleinste tomaten van de les." },
+    g56:{ woord:"VRUCHTGROENTE", tip:"Weet je nog, de speurvraag? Voor de plant een vrucht, voor de kok een groente. Plak ze aan elkaar!", uitleg:"Tomaten groeien uit een bloem en hebben zaadjes: een vrucht. In de keuken noemen we ze een vruchtgroente." },
     g78:{ woord:"NACHTSCHADEFAMILIE", tip:"De plantenfamilie van tomaat én aardappel.", uitleg:"Tomaat, aardappel, paprika en aubergine horen allemaal bij de nachtschadefamilie." }
   },
   kunst:{

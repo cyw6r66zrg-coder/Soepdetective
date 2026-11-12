@@ -137,7 +137,7 @@ LESSEN.pompoen = {
     ]
   },
   galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
-    g56:{ woord:"HALLOWEENPOMPOEN", tip:"Groot, rond en knaloranje. Ideaal om uit te hollen.", uitleg:"Daar snijden mensen in oktober een gezicht in." },
+    g56:{ woord:"WEEGSCHAAL", tip:"Weet je nog, de speurvraag? Hiermee zie je hoe zwaar iets is.", uitleg:"De zwaarste pompoenen zijn zo zwaar dat er een extra grote weegschaal nodig is!" },
     g78:{ woord:"KOMKOMMERFAMILIE", tip:"De plantenfamilie van de pompoen.", uitleg:"Pompoen, komkommer, courgette en meloen zijn familie van elkaar." }
   },
   kunst:{
