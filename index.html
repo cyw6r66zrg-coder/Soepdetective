@@ -466,13 +466,30 @@ button.obvormknop:not(:disabled):hover{transform:scale(1.12)}
 .obvormkeus .vormsvg{fill:#3B1F0E}
 .obvormkeus.gekozen{border-color:var(--green);border-width:6px;background:var(--green-soft);transform:scale(1.06)}
 .obvormkeus:not(:disabled):hover{transform:translateY(-3px)}
+/* tellen */
+.obtel{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:center;flex:1 1 auto;min-height:0}
+.obtelvlak{position:relative;height:100%;min-height:300px;border-radius:30px;background:radial-gradient(ellipse at center,#E6F2DD 0,#E6F2DD 55%,transparent 72%)}
+.obtelheel{position:absolute;left:50%;top:-4px;translate:-50% 0;display:flex;flex-direction:column;align-items:center;opacity:.35}
+.obtelheel img{width:110px;height:110px;object-fit:contain}
+.obtelheel span{font-family:var(--display);font-size:18px;color:var(--muted)}
+.obtelroos{position:absolute;translate:-50% -50%;width:clamp(90px,calc(var(--vw)*10),150px);aspect-ratio:1;border:0;background:none;padding:0;animation:pop .45s var(--d) both;transition:transform .15s}
+.obtelroos img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 6px rgba(59,43,34,.2))}
+.obtelroos:not(:disabled):hover{transform:scale(1.08)}
+.obtelroos b{position:absolute;right:-6px;top:-6px;width:52px;height:52px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-family:var(--display);font-size:32px;animation:pop .3s}
+.obtelzij{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+.obtelvraag{font-family:var(--display);font-size:clamp(26px,calc(var(--vw)*2.6),38px);line-height:1.15;color:var(--ink)}
+.obtelstand{font-family:var(--display);font-size:clamp(90px,calc(var(--vw)*10),150px);line-height:1;color:var(--orange)}
+.obtelgetallen{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.obtelgetal{width:clamp(76px,calc(var(--vw)*8),110px);aspect-ratio:1;border:4px solid var(--orange);border-radius:24px;background:var(--paper);font-family:var(--display);font-size:clamp(40px,calc(var(--vw)*4.4),62px);color:var(--orange-dark);transition:transform .15s}
+.obtelgetal:not(:disabled):hover{transform:translateY(-3px)}
+.obtelgetal.goed{background:var(--green);border-color:var(--green);color:#fff;transform:scale(1.08)}
 html.dia .obles{gap:18px}
 html.dia .obles.lekker .face img{max-width:170px}
-html.dia .obraad,html.dia .obpluk,html.dia .obdurf,html.dia .obsoep,html.dia .oberin,html.dia .obzoek,html.dia .obgoed,html.dia .obkleurwortels,html.dia .obvormspel{flex:1 1 0}
+html.dia .obraad,html.dia .obpluk,html.dia .obdurf,html.dia .obsoep,html.dia .oberin,html.dia .obzoek,html.dia .obgoed,html.dia .obkleurwortels,html.dia .obvormspel,html.dia .obtel{flex:1 1 0}
 html.dia .obspel{flex:1 1 0;height:auto}
 @media (max-width:820px){
   .obraad,.obspel,.obpluk,.obdurf,.obsoep,.oberin{grid-template-columns:1fr}
-  .obzoek,.obgroenten,.obkleurwortels,.obgoed{grid-template-columns:repeat(3,minmax(0,1fr))}.obvormspel{grid-template-columns:1fr}.obvormvlak{height:auto;width:100%}.obitems{grid-template-columns:repeat(4,minmax(0,1fr))}.obsmaken{gap:10px}.obpotten{gap:12px}.obplus{font-size:40px;gap:10px}
+  .obzoek,.obgroenten,.obkleurwortels,.obgoed{grid-template-columns:repeat(3,minmax(0,1fr))}.obvormspel,.obtel{grid-template-columns:1fr}.obvormvlak{height:auto;width:100%}.obitems{grid-template-columns:repeat(4,minmax(0,1fr))}.obsmaken{gap:10px}.obpotten{gap:12px}.obplus{font-size:40px;gap:10px}
   .obrij{flex-wrap:wrap}.obpijl{display:none}
   .obstruik{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
@@ -595,7 +612,7 @@ html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:
 let LES = null;   // de les van de gekozen soep (LESSEN[state.soep])
 
 /* ============ STAAT ============ */
-const vers = () => ({ obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obSterren:0, obSchud:null, obMelding:null,
+const vers = () => ({ obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obRonde:0, obGeteld:[], obTelKeus:null, obSterren:0, obSchud:null, obMelding:null,
   woorden:new Set(), stemmen:[0,0,0,0,0], inPan:new Set(), fout:new Set(), volgorde:null, melding:null, schud:null, plons:false,
   wat:[0,0,0], kernOpen:false, kaartOpen:new Set(), geplaatst:{}, sortSel:null, sortVolgorde:null, sortMelding:null, sortSchud:null,
   paren:new Set(), sel:null, naamVolgorde:null, rasMelding:null, misser:null, q:0, gekozen:null, kijk:0, uitleg:new Set(), groot:false });
@@ -1059,6 +1076,28 @@ SPEL.maakgezicht = sp => {
     ${juf(licht ? sp.slot : sp.start)}</div>`;
 };
 
+// TEL: een groente valt uit elkaar in stukjes; tik ze een voor een aan (de klas telt hardop) en kies dan het goede getal.
+// sp.basis = de hele groente, sp.roosje = één stukje, sp.rondes = [aantal per ronde]
+const TELPLEK = [[20,26],[56,20],[84,48],[34,74],[66,76],[48,46],[14,62]];   // verspreid over het vlak
+SPEL.tel = sp => {
+  const r=state.obRonde, n=sp.rondes[r], geteld=state.obGeteld.length, alles=geteld===n, laatste=r===sp.rondes.length-1, goed=state.obTelKeus===n;
+  const plek = TELPLEK.slice(0,n);
+  return band(goed && laatste ? "Goed geteld!" : sp.titel) + `<div class="inner obles"><div class="obtel">
+    <div class="obtelvlak">
+      ${plek.map(([x,y],i)=>{ const nr=state.obGeteld.indexOf(i);
+        return `<button class="obtelroos ${nr>=0?"geteld":""}" data-obtel="${i}" ${nr>=0?"disabled":""} style="left:${x}%;top:${y}%;--d:${i*.08}s">${img(pad.soep(sp.roosje),"")}${nr>=0?`<b>${nr+1}</b>`:""}</button>`; }).join("")}
+    </div>
+    <div class="obtelzij">
+      <span class="obdots">${sp.rondes.map((_,i)=>`<i class="${i<=r?"on":""}"></i>`).join("")}</span>
+      ${alles ? `<p class="obtelvraag">Hoeveel roosjes zijn het?</p><div class="obtelgetallen">${[1,2,3,4,5,6].map(g=>
+        `<button class="obtelgetal ${state.obTelKeus===g?(g===n?"goed":"mis"):""} ${state.obSchud===g?"shake":""}" data-obtelgetal="${g}" ${goed?"disabled":""}>${g}</button>`).join("")}</div>`
+        : `<p class="obtelvraag">Tik op elk roosje<br>en tel hardop mee!</p><div class="obtelstand">${geteld}</div>`}
+    </div>
+  </div>
+    <div class="row obrow">${goed ? (laatste ? verder() : `<button class="btn obgroot" id="obTelVolgende">Nog een keer!</button>`) : ""}${obFb()}</div>
+    ${juf(goed && laatste ? sp.slot : sp.start)}</div>`;
+};
+
 /* ---- de durfpot: vast eindritueel. De sterren blijven op dit apparaat bewaard, zodat de pot week na week voller wordt. ---- */
 const POT_KEY = "soepdetective-durfpot";
 const potLees = () => { try { return Math.max(0, parseInt(localStorage.getItem(POT_KEY)||"0",10)||0); } catch { return 0; } };
@@ -1159,7 +1198,7 @@ function koppel(k,naam){
   state.sel=null; render();
 }
 function go(i){ if(!LES) return; state.obMelding=null;
-  if (i!==state.scherm) Object.assign(state,{obRij:[],obMix:null,obGeplukt:[],obGoedKeus:null,obGoedNee:[],obGevonden:[],obGeplaatst:{},obSel:null,obGezicht:{},obLicht:false});   /* elk spel begint fris */
+  if (i!==state.scherm) Object.assign(state,{obRij:[],obMix:null,obGeplukt:[],obGoedKeus:null,obGoedNee:[],obGevonden:[],obGeplaatst:{},obSel:null,obGezicht:{},obLicht:false,obRonde:0,obGeteld:[],obTelKeus:null});   /* elk spel begint fris */
   if(i<-1){ naarKiezer(); return; } state.scherm=Math.min(stappen().length-1,i); render(); window.scrollTo({top:0}); }
 
 /* ============ SOEP KIEZEN ============
@@ -1246,6 +1285,12 @@ document.addEventListener("click",e=>{
   if(d.obplek){ state.obGezicht={...state.obGezicht,[d.obplek]:d.obkeusvorm}; render(); return; }
   if(t.id==="obLichtAan"){ state.obLicht=true; confetti(); render(); return; }
   if(t.id==="obLichtUit"){ state.obLicht=false; state.obGezicht={}; render(); return; }
+  if(d.obtel!==undefined){ const i=+d.obtel; if(!state.obGeteld.includes(i)) state.obGeteld.push(i); state.obMelding=null; render(); return; }
+  if(d.obtelgetal){ const sp=spelNu(), n=sp.rondes[state.obRonde], g=+d.obtelgetal; state.obTelKeus=g;
+    if(g===n){ state.obMelding={ok:true,t:`Ja! Het zijn ${n} roosjes.`}; confetti(); }
+    else { state.obSchud=g; state.obMelding={ok:false,t:"Tel nog eens samen. Wijs ze maar aan!"}; }
+    render(); state.obSchud=null; if(g!==n) state.obTelKeus=null; return; }
+  if(t.id==="obTelVolgende"){ state.obRonde++; state.obGeteld=[]; state.obTelKeus=null; state.obMelding=null; render(); return; }
   if(d.obsmaak){ const k=d.obsmaak; state.obSmaak = state.obSmaak.includes(k) ? state.obSmaak.filter(x=>x!==k) : [...state.obSmaak,k]; render(); return; }
   if(t.id==="obSmaakToon"){ state.obSmaakToon=true; render(); return; }
   if(d.obgoed){ const o=spelNu().opties.find(x=>x.lijf===d.obgoed); state.obGoedKeus=d.obgoed;
