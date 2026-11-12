@@ -7,7 +7,6 @@
 LESSEN.wortel = {
   naam:"Wortelsoep",
   mascotte:"wortel",            // ingrediënt dat als vriendje in de tekstballonnen staat (img/ingredienten/)
-  panRand:35,   // hoogte van de rand in pan.webp (in %), voor het overkoken bij galgje
   speurvraag:"Kun je van wortels beter in het donker zien?",
   stappen:[
     {id:"proef",  naam:"Proeven"},

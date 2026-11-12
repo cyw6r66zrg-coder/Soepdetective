@@ -283,20 +283,14 @@ figcaption b{color:var(--ink)}
 .thermopan{position:relative;width:124px}
 .thermopan img{width:100%;display:block}
 .thermopan.over img{animation:shake .5s 2}
-.thermopan .overkook{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
-.overkook .bel{fill:var(--soep);opacity:0;transform-box:fill-box;transform-origin:center;animation:bel 1.4s var(--d) ease-in infinite}
-.overkook.kookt .bel{animation-duration:.9s}
-@keyframes bel{0%{transform:translateY(4px) scale(.4);opacity:0}30%{opacity:.95}85%{transform:translateY(-16px) scale(1.1);opacity:.9}100%{transform:translateY(-20px) scale(1.5);opacity:0}}
-.overkook .schuim circle{fill:var(--soep);stroke:rgba(59,43,34,.18);stroke-width:.6;transform-box:fill-box;transform-origin:center bottom;animation:schuim .7s cubic-bezier(.3,1.5,.5,1) both}
-.overkook .schuim circle:nth-child(2n){animation-delay:.12s}
-.overkook .schuim circle:nth-child(3n){animation-delay:.24s}
-.overkook .glans circle{fill:#fff;opacity:.45;animation:schuim .7s .3s both}
-@keyframes schuim{0%{transform:scale(0) translateY(10px)}100%{transform:scale(1) translateY(0)}}
-.overkook .drup{fill:var(--soep);transform-box:fill-box;transform-origin:top;animation:drup 1.7s var(--d) cubic-bezier(.5,0,.8,.6) both;filter:brightness(.92)}
-@keyframes drup{0%{transform:scaleY(0)}100%{transform:scaleY(1)}}
-.overkook .plas{fill:var(--soep);opacity:.75;filter:brightness(.9);transform-box:fill-box;transform-origin:center;animation:plas 1.3s 1.7s ease-out both}
-@keyframes plas{0%{transform:scale(0,.3)}100%{transform:scale(1,1)}}
-.thermopan.borrel img{animation:bob 1.1s ease-in-out infinite}
+.thermopan.over img{filter:sepia(.6) brightness(.72) saturate(1.2)}
+.thermopan img{position:relative;z-index:1}
+.thermopan.over{margin-bottom:14px}
+.vlammen{position:absolute;left:50%;bottom:-16px;translate:-50% 0;z-index:0;display:flex;gap:4px;font-size:30px;line-height:1;pointer-events:none}
+.vlammen span{display:block;transform-origin:center bottom;animation:vlam .5s ease-in-out infinite alternate}
+.vlammen span:nth-child(2){font-size:1.25em;animation-delay:.15s}
+.vlammen span:nth-child(3){animation-delay:.3s}
+@keyframes vlam{0%{transform:scale(.9,1) rotate(-4deg)}100%{transform:scale(1.05,1.15) rotate(4deg)}}
 .thermotel{font-family:var(--display);font-size:24px;color:var(--orange-dark)}
 @media (max-width:820px){.galg{grid-template-columns:1fr}.galgtoetsen{grid-template-columns:repeat(7,minmax(0,1fr))}.galgthermo{flex-direction:row}}
 /* ---- creatief ---- */
@@ -728,7 +722,7 @@ const KLANK = {
   pop:   ()=>{ ruis(0,.07,.35,2400); toon(900,0,.08,{type:"square",vol:.06,naar:300}); },
   flip:  ()=>{ ruis(0,.06,.12,3500); },
   tik:   ()=>{ toon(1400,0,.05,{vol:.08}); },
-  overkook: ()=>{ ruis(0,.9,.18,700); [0,.12,.22,.36,.47,.6,.72].forEach((t,i)=>toon(160+i*35,t,.12,{type:"triangle",vol:.1,naar:90+i*20})); },
+  aanbrand: ()=>{ ruis(0,.9,.18,700); [0,.12,.22,.36,.47,.6,.72].forEach((t,i)=>toon(160+i*35,t,.12,{type:"triangle",vol:.1,naar:90+i*20})); },
   licht: ()=>{ [1568,2093,2637,3136].forEach((f,i)=>toon(f,i*.07,.35,{vol:.07})); }
 };
 function speel(naam){
@@ -917,13 +911,13 @@ SCHERM.quiz = () => {
 
 /* ============ GALGJE (midden- en bovenbouw) ============
    Raad het lange woord letter voor letter. In plaats van een galg: een soepthermometer die bij elke
-   foute letter warmer wordt; bij MAX_FOUT kookt de soep over. Woord en tip per niveau in les.js → galgje. */
+   foute letter warmer wordt; bij MAX_FOUT brandt de soep aan. Woord en tip per niveau in les.js → galgje. */
 const MAX_FOUT = 8;
 const galgWoord = () => L(LES.galgje).woord.toUpperCase();
 SCHERM.galgje = () => {
   const g=L(LES.galgje), woord=galgWoord(), letters=[...new Set(woord.replace(/[^A-Z]/g,""))];
   const fout=state.gLetters.filter(l=>!woord.includes(l)).length, geraden=letters.every(l=>state.gLetters.includes(l)), over=fout>=MAX_FOUT, klaar=geraden||over;
-  return band(geraden ? "Geraden!" : over ? "Oei, de soep kookt over!" : "Galgje: raad het woord") + `<div class="inner"><div class="galg">
+  return band(geraden ? "Geraden!" : over ? "Oei, de soep is aangebrand!" : "Galgje: raad het woord") + `<div class="inner"><div class="galg">
     <div class="galglinks">
       <div class="galgwoord" style="--n:${woord.length}">${[...woord].map(c=>/[A-Z]/.test(c)
         ? `<span class="${state.gLetters.includes(c)?"raak":over?"gemist":""}">${state.gLetters.includes(c)||over?c:""}</span>` : `<span class="streep">${c}</span>`).join("")}</div>
@@ -933,38 +927,20 @@ SCHERM.galgje = () => {
     </div>
     <div class="galgthermo" aria-label="${fout} van ${MAX_FOUT} fout">
       <div class="thermo"><div class="thermovul" style="height:${fout/MAX_FOUT*100}%"></div>${Array.from({length:MAX_FOUT},()=>`<i></i>`).join("")}</div>
-      <div class="thermopan ${over?"over":fout>=MAX_FOUT-3?"borrel":""}" style="--soep:${KLEUR[(LES.onderbouw||{}).kleur]||"#F47B20"};--rand:${LES.panRand||34}%">${img(pad.soep("pan"),"")}${overkookSvg(over, fout)}</div>
+      <div class="thermopan ${over?"over":""}">${img(pad.soep("pan"),"")}${over?`<div class="vlammen" aria-hidden="true"><span>🔥</span><span>🔥</span><span>🔥</span></div>`:""}</div>
       <span class="thermotel">${fout} / ${MAX_FOUT}</span>
     </div>
   </div>
     <div class="row">${klaar ? `${verder()}<button class="ghost" id="galgOpnieuw">Nog een keer</button>` : ""}</div>
     ${geraden ? zeg(`Goed zo! Het woord was <b>${esc(woord)}</b>. ${esc(g.uitleg||"")}`,"win") : over ? zeg(`Het woord was <b>${esc(woord)}</b>. ${esc(g.uitleg||"")}`) : zeg("Kies samen een letter. Zit hij in het woord? Begin maar met een klinker: A, E, I, O of U!")}</div>`;
 };
-/* De soep kookt over: schuim boven de rand, druppels langs de pan, een plas eronder en opborrelende belletjes.
-   Vanaf 3 fouten voor het einde borrelt de soep al zachtjes. --rand = hoogte van de panrand (les.js → panRand, in %). */
-function overkookSvg(over, fout){
-  if (!over && fout < MAX_FOUT-3) return "";
-  const r=LES.panRand||34, bel=(x,d,rr)=>`<circle class="bel" cx="${x}" cy="${r-2}" r="${rr}" style="--d:${d}s"/>`;
-  // schuim: bolletjes net boven de rand, met lichte hooglichtjes
-  const schuim=[[16,1,7],[26,-3,9],[38,-6,10],[50,-7,11],[62,-6,10],[74,-3,9],[84,1,7],[32,2,7],[56,1,8],[44,3,6],[68,2,6]];
-  // druppels: [x, lengte, breedte, vertraging] vanaf de rand naar beneden
-  const drup=[[13,24,4.5,.4],[29,36,5.5,.7],[48,44,6,.55],[66,30,5,.9],[84,22,4.5,1.1]];
-  return `<svg class="overkook ${over?"kookt":""}" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-    ${over ? `
-      <ellipse class="plas" cx="50" cy="95" rx="44" ry="4"/>
-      ${drup.map(([x,l,w,d])=>`<g class="drup" style="--d:${d}s"><rect x="${x-w/2}" y="${r-2}" width="${w}" height="${l}" rx="${w/2}"/><circle cx="${x}" cy="${r-2+l}" r="${w*.75}"/></g>`).join("")}
-      <g class="schuim">${schuim.map(([x,y,rr])=>`<circle cx="${x}" cy="${r+y-3}" r="${rr}"/>`).join("")}</g>
-      <g class="glans">${schuim.filter((_,i)=>i%2===0).map(([x,y,rr])=>`<circle cx="${x-rr*.3}" cy="${r+y-3-rr*.35}" r="${rr*.28}"/>`).join("")}</g>` : ""}
-    <g class="bellen">${bel(30,0,2.2)}${bel(46,.5,2.8)}${bel(60,.9,2)}${bel(70,.3,2.4)}${over?bel(38,1.2,3)+bel(54,1.5,2.6):""}</g>
-  </svg>`;
-}
 function galgRaad(c){
   if (state.scherm<0 || stappen()[state.scherm].id!=="galgje" || state.gLetters.includes(c)) return;
   const woord=galgWoord(), letters=[...new Set(woord.replace(/[^A-Z]/g,""))];
   if (state.gLetters.filter(l=>!woord.includes(l)).length>=MAX_FOUT || letters.every(l=>state.gLetters.includes(l))) return;
   state.gLetters.push(c);
   if (woord.includes(c)) { if (letters.every(l=>state.gLetters.includes(l))) confetti(); else speel("goed"); }
-  else speel(state.gLetters.filter(l=>!woord.includes(l)).length>=MAX_FOUT ? "overkook" : "fout");
+  else speel(state.gLetters.filter(l=>!woord.includes(l)).length>=MAX_FOUT ? "aanbrand" : "fout");
   render();
 }
 

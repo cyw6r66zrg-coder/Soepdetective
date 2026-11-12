@@ -10,7 +10,6 @@
 LESSEN.pompoen = {
   naam:"Pompoensoep",
   mascotte:"pompoen",
-  panRand:39,   // hoogte van de rand in pan.webp (in %), voor het overkoken bij galgje
   speurvraag:"Hoe zwaar kan een pompoen worden?",
   stappen:[
     {id:"proef",  naam:"Proeven"},

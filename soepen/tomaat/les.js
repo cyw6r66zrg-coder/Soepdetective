@@ -9,7 +9,6 @@
 LESSEN.tomaat = {
   naam:"Tomatensoep",
   mascotte:"tomaat",
-  panRand:29,   // hoogte van de rand in pan.webp (in %), voor het overkoken bij galgje
   speurvraag:"Is een tomaat een groente of een fruit?",
   stappen:[
     {id:"proef",  naam:"Proeven"},
