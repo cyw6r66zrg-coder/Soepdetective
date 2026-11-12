@@ -269,6 +269,7 @@ figcaption b{color:var(--ink)}
 .galgwoord span.streep{border:0}
 .galgtip{max-width:none;font-size:1.05em}
 .galgtip small{color:var(--muted)}
+.galgtip .galgtipknop{font-size:.95em;padding:.35em .9em;margin-right:.4em}
 .galgtoetsen{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:6px}
 .galgtoets{aspect-ratio:1;border:3px solid var(--orange);border-radius:12px;background:var(--paper);font-family:var(--display);font-size:clamp(16px,calc(var(--vw)*1.8),28px);color:var(--orange-dark);padding:0}
 .galgtoets:not(:disabled):hover{background:#FFE9CF}
@@ -678,7 +679,7 @@ html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:
 let LES = null;   // de les van de gekozen soep (LESSEN[state.soep])
 
 /* ============ STAAT ============ */
-const vers = () => ({ gLetters:[], obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obRonde:0, obGeteld:[], obTelKeus:null, obGepopt:[], obMem:null, obOpen:[], obPaar:[], obBezig:false, obSterren:0, obSchud:null, obMelding:null,
+const vers = () => ({ gLetters:[], gTip:false, obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obRonde:0, obGeteld:[], obTelKeus:null, obGepopt:[], obMem:null, obOpen:[], obPaar:[], obBezig:false, obSterren:0, obSchud:null, obMelding:null,
   woorden:new Set(), stemmen:[0,0,0,0,0], inPan:new Set(), fout:new Set(), volgorde:null, melding:null, schud:null, plons:false,
   wat:[0,0,0], kernOpen:false, kaartOpen:new Set(), geplaatst:{}, sortSel:null, sortVolgorde:null, sortMelding:null, sortSchud:null,
   paren:new Set(), sel:null, naamVolgorde:null, rasMelding:null, misser:null, q:0, gekozen:null, kijk:0, uitleg:new Set(), groot:false });
@@ -926,7 +927,7 @@ SCHERM.galgje = () => {
     <div class="galglinks">
       <div class="galgwoord" style="--n:${woord.length}">${[...woord].map(c=>/[A-Z]/.test(c)
         ? `<span class="${state.gLetters.includes(c)?"raak":over?"gemist":""}">${state.gLetters.includes(c)||over?c:""}</span>` : `<span class="streep">${c}</span>`).join("")}</div>
-      <p class="galgtip"><b>Tip:</b> ${esc(g.tip)} <small>(${woord.replace(/[^A-Z]/g,"").length} letters)</small></p>
+      <p class="galgtip">${state.gTip||klaar ? `<b>Tip:</b> ${esc(g.tip)}` : `<button class="ghost galgtipknop" id="galgTip">💡 Tip</button>`} <small>(${woord.replace(/[^A-Z]/g,"").length} letters)</small></p>
       <div class="galgtoetsen">${"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(c=>{ const gekozen=state.gLetters.includes(c);
         return `<button class="galgtoets ${gekozen?(woord.includes(c)?"goed":"fout"):""}" data-galg="${c}" ${gekozen||klaar?"disabled":""}>${c}</button>`; }).join("")}</div>
     </div>
@@ -1494,7 +1495,8 @@ document.addEventListener("click",e=>{
   if(t.id==="obLichtAan"){ state.obLicht=true; speel("licht"); confetti(); render(); return; }
   if(t.id==="obLichtUit"){ state.obLicht=false; state.obGezicht={}; render(); return; }
   if(d.galg){ galgRaad(d.galg); return; }
-  if(t.id==="galgOpnieuw"){ state.gLetters=[]; render(); return; }
+  if(t.id==="galgTip"){ state.gTip=true; speel("flip"); render(); return; }
+  if(t.id==="galgOpnieuw"){ state.gLetters=[]; state.gTip=false; render(); return; }
   if(d.obmem!==undefined){ const i=+d.obmem; if(state.obBezig||state.obOpen.includes(i)) return; speel("flip"); state.obOpen.push(i); state.obMelding=null;
     if(state.obOpen.length===2){ const [a,b]=state.obOpen, ka=state.obMem[a], kb=state.obMem[b];
       if(ka===kb){ state.obPaar.push(ka); if(state.obPaar.length<state.obMem.length/2) setTimeout(()=>speel("goed"),120); state.obOpen=[]; state.obMelding={ok:true,t:`Een paar: ${INGREDIENTEN[ka].toLowerCase()}!`};
