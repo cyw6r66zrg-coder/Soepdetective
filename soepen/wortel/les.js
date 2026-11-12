@@ -20,14 +20,37 @@ LESSEN.wortel = {
     {id:"maak",   naam:"Aan de slag"}
   ],
   onderbouw:{   // groep 1-2: korte les op het digibord, terwijl de soep nog op tafel staat
-    kleur:"oranje",   // kleur van de soep: oranje / groen / paars → mengspel, rood / geel / blauw → kleurenjacht
-    spel:{ type:"volgorde", naam:"Hoe groeit een wortel?", titel:"Hoe groeit een wortel?",
-      stappen:[ {img:"ob-groei-1", naam:"het zaadje"}, {img:"ob-groei-2", naam:"het sprietje"},
-                {img:"ob-groei-3", naam:"het plantje"}, {img:"ob-groei-4", naam:"de wortel"} ],
-      klaar:"Goed zo! Uit een piepklein zaadje groeit een grote wortel.",
-      start:"Een wortel groeit onder de grond. Wat komt er eerst? Kom maar tikken!",
-      verder:"En wat komt daarna? Kijk goed: wat wordt groter?",
-      slot:"Een wortel groeit onder de grond, daar bewaart hij zijn suiker. Daarom is hij zo zoet! Hoe lang zou het duren voordat hij zo groot is? (Ongeveer 3 maanden.)" },
+    kleur:"oranje",
+    smaak:{ goed:["zoet"], uitleg:"Wortels zijn van zichzelf een beetje zoet. Daarom proeft wortelsoep zoet! Er gaat ook een snufje zout in." },
+    // spellen: elk spel is een eigen dia, in deze volgorde. Spelvormen: volgorde, pluk, goedvoor, kleuren, sorteer.
+    spellen:[
+      { type:"volgorde", naam:"Hoe groeit een wortel?", titel:"Hoe groeit een wortel?",
+        stappen:[ {img:"ob-groei-1", naam:"het zaadje"}, {img:"ob-groei-2", naam:"het sprietje"},
+                  {img:"ob-groei-3", naam:"het plantje"}, {img:"ob-groei-4", naam:"de wortel"} ],
+        klaar:"Goed zo! Uit een piepklein zaadje groeit een grote wortel.",
+        start:"Een wortel groeit onder de grond. Wat komt er eerst? Kom maar tikken!",
+        verder:"En wat komt daarna? Kijk goed: wat wordt groter?",
+        slot:"Een wortel groeit onder de grond, daar bewaart hij zijn suiker. Daarom is hij zo zoet! Hoe lang zou het duren voordat hij zo groot is? (Ongeveer 3 maanden.)" },
+      { type:"volgorde", naam:"Van lang naar kort", titel:"Zet de wortels van lang naar kort",
+        stappen:[ {ing:"wortel", schaal:1, naam:"de langste"}, {ing:"wortel", schaal:.76, naam:"een lange"},
+                  {ing:"wortel", schaal:.54, naam:"een korte"}, {ing:"wortel", schaal:.34, naam:"de kortste"} ],
+        klaar:"Goed zo! Van de langste naar de kortste wortel.",
+        start:"Welke wortel is het langst? Kom maar tikken!",
+        verder:"En welke wortel is nu het langst?",
+        slot:"Wortels zijn niet allemaal even lang. Wie is de langste van de klas? En wie heeft de kortste vinger?" },
+      { type:"kleuren", naam:"Wortels in alle kleuren", titel:"Wortels in alle kleuren!",
+        items:[ {img:"koppel-nantes", kleur:"oranje"}, {img:"koppel-purplehaze", kleur:"paars"}, {img:"koppel-yellowstone", kleur:"geel"},
+                {img:"koppel-lunarwhite", kleur:"wit"}, {img:"koppel-atomicred", kleur:"rood"} ],
+        klaar:"Goed zo! Oranje, paars, geel, wit en rood: allemaal wortels!",
+        start:"Wist je dat er wortels zijn in allerlei kleuren? Welke kleur moeten we zoeken? Wie weet waar hij is?",
+        slot:"Oranje, paars, geel, wit en rood: allemaal wortels! Welke kleur wortel zou jij willen proeven?" },
+      { type:"goedvoor", naam:"Goed voor je…?", titel:"Waar is een wortel goed voor?",
+        opties:[ {lijf:"ogen", naam:"je ogen", goed:true,  uitleg:"Ja! Wortels zijn goed voor je ogen. Zo kun je goed kijken."},
+                 {lijf:"haar", naam:"je haar", goed:false, uitleg:"Nee, van wortels krijg je geen lang haar."},
+                 {lijf:"oren", naam:"je oren", goed:false, uitleg:"Nee, je oren hebben niks aan wortels."} ],
+        start:"Waar is een wortel goed voor? Je ogen, je haar of je oren? Tik op het plaatje!",
+        slot:"Wortels zijn goed voor je ogen. Laat maar eens zien hoe goed jij kunt kijken: wat zie je allemaal in de klas?" }
+    ]
   },
   proef:{
     titel:"Neem een hapje… wat proef jij?",

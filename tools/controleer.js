@@ -37,9 +37,12 @@ for (const soep of SOEPEN.filter(s => s.klaar)) {
   if (L.koppel) L.koppel.lijst.forEach(x => plaatjes.add("koppel-" + x.key));
   if (L.quiz) niveaus(L.quiz).flat().forEach(q => plaatjes.add(q.img));
   if (L.kunst) plaatjes.add("kunst");
-  const sp = L.onderbouw && L.onderbouw.spel;   // kleuterles: plaatjes van het soepspel
-  if (sp) { if (!["volgorde","pluk"].includes(sp.type)) fout(`onderbouw.spel.type "${sp.type}" bestaat niet (kan: volgorde, pluk)`);
-    (sp.stappen || sp.items || []).forEach(x => plaatjes.add(x.img)); }
+  const ob = L.onderbouw || {}, spellen = ob.spellen || (ob.spel ? [ob.spel] : []);   // kleuterles: plaatjes van de spellen
+  spellen.forEach((sp, nr) => {
+    if (!["volgorde","pluk","goedvoor","kleuren","sorteer"].includes(sp.type)) fout(`onderbouw.spellen[${nr}].type "${sp.type}" bestaat niet (kan: volgorde, pluk, goedvoor, kleuren, sorteer)`);
+    (sp.stappen || sp.items || []).forEach(x => { if (x.img) plaatjes.add(x.img); if (x.ing) ing.add(x.ing); });
+    (sp.opties || []).forEach(x => lijf.add(x.lijf));
+  });
   if (L.maak) plaatjes.add("voorbeeld");
 
   for (const k of ing) {

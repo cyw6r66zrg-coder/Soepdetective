@@ -22,17 +22,35 @@ LESSEN.tomaat = {
     {id:"maak",   naam:"Aan de slag"}
   ],
   onderbouw:{   // groep 1-2: korte les op het digibord, terwijl de soep nog op tafel staat
-    kleur:"rood",     // kleur van de soep: oranje / groen / paars → mengspel, rood / geel / blauw → kleurenjacht
+    kleur:"rood",
     kleurspel:{ type:"zoek", items:[ {k:"aardbei",goed:true}, {k:"banaan",goed:false}, {k:"paprika",goed:true}, {k:"broccoli",goed:false},
                                      {k:"ui",goed:false}, {k:"tomaat",goed:true}, {k:"basilicum",goed:false}, {k:"wortel",goed:false} ] },
-    spel:{ type:"pluk", naam:"Welke tomaten zijn rijp?", titel:"Welke tomaten zijn rijp?",
-      items:[ {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false}, {img:"ob-rijp-3", goed:false},
-              {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false} ],
-      goedZo:"Ja! Die is rood, die is rijp.",
-      mis:"Nog niet rijp! Die moet nog even groeien in de zon.",
-      klaar:"Goed zo! Alle rode tomaten zitten in de mand.",
-      start:"Pluk alleen de rijpe tomaten. Hoe zie je of een tomaat rijp is?",
-      slot:"Een tomaat begint groen. In de zon wordt hij geel, dan oranje en dan rood. Rood is rijp: dan is hij zoet en lekker!" },
+    smaak:{ goed:["zuur","zoet"], uitleg:"Tomaten zijn een beetje zuur én een beetje zoet. Proef je het allebei?" },
+    // spellen: elk spel is een eigen dia, in deze volgorde. Spelvormen: volgorde, pluk, goedvoor, kleuren, sorteer.
+    spellen:[
+      { type:"pluk", naam:"Welke tomaten zijn rijp?", titel:"Welke tomaten zijn rijp?",
+        items:[ {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false}, {img:"ob-rijp-3", goed:false},
+                {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false} ],
+        goedZo:"Ja! Die is rood, die is rijp.",
+        mis:"Nog niet rijp! Die moet nog even groeien in de zon.",
+        klaar:"Goed zo! Alle rode tomaten zitten in de mand.",
+        start:"Pluk alleen de rijpe tomaten. Hoe zie je of een tomaat rijp is?",
+        slot:"Een tomaat begint groen. In de zon wordt hij geel, dan oranje en dan rood. Rood is rijp: dan is hij zoet en lekker!" },
+      { type:"goedvoor", naam:"Goed voor je…?", titel:"Waar is een tomaat goed voor?",
+        opties:[ {lijf:"afweer", naam:"niet ziek worden", goed:true, uitleg:"Ja! In tomaten zitten vitamientjes. Die helpen je lijf om niet ziek te worden."},
+                 {lijf:"haar", naam:"je haar", goed:false, uitleg:"Nee, van tomaten krijg je geen lang haar."},
+                 {lijf:"oren", naam:"je oren", goed:false, uitleg:"Nee, je oren hebben niks aan tomaten."} ],
+        start:"Waar is een tomaat goed voor? Niet ziek worden, je haar of je oren? Tik op het plaatje!",
+        slot:"Tomaten helpen je lijf om niet ziek te worden. Wat doe jij nog meer om gezond te blijven?" },
+      { type:"sorteer", naam:"Elke dag of af en toe?", titel:"Elke dag of af en toe?",
+        bakken:[ {id:"dag", naam:"Elke dag", emo:"🌞", kleur:"#4F8F3A"}, {id:"soms", naam:"Af en toe", emo:"🎉", kleur:"#7650A6"} ],
+        items:[ {ing:"broccoli", naam:"groente", bak:"dag"}, {emo:"🍭", naam:"snoep", bak:"soms"}, {ing:"aardbei", naam:"fruit", bak:"dag"},
+                {emo:"🍟", naam:"chips", bak:"soms"}, {ing:"water", naam:"water", bak:"dag"}, {emo:"🥤", naam:"frisdrank", bak:"soms"},
+                {img:"soep", naam:"soep", bak:"dag"}, {emo:"🍰", naam:"taart", bak:"soms"} ],
+        klaar:"Goed zo! Alles staat in de goede mand.",
+        start:"Sleep het plaatje naar de goede mand. Is het iets voor elke dag, of iets voor af en toe, zoals op een feestje?",
+        slot:"Wat eet of drink jij elke dag? En wanneer eet je iets voor af en toe? Op een feestje!" }
+    ]
   },
   proef:{
     titel:"Neem een hapje… wat proef jij?",
