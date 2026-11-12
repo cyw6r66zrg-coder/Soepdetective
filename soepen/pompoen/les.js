@@ -31,7 +31,7 @@ LESSEN.pompoen = {
         vormen:[ {vorm:"driehoek", x:30, y:36, s:17}, {vorm:"rondje", x:70, y:36, s:16}, {vorm:"hartje", x:50, y:55, s:13},
                  {vorm:"ster", x:31, y:72, s:16},     {vorm:"vierkant", x:69, y:72, s:14} ],
         klaar:"Goed zo! Je hebt alle vormen gevonden.",
-        start:"In deze pompoen zijn vormen gesneden. Welke vormen zie je? Wie weet waar de vorm is die bovenaan staat?",
+        start:"In deze pompoen zijn vormen gesneden. Lees de vraag voor: hoe ziet die vorm eruit? Teken hem samen in de lucht. Wie weet waar hij in de pompoen zit?",
         slot:"Driehoek, rondje, hartje, ster en vierkant! Welke vorm zie jij in de klas?" },
       { type:"maakgezicht", naam:"Maak een lampion", titel:"Maak je eigen pompoenlampion!", basis:"ob-pompoen",
         plekken:[ {id:"ogen", emo:"👀", keuzes:["driehoek","rondje","ster","hartje"]},
@@ -64,7 +64,7 @@ LESSEN.pompoen = {
     hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zes zitten erin, vijf niet. Let op: niet alles wat oranje of rood is, zit in de soep! Sleep of tik." },
     opgelost:"Opgelost! In de soep zitten pompoen, ui, wortel, knoflook, water en een snufje zout.",
     goed:["pompoen","ui","wortel","knoflook","water","zout"],
-    fout:{ g56:["banaan","aardbei","broccoli"], g78:["banaan","aardbei","broccoli","tomaat","paprika"] } },
+    fout:["banaan","aardbei","broccoli","tomaat","paprika"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
     titel:"Hoe zwaar kan een pompoen worden?",
     beeldAlt:"De detective-pompoen kijkt verbaasd naar een reuzenpompoen op een weegschaal",

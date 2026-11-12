@@ -69,7 +69,7 @@ LESSEN.wortel = {
     hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zeven zitten erin, vijf niet. Let op: er liggen twee soorten aardappel! Sleep of tik." },
     opgelost:"Opgelost! In de soep zitten wortel, zoete aardappel, ui, bleekselderij, knoflook, water en een snufje zout.",
     goed:["wortel","ui","bleekselderij","zoeteaardappel","knoflook","zout","water"],
-    fout:{ g56:["banaan","broccoli","aardbei"], g78:["banaan","broccoli","aardbei","gember","aardappel"] } },
+    fout:["banaan","broccoli","aardbei","gember","aardappel"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
     titel:"Kun je van wortels beter in het donker zien?",
     beeldAlt:"De detective-wortel onderzoekt een wortel met een vergrootglas",

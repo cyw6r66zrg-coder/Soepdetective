@@ -69,7 +69,7 @@ LESSEN.tomaat = {
     hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Acht zitten erin, vijf niet. Let op: niet alles wat rood is, zit in de soep! Sleep of tik." },
     opgelost:"Opgelost! In de soep zitten tomaat, ui, knoflook, wortel, bleekselderij, basilicum, water en een snufje zout.",
     goed:["tomaat","ui","knoflook","wortel","bleekselderij","basilicum","water","zout"],
-    fout:{ g56:["banaan","broccoli","aardbei"], g78:["banaan","broccoli","aardbei","gember","paprika"] } },
+    fout:["banaan","broccoli","aardbei","gember","paprika"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
     titel:"Is een tomaat een groente of een fruit?",
     beeldAlt:"De detective-tomaat onderzoekt een vraagteken tussen een fruitschaal en een groentemand",

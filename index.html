@@ -449,6 +449,7 @@ button.obvormknop:not(:disabled):hover{transform:scale(1.12)}
 .obvormknop.aan .vormsvg{fill:#FFD54A;stroke:#FFF3B0;filter:drop-shadow(0 0 10px #FFC400) drop-shadow(0 0 20px #FFB000)}
 .obvormzij{display:flex;flex-direction:column;gap:20px;align-items:center}
 .obvormvraag{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--display);font-size:44px;color:var(--orange-dark)}
+.obvraagteken{width:150px;height:150px;border:7px dashed var(--orange-dark);border-radius:50%;display:grid;place-items:center;font-size:90px;line-height:1}
 .vormsvg.voorbeeld{width:150px;height:150px;fill:none;stroke:var(--orange-dark);stroke-width:7;stroke-linejoin:round}
 .obvormlijst{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .obvormlijst span{display:flex;align-items:center;gap:6px;border:3px solid var(--line);border-radius:999px;padding:4px 14px 4px 6px;font-family:var(--display);font-size:22px;color:var(--muted);background:var(--paper)}
@@ -1022,8 +1023,9 @@ SPEL.vormen = sp => {
   return band(klaar ? sp.titel : `Waar is ${nu.vorm==="ster"||nu.vorm==="maan"?"de":"het"} ${nu.vorm}?`) + `<div class="inner obles"><div class="obvormspel">
     <div class="obvormvlak">${img(pad.soep(sp.basis),"Pompoen met uitgesneden vormen")}${sp.vormen.map((v,i)=>{ const gev=state.obGevonden.includes(i);
       return `<button class="obvormknop ${gev?"aan":""} ${state.obSchud===i?"shake":""}" data-obvorm="${i}" ${gev||klaar?"disabled":""} style="left:${v.x}%;top:${v.y}%;width:${v.s}%" aria-label="${v.vorm}">${vormSvg(v.vorm)}</button>`; }).join("")}</div>
-    <div class="obvormzij">${nu ? `<div class="obvormvraag">${vormSvg(nu.vorm,"voorbeeld")}<b>${nu.vorm}</b></div>` : ""}
-      <div class="obvormlijst">${sp.vormen.map((v,i)=>`<span class="${state.obGevonden.includes(i)?"aan":""}">${vormSvg(v.vorm,"klein")}${v.vorm}</span>`).join("")}</div></div>
+    <div class="obvormzij">${nu ? `<div class="obvormvraag"><span class="obvraagteken">?</span><b>${nu.vorm}</b></div>` : ""}
+      <div class="obvormlijst">${sp.vormen.map((v,i)=>{ const gev=state.obGevonden.includes(i);   /* vorm pas tonen als hij gevonden is: anders verklap je het antwoord */
+        return `<span class="${gev?"aan":""}">${gev?vormSvg(v.vorm,"klein"):""}${v.vorm}</span>`; }).join("")}</div></div>
   </div>
     <div class="row obrow">${klaar ? verder() : ""}${obFb()}</div>
     ${juf(klaar ? sp.slot : sp.start)}</div>`;
