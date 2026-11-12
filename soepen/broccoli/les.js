@@ -135,6 +135,10 @@ LESSEN.broccoli = {
         weetje:"Een fractal is een patroon dat zich steeds kleiner herhaalt. Je ziet het ook bij varens, bliksem en ijskristallen." }
     ]
   },
+  galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
+    g56:{ woord:"BLOEMKNOPPEN", tip:"Dit eet je eigenlijk als je broccoli eet.", uitleg:"Laat je ze staan, dan komen er gele bloemetjes." },
+    g78:{ woord:"KRUISBLOEMENFAMILIE", tip:"De plantenfamilie van broccoli, bloemkool en spruitjes.", uitleg:"Hun bloemen hebben vier blaadjes in de vorm van een kruisje." }
+  },
   kunst:{
     // Monira Al Qadiri (geb. 1983): auteursrecht. Daarom tonen we het werk niet zelf, maar openen we de pagina van de kunstenaar.
     titel:"Kijk-kunst: een reuzenbroccoli", werk:"Romanesco Dream", maker:"Monira Al Qadiri", jaar:"2018", plek:"Via Nova College, Utrecht",

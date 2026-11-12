@@ -141,6 +141,10 @@ LESSEN.tomaat = {
         weetje:"Lycopeen is het rode kleurstofje in rijpe tomaten. Een groene tomaat heeft het nog bijna niet; hoe rijper, hoe meer lycopeen." }
     ]
   },
+  galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
+    g56:{ woord:"CHERRYTOMAAT", tip:"Zo klein als een knikker. In één hap op!", uitleg:"Cherrytomaatjes zijn de kleinste tomaten van de les." },
+    g78:{ woord:"NACHTSCHADEFAMILIE", tip:"De plantenfamilie van tomaat én aardappel.", uitleg:"Tomaat, aardappel, paprika en aubergine horen allemaal bij de nachtschadefamilie." }
+  },
   kunst:{
     titel:"Kijk-kunst: Stilleven met komkommers en tomaten", werk:"Stilleven met komkommers, tomaten en schalen", maker:"Luis Egidio Meléndez", jaar:"1774", plek:"Museo del Prado, Madrid",
     intro:"Geschilderd door Luis Egidio Meléndez, een Spaanse schilder, in 1774. Dat is al bijna 250 jaar geleden!",

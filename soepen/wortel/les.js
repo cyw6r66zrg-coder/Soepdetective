@@ -141,6 +141,10 @@ LESSEN.wortel = {
         weetje:"Voor een konijn is een wortel snoep. Hooi is zijn échte eten!" }
     ]
   },
+  galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
+    g56:{ woord:"VITAMINE", tip:"Wortels helpen je lichaam om dit te maken. Goed voor je ogen!", uitleg:"Van het oranje stofje in wortels maakt je lichaam vitamine A." },
+    g78:{ woord:"BETACAROTEEN", tip:"Het oranje kleurstofje in een wortel.", uitleg:"Van bètacaroteen maakt je lichaam vitamine A." }
+  },
   kunst:{
     titel:"Kijk-kunst: De groentemarkt", werk:"De groentemarkt", maker:"Hendrick Sorgh", jaar:"1664", plek:"Rijksmuseum, Amsterdam",
     intro:"Geschilderd door Hendrick Sorgh, in 1664. Dat is al ruim 350 jaar geleden!",

@@ -136,6 +136,10 @@ LESSEN.pompoen = {
         weetje:"Bètacaroteen is een oranje kleurstofje. Je lichaam maakt er vitamine A van, en dat is goed voor je ogen." }
     ]
   },
+  galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
+    g56:{ woord:"HALLOWEENPOMPOEN", tip:"Groot, rond en knaloranje. Ideaal om uit te hollen.", uitleg:"Daar snijden mensen in oktober een gezicht in." },
+    g78:{ woord:"KOMKOMMERFAMILIE", tip:"De plantenfamilie van de pompoen.", uitleg:"Pompoen, komkommer, courgette en meloen zijn familie van elkaar." }
+  },
   kunst:{
     // Kusama (1929-2026): auteursrecht tot 2096. Daarom tonen we het werk niet zelf, maar openen we de officiële pagina.
     titel:"Kijk-kunst: Yayoi Kusama", werk:"Pumpkin (Pompoen)", maker:"Yayoi Kusama", jaar:"1994", plek:"eiland Naoshima, Japan",

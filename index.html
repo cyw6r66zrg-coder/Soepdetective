@@ -259,6 +259,32 @@ figcaption b{color:var(--ink)}
 .kunstlink>span:not(.kunststip),.kunstlink>small{position:relative;font-weight:700;background:rgba(249,196,6,.85);border-radius:8px;padding:0 6px}
 .kunstlink>a{position:relative;text-decoration:none}
 .kunststip i{position:absolute;left:var(--x);top:var(--y);translate:-50% -50%;width:var(--s);height:var(--s);border-radius:50%;background:#1a1a1a;opacity:.85}
+/* ---- galgje ---- */
+.galg{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:28px;align-items:center}
+.galglinks{display:flex;flex-direction:column;gap:12px;min-width:0}
+.galgwoord{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:6px;max-width:calc(var(--n) * 64px)}
+.galgwoord span{aspect-ratio:.8;border-bottom:5px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-size:clamp(20px,calc(var(--vw)*3),46px);color:var(--ink)}
+.galgwoord span.raak{color:var(--green);animation:pop .3s}
+.galgwoord span.gemist{color:var(--red)}
+.galgwoord span.streep{border:0}
+.galgtip{max-width:none;font-size:1.05em}
+.galgtip small{color:var(--muted)}
+.galgtoetsen{display:grid;grid-template-columns:repeat(13,minmax(0,1fr));gap:6px}
+.galgtoets{aspect-ratio:1;border:3px solid var(--orange);border-radius:12px;background:var(--paper);font-family:var(--display);font-size:clamp(16px,calc(var(--vw)*1.8),28px);color:var(--orange-dark);padding:0}
+.galgtoets:not(:disabled):hover{background:#FFE9CF}
+.galgtoets.goed{background:var(--green);border-color:var(--green);color:#fff}
+.galgtoets.fout{background:var(--line);border-color:var(--line);color:var(--muted);text-decoration:line-through}
+.galgtoets:disabled:not(.goed):not(.fout){opacity:.4}
+.galgthermo{display:flex;flex-direction:column;align-items:center;gap:8px}
+.thermo{position:relative;width:42px;height:clamp(130px,calc(var(--vw)*13),190px);border:4px solid var(--ink);border-radius:23px;background:var(--paper);overflow:hidden;display:flex;flex-direction:column-reverse}
+.thermovul{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(0deg,#F9C406,#F47B20,#D1352B);transition:height .4s}
+.thermo i{position:relative;flex:1;border-top:2px solid rgba(59,43,34,.15)}
+.thermopan{position:relative;width:124px}
+.thermopan img{width:100%;display:block}
+.thermopan.over img{animation:shake .5s 2}
+.druppels{position:absolute;left:50%;top:-10px;translate:-50% 0;font-size:40px;animation:bob 1s ease-in-out infinite}
+.thermotel{font-family:var(--display);font-size:24px;color:var(--orange-dark)}
+@media (max-width:820px){.galg{grid-template-columns:1fr}.galgtoetsen{grid-template-columns:repeat(7,minmax(0,1fr))}.galgthermo{flex-direction:row}}
 /* ---- creatief ---- */
 .create{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(16px,calc(var(--vw)*3),40px);align-items:start}
 .assign{display:flex;flex-direction:column;gap:14px}
@@ -639,7 +665,7 @@ html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:
 let LES = null;   // de les van de gekozen soep (LESSEN[state.soep])
 
 /* ============ STAAT ============ */
-const vers = () => ({ obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obRonde:0, obGeteld:[], obTelKeus:null, obGepopt:[], obMem:null, obOpen:[], obPaar:[], obBezig:false, obSterren:0, obSchud:null, obMelding:null,
+const vers = () => ({ gLetters:[], obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obRonde:0, obGeteld:[], obTelKeus:null, obGepopt:[], obMem:null, obOpen:[], obPaar:[], obBezig:false, obSterren:0, obSchud:null, obMelding:null,
   woorden:new Set(), stemmen:[0,0,0,0,0], inPan:new Set(), fout:new Set(), volgorde:null, melding:null, schud:null, plons:false,
   wat:[0,0,0], kernOpen:false, kaartOpen:new Set(), geplaatst:{}, sortSel:null, sortVolgorde:null, sortMelding:null, sortSchud:null,
   paren:new Set(), sel:null, naamVolgorde:null, rasMelding:null, misser:null, q:0, gekozen:null, kijk:0, uitleg:new Set(), groot:false });
@@ -874,6 +900,41 @@ SCHERM.quiz = () => {
     </div></div>`;
 };
 
+/* ============ GALGJE (midden- en bovenbouw) ============
+   Raad het lange woord letter voor letter. In plaats van een galg: een soepthermometer die bij elke
+   foute letter warmer wordt; bij MAX_FOUT kookt de soep over. Woord en tip per niveau in les.js → galgje. */
+const MAX_FOUT = 8;
+const galgWoord = () => L(LES.galgje).woord.toUpperCase();
+SCHERM.galgje = () => {
+  const g=L(LES.galgje), woord=galgWoord(), letters=[...new Set(woord.replace(/[^A-Z]/g,""))];
+  const fout=state.gLetters.filter(l=>!woord.includes(l)).length, geraden=letters.every(l=>state.gLetters.includes(l)), over=fout>=MAX_FOUT, klaar=geraden||over;
+  return band(geraden ? "Geraden!" : over ? "Oei, de soep kookt over!" : "Galgje: raad het woord") + `<div class="inner"><div class="galg">
+    <div class="galglinks">
+      <div class="galgwoord" style="--n:${woord.length}">${[...woord].map(c=>/[A-Z]/.test(c)
+        ? `<span class="${state.gLetters.includes(c)?"raak":over?"gemist":""}">${state.gLetters.includes(c)||over?c:""}</span>` : `<span class="streep">${c}</span>`).join("")}</div>
+      <p class="galgtip"><b>Tip:</b> ${esc(g.tip)} <small>(${woord.replace(/[^A-Z]/g,"").length} letters)</small></p>
+      <div class="galgtoetsen">${"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(c=>{ const gekozen=state.gLetters.includes(c);
+        return `<button class="galgtoets ${gekozen?(woord.includes(c)?"goed":"fout"):""}" data-galg="${c}" ${gekozen||klaar?"disabled":""}>${c}</button>`; }).join("")}</div>
+    </div>
+    <div class="galgthermo" aria-label="${fout} van ${MAX_FOUT} fout">
+      <div class="thermo"><div class="thermovul" style="height:${fout/MAX_FOUT*100}%"></div>${Array.from({length:MAX_FOUT},()=>`<i></i>`).join("")}</div>
+      <div class="thermopan ${over?"over":""}">${img(pad.soep("pan"),"")}${over?`<span class="druppels">💦</span>`:""}</div>
+      <span class="thermotel">${fout} / ${MAX_FOUT}</span>
+    </div>
+  </div>
+    <div class="row">${klaar ? `${verder()}<button class="ghost" id="galgOpnieuw">Nog een keer</button>` : ""}</div>
+    ${geraden ? zeg(`Goed zo! Het woord was <b>${esc(woord)}</b>. ${esc(g.uitleg||"")}`,"win") : over ? zeg(`Het woord was <b>${esc(woord)}</b>. ${esc(g.uitleg||"")}`) : zeg("Kies samen een letter. Zit hij in het woord? Begin maar met een klinker: A, E, I, O of U!")}</div>`;
+};
+function galgRaad(c){
+  if (state.scherm<0 || stappen()[state.scherm].id!=="galgje" || state.gLetters.includes(c)) return;
+  const woord=galgWoord(), letters=[...new Set(woord.replace(/[^A-Z]/g,""))];
+  if (state.gLetters.filter(l=>!woord.includes(l)).length>=MAX_FOUT || letters.every(l=>state.gLetters.includes(l))) return;
+  state.gLetters.push(c);
+  if (woord.includes(c)) { if (letters.every(l=>state.gLetters.includes(l))) confetti(); else speel("goed"); }
+  else speel(state.gLetters.filter(l=>!woord.includes(l)).length>=MAX_FOUT ? "plons" : "fout");
+  render();
+}
+
 SCHERM.kunst = () => {
   const k = LES.kunst, vr = L(k.vragen);
   const items = vr.map((v,i)=>{
@@ -924,7 +985,11 @@ SCHERM.maak = () => {
              4 Wat zit erin? (naar de pan)  5 het soepspel (les.js → onderbouw.spel)
    Op het bord alleen plaatjes; onderaan per dia een regel voor de leerkracht. */
 const stappen = () => {
-  if (state.niveau!=="g12") return LES.stappen;
+  if (state.niveau!=="g12") {   // galgje komt vanzelf vóór Kijk-kunst (of achteraan), als de soep een woord heeft
+    const s=[...LES.stappen];
+    if (LES.galgje && !s.some(x=>x.id==="galgje")) { const k=s.findIndex(x=>x.id==="kunst"); s.splice(k<0?s.length:k, 0, {id:"galgje", naam:"Galgje"}); }
+    return s;
+  }
   const s=[{id:"ob-proef", naam:"Hoe proeft het?"}, {id:"ob-lekker", naam:"Hoe lekker?"},
     {id:"ob-schaduw", naam:"Wie ben ik?"}, {id:"ob-erin", naam:"Wat zit erin?"}];
   obSpellen().forEach((sp,nr)=>s.push({id:"ob-spel", nr, naam:sp.naam}));
@@ -1396,6 +1461,8 @@ document.addEventListener("click",e=>{
   if(d.obplek){ state.obGezicht={...state.obGezicht,[d.obplek]:d.obkeusvorm}; render(); return; }
   if(t.id==="obLichtAan"){ state.obLicht=true; speel("licht"); confetti(); render(); return; }
   if(t.id==="obLichtUit"){ state.obLicht=false; state.obGezicht={}; render(); return; }
+  if(d.galg){ galgRaad(d.galg); return; }
+  if(t.id==="galgOpnieuw"){ state.gLetters=[]; render(); return; }
   if(d.obmem!==undefined){ const i=+d.obmem; if(state.obBezig||state.obOpen.includes(i)) return; speel("flip"); state.obOpen.push(i); state.obMelding=null;
     if(state.obOpen.length===2){ const [a,b]=state.obOpen, ka=state.obMem[a], kb=state.obMem[b];
       if(ka===kb){ state.obPaar.push(ka); if(state.obPaar.length<state.obMem.length/2) setTimeout(()=>speel("goed"),120); state.obOpen=[]; state.obMelding={ok:true,t:`Een paar: ${INGREDIENTEN[ka].toLowerCase()}!`};
@@ -1447,6 +1514,7 @@ document.addEventListener("click",e=>{
 document.addEventListener("keydown",e=>{
   if(e.key==="Escape"&&state.groot){ state.groot=false; render(); return; }
   if(!LES) return;
+  if(/^[a-z]$/i.test(e.key) && state.scherm>=0 && stappen()[state.scherm].id==="galgje"){ interactie=performance.now(); klankNu=null; galgRaad(e.key.toUpperCase()); return; }   // ook met het toetsenbord
   if(e.key==="ArrowRight") $("#next").click();
   if(e.key==="ArrowLeft"&&state.scherm>=0) go(state.scherm-1);
 });
