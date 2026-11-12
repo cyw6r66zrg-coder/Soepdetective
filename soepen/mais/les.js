@@ -146,7 +146,7 @@ LESSEN.mais = {
   },
   galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
     g56:{ woord:"POPCORNKORREL", tip:"Als je deze verhit, knalt hij open.", uitleg:"Er zit een druppeltje water in dat stoom wordt: POP!" },
-    g78:{ woord:"STUIFMEELDRAADJES", tip:"De lange haren aan een maïskolf. Elk draadje hoort bij één korrel.", uitleg:"Elk draadje vangt stuifmeel op, en dan groeit er een korrel." }
+    g78:{ woord:"BIOSCOOPFILM", tip:"Hierbij eet je vaak een grote bak popcorn.", uitleg:"Popcorn is de bekendste snack in de bioscoop. Het wordt gemaakt van een speciaal soort maïs: pofmaïs." }
   },
   kunst:{
     titel:"Kijk-kunst: een paleis van maïs", werk:"De Corn Palace", maker:"wisselende kunstenaars, elk jaar nieuw", jaar:"sinds 1892", plek:"Mitchell, South Dakota (VS)",

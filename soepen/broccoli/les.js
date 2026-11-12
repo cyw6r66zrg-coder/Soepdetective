@@ -136,8 +136,8 @@ LESSEN.broccoli = {
     ]
   },
   galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
-    g56:{ woord:"BLOEMKNOPPEN", tip:"Dit eet je eigenlijk als je broccoli eet.", uitleg:"Laat je ze staan, dan komen er gele bloemetjes." },
-    g78:{ woord:"KRUISBLOEMENFAMILIE", tip:"De plantenfamilie van broccoli, bloemkool en spruitjes.", uitleg:"Hun bloemen hebben vier blaadjes in de vorm van een kruisje." }
+    g56:{ woord:"SPRUITJES", tip:"Kleine groene balletjes aan een dikke stengel. Familie van broccoli!", uitleg:"Broccoli, bloemkool en spruitjes horen allemaal bij de koolfamilie." },
+    g78:{ woord:"BLOEMKNOPPEN", tip:"Dit eet je eigenlijk als je broccoli eet.", uitleg:"Laat je ze staan, dan komen er gele bloemetjes." }
   },
   kunst:{
     // Monira Al Qadiri (geb. 1983): auteursrecht. Daarom tonen we het werk niet zelf, maar openen we de pagina van de kunstenaar.
