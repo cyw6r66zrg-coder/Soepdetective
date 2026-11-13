@@ -1122,7 +1122,7 @@ function obInPan(k){
 
 /* ---- het soepspel: per soep een andere spelvorm ---- */
 SCHERM["ob-spel"] = () => { const sp=spelNu(); return (SPEL[sp.type]||(()=>""))(sp); };
-const beeldVan = x => x.emo ? `<span class="emo">${x.emo}</span>` : x.ing ? img(pad.ing(x.ing)) : img(pad.soep(x.img));
+const beeldVan = x => x.ico ? `<span class="emo">${ico(x.ico)}</span>` : x.emo ? `<span class="emo">${x.emo}</span>` : x.ing ? img(pad.ing(x.ing)) : img(pad.soep(x.img));
 const SPEL = {};
 
 // VOLGORDE: tik de plaatjes in de goede volgorde (bv. zaadje → wortel). sp.stappen = [{img, naam}, …] in de goede volgorde.
@@ -1178,7 +1178,7 @@ SPEL.sorteer = sp => {
   const n=sp.items.length, gedaan=Object.keys(state.obGeplaatst).length, klaar=gedaan===n;
   return band(sp.titel) + `<div class="inner obles">
     ${!klaar?`<div class="obitems" style="--n:${n}">${sp.items.map((it,i)=>state.obGeplaatst[i]?"":`<button class="obitem ${state.obSel===i?"sel":""} ${state.obSchud===i?"shake":""}" data-obitem="${i}">${beeldVan(it)}<b>${esc(it.naam)}</b></button>`).join("")}</div>`:""}
-    <div class="obbakken">${sp.bakken.map(b=>`<button class="obbak" style="--bc:${b.kleur}" data-obbak="${b.id}"><h3><span>${b.emo}</span>${esc(b.naam)}</h3><div class="obbakin">${
+    <div class="obbakken">${sp.bakken.map(b=>`<button class="obbak" style="--bc:${b.kleur}" data-obbak="${b.id}"><h3><span>${b.ico?ico(b.ico):b.emo}</span>${esc(b.naam)}</h3><div class="obbakin">${
       sp.items.map((it,i)=>state.obGeplaatst[i]===b.id?`<span class="obmini">${beeldVan(it)}</span>`:"").join("")}</div></button>`).join("")}</div>
     <div class="row obrow">${klaar ? verder() : `<button class="ghost" id="obSorteerAlles">Toon het antwoord</button>`}${obFb()}</div>
     ${juf(klaar ? sp.slot : sp.start)}</div>`;
@@ -1224,7 +1224,7 @@ SPEL.maakgezicht = sp => {
   return band(licht ? "Het lampje is aan!" : sp.titel) + `<div class="inner obles"><div class="obvormspel">
     <div class="obvormvlak ${licht?"licht":""}">${img(pad.soep(sp.basis),"Pompoen")}${sp.plekken.map(pl=> g[pl.id] ? (GEZICHT[pl.id]||[]).map(pos=>
       `<span class="obvormknop gezet ${licht?"aan":""}" style="left:${pos.x}%;top:${pos.y}%;width:${pos.s}%">${vormSvg(g[pl.id])}</span>`).join("") : "").join("")}</div>
-    <div class="obvormzij">${sp.plekken.map(pl=>`<div class="obplek"><span class="obplekemo">${pl.emo}</span>${pl.keuzes.map(v=>
+    <div class="obvormzij">${sp.plekken.map(pl=>`<div class="obplek"><span class="obplekemo">${pl.ico?ico(pl.ico):pl.emo}</span>${pl.keuzes.map(v=>
       `<button class="obvormkeus ${g[pl.id]===v?"gekozen":""}" data-obplek="${pl.id}" data-obkeusvorm="${v}" aria-label="${pl.id}: ${v}" ${licht?"disabled":""}>${vormSvg(v)}</button>`).join("")}</div>`).join("")}</div>
   </div>
     <div class="row obrow">${licht ? `${verder()}<button class="ghost" id="obLichtUit">Nog een lampion</button>` : (compleet ? `<button class="btn obgroot" id="obLichtAan">${ico("lampje")} Lampje aan!</button>` : "")}</div>
