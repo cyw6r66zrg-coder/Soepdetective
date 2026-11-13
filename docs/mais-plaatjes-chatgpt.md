@@ -1,9 +1,9 @@
 # Maïsplaatjes maken met ChatGPT
 
-Nodig: 23 plaatjes. De les zelf (`soepen/mais/les.js`) is af.
+Nodig: 22 plaatjes (de kom soep is al klaar). De les zelf (`soepen/mais/les.js`) is af.
 
 **Werkwijze**
-1. Open een nieuwe chat in ChatGPT. Stuur 2 stijlvoorbeelden mee: `docs/stijlvoorbeelden/stijl-pompoensoep.png` en `stijl-pompoen-mascotte.png`.
+1. Open een nieuwe chat in ChatGPT. Stuur 2 stijlvoorbeelden mee: `docs/stijlvoorbeelden/stijl-maissoep.png` en `stijl-cover-wortel.png`.
 2. Plak eerst het stijlblok hieronder.
 3. Begin met `mais.png` (de mascotte). Die is het voorbeeld voor de cover en de detective.
 4. Vraag daarna één plaatje per bericht, met de regel uit de lijst.
@@ -26,7 +26,6 @@ Maak per bericht één plaatje. Zeg "klaar" als je het stijlblok begrijpt.
 | bestand | formaat | prompt |
 |---|---|---|
 | `mais.png` | staand 3:4 | De maïs-mascotte: één gele maïskolf met groene schutbladeren en een vrolijk gezichtje. Effen WITTE achtergrond, helemaal in beeld. |
-| `soep.png` | vierkant | Een kom gele maïssoep met een paar maïskorrels erop en een lepel. De hele lepel in beeld. |
 | `pan.png` | vierkant | Een pan vol gele maïssoep, een beetje van boven gezien, met wat stoom. Effen WITTE achtergrond, hele pan in beeld. |
 | `cover.png` | liggend 16:9 | De maïs-mascotte als detective met een bruin hoedje en een vergrootglas, rechts in beeld, naast een kom maïssoep. De linkerhelft is leeg en licht (daar komt later de titel). |
 | `detective.png` | liggend 16:9 | De detective-maïskolf (hoedje, vergrootglas) kijkt verbaasd naar een pan waar witte popcorn uit springt. |
