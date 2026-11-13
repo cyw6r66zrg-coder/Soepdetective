@@ -683,7 +683,7 @@ html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:
   </footer>
 </div>
 
-<script>const VERSIE="2026-11-13a";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
+<script>const VERSIE="2026-11-13b";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
 document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</script>
 <script>
 /* ============ INHOUD ============
@@ -704,10 +704,10 @@ const esc = s => String(s).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&
 const L = x => (x && typeof x==="object" && "g56" in x) ? x[state.niveau] : x;
 const shuffle = a => { for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; };
 const pad = {
-  soep: n => `soepen/${state.soep}/img/${n}.webp`,   // alleen voor deze soep
-  ing:  k => `img/ingredienten/${k}.webp`,           // gedeeld door alle soepen
-  lijf: k => `img/lichaam/${k}.webp`,
-  alg:  n => `img/algemeen/${n}.webp`
+  soep: n => `soepen/${state.soep}/img/${n}.webp?v=${VERSIE}`,   // alleen voor deze soep
+  ing:  k => `img/ingredienten/${k}.webp?v=${VERSIE}`,           // gedeeld door alle soepen
+  lijf: k => `img/lichaam/${k}.webp?v=${VERSIE}`,
+  alg:  n => `img/algemeen/${n}.webp?v=${VERSIE}`
 };
 const img = (src, alt="") => `<img src="${src}" alt="${esc(alt)}" draggable="false">`;
 const zeg = (t, soort="") => `<div class="say ${soort}"><img src="${pad.ing(LES ? LES.mascotte : "wortel")}" alt=""><div class="bubble">${t}</div></div>`;
@@ -778,7 +778,7 @@ const pan = () => `<img class="panart" src="${pad.soep("pan")}" alt="Een pan met
 /* ============ SCHERMEN ============ */
 const SCHERM = {};
 SCHERM.kiezer = () => {
-  const kaart = s => `<button class="soepkaart" style="--kleur:${s.kleur||"var(--card)"}" data-soep="${s.id}"><img src="soepen/${s.id}/img/soep.webp" alt="" draggable="false"><b>${esc(s.naam)}</b></button>`;
+  const kaart = s => `<button class="soepkaart" style="--kleur:${s.kleur||"var(--card)"}" data-soep="${s.id}"><img src="soepen/${s.id}/img/soep.webp?v=${VERSIE}" alt="" draggable="false"><b>${esc(s.naam)}</b></button>`;
   const later = s => `<div class="soepkaart later" style="--kleur:${s.kleur||"var(--card)"}" aria-disabled="true"><b>${esc(s.naam)}</b><small>binnenkort</small></div>`;
   return band("Welke soep onderzoeken we vandaag?") + `<div class="inner">
   <div class="kiezer">
@@ -1074,7 +1074,7 @@ function obZoek(doel, spel){
 
 /* 1. Hoe proeft de soep? De kinderen proeven en kiezen smaakjes (meer mag). Er is geen fout antwoord:
    daarna vertelt de juf wat je in deze soep proeft (les.js → onderbouw.smaak). */
-const ico = n => `<img class="ico" src="img/iconen/${n}.webp" alt="" draggable="false">`;   // getekende iconen i.p.v. emoji
+const ico = n => `<img class="ico" src="img/iconen/${n}.webp?v=${VERSIE}" alt="" draggable="false">`;   // getekende iconen i.p.v. emoji
 const SMAKEN = [["zoet",ico("zoet")],["zuur",ico("zuur")],["zout",ico("zout")],["pittig",ico("pittig")]];
 SCHERM["ob-proef"] = () => {
   const sm=ob().smaak||{}, toon=state.obSmaakToon;
