@@ -464,6 +464,10 @@ figcaption b{color:var(--ink)}
 .obkleurkaart{border:4px solid var(--orange);border-radius:24px;background:var(--card);padding:10px;display:flex;flex-direction:column;align-items:center;gap:6px;min-height:0;font-family:var(--display);font-size:24px;transition:transform .15s}
 .obkleurkaart img{flex:1 1 0;min-height:0;width:100%;object-fit:contain}
 .obkleurkaart:not(:disabled):hover{transform:translateY(-3px)}
+/* telefoon/staand (geen dia-modus): ouders hebben geen vaste hoogte, dus de plaatjes krijgen er zelf een */
+html:not(.dia) .obschaduw img{flex:none;height:min(62vw,340px)}
+html:not(.dia) .obgoedkaart img{flex:none;height:min(22vw,120px)}
+html:not(.dia) .obkleurkaart img{flex:none;height:min(24vw,130px)}
 .obkleurkaart.gevonden{border-color:var(--green);border-width:6px;background:var(--green-soft)}
 /* sorteren */
 .obitems{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:12px}
@@ -640,6 +644,17 @@ html.dia .art>div{overflow:auto}
 /* aan de slag */
 html.dia .example{height:100%;min-height:0}
 html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:contain}
+/* telefoon staand: kleuterspellen passend maken */
+@media (max-width:520px){
+  .obplek{gap:6px;width:100%}
+  .obplekemo{width:44px;font-size:36px;flex:none}
+  .obvormkeus{width:auto;flex:1 1 0;min-width:0;padding:8px;border-width:3px;border-radius:14px}
+  .obvormzij{width:100%;gap:10px;min-width:0}
+  .obvormspel>*{min-width:0}
+  .obvormvlak{max-width:100%}
+  .obitems{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .obitem{font-size:18px;padding:8px 2px}
+}
 </style>
 
 </head>
