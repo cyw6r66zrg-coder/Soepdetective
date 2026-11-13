@@ -563,13 +563,9 @@ html.dia .obspel{flex:1 1 0;height:auto}
 }
 
 /* lichte animaties op de illustraties (rustig gehouden; uit bij 'minder beweging') */
-@keyframes zweef{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-6px) rotate(-1deg)}}
 @keyframes knik{0%,86%,100%{transform:rotate(0)}90%{transform:rotate(-8deg)}94%{transform:rotate(6deg)}}
 @keyframes adem{0%{transform:scale(1)}100%{transform:scale(1.035)}}
 @keyframes adembg{0%{background-size:100% auto}100%{background-size:104% auto}}
-.soepkaart img{animation:zweef 3.6s ease-in-out infinite}
-.soepkaart:nth-child(2) img{animation-delay:-.7s}.soepkaart:nth-child(3) img{animation-delay:-1.4s}
-.soepkaart:nth-child(4) img{animation-delay:-2.1s}.soepkaart:nth-child(5) img{animation-delay:-2.8s}
 .soepkaart{transition:transform .2s}.soepkaart:hover{transform:translateY(-4px)}
 .say>img{animation:knik 6s ease-in-out infinite;transform-origin:50% 90%}
 .quiz figure{overflow:hidden;border-radius:20px}
