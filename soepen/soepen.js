@@ -11,7 +11,7 @@ const SOEPEN = [
   { id:"doperwt",   naam:"Doperwtensoep",   klaar:false, kleur:"#D6EDB8" },
   { id:"broccoli",  naam:"Broccolisoep",    klaar:false, kleur:"#BFE0C2" },
   { id:"bloemkool", naam:"Bloemkoolsoep",   klaar:false, kleur:"#E9E2F3" },
-  { id:"mais",      naam:"Maïssoep",        klaar:false, kleur:"#FFEBA0" },
+  { id:"mais",      naam:"Maïssoep",        klaar:true, kleur:"#FFEBA0" },
   { id:"pompoen",   naam:"Pompoensoep",     klaar:true,  kleur:"#FFD39A" }
 ];
 
