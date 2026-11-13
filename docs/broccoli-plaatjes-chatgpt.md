@@ -3,7 +3,7 @@
 Nog nodig: 17 plaatjes (`soep` en `pan` zijn al klaar).
 
 **Werkwijze**
-1. Open een nieuwe chat in ChatGPT. Stuur 2 stijlvoorbeelden mee: de kom broccolisoep en het broccoli-ingrediënt (met gezichtje).
+1. Open een nieuwe chat in ChatGPT. Stuur 2 stijlvoorbeelden mee: `docs/stijlvoorbeelden/stijl-broccolisoep.png` en `stijl-broccoli-mascotte.png`.
 2. Plak eerst het stijlblok hieronder.
 3. Vraag daarna één plaatje per bericht, met de regel uit de lijst. Zo blijft de stijl gelijk en kun je een mislukt plaatje los overdoen.
 4. Download elk plaatje en geef het de naam uit de lijst (bijv. `cover.png`).
