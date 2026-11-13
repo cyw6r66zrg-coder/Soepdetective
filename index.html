@@ -285,8 +285,10 @@ figcaption b{color:var(--ink)}
 .thermopan.over img{animation:shake .5s 2}
 .thermopan.over img{filter:sepia(.6) brightness(.72) saturate(1.2)}
 .thermopan img{position:relative;z-index:1}
-.thermopan.over{margin-bottom:14px}
-.vlammen{position:absolute;left:50%;bottom:-16px;translate:-50% 0;z-index:0;display:flex;gap:4px;font-size:30px;line-height:1;pointer-events:none}
+.thermopan.over{margin-bottom:26px}
+.thermopan .vlammen img.ico{width:40px;height:40px;max-width:none;flex:none;position:static}
+.thermopan .vlammen span:nth-child(2) img.ico{width:52px;height:52px}
+.vlammen{position:absolute;left:50%;bottom:-30px;align-items:flex-end;translate:-50% 0;z-index:0;display:flex;gap:4px;font-size:30px;line-height:1;pointer-events:none}
 .vlammen span{display:block;transform-origin:center bottom;animation:vlam .5s ease-in-out infinite alternate}
 .vlammen span:nth-child(2){font-size:1.25em;animation-delay:.15s}
 .vlammen span:nth-child(3){animation-delay:.3s}
@@ -342,6 +344,8 @@ figcaption b{color:var(--ink)}
 .juf{margin:auto 0 0;max-width:none;font-size:.82em;font-weight:600;color:var(--muted);border-top:2px dashed var(--line);padding-top:10px}
 .juf b{color:var(--orange-dark)}
 .emo{font-size:clamp(56px,calc(var(--vw)*6),96px);line-height:1}
+.ico{width:1.15em;height:1.15em;object-fit:contain;display:inline-block;vertical-align:-.25em;pointer-events:none}
+.emo .ico,.achter .ico,.vlammen .ico{width:1em;height:1em;vertical-align:middle}
 .obdots{display:flex;gap:8px}
 .obdots i{width:18px;height:18px;border-radius:50%;border:3px solid var(--orange);background:var(--paper)}
 .obdots i.on{background:var(--orange)}
@@ -921,13 +925,13 @@ SCHERM.galgje = () => {
     <div class="galglinks">
       <div class="galgwoord" style="--n:${woord.length}">${[...woord].map(c=>/[A-Z]/.test(c)
         ? `<span class="${state.gLetters.includes(c)?"raak":over?"gemist":""}">${state.gLetters.includes(c)||over?c:""}</span>` : `<span class="streep">${c}</span>`).join("")}</div>
-      <p class="galgtip">${state.gTip||klaar ? `<b>Tip:</b> ${esc(g.tip)}` : `<button class="ghost galgtipknop" id="galgTip">💡 Tip</button>`} <small>(${woord.replace(/[^A-Z]/g,"").length} letters)</small></p>
+      <p class="galgtip">${state.gTip||klaar ? `<b>Tip:</b> ${esc(g.tip)}` : `<button class="ghost galgtipknop" id="galgTip">${ico("lampje")} Tip</button>`} <small>(${woord.replace(/[^A-Z]/g,"").length} letters)</small></p>
       <div class="galgtoetsen">${"ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").map(c=>{ const gekozen=state.gLetters.includes(c);
         return `<button class="galgtoets ${gekozen?(woord.includes(c)?"goed":"fout"):""}" data-galg="${c}" ${gekozen||klaar?"disabled":""}>${c}</button>`; }).join("")}</div>
     </div>
     <div class="galgthermo" aria-label="${fout} van ${MAX_FOUT} fout">
       <div class="thermo"><div class="thermovul" style="height:${fout/MAX_FOUT*100}%"></div>${Array.from({length:MAX_FOUT},()=>`<i></i>`).join("")}</div>
-      <div class="thermopan ${over?"over":""}">${img(pad.soep("pan"),"")}${over?`<div class="vlammen" aria-hidden="true"><span>🔥</span><span>🔥</span><span>🔥</span></div>`:""}</div>
+      <div class="thermopan ${over?"over":""}">${img(pad.soep("pan"),"")}${over?`<div class="vlammen" aria-hidden="true"><span>${ico("vlam")}</span><span>${ico("vlam")}</span><span>${ico("vlam")}</span></div>`:""}</div>
       <span class="thermotel">${fout} / ${MAX_FOUT}</span>
     </div>
   </div>
@@ -1054,7 +1058,8 @@ function obZoek(doel, spel){
 
 /* 1. Hoe proeft de soep? De kinderen proeven en kiezen smaakjes (meer mag). Er is geen fout antwoord:
    daarna vertelt de juf wat je in deze soep proeft (les.js → onderbouw.smaak). */
-const SMAKEN = [["zoet","🍬"],["zuur","🍋"],["zout","🧂"],["pittig","🌶️"]];
+const ico = n => `<img class="ico" src="img/iconen/${n}.webp" alt="" draggable="false">`;   // getekende iconen i.p.v. emoji
+const SMAKEN = [["zoet",ico("zoet")],["zuur",ico("zuur")],["zout",ico("zout")],["pittig",ico("pittig")]];
 SCHERM["ob-proef"] = () => {
   const sm=ob().smaak||{}, toon=state.obSmaakToon;
   return band("Neem een hapje… hoe proeft de soep?") + `<div class="inner obles"><div class="obsoep">
@@ -1138,7 +1143,7 @@ SPEL.pluk = sp => {
   return band(sp.titel) + `<div class="inner obles"><div class="obpluk">
     <div class="obstruik">${items.map((it,i)=> state.obGeplukt.includes(i) ? `<span class="obleeg"></span>`
       : `<button class="obvrucht ${state.obSchud===i?"shake":""}" data-obpluk="${i}" ${klaar?"disabled":""}>${img(pad.soep(it.img))}</button>`).join("")}</div>
-    <div class="obmand"><div class="obmandin">${state.obGeplukt.map(i=>img(pad.soep(items[i].img))).join("")}</div><span class="emo">🧺</span>
+    <div class="obmand"><div class="obmandin">${state.obGeplukt.map(i=>img(pad.soep(items[i].img))).join("")}</div><span class="emo">${ico("mand")}</span>
       <span class="obteller">${state.obGeplukt.length} van ${goed.length}</span></div>
   </div>
     <div class="row obrow">${klaar ? verder() : `<button class="ghost" id="obPlukAlles">Toon het antwoord</button>`}${obFb()}</div>
@@ -1222,7 +1227,7 @@ SPEL.maakgezicht = sp => {
     <div class="obvormzij">${sp.plekken.map(pl=>`<div class="obplek"><span class="obplekemo">${pl.emo}</span>${pl.keuzes.map(v=>
       `<button class="obvormkeus ${g[pl.id]===v?"gekozen":""}" data-obplek="${pl.id}" data-obkeusvorm="${v}" aria-label="${pl.id}: ${v}" ${licht?"disabled":""}>${vormSvg(v)}</button>`).join("")}</div>`).join("")}</div>
   </div>
-    <div class="row obrow">${licht ? `${verder()}<button class="ghost" id="obLichtUit">Nog een lampion</button>` : (compleet ? `<button class="btn obgroot" id="obLichtAan">💡 Lampje aan!</button>` : "")}</div>
+    <div class="row obrow">${licht ? `${verder()}<button class="ghost" id="obLichtUit">Nog een lampion</button>` : (compleet ? `<button class="btn obgroot" id="obLichtAan">${ico("lampje")} Lampje aan!</button>` : "")}</div>
     ${juf(licht ? sp.slot : sp.start)}</div>`;
 };
 
@@ -1274,7 +1279,7 @@ SCHERM["ob-memory"] = () => {
   return band(klaar ? "Alle paren gevonden!" : "Memory") + `<div class="inner obles"><div class="obmemory" style="--k:${deck.length>8?4:deck.length/2};--r:${Math.ceil(deck.length/(deck.length>8?4:deck.length/2))}">
     ${deck.map((k,i)=>{ const open=state.obOpen.includes(i)||state.obPaar.includes(k);
       return `<button class="obmemkaart ${open?"open":""} ${state.obPaar.includes(k)?"paar":""}" data-obmem="${i}" ${open||state.obBezig?"disabled":""} aria-label="${open?esc(INGREDIENTEN[k]):"Kaartje omdraaien"}">
-        <span class="achter">🔍</span><span class="voor">${img(pad.ing(k),"")}<b>${esc(INGREDIENTEN[k])}</b></span></button>`; }).join("")}
+        <span class="achter">${ico("vergrootglas")}</span><span class="voor">${img(pad.ing(k),"")}<b>${esc(INGREDIENTEN[k])}</b></span></button>`; }).join("")}
   </div>
     <div class="row obrow">${klaar ? `<button class="ghost" id="obMemOpnieuw">Nog een keer!</button>` : `<span class="obteller">${state.obPaar.length} van ${n}</span>`}${obFb()}</div>
     ${juf(klaar ? "Goed zo! Welke groenten zaten er allemaal in de soep? Noem ze nog eens!" : "Om de beurt mag iemand twee kaartjes omdraaien. Zijn ze hetzelfde? Dan heb je een paar! Zeg hardop wat je ziet.")}</div>`;
@@ -1288,11 +1293,11 @@ SCHERM["ob-durf"] = () => {
   const totaal=potLees(), vandaag=state.obSterren, getoond=Math.min(totaal,60);
   return band("De durfpot") + `<div class="inner obles"><div class="obdurf">
     <div class="obpot" aria-label="${totaal} sterren in de durfpot">
-      <div class="obpotin">${Array.from({length:getoond},(_,i)=>`<span class="ster ${i>=getoond-vandaag?"nieuw":""}" style="--d:${(i%7)*.05}s">⭐</span>`).join("")}</div>
+      <div class="obpotin">${Array.from({length:getoond},(_,i)=>`<span class="ster ${i>=getoond-vandaag?"nieuw":""}" style="--d:${(i%7)*.05}s">${ico("ster")}</span>`).join("")}</div>
       <div class="obpotlabel">${totaal} ${totaal===1?"ster":"sterren"}</div>
     </div>
     <div class="obdurfzij">
-      <button class="obster" id="obSter"><span class="emo">⭐</span><b>Ik durfde te proeven!</b></button>
+      <button class="obster" id="obSter"><span class="emo">${ico("ster")}</span><b>Ik durfde te proeven!</b></button>
       <div class="obvandaag">Vandaag: <b>${vandaag}</b> ${vandaag===1?"ster":"sterren"} erbij</div>
       ${vandaag?`<button class="ghost small" id="obSterTerug">Eén ster terug</button>`:""}
     </div>
