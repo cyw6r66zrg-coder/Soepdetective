@@ -22,6 +22,7 @@ LESSEN.wortel = {
   onderbouw:{   // groep 1-2: korte les op het digibord, terwijl de soep nog op tafel staat
     kleur:"oranje",
     smaak:{ goed:["zoet"], uitleg:"Wortels zijn van zichzelf een beetje zoet. Daarom proeft wortelsoep zoet. Er gaat ook een snufje zout in." },
+    kennis:{ kleur:{ kleuren:["#F07A1A", "#4F8F3A"], tekst:"Oranje! Met groene blaadjes bovenop." }, grond:{ plek:"onder", tekst:"Onder de grond! Alleen het groen steekt erboven uit." } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
     // spellen: elk spel is een eigen dia, in deze volgorde. Spelvormen: volgorde, pluk, goedvoor, kleuren, sorteer.
     spellen:[
       { type:"volgorde", naam:"Hoe groeit een wortel?", titel:"Hoe groeit een wortel?",

@@ -26,6 +26,7 @@ LESSEN.bloemkool = {
   onderbouw:{   // onderbouw: korte les op het digibord, terwijl de soep nog op tafel staat
     kleur:"wit",
     smaak:{ goed:["zout","pittig"], uitleg:"Bloemkoolsoep is hartig: er gaat een snufje zout in. En er zit kerrie in, een geel kruidenpoeder. Dat maakt hem een klein beetje pittig." },
+    kennis:{ kleur:{ kleuren:["#F4EFE2", "#4F8F3A"], tekst:"Wit! Met groene bladeren eromheen." }, grond:{ plek:"boven", tekst:"Erboven! Midden tussen grote bladeren." } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
     // spellen: elk spel is een eigen dia, in deze volgorde.
     spellen:[
       { type:"zoekplaat", naam:"Zoek iets wits", titel:"Wat is er wit in de keuken?", plaat:"ob-zoekplaat",

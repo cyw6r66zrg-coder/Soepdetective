@@ -25,6 +25,7 @@ LESSEN.broccoli = {
   onderbouw:{   // onderbouw: korte les op het digibord, terwijl de soep nog op tafel staat
     kleur:"groen",
     smaak:{ goed:["zout"], uitleg:"Broccolisoep is hartig: er gaat een snufje zout in. En proef je ook het frisse, groene smaakje van de broccoli?" },
+    kennis:{ kleur:{ kleuren:["#3E8A3A"], tekst:"Groen! Net een klein boompje." }, grond:{ plek:"boven", tekst:"Erboven! Midden in een plant met grote bladeren." } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
     // spellen: elk spel is een eigen dia, in deze volgorde. Spelvormen: volgorde, pluk, goedvoor, kleuren, sorteer, vormen, maakgezicht, tel.
     spellen:[
       { type:"volgorde", naam:"Van groot naar klein", titel:"Zet de broccoli van groot naar klein",

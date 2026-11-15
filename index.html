@@ -713,6 +713,16 @@ html.dia .kfoto img{aspect-ratio:auto}
 html.dia .kkaart{min-height:0}
 @media (max-width:820px){.kennis{grid-template-columns:1fr}.kfoto img{aspect-ratio:4/3}}
 @media (max-width:520px){.kkaarten{grid-template-columns:1fr}.kkaart{min-height:110px}}
+.obkennis{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,calc(var(--vw)*2.6),36px);flex:1 1 auto;min-height:0}
+.obkkaarten{display:grid;grid-template-rows:1fr 1fr;gap:16px;min-height:0}
+.obkkaart{min-height:clamp(150px,calc(var(--vw)*15),230px)}
+.obkkaart .kvoor b{font-size:clamp(24px,calc(var(--vw)*2.4),36px);padding-right:0}
+.obkkaart .kachter{flex-direction:row;align-items:center;gap:16px;font-family:var(--display);font-size:clamp(20px,calc(var(--vw)*2),30px)}
+.obkleurtjes{display:flex;gap:8px;flex:none}
+.obkleurtjes i{width:clamp(36px,calc(var(--vw)*4),56px);aspect-ratio:1;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.obgrond{width:clamp(90px,calc(var(--vw)*10),150px);flex:none;border-radius:12px;border:3px solid #fff}
+html.dia .obkennis{flex:1 1 0}
+@media (max-width:820px){.obkennis{grid-template-columns:1fr}}
 /* telefoon staand: kleuterspellen passend maken */
 @media (max-width:520px){
   .obplek{gap:6px;width:100%}
@@ -752,7 +762,7 @@ html.dia .kkaart{min-height:0}
   </footer>
 </div>
 
-<script>const VERSIE="2026-11-15h";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
+<script>const VERSIE="2026-11-15i";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
 document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</script>
 <script>
 /* ============ INHOUD ============
@@ -1102,7 +1112,7 @@ const stappen = () => {
     return s;
   }
   const s=[{id:"ob-proef", naam:"Hoe proeft het?"}, {id:"ob-lekker", naam:"Hoe lekker?"},
-    {id:"ob-schaduw", naam:"Wie ben ik?"}, {id:"ob-erin", naam:"Wat zit erin?"}];
+    {id:"ob-schaduw", naam:"Wie ben ik?"}, ...(ob().kennis && LES.kennis ? [{id:"ob-kennis", naam:"In het echt"}] : []), {id:"ob-erin", naam:"Wat zit erin?"}];
   obSpellen().forEach((sp,nr)=>s.push({id:"ob-spel", nr, naam:sp.naam}));
   s.push({id:"ob-memory", naam:"Memory"});   // vaste afsluiter voor elke soep, met de ingrediënten van de soep
   return s;
@@ -1181,6 +1191,25 @@ SCHERM["ob-lekker"] = () => {
 
 /* 3. Wie ben ik? Schaduwspel met de groenten uit de soep. */
 const obSchaduwen = () => { const g=obGoed(); return [...g.filter(k=>k!==LES.mascotte), ...g.filter(k=>k===LES.mascotte)]; };   // hoofdgroente als laatste: de ontknoping
+/* Kleuterversie van Maak kennis: grote echte foto + twee kaartjes (kleur, onder/boven de grond). les.js → onderbouw.kennis */
+const grondSvg = (plek, kleur) => `<svg class="obgrond" viewBox="0 0 120 90" aria-hidden="true"><rect width="120" height="90" fill="#CFE8F7"/><circle cx="102" cy="16" r="9" fill="#F9C406"/>
+  <rect y="46" width="120" height="44" fill="#8A5A3B"/><rect y="46" width="120" height="5" fill="#6E4329"/>
+  ${plek==="onder"
+    ? `<path d="M60 47 L52 34 M60 47 L60 30 M60 47 L68 34" stroke="#4F8F3A" stroke-width="4" stroke-linecap="round"/><path d="M52 50 Q60 46 68 50 L61 84 Q60 87 59 84 Z" fill="${kleur}"/>`
+    : `<path d="M60 47 L60 26" stroke="#4F8F3A" stroke-width="4"/><path d="M60 38 Q46 30 44 40 M60 34 Q74 26 76 36" stroke="#4F8F3A" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="60" cy="22" r="11" fill="${kleur}" stroke="rgba(0,0,0,.15)"/>`}</svg>`;
+SCHERM["ob-kennis"] = () => { const o=ob().kennis, naam=INGREDIENTEN[LES.mascotte].toLowerCase(), alle=state.kOpen.length===2;
+  const kaarten=[
+    {v:"Welke kleur heeft hij?", beeld:`<span class="obkleurtjes">${o.kleur.kleuren.map(c=>`<i style="background:${c}"></i>`).join("")}</span>`, a:o.kleur.tekst},
+    {v:"Groeit hij onder de grond of erboven?", beeld:grondSvg(o.grond.plek, o.kleur.kleuren[0]), a:o.grond.tekst}];
+  return band(`Kijk, een echte ${naam}!`) + `<div class="inner obles"><div class="obkennis">
+    <figure class="kfoto">${img(pad.soep("foto"),LES.kennis.fotoAlt||"")}</figure>
+    <div class="obkkaarten">${kaarten.map((c,i)=>{ const om=state.kOpen.includes(i);
+      return `<button class="kkaart obkkaart ${om?"om":""}" data-kflip="${i}" aria-pressed="${om}"><span class="kvoor"><b>${esc(c.v)}</b><small>Tik om te draaien</small></span><span class="kachter">${c.beeld}<span>${esc(c.a)}</span></span></button>`; }).join("")}</div>
+  </div>
+    <div class="row obrow">${alle ? verder() : ""}</div>
+    ${juf(alle ? `Wie heeft weleens een echte ${naam} vastgehouden? Hoe voelde hij?` : `Kijk goed naar de foto. Lees de vraag voor en laat de kinderen eerst raden. Tik dan op het kaartje.`)}</div>`;
+};
+
 SCHERM["ob-schaduw"] = () => {
   const lijst=obSchaduwen(), klaar=state.obI>=lijst.length;
   if (klaar) return band("Dit waren de groenten!") + `<div class="inner obles">
@@ -1591,7 +1620,7 @@ document.addEventListener("click",e=>{
   if(t.id==="obLichtAan"){ state.obLicht=true; speel("licht"); confetti(); render(); return; }
   if(t.id==="obLichtUit"){ state.obLicht=false; state.obGezicht={}; render(); return; }
   if(d.galg){ galgRaad(d.galg); return; }
-  if(d.kflip!==undefined){ const i=+d.kflip; state.kOpen = state.kOpen.includes(i) ? state.kOpen.filter(x=>x!==i) : [...state.kOpen,i]; speel("flip"); render(); return; }
+  if(d.kflip!==undefined){ const i=+d.kflip; state.kOpen = state.kOpen.includes(i) ? state.kOpen.filter(x=>x!==i) : [...state.kOpen,i]; speel("flip"); render(); if(state.kOpen.length===2 && stappen()[state.scherm].id==="ob-kennis") confetti(); return; }
   if(t.id==="kennisAll"){ state.kOpen=L(LES.kennis.kaarten).map((_,i)=>i); render(); return; }
   if(t.id==="galgTip"){ state.gTip=true; speel("flip"); render(); return; }
   if(t.id==="galgOpnieuw"){ state.gLetters=[]; state.gTip=false; render(); return; }

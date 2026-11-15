@@ -26,6 +26,7 @@ LESSEN.tomaat = {
     kleurspel:{ type:"zoek", items:[ {k:"aardbei",goed:true}, {k:"banaan",goed:false}, {k:"paprika",goed:true}, {k:"broccoli",goed:false},
                                      {k:"ui",goed:false}, {k:"tomaat",goed:true}, {k:"basilicum",goed:false}, {k:"wortel",goed:false} ] },
     smaak:{ goed:["zuur","zoet"], uitleg:"Tomaten zijn een beetje zuur én een beetje zoet. Proef je het allebei?" },
+    kennis:{ kleur:{ kleuren:["#D7402B", "#7DB24A"], tekst:"Rood! Als hij nog niet rijp is, is hij groen." }, grond:{ plek:"boven", tekst:"Erboven! Hij hangt aan een plant." } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
     // spellen: elk spel is een eigen dia, in deze volgorde. Spelvormen: volgorde, pluk, goedvoor, kleuren, sorteer.
     spellen:[
       { type:"pluk", naam:"Welke tomaten zijn rijp?", titel:"Welke tomaten zijn rijp?",

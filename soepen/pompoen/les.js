@@ -25,6 +25,7 @@ LESSEN.pompoen = {
   onderbouw:{   // onderbouw: korte les op het digibord, terwijl de soep nog op tafel staat
     kleur:"oranje",
     smaak:{ goed:["zoet"], uitleg:"Pompoen is van zichzelf een beetje zoet, net als wortel. Proef je het?" },
+    kennis:{ kleur:{ kleuren:["#F07A1A", "#F4EFE2", "#5E8A3A"], tekst:"Vaak oranje. Maar er zijn ook witte en groene!" }, grond:{ plek:"boven", tekst:"Erboven! Hij ligt op de grond, aan een lange plant." } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
     // spellen: elk spel is een eigen dia, in deze volgorde. Spelvormen: volgorde, pluk, goedvoor, kleuren, sorteer, vormen, maakgezicht.
     spellen:[
       { type:"vormen", naam:"Vormen in de pompoen", titel:"Welke vormen zie je in de pompoen?", basis:"ob-pompoen",
