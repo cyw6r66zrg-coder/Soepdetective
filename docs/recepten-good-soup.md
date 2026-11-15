@@ -8,7 +8,7 @@ Bron: receptenblad van Good Soup ("Altijd een kilo recept invoeren"), foto's van
 | Tomatensoep | tomaat, tomatenpuree, ui, tijm, water, zout | aangepast |
 | Broccolisoep | broccoli, spinazie, ui, aardappel, water, zout | aangepast |
 | Bloemkoolsoep | bloemkool, ui, knoflook, kerrie, water, zout | aangepast |
-| Erwtensoep | spliterwten, knolselderij, wortel, ui, water, zout | nog geen les (in de lijst als "doperwt") |
+| Erwtensoep | spliterwten, knolselderij, wortel, ui, water, zout | nog geen les (id "erwt", op binnenkort) |
 | Pompoensoep | ? | recept ontbreekt: les is een aanname |
 | Maïssoep | ? | recept ontbreekt: les is een aanname |
 
