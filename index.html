@@ -669,6 +669,26 @@ html.dia .obzp{flex:1 1 0}
 html.dia .obles:has(.obzp){gap:10px;padding-top:14px}
 html.dia .obles:has(.obzp) .juf{margin-top:0;padding-top:6px}
 html.dia .obles:has(.obzp) .obrow{margin-top:0}
+
+/* ===== Rustiger stijl (nov 2026): minder rode randen, titel zonder balk ===== */
+/* 1. Kaartjes en tegels: zachte rand + lichte schaduw. Rode rand alleen nog op echte knoppen. */
+.soepkaart,.ing,.card,.body,.item,.opt,.vote button,.obknop,.obschaduw,.obkaart2,.obkleur,.obverf,.obzoekitem,.obgroente,.oberin .obleeg,
+.obgoedkaart,.obkleurkaart,.obitem,.obvormkeus,.obmemkaart .voor,.obtelgetal{
+  border:2px solid var(--line);box-shadow:0 3px 0 rgba(59,43,34,.10),0 6px 14px rgba(59,43,34,.06)}
+.brand img,.say img{border:2px solid var(--line)}
+.need span{border-color:var(--line)}
+/* plaatjes zonder lijst */
+.obzpvlak{border:0;box-shadow:0 6px 18px rgba(59,43,34,.14)}
+.imgbtn{border:10px solid #5b3a24;border-radius:3px;box-shadow:0 8px 20px rgba(59,43,34,.25)}   /* houten lijst om het schilderij */
+/* geselecteerd/goed blijft duidelijk */
+.obgoedkaart.goed,.obkleurkaart.gevonden,.obvormkeus.gekozen{border:3px solid var(--green)}
+
+/* 2. Titel zonder rode balk: rustige kop met een kort, getekend streepje eronder */
+.band{background:none;color:var(--ink);padding:clamp(14px,calc(var(--vw)*1.6),22px) clamp(18px,calc(var(--vw)*3),44px) 0}
+.band h2{text-shadow:none;display:inline-block;position:relative;padding-bottom:6px}
+.band h2::after{content:"";position:absolute;left:0;bottom:-2px;width:min(140px,40%);height:6px;border-radius:6px;background:var(--orange);transform:rotate(-1deg)}
+html.dia .band{padding:14px 44px 0}
+html.dia .band h2{font-size:40px}
 /* telefoon staand: kleuterspellen passend maken */
 @media (max-width:520px){
   .obplek{gap:6px;width:100%}
