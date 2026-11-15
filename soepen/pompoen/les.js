@@ -61,10 +61,10 @@ LESSEN.pompoen = {
     vertel:{ g56:"Vertel het de klas: “Ik vind hem lekker, want…” of “Ik vind hem niet lekker, want…”", g78:"Vertel het de klas: wat maakt dat jij hem wel of niet lekker vindt? Proef je het zoete van de pompoen? En hoe voelt hij in je mond?" }
   },
   speur:{ titel:"Speur mee: wat zit er in de soep?",
-    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zes zitten erin, vijf niet. Let op: niet alles wat oranje of rood is, zit in de soep. Sleep of tik." },
-    opgelost:"Opgelost: in de soep zitten pompoen, ui, wortel, knoflook, water en een snufje zout.",
-    goed:["pompoen","ui","wortel","knoflook","water","zout"],
-    fout:["banaan","aardbei","broccoli","tomaat","paprika"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
+    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Vijf zitten erin, zes niet. Let op: niet alles wat oranje is, zit in de soep. Sleep of tik." },
+    opgelost:"Opgelost: in de soep zitten pompoen, ui, knoflook, water en een snufje zout. Geen wortel: die is alleen even oranje.",
+    goed:["pompoen","ui","knoflook","water","zout"],
+    fout:["wortel","banaan","aardbei","broccoli","tomaat","paprika"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
     titel:"Hoe zwaar kan een pompoen worden?",
     beeldAlt:"De detective-pompoen kijkt verbaasd naar een reuzenpompoen op een weegschaal",

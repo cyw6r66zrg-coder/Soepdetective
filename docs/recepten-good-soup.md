@@ -9,7 +9,7 @@ Bron: receptenblad van Good Soup ("Altijd een kilo recept invoeren"), foto's van
 | Broccolisoep | broccoli, spinazie, ui, aardappel, water, zout | aangepast |
 | Bloemkoolsoep | bloemkool, ui, knoflook, kerrie, water, zout | aangepast |
 | Erwtensoep | spliterwten, knolselderij, wortel, ui, water, zout | nog geen les (id "erwt", op binnenkort) |
-| Pompoensoep | ? | recept ontbreekt: les is een aanname |
+| Pompoensoep | pompoen (blokjes, diepvries), ui, knoflook, water, zout | aangepast (wortel eruit) |
 | Maïssoep | ? | recept ontbreekt: les is een aanname |
 
 Recepten die (nog) bij geen les horen:
