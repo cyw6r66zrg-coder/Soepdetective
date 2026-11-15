@@ -3,7 +3,7 @@
    Alle lesinhoud van deze soep. De motor staat in /index.html.
    Tekst die per niveau verschilt schrijf je als { g56:"…", g78:"…" }.
    Afbeeldingen van deze soep staan in soepen/broccoli/img/.
-   LET OP: de ingrediënten (speur.goed) zijn een AANNAME. Controleer ze op het etiket van Good Soup.
+   Ingrediënten (speur.goed): volgens het recept van Good Soup (nov 2026).
    Kunstwerk: Monira Al Qadiri, Romanesco Dream (2018), Via Nova College Utrecht.
    Auteursrechtelijk beschermd: alleen een link, geen afbeelding.
    ========================================================================== */
@@ -61,8 +61,8 @@ LESSEN.broccoli = {
   },
   speur:{ titel:"Speur mee: wat zit er in de soep?",
     hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zes zitten erin, vijf niet. Let op: niet alles wat groen is, zit in de soep. Sleep of tik." },
-    opgelost:"Opgelost: in de soep zitten broccoli, ui, aardappel, knoflook, water en een snufje zout.",
-    goed:["broccoli","ui","aardappel","knoflook","water","zout"],
+    opgelost:"Opgelost: in de soep zitten broccoli, spinazie, ui, aardappel, water en een snufje zout.",
+    goed:["broccoli","spinazie","ui","aardappel","water","zout"],
     fout:["banaan","aardbei","tomaat","basilicum","pompoen"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
     titel:"Is broccoli eigenlijk een bloem?",

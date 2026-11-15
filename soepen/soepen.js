@@ -19,7 +19,8 @@ const SOEPEN = [
 const INGREDIENTEN = {
   wortel:"Wortel", ui:"Ui", bleekselderij:"Bleekselderij", zoeteaardappel:"Zoete aardappel", knoflook:"Knoflook", zout:"Zout", water:"Water",
   banaan:"Banaan", broccoli:"Broccoli", aardbei:"Aardbei", gember:"Gember", aardappel:"Aardappel",
-  tomaat:"Tomaat", basilicum:"Basilicum", paprika:"Paprika", pompoen:"Pompoen", mais:"Maïs", bloemkool:"Bloemkool"
+  tomaat:"Tomaat", basilicum:"Basilicum", paprika:"Paprika", pompoen:"Pompoen", mais:"Maïs", bloemkool:"Bloemkool",
+  tijm:"Tijm", tomatenpuree:"Tomatenpuree", spinazie:"Spinazie", kerrie:"Kerrie"
 };
 
 const LESSEN = {};   // elke soepen/<id>/les.js vult hier LESSEN.<id> = { … }

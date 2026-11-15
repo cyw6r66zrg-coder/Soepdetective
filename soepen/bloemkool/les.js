@@ -3,7 +3,7 @@
    Alle lesinhoud van deze soep. De motor staat in /index.html.
    Tekst die per niveau verschilt schrijf je als { g56:"…", g78:"…" }.
    Afbeeldingen van deze soep staan in soepen/bloemkool/img/.
-   LET OP: de ingrediënten (speur.goed) zijn een AANNAME. Controleer ze op het etiket van Good Soup.
+   Ingrediënten (speur.goed): volgens het recept van Good Soup (nov 2026).
    Thema: wit en licht. Bewust anders dan broccoli (dat gaat over bloemknoppen).
    Kunstwerk: Margaretha Roosenboom, Stilleven met bloemkool en andijvie (1892 of later), De Mesdag Collectie, Den Haag.
    Publiek domein (Roosenboom overleed in 1896). Afbeelding via De Mesdag Collectie.
@@ -25,7 +25,7 @@ LESSEN.bloemkool = {
   ],
   onderbouw:{   // onderbouw: korte les op het digibord, terwijl de soep nog op tafel staat
     kleur:"wit",
-    smaak:{ goed:["zout"], uitleg:"Bloemkoolsoep is hartig: er gaat een snufje zout in. En proef je ook hoe zacht en mild de bloemkool is?" },
+    smaak:{ goed:["zout","pittig"], uitleg:"Bloemkoolsoep is hartig: er gaat een snufje zout in. En er zit kerrie in, een geel kruidenpoeder. Dat maakt hem een klein beetje pittig." },
     // spellen: elk spel is een eigen dia, in deze volgorde.
     spellen:[
       { type:"zoekplaat", naam:"Zoek iets wits", titel:"Wat is er wit in de keuken?", plaat:"ob-zoekplaat",
@@ -66,7 +66,7 @@ LESSEN.bloemkool = {
     vraag:{ g56:"Tik op de woorden die bij de soep passen.", g78:"Kies drie woorden en maak er samen één zin van." },
     woorden:{
       g56:[["wit","#7A6555","-5deg"],["hartig","#D7402B","5deg"],["warm","#7650A6","-4deg"],["glad","#3B2B22","4deg"],["mild","#4F8F3A","-3deg"],["romig","#D7402B","5deg"],["zacht","#7650A6","-5deg"],["zout","#3B2B22","4deg"]],
-      g78:[["wit","#7A6555","-5deg"],["hartig","#D7402B","5deg"],["warm","#7650A6","-4deg"],["glad","#3B2B22","4deg"],["mild","#4F8F3A","-3deg"],["romig","#D7402B","5deg"],["zacht","#7650A6","-5deg"],["zout","#3B2B22","4deg"],["nootachtig","#B9520F","-4deg"],["fluweelzacht","#7650A6","3deg"],["licht","#4F8F3A","-3deg"],["vol","#D7402B","4deg"]]
+      g78:[["wit","#7A6555","-5deg"],["hartig","#D7402B","5deg"],["warm","#7650A6","-4deg"],["glad","#3B2B22","4deg"],["mild","#4F8F3A","-3deg"],["romig","#D7402B","5deg"],["zacht","#7650A6","-5deg"],["zout","#3B2B22","4deg"],["kruidig","#B9520F","-4deg"],["fluweelzacht","#7650A6","3deg"],["licht","#4F8F3A","-3deg"],["vol","#D7402B","4deg"]]
     }
   },
   lekker:{
@@ -76,9 +76,9 @@ LESSEN.bloemkool = {
   },
   speur:{ titel:"Speur mee: wat zit er in de soep?",
     hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zes zitten erin, vijf niet. Let op: niet alles wat op bloemkool lijkt, zit erin. Sleep of tik." },
-    opgelost:"Opgelost: in de soep zitten bloemkool, ui, aardappel, knoflook, water en een snufje zout.",
-    goed:["bloemkool","ui","aardappel","knoflook","water","zout"],
-    fout:["broccoli","banaan","aardbei","tomaat","wortel"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
+    opgelost:"Opgelost: in de soep zitten bloemkool, ui, knoflook, kerrie, water en een snufje zout.",
+    goed:["bloemkool","ui","knoflook","kerrie","water","zout"],
+    fout:["broccoli","banaan","aardappel","tomaat","wortel"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
     titel:"Waarom is een bloemkool wit?",
     beeldAlt:"De detective-bloemkool tuurt onder een dak van grote groene bladeren omhoog naar de zon",

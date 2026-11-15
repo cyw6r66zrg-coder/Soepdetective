@@ -66,9 +66,9 @@ LESSEN.tomaat = {
     vertel:{ g56:"Vertel het de klas: “Ik vind hem lekker, want…” of “Ik vind hem niet lekker, want…”", g78:"Vertel het de klas: wat maakt dat jij hem wel of niet lekker vindt? Proef je meer zuur of meer zoet? En hoe voelt hij in je mond?" }
   },
   speur:{ titel:"Speur mee: wat zit er in de soep?",
-    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Acht zitten erin, vijf niet. Let op: niet alles wat rood is, zit in de soep. Sleep of tik." },
-    opgelost:"Opgelost: in de soep zitten tomaat, ui, knoflook, wortel, bleekselderij, basilicum, water en een snufje zout.",
-    goed:["tomaat","ui","knoflook","wortel","bleekselderij","basilicum","water","zout"],
+    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zes zitten erin, vijf niet. Let op: niet alles wat rood is, zit in de soep. Sleep of tik." },
+    opgelost:"Opgelost: in de soep zitten tomaat, tomatenpuree, ui, tijm, water en een snufje zout.",
+    goed:["tomaat","tomatenpuree","ui","tijm","water","zout"],
     fout:["banaan","broccoli","aardbei","gember","paprika"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
     titel:"Is een tomaat een groente of een fruit?",
