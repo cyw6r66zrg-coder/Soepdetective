@@ -36,7 +36,7 @@ Maak per bericht één plaatje. Zeg "klaar" als je het stijlblok begrijpt.
 ```
 Zes bloemkolen naast elkaar in twee rijen van drie, zonder gezichtjes, effen WITTE achtergrond, veel ruimte ertussen:
 1 witte bloemkool met groene bladeren, 2 paarse bloemkool, 3 oranje bloemkool,
-4 lichtgroene bloemkool (rond, met bolletjes), 5 romanesco met puntige torentjes, 6 een piepkleine minibloemkool.
+4 lichtgroene bloemkool (rond, met bolletjes), 5 romanesco met puntige torentjes, 6 fioretto: losse roosjes op lange dunne steeltjes.
 ```
 
 ## 5. Onderbouw

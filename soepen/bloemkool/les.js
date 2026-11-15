@@ -122,7 +122,7 @@ LESSEN.bloemkool = {
       {key:"oranje", naam:"Oranje bloemkool", hint:"Oranje, door hetzelfde stofje als in een wortel."},
       {key:"groen", naam:"Groene bloemkool", hint:"Lichtgroen en rond, met bolletjes net als een witte."},
       {key:"romanesco", naam:"Romanesco", hint:"Lichtgroen, met puntige torentjes."},
-      {key:"mini", naam:"Minibloemkool", hint:"Zo klein dat hij in je hand past."}
+      {key:"fioretto", naam:"Fioretto", hint:"Losse roosjes op lange, dunne steeltjes. De steel eet je ook op."}
     ],
     g56:["wit","paars","oranje","groen"],   // alleen deze bij de middenbouw
     goedZo:"Ja! Dat is de {naam}.",
