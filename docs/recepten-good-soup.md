@@ -16,3 +16,15 @@ Recepten die (nog) bij geen les horen:
 - zoete aardappel, ui, kaneel, paprikapoeder, water, zout
 - kikkererwten, rode linzen, ui, knoflook, tomatenpuree, tomatenpulp, komijn, paprikapoeder, gemberpoeder, kaneel, water, zout
 - courgette, koolrabi, aardappel, ui, knoflook, tijm, water, zout
+
+# Foto's in de quiz (nov 2026)
+
+Bron: Pexels (pexels.com). Pexels-licentie: gratis te gebruiken, naamsvermelding niet verplicht.
+
+| Plaatje | Fotograaf (Pexels) |
+|---|---|
+| tomaat/kas | grbr snts |
+| mais/draadjes | unaizat97 |
+| broccoli/bloem | nikgr |
+| wortel/groei | Chente Colindres |
+| pompoen/kleuren | Wolfgang Weiser |
