@@ -9,7 +9,7 @@
 const SOEPEN = [
   { id:"wortel",    naam:"Wortelsoep",      klaar:true,  kleur:"#FFD8AE", accent:"#E06A12", accentDonker:"#9E4508" },
   { id:"tomaat",    naam:"Tomatensoep",     klaar:true,  kleur:"#FFC9BF", accent:"#D7402B", accentDonker:"#9C2A1C" },
-  { id:"doperwt",   naam:"Doperwtensoep",   klaar:false, kleur:"#D6EDB8", accent:"#4E8A2E", accentDonker:"#335C1E" },
+  { id:"erwt",      naam:"Erwtensoep",      klaar:false, kleur:"#D6EDB8", accent:"#4E8A2E", accentDonker:"#335C1E" },
   { id:"broccoli",  naam:"Broccolisoep",    klaar:true, kleur:"#BFE0C2", accent:"#3E8A3A", accentDonker:"#2A5E27" },
   { id:"bloemkool", naam:"Bloemkoolsoep",   klaar:true, kleur:"#E9E2F3", accent:"#6C4FA0", accentDonker:"#4A3570" },
   { id:"mais",      naam:"Maïssoep",        klaar:true, kleur:"#FFEBA0", accent:"#B07D00", accentDonker:"#7A5600" },
