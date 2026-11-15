@@ -31,25 +31,25 @@ LESSEN.tomaat = {
       { type:"pluk", naam:"Welke tomaten zijn rijp?", titel:"Welke tomaten zijn rijp?",
         items:[ {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false}, {img:"ob-rijp-3", goed:false},
                 {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-1", goed:false}, {img:"ob-rijp-5", goed:true},  {img:"ob-rijp-2", goed:false} ],
-        goedZo:"Ja! Die is rood, die is rijp.",
-        mis:"Nog niet rijp! Die moet nog even groeien in de zon.",
-        klaar:"Goed zo! Alle rode tomaten zitten in de mand.",
+        goedZo:"Ja, die is rood, die is rijp.",
+        mis:"Nog niet rijp. Die moet nog even groeien in de zon.",
+        klaar:"Goed zo. Alle rode tomaten zitten in de mand.",
         start:"Pluk alleen de rijpe tomaten. Hoe zie je of een tomaat rijp is?",
-        slot:"Een tomaat begint groen. In de zon wordt hij geel, dan oranje en dan rood. Rood is rijp: dan is hij zoet en lekker!" },
+        slot:"Een tomaat begint groen. In de zon wordt hij geel, dan oranje en dan rood. Rood is rijp: dan is hij zoet en lekker." },
       { type:"goedvoor", naam:"Goed voor je…?", titel:"Waar is een tomaat goed voor?",
-        opties:[ {lijf:"afweer", naam:"niet ziek worden", goed:true, uitleg:"Ja! In tomaten zitten vitamientjes. Die helpen je lijf om niet ziek te worden."},
+        opties:[ {lijf:"afweer", naam:"niet ziek worden", goed:true, uitleg:"Ja, in tomaten zitten vitamientjes. Die helpen je lijf om niet ziek te worden."},
                  {lijf:"haar", naam:"je haar", goed:false, uitleg:"Nee, van tomaten krijg je geen lang haar."},
                  {lijf:"oren", naam:"je oren", goed:false, uitleg:"Nee, je oren hebben niks aan tomaten."} ],
-        start:"Waar is een tomaat goed voor? Niet ziek worden, je haar of je oren? Tik op het plaatje!",
+        start:"Waar is een tomaat goed voor? Niet ziek worden, je haar of je oren? Tik op het plaatje.",
         slot:"Tomaten helpen je lijf om niet ziek te worden. Wat doe jij nog meer om gezond te blijven?" },
       { type:"sorteer", naam:"Elke dag of af en toe?", titel:"Elke dag of af en toe?",
         bakken:[ {id:"dag", naam:"Elke dag", ico:"elkedag", kleur:"#4F8F3A"}, {id:"soms", naam:"Af en toe", ico:"afentoe", kleur:"#7650A6"} ],
         items:[ {ing:"broccoli", naam:"groente", bak:"dag"}, {ico:"snoep", naam:"snoep", bak:"soms"}, {ing:"aardbei", naam:"fruit", bak:"dag"},
                 {ico:"chips", naam:"chips", bak:"soms"}, {ing:"water", naam:"water", bak:"dag"}, {ico:"frisdrank", naam:"frisdrank", bak:"soms"},
                 {img:"soep", naam:"soep", bak:"dag"}, {ico:"taart", naam:"taart", bak:"soms"} ],
-        klaar:"Goed zo! Alles staat in de goede mand.",
+        klaar:"Goed zo. Alles staat in de goede mand.",
         start:"Sleep het plaatje naar de goede mand. Is het iets voor elke dag, of iets voor af en toe, zoals op een feestje?",
-        slot:"Wat eet of drink jij elke dag? En wanneer eet je iets voor af en toe? Op een feestje!" }
+        slot:"Wat eet of drink jij elke dag? En wanneer eet je iets voor af en toe? Op een feestje." }
     ]
   },
   proef:{
@@ -66,8 +66,8 @@ LESSEN.tomaat = {
     vertel:{ g56:"Vertel het de klas: “Ik vind hem lekker, want…” of “Ik vind hem niet lekker, want…”", g78:"Vertel het de klas: wat maakt dat jij hem wel of niet lekker vindt? Proef je meer zuur of meer zoet? En hoe voelt hij in je mond?" }
   },
   speur:{ titel:"Speur mee: wat zit er in de soep?",
-    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Acht zitten erin, vijf niet. Let op: niet alles wat rood is, zit in de soep! Sleep of tik." },
-    opgelost:"Opgelost! In de soep zitten tomaat, ui, knoflook, wortel, bleekselderij, basilicum, water en een snufje zout.",
+    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Acht zitten erin, vijf niet. Let op: niet alles wat rood is, zit in de soep. Sleep of tik." },
+    opgelost:"Opgelost: in de soep zitten tomaat, ui, knoflook, wortel, bleekselderij, basilicum, water en een snufje zout.",
     goed:["tomaat","ui","knoflook","wortel","bleekselderij","basilicum","water","zout"],
     fout:["banaan","broccoli","aardbei","gember","paprika"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
@@ -77,7 +77,7 @@ LESSEN.tomaat = {
     wat:"Wat denk jij? Kies samen A, B of C. Tik daarna op het antwoord van de klas.",
     antwoord:["Een tomaat groeit uit de bloem van de tomatenplant en zit vol zaadjes. Voor een plantenkenner is hij daarom een vrucht, net als een appel.",
               "Maar in de keuken doen we alsof hij een groente is. We eten hem in soep, op een pizza of in de sla, en niet als toetje.",
-              "Dus: allebei goed! Voor de plant is hij een vrucht, voor de kok een groente."]
+              "Dus: allebei goed. Voor de plant is hij een vrucht, voor de kok een groente."]
   },
   lichaam:{
     plaatje:"feitfabel",   // illustratie bij feit of fabel (een plaatje uit soepen/tomaat/img/)
@@ -85,12 +85,12 @@ LESSEN.tomaat = {
     onthoud:"In tomaten zit vitamine C. Die helpt je om niet ziek te worden, en helpt wondjes te genezen.",
     act:{
       g56:{ type:"kaarten", v:"Bij welke twee dingen helpen tomaten? Tik een plaatje aan.", opties:[
-        {key:"afweer", naam:"Niet ziek worden", goed:true,  uitleg:"Ja! In tomaten zit vitamine C. Die helpt je lichaam om ziektes buiten de deur te houden."},
-        {key:"huid",   naam:"Wondjes genezen",  goed:true,  uitleg:"Ja! Vitamine C helpt je lichaam om een wondje weer dicht te maken."},
+        {key:"afweer", naam:"Niet ziek worden", goed:true,  uitleg:"Ja, in tomaten zit vitamine C. Die helpt je lichaam om ziektes buiten de deur te houden."},
+        {key:"huid",   naam:"Wondjes genezen",  goed:true,  uitleg:"Ja, vitamine C helpt je lichaam om een wondje weer dicht te maken."},
         {key:"haar",   naam:"Lang haar",        goed:false, uitleg:"Nee, van tomaten krijg je geen langer haar."},
         {key:"oren",   naam:"Beter horen",      goed:false, uitleg:"Nee, je oren hebben niks aan extra tomaten."},
         {key:"spieren",naam:"Sterke spieren",   goed:false, uitleg:"Niet echt. Voor spieren heb je vooral eiwit nodig, uit bonen, ei, vis of vlees."},
-        {key:"rennen", naam:"Harder rennen",    goed:false, uitleg:"Nee, je wordt er niet sneller van. Wel gezonder!"}
+        {key:"rennen", naam:"Harder rennen",    goed:false, uitleg:"Nee, je wordt er niet sneller van. Wel gezonder."}
       ]},
       g78:{ type:"sorteer", v:"Feit of fabel? Sleep elk kaartje naar het goede vak (of tik het kaartje en dan het vak).", bakken:[
         {id:"feit", naam:"Feit", kleur:"#4F8F3A"}, {id:"fabel", naam:"Fabel", kleur:"#7650A6"}],
@@ -107,21 +107,21 @@ LESSEN.tomaat = {
   koppel:{
     titel:"Ken jij deze tomaten?",
     v:{ g56:"Elke tomaat heeft een eigen naam. Lees de hint, tik op het plaatje en daarna op de naam. Of sleep het plaatje naar de naam.",
-        g78:"Acht tomatensoorten! Lees de hints goed: vorm en kleur verraden welke tomaat het is. Tik of sleep het plaatje naar de goede naam." },
+        g78:"Acht tomatensoorten. Lees de hints goed: vorm en kleur verraden welke tomaat het is. Tik of sleep het plaatje naar de goede naam." },
     lijst:[
       {key:"cherrytomaat", naam:"Cherrytomaat", hint:"Zo klein als een knikker. In één hap op!"},
       {key:"pruimtomaat", naam:"Pruimtomaat", hint:"Langwerpig, net een ei. Goed voor soep en saus."},
       {key:"vleestomaat", naam:"Vleestomaat", hint:"Groot en plat, met ribbels aan de zijkant."},
       {key:"trostomaat", naam:"Trostomaat", hint:"Ze hangen nog met z'n allen aan een groen steeltje."},
-      {key:"greenzebra", naam:"Green Zebra", hint:"Groen met gele strepen. Ook als hij rijp is!"},
+      {key:"greenzebra", naam:"Green Zebra", hint:"Groen met gele strepen. Ook als hij rijp is."},
       {key:"gelepeer", naam:"Gele peertomaat", hint:"Klein en geel, en gevormd als een peertje."},
       {key:"blackkrim", naam:"Black Krim", hint:"Donkerrood tot paarsbruin. Hij komt van de Krim, aan de Zwarte Zee."},
       {key:"ossenhart", naam:"Ossenhart", hint:"Groot en roze-rood, in de vorm van een hart."}
     ],
     g56:["cherrytomaat","pruimtomaat","greenzebra","gelepeer"],   // alleen deze bij groep 5-6
-    goedZo:"Ja! Dat is de {naam}.",
+    goedZo:"Ja, dat is de {naam}.",
     mis:"Nee, die past niet. Kijk nog eens naar de vorm en de kleur.",
-    slot:"Super! Tomaten zijn er in allerlei vormen en kleuren."
+    slot:"Mooi. Tomaten zijn er in allerlei vormen en kleuren."
   },
   quiz:{
     g56:[
@@ -130,11 +130,11 @@ LESSEN.tomaat = {
       { v:"Waar groeien de meeste Nederlandse tomaten?", a:["In het bos","In een kas","Op het strand"], goed:1, img:"kas",
         weetje:"Nederlandse tomaten groeien bijna allemaal in grote glazen kassen. Daar is het warm, en met lampen kunnen ze zelfs in de winter groeien." },
       { v:"Waarom wordt een tomaat rood?", a:["Door een rood kleurstofje","Door de zon die erop schijnt","De boer verft hem"], goed:0, img:"rijp",
-        weetje:"Een jonge tomaat is groen. Als hij rijp wordt, maakt hij een rood kleurstofje: lycopeen. Hoe rijper, hoe roder!" }
+        weetje:"Een jonge tomaat is groen. Als hij rijp wordt, maakt hij een rood kleurstofje: lycopeen. Hoe rijper, hoe roder." }
     ],
     g78:[
       { v:"Ontdekkingsreizigers namen de tomaat mee van Zuid-Amerika naar Europa. Hoe lang geleden was dat?", a:["Ongeveer 50 jaar","Ongeveer 500 jaar","Ongeveer 5000 jaar"], goed:1, img:"zuidamerika",
-        weetje:"De tomaat komt uit de Andes in Zuid-Amerika. In de 16e eeuw, zo'n 500 jaar geleden, kwam hij naar Europa. In sommige landen durfden mensen hem eerst niet te eten!" },
+        weetje:"De tomaat komt uit de Andes in Zuid-Amerika. In de 16e eeuw, zo'n 500 jaar geleden, kwam hij naar Europa. In sommige landen durfden mensen hem eerst niet te eten." },
       { v:"Hoe kan een Nederlandse kas ook in de winter tomaten kweken?", a:["De tomaten slapen in de winter","De kweker regelt warmte en licht","Ze komen stiekem uit Spanje"], goed:1, img:"kas",
         weetje:"In een kas kan de kweker de warmte regelen, en met lampen geeft hij extra licht. Zo groeien er het hele jaar tomaten." },
       { v:"Wat is lycopeen?", a:["Een soort tomaat","Het rode kleurstofje in tomaten","Een ziekte van tomatenplanten"], goed:1, img:"rijp",
@@ -142,22 +142,22 @@ LESSEN.tomaat = {
     ]
   },
   galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
-    g56:{ woord:"VRUCHTGROENTE", tip:"Weet je nog, de speurvraag? Voor de plant een vrucht, voor de kok een groente. Plak ze aan elkaar!", uitleg:"Tomaten groeien uit een bloem en hebben zaadjes: een vrucht. In de keuken noemen we ze een vruchtgroente." },
-    g78:{ woord:"SPAGHETTISAUS", tip:"Rood en lekker over de pasta. Vaak gemaakt van tomaten.", uitleg:"Van tomaten maak je saus, soep en ketchup. In spaghettisaus zitten ze bijna altijd, net als in deze soep!" }
+    g56:{ woord:"VRUCHTGROENTE", tip:"Weet je nog, de speurvraag? Voor de plant een vrucht, voor de kok een groente. Plak ze aan elkaar.", uitleg:"Tomaten groeien uit een bloem en hebben zaadjes: een vrucht. In de keuken noemen we ze een vruchtgroente." },
+    g78:{ woord:"SPAGHETTISAUS", tip:"Rood en lekker over de pasta. Vaak gemaakt van tomaten.", uitleg:"Van tomaten maak je saus, soep en ketchup. In spaghettisaus zitten ze bijna altijd, net als in deze soep." }
   },
   kunst:{
     titel:"Kijk-kunst: Stilleven met komkommers en tomaten", werk:"Stilleven met komkommers, tomaten en schalen", maker:"Luis Egidio Meléndez", jaar:"1774", plek:"Museo del Prado, Madrid",
-    intro:"Geschilderd door Luis Egidio Meléndez, een Spaanse schilder, in 1774. Dat is al bijna 250 jaar geleden!",
+    intro:"Geschilderd door Luis Egidio Meléndez, een Spaanse schilder, in 1774. Dat is al bijna 250 jaar geleden.",
     vragen:{
       g56:[
         {v:"Wat zie je allemaal? Kun jij de tomaten vinden?", uitleg:"Er liggen tomaten en komkommers. Erachter staan een kom, een bord, een fles, een kruik en een zoutvaatje."},
         {v:"Welke kleuren zie je? Welke kleur valt het meest op?", uitleg:"Het rood van de tomaten springt eruit, tegen de donkere achtergrond."},
-        {v:"Wat zou iemand met deze spullen gaan maken?", uitleg:"Met tomaten, komkommer en een beetje zout maak je… een salade!"}
+        {v:"Wat zou iemand met deze spullen gaan maken?", uitleg:"Met tomaten, komkommer en een beetje zout maak je… een salade."}
       ],
       g78:[
         {v:"Wat zie je allemaal? Kun jij de tomaten vinden?", uitleg:"Er liggen tomaten en komkommers. Erachter staan een kom, een bord, een fles, een kruik en een zoutvaatje."},
         {v:"Hoe laat de schilder zien dat de tomaten glanzen en rond zijn?", uitleg:"Kijk naar de lichte vlekjes en de schaduwen. Zo lijkt het alsof je ze kunt pakken."},
-        {v:"Wat zou iemand met deze spullen gaan maken?", uitleg:"Met tomaten, komkommer en een beetje zout maak je… een salade!"},
+        {v:"Wat zou iemand met deze spullen gaan maken?", uitleg:"Met tomaten, komkommer en een beetje zout maak je… een salade."},
         {v:"Waarom zou de schilder de achtergrond zo donker hebben gemaakt?", uitleg:"Bedenk het samen: wat gebeurt er met de kleuren vooraan als alles erachter donker is?"}
       ]
     }
@@ -169,7 +169,7 @@ LESSEN.tomaat = {
       g78:["Kijk goed naar een paar echte tomaten. Wat is de vorm? Waar zit het steeltje?","Teken de tomaten met een zwarte fineliner. Laat een wit glimplekje open.","Kleur ze in met waterverf: rood, oranje en een beetje groen voor het steeltje.","Maak de tomaat rond: verf de kant waar geen licht valt wat donkerder, net als Meléndez."]
     },
     nodig:["Zwarte fineliner","Waterverf","Wit tekenpapier","Een paar echte tomaten"],
-    zeg:"Ik ben benieuwd of jouw tomaten zo echt lijken dat je er een hap uit wilt nemen!",
+    zeg:"Ik ben benieuwd of jouw tomaten zo echt lijken dat je er een hap uit wilt nemen.",
     voorbeeldAlt:"Voorbeeldtekening: drie tomaten met zwarte fineliner getekend en met waterverf ingekleurd"
   }
 };

@@ -34,30 +34,30 @@ LESSEN.bloemkool = {
         dingen:[ {x:20, y:70, r:15, naam:"De bloemkool"}, {x:48, y:72, r:10, naam:"De soepkom"}, {x:15, y:39, r:9, naam:"Het vergiet"},
                  {x:56, y:38, r:9, naam:"De pan"}, {x:78, y:17, r:8, naam:"De koksmuts"}, {x:90, y:38, r:7, naam:"Het schort"},
                  {x:73, y:56, r:7, naam:"De kan"}, {x:87, y:67, r:5, naam:"De pepermolen"}, {x:62, y:84, r:7, naam:"De lepel"} ],
-        mis:"Hier niet. Is dat wel wit? Kijk nog eens goed!",
-        klaar:"Goed zo! Je hebt alle witte dingen gevonden.",
-        start:"Een bloemkool is wit. Wat is er nog meer wit in deze keuken? Kom maar tikken!",
-        slot:"Wat is er in onze klas wit? Wijs maar aan!" },
+        mis:"Hier niet. Is dat wel wit? Kijk nog eens goed.",
+        klaar:"Goed zo. Je hebt alle witte dingen gevonden.",
+        start:"Een bloemkool is wit. Wat is er nog meer wit in deze keuken? Kom maar tikken.",
+        slot:"Wat is er in onze klas wit? Wijs maar aan." },
       { type:"volgorde", naam:"Eerst handen wassen", titel:"Wat doe je eerst?",
         stappen:[ {img:"ob-stap-1", naam:"handen wassen"}, {img:"ob-stap-2", naam:"bloemkool wassen"},
                   {img:"ob-stap-3", naam:"soep koken"}, {img:"ob-stap-4", naam:"lekker eten"} ],
-        klaar:"Goed zo! Eerst je handen wassen, dan de bloemkool, dan koken en dan smullen.",
-        start:"We gaan bloemkoolsoep maken! Wat doe je als allereerste? Kom maar tikken!",
-        verder:"Goed! En wat doe je daarna?",
+        klaar:"Goed zo. Eerst je handen wassen, dan de bloemkool, dan koken en dan smullen.",
+        start:"We gaan bloemkoolsoep maken. Wat doe je als allereerste? Kom maar tikken.",
+        verder:"Goed. En wat doe je daarna?",
         slot:"Waarom was je eerst je handen? (Zo komen er geen vieze bacteriën in je eten.) Wanneer was jij vandaag je handen?" },
       { type:"sorteer", naam:"Elke dag of af en toe?", titel:"Wit: elke dag of af en toe?",
         bakken:[ {id:"dag", naam:"Elke dag", ico:"elkedag", kleur:"#4F8F3A"}, {id:"soms", naam:"Af en toe", ico:"afentoe", kleur:"#7650A6"} ],
         items:[ {ico:"bloemkool", naam:"bloemkool", bak:"dag"}, {ico:"slagroom", naam:"slagroom", bak:"soms"}, {ico:"melk", naam:"melk", bak:"dag"},
                 {ico:"wittechocola", naam:"witte chocola", bak:"soms"}, {ico:"ei", naam:"ei", bak:"dag"}, {ico:"spekjes", naam:"spekjes", bak:"soms"},
                 {ico:"yoghurt", naam:"yoghurt", bak:"dag"}, {ico:"suikerspin", naam:"suikerspin", bak:"soms"} ],
-        klaar:"Goed zo! Alles staat in de goede mand.",
-        start:"Allemaal witte dingen! Sleep ze naar de goede mand. Iets voor elke dag, of iets voor af en toe, zoals op een feestje?",
+        klaar:"Goed zo. Alles staat in de goede mand.",
+        start:"Allemaal witte dingen. Sleep ze naar de goede mand. Iets voor elke dag, of iets voor af en toe, zoals op een feestje?",
         slot:"Zie je? Wit kan gezond zijn, maar ook snoep. De kleur zegt het niet. Wat eet jij elke dag?" },
       { type:"goedvoor", naam:"Goed voor je…?", titel:"Waar is bloemkool goed voor?",
-        opties:[ {lijf:"huid", naam:"wondjes genezen", goed:true, uitleg:"Ja! In bloemkool zitten vitamientjes. Die helpen je lijf om een wondje weer dicht te maken."},
+        opties:[ {lijf:"huid", naam:"wondjes genezen", goed:true, uitleg:"Ja, in bloemkool zitten vitamientjes. Die helpen je lijf om een wondje weer dicht te maken."},
                  {lijf:"haar", naam:"je haar", goed:false, uitleg:"Nee, van bloemkool krijg je geen lang haar."},
                  {lijf:"oren", naam:"je oren", goed:false, uitleg:"Nee, je oren hebben niks aan bloemkool."} ],
-        start:"Waar is bloemkool goed voor? Wondjes genezen, je haar of je oren? Tik op het plaatje!",
+        start:"Waar is bloemkool goed voor? Wondjes genezen, je haar of je oren? Tik op het plaatje.",
         slot:"Bloemkool helpt je lijf om wondjes te genezen. Wie heeft er weleens een pleister gehad?" }
     ]
   },
@@ -75,8 +75,8 @@ LESSEN.bloemkool = {
     vertel:{ g56:"Vertel het de klas: “Ik vind hem lekker, want…” of “Ik vind hem niet lekker, want…”", g78:"Vertel het de klas: wat maakt dat jij hem wel of niet lekker vindt? Proef je de bloemkool? Is de smaak mild of juist sterk?" }
   },
   speur:{ titel:"Speur mee: wat zit er in de soep?",
-    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zes zitten erin, vijf niet. Let op: niet alles wat op bloemkool lijkt, zit erin! Sleep of tik." },
-    opgelost:"Opgelost! In de soep zitten bloemkool, ui, aardappel, knoflook, water en een snufje zout.",
+    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zes zitten erin, vijf niet. Let op: niet alles wat op bloemkool lijkt, zit erin. Sleep of tik." },
+    opgelost:"Opgelost: in de soep zitten bloemkool, ui, aardappel, knoflook, water en een snufje zout.",
     goed:["bloemkool","ui","aardappel","knoflook","water","zout"],
     fout:["broccoli","banaan","aardbei","tomaat","wortel"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
@@ -86,7 +86,7 @@ LESSEN.bloemkool = {
     wat:"Wat denk jij? Kies samen A, B of C. Tik daarna op het antwoord van de klas.",
     antwoord:["De bloemkool groeit midden in de plant. Grote groene bladeren groeien eromheen, net een paraplu.",
               "Daardoor komt er bijna geen zonlicht bij. En zonder zonlicht maakt een plant geen groen kleurstofje: geen bladgroen.",
-              "Soms binden boeren de bladeren zelfs dicht boven de bloemkool. Zo blijft hij mooi wit!"]
+              "Soms binden boeren de bladeren zelfs dicht boven de bloemkool. Zo blijft hij mooi wit."]
   },
   lichaam:{
     plaatje:"feitfabel",
@@ -94,12 +94,12 @@ LESSEN.bloemkool = {
     onthoud:"In bloemkool zit veel vitamine C. Die helpt je om niet ziek te worden en om wondjes te genezen. Kook hem kort, dan blijven de vitamines erin.",
     act:{
       g56:{ type:"kaarten", v:"Bij welke twee dingen helpt bloemkool? Tik een plaatje aan.", opties:[
-        {key:"afweer", naam:"Niet ziek worden", goed:true,  uitleg:"Ja! In bloemkool zit veel vitamine C. Die helpt je lichaam om ziektes buiten de deur te houden."},
-        {key:"huid",   naam:"Wondjes genezen",  goed:true,  uitleg:"Ja! Vitamine C helpt je lichaam om een wondje weer dicht te maken."},
+        {key:"afweer", naam:"Niet ziek worden", goed:true,  uitleg:"Ja, in bloemkool zit veel vitamine C. Die helpt je lichaam om ziektes buiten de deur te houden."},
+        {key:"huid",   naam:"Wondjes genezen",  goed:true,  uitleg:"Ja, vitamine C helpt je lichaam om een wondje weer dicht te maken."},
         {key:"haar",   naam:"Lang haar",        goed:false, uitleg:"Nee, van bloemkool krijg je geen langer haar."},
         {key:"oren",   naam:"Beter horen",      goed:false, uitleg:"Nee, je oren hebben niks aan extra bloemkool."},
         {key:"spieren",naam:"Sterke spieren",   goed:false, uitleg:"Niet echt. Voor spieren heb je vooral eiwit nodig, uit bonen, ei, vis of vlees."},
-        {key:"rennen", naam:"Harder rennen",    goed:false, uitleg:"Nee, je wordt er niet sneller van. Wel gezonder!"}
+        {key:"rennen", naam:"Harder rennen",    goed:false, uitleg:"Nee, je wordt er niet sneller van. Wel gezonder."}
       ]},
       g78:{ type:"sorteer", v:"Feit of fabel? Sleep elk kaartje naar het goede vak (of tik het kaartje en dan het vak).", bakken:[
         {id:"feit", naam:"Feit", kleur:"#4F8F3A"}, {id:"fabel", naam:"Fabel", kleur:"#7650A6"}],
@@ -115,7 +115,7 @@ LESSEN.bloemkool = {
   },
   koppel:{
     titel:"Bloemkool in alle kleuren",
-    v:{ g56:"Bloemkool is niet altijd wit! Elke soort heeft een eigen naam. Lees de hint goed, tik op het plaatje en daarna op de naam.",
+    v:{ g56:"Bloemkool is niet altijd wit. Elke soort heeft een eigen naam. Lees de hint goed, tik op het plaatje en daarna op de naam.",
         g78:"Zes soorten bloemkool. Lees de hints goed: kleur en vorm verraden welke het is." },
     lijst:[   // rasnamen verklappen de kleur niet: de hint helpt
       {key:"wit", naam:"Snowball", hint:"Heet naar iets wat je in de winter naar elkaar gooit. Welke kleur heeft dat?"},
@@ -126,9 +126,9 @@ LESSEN.bloemkool = {
       {key:"fioretto", naam:"Fioretto", hint:"Losse roosjes op lange, dunne steeltjes. De steel eet je ook op."}
     ],
     g56:["wit","paars","oranje","groen"],   // alleen deze bij de middenbouw
-    goedZo:"Ja! Dat is de {naam}.",
+    goedZo:"Ja, dat is de {naam}.",
     mis:"Nee, die past niet. Kijk nog eens naar de kleur en de vorm.",
-    slot:"Super! Wit, paars, oranje of groen: het blijft allemaal bloemkool. Welke zou jij willen proeven?"
+    slot:"Mooi. Wit, paars, oranje of groen: het blijft allemaal bloemkool. Welke zou jij willen proeven?"
   },
   quiz:{
     g56:[
@@ -166,11 +166,11 @@ LESSEN.bloemkool = {
   maak:{
     titel:"Aan de slag: wit op wit!",
     stappen:{
-      g56:["Teken met wit waskrijt een grote bloemkool op wit papier. Druk stevig! Je ziet nog bijna niks.","Teken er ook bladeren omheen, net een paraplu.","Verf er met waterverf of ecoline overheen. Kijk: je bloemkool komt tevoorschijn!"],
+      g56:["Teken met wit waskrijt een grote bloemkool op wit papier. Druk stevig. Je ziet nog bijna niks.","Teken er ook bladeren omheen, net een paraplu.","Verf er met waterverf of ecoline overheen. Kijk: je bloemkool komt tevoorschijn."],
       g78:["Teken met wit waskrijt een grote bloemkool op wit papier. Druk stevig: het krijt moet dik op het papier zitten.","Teken de bolletjes van de bloemkool en de bladeren eromheen. Je ziet nog bijna niks, dus onthoud waar alles zit.","Verf met ecoline of waterverf over je hele papier. Gebruik groen voor de bladeren en een andere kleur voor de achtergrond.","Het krijt stoot de verf af: je witte tekening komt tevoorschijn. Waar heb je te zacht gedrukt?"]
     },
     nodig:["Wit tekenpapier (stevig)","Wit waskrijt","Waterverf of ecoline","Dikke kwast"],
-    zeg:"Wit op wit: ik ben benieuwd wat er bij jou tevoorschijn komt!",
+    zeg:"Wit op wit: ik ben benieuwd wat er bij jou tevoorschijn komt.",
     voorbeeldAlt:"Voorbeeld: een witte bloemkool met bladeren, getekend met wit waskrijt, die zichtbaar wordt onder groene en blauwe ecoline"
   }
 };

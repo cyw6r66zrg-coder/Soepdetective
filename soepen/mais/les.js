@@ -27,31 +27,31 @@ LESSEN.mais = {
     kleur:"geel",
     kleurspel:{ type:"zoek", items:[ {k:"banaan",goed:true}, {k:"broccoli",goed:false}, {k:"mais",goed:true}, {k:"tomaat",goed:false},
                                      {k:"aardbei",goed:false}, {k:"wortel",goed:false}, {k:"pompoen",goed:false}, {k:"paprika",goed:false} ] },
-    smaak:{ goed:["zoet"], uitleg:"Maïs is van zichzelf een beetje zoet. Daarom proeft maïssoep zoet en zacht!" },
+    smaak:{ goed:["zoet"], uitleg:"Maïs is van zichzelf een beetje zoet. Daarom proeft maïssoep zoet en zacht." },
     // spellen: elk spel is een eigen dia, in deze volgorde. Spelvormen: volgorde, pluk, goedvoor, kleuren, sorteer, vormen, maakgezicht, tel, pop.
     spellen:[
       { type:"pop", naam:"Pop!", titel:"Pop! Maak popcorn!", korrel:"ob-korrel", popcorn:"ob-popcorn", aantal:6,
-        start:"Tik op een maïskorrel in de pan… en luister: POP! Tel samen hoeveel popcorn we maken.",
-        klaar:"Wat een popcorn! Alle korrels zijn gepopt.",
+        start:"Tik op een maïskorrel in de pan… en luister: POP. Tel samen hoeveel popcorn we maken.",
+        klaar:"Wat een popcorn. Alle korrels zijn gepopt.",
         slot:"Hoe zou dat komen, dat een korreltje zo knalt? (Er zit een druppeltje water in. Als het heet wordt, knalt de korrel open!)" },
       { type:"volgorde", naam:"Wat wordt het?", titel:"Van maïsplant tot popcorn",
         stappen:[ {img:"ob-plant", naam:"de maïsplant"}, {img:"ob-kolf", naam:"de maïskolf"},
                   {img:"ob-korrels", naam:"de korrels"}, {img:"ob-popcorn", naam:"de popcorn"} ],
-        klaar:"Goed zo! Van een hoge plant naar een bakje popcorn.",
+        klaar:"Goed zo. Van een hoge plant naar een bakje popcorn.",
         start:"Wat komt er eerst? Kom maar tikken!",
         verder:"En wat komt daarna?",
-        slot:"De maïsplant wordt heel hoog, wel hoger dan de juf! Wie heeft weleens een maïsveld gezien?" },
+        slot:"De maïsplant wordt heel hoog, wel hoger dan de juf. Wie heeft weleens een maïsveld gezien?" },
       { type:"kleuren", naam:"Maïs in alle kleuren", titel:"Maïs in alle kleuren!", ding:"maïskolf", lidwoord:"de",
         items:[ {img:"koppel-suikermais", kleur:"geel"}, {img:"koppel-blauw", kleur:"blauw"}, {img:"koppel-rood", kleur:"rood"},
                 {img:"koppel-wit", kleur:"wit"}, {img:"koppel-paars", kleur:"paars"} ],
-        klaar:"Goed zo! Geel, blauw, rood, wit en paars: allemaal maïs!",
+        klaar:"Goed zo. Geel, blauw, rood, wit en paars: allemaal maïs.",
         start:"Wist je dat maïs er in allerlei kleuren is? Welke kleur zoeken we? Wie weet waar hij is?",
         slot:"Welke kleur maïs zou jij willen proeven?" },
       { type:"goedvoor", naam:"Goed voor je…?", titel:"Waar is maïs goed voor?",
-        opties:[ {lijf:"rennen", naam:"spelen en rennen", goed:true, uitleg:"Ja! Maïs geeft je energie. Daar kun je lekker van spelen en rennen."},
+        opties:[ {lijf:"rennen", naam:"spelen en rennen", goed:true, uitleg:"Ja, maïs geeft je energie. Daar kun je lekker van spelen en rennen."},
                  {lijf:"haar", naam:"je haar", goed:false, uitleg:"Nee, van maïs krijg je geen lang haar."},
                  {lijf:"oren", naam:"je oren", goed:false, uitleg:"Nee, je oren hebben niks aan maïs."} ],
-        start:"Waar is maïs goed voor? Spelen en rennen, je haar of je oren? Tik op het plaatje!",
+        start:"Waar is maïs goed voor? Spelen en rennen, je haar of je oren? Tik op het plaatje.",
         slot:"Maïs geeft je energie. Laat maar zien: wie kan op de plaats rennen?" }
     ]
   },
@@ -69,8 +69,8 @@ LESSEN.mais = {
     vertel:{ g56:"Vertel het de klas: “Ik vind hem lekker, want…” of “Ik vind hem niet lekker, want…”", g78:"Vertel het de klas: wat maakt dat jij hem wel of niet lekker vindt? Proef je het zoete van de maïs?" }
   },
   speur:{ titel:"Speur mee: wat zit er in de soep?",
-    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zes zitten erin, vijf niet. Let op: niet alles wat geel is, zit in de soep! Sleep of tik." },
-    opgelost:"Opgelost! In de soep zitten maïs, ui, aardappel, knoflook, water en een snufje zout.",
+    hint:{ g56:"Wat proef je? Sleep een ingrediënt naar de pan, of tik erop.", g78:"Zes zitten erin, vijf niet. Let op: niet alles wat geel is, zit in de soep. Sleep of tik." },
+    opgelost:"Opgelost: in de soep zitten maïs, ui, aardappel, knoflook, water en een snufje zout.",
     goed:["mais","ui","aardappel","knoflook","water","zout"],
     fout:["banaan","aardbei","broccoli","tomaat","pompoen"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
   kern:{
@@ -79,7 +79,7 @@ LESSEN.mais = {
     opties:["Door er suiker op te doen","Door het water in de korrel","Door hem te bevriezen"],
     wat:"Wat denk jij? Kies samen A, B of C. Tik daarna op het antwoord van de klas.",
     antwoord:["In elke popcornkorrel zit een piepklein druppeltje water, opgesloten in een harde schil.",
-              "Als je de korrel verhit, wordt het water stoom. De stoom wil eruit, maar de schil is dicht… tot hij knalt: POP!",
+              "Als je de korrel verhit, wordt het water stoom. De stoom wil eruit, maar de schil is dicht… tot hij knalt: POP.",
               "Dat kan alleen met popmaïs: die heeft een extra harde schil."]
   },
   lichaam:{
@@ -88,8 +88,8 @@ LESSEN.mais = {
     onthoud:"Maïs geeft je energie om te spelen en te rennen. En er zitten vezels in: goed voor je buik.",
     act:{
       g56:{ type:"kaarten", v:"Bij welke twee dingen helpt maïs? Tik een plaatje aan.", opties:[
-        {key:"rennen", naam:"Spelen en rennen", goed:true, uitleg:"Ja! Maïs geeft je energie. Daar kun je lang van spelen en rennen."},
-        {key:"ogen",   naam:"Je ogen",          goed:true, uitleg:"Ja! In gele maïs zitten stofjes die goed zijn voor je ogen."},
+        {key:"rennen", naam:"Spelen en rennen", goed:true, uitleg:"Ja, maïs geeft je energie. Daar kun je lang van spelen en rennen."},
+        {key:"ogen",   naam:"Je ogen",          goed:true, uitleg:"Ja, in gele maïs zitten stofjes die goed zijn voor je ogen."},
         {key:"haar",   naam:"Lang haar",        goed:false, uitleg:"Nee, van maïs krijg je geen langer haar."},
         {key:"oren",   naam:"Beter horen",      goed:false, uitleg:"Nee, je oren hebben niks aan extra maïs."},
         {key:"spieren",naam:"Sterke spieren",   goed:false, uitleg:"Niet echt. Voor spieren heb je vooral eiwit nodig, uit bonen, ei, vis of vlees."},
@@ -109,11 +109,11 @@ LESSEN.mais = {
   },
   koppel:{
     titel:"Ken jij deze maïs?",
-    v:{ g56:"Maïs is er in veel soorten! Lees de hint, tik op het plaatje en daarna op de naam. Of sleep het plaatje naar de naam.",
-        g78:"Acht soorten maïs! Lees de hints goed: vorm en kleur verraden welke maïs het is." },
+    v:{ g56:"Maïs is er in veel soorten. Lees de hint, tik op het plaatje en daarna op de naam. Of sleep het plaatje naar de naam.",
+        g78:"Acht soorten maïs. Lees de hints goed: vorm en kleur verraden welke maïs het is." },
     lijst:[
       {key:"suikermais", naam:"Suikermaïs", hint:"Geel en zoet. Die eet je van de kolf of uit blik."},
-      {key:"minimais", naam:"Minimaïs", hint:"Een piepklein kolfje. Je eet hem helemaal op!"},
+      {key:"minimais", naam:"Minimaïs", hint:"Een piepklein kolfje. Je eet hem helemaal op."},
       {key:"blauw", naam:"Blauwe maïs", hint:"Donkerblauw, bijna zwart. Er worden blauwe chips van gemaakt."},
       {key:"bont", naam:"Bonte maïs", hint:"Elke korrel een andere kleur, net glimmende knikkers."},
       {key:"wit", naam:"Witte maïs", hint:"Wit tot lichtgeel, net parels."},
@@ -122,9 +122,9 @@ LESSEN.mais = {
       {key:"popmais", naam:"Popmaïs", hint:"Kleine, harde korrels. Hier maak je popcorn van."}
     ],
     g56:["suikermais","minimais","blauw","bont"],   // alleen deze bij de middenbouw
-    goedZo:"Ja! Dat is de {naam}.",
+    goedZo:"Ja, dat is de {naam}.",
     mis:"Nee, die past niet. Kijk nog eens naar de vorm en de kleur.",
-    slot:"Super! Maïs is er in allerlei maten en kleuren."
+    slot:"Mooi. Maïs is er in allerlei maten en kleuren."
   },
   quiz:{
     g56:[
@@ -133,7 +133,7 @@ LESSEN.mais = {
       { v:"Waar komt maïs oorspronkelijk vandaan?", a:["Uit Mexico","Uit Nederland","Uit China"], goed:0, img:"veld",
         weetje:"Maïs komt uit Mexico. Duizenden jaren geleden maakten mensen daar maïs van een wild gras." },
       { v:"Wat kun je allemaal van maïs maken?", a:["Popcorn, tortilla's en cornflakes","Alleen soep","Kaas en melk"], goed:0, img:"producten",
-        weetje:"Van maïs maak je popcorn, tortilla's, cornflakes, chips en natuurlijk maïssoep!" }
+        weetje:"Van maïs maak je popcorn, tortilla's, cornflakes, chips en natuurlijk maïssoep." }
     ],
     g78:[
       { v:"Aan een maïskolf zitten honderden draadjes. Waar zijn die voor?", a:["Ze beschermen tegen de kou","Elk draadje hoort bij één korrel","Ze lokken vogels"], goed:1, img:"draadjes",
@@ -145,19 +145,19 @@ LESSEN.mais = {
     ]
   },
   galgje:{   // midden- en bovenbouw: komt vanzelf vóór Kijk-kunst. Lang woord uit de les, met tip en uitleg.
-    g56:{ woord:"POPCORNKORREL", tip:"Als je deze verhit, knalt hij open.", uitleg:"Er zit een druppeltje water in dat stoom wordt: POP!" },
+    g56:{ woord:"POPCORNKORREL", tip:"Als je deze verhit, knalt hij open.", uitleg:"Er zit een druppeltje water in dat stoom wordt: POP." },
     g78:{ woord:"BIOSCOOPFILM", tip:"Hierbij eet je vaak een grote bak popcorn.", uitleg:"Popcorn is de bekendste snack in de bioscoop. Het wordt gemaakt van een speciaal soort maïs: pofmaïs." }
   },
   kunst:{
     titel:"Kijk-kunst: een paleis van maïs", werk:"De Corn Palace", maker:"wisselende kunstenaars, elk jaar nieuw", jaar:"sinds 1892", plek:"Mitchell, South Dakota (VS)",
     link:"https://en.wikipedia.org/wiki/Corn_Palace",
     linkUitleg:"Opent een pagina met foto's van de Corn Palace.",
-    intro:"In Amerika staat een gebouw dat helemaal versierd is met maïs! Elk jaar komen er nieuwe muurschilderingen op, gemaakt van wel 275.000 maïskolven in allerlei kleuren.",
+    intro:"In Amerika staat een gebouw dat helemaal versierd is met maïs. Elk jaar komen er nieuwe muurschilderingen op, gemaakt van wel 275.000 maïskolven in allerlei kleuren.",
     vragen:{
       g56:[
-        {v:"Wat zie je? Kun je zien dat het van maïs is?", uitleg:"De plaatjes op de muur zijn gemaakt van maïskolven in verschillende kleuren. Van ver lijkt het een schilderij!"},
-        {v:"Welke kleuren zie je? Waar komen die kleuren vandaan?", uitleg:"Maïs is er in veel kleuren: geel, rood, bruin, paars, wit. Er is geen verf gebruikt!"},
-        {v:"Waarom zouden ze de plaatjes elk jaar opnieuw maken?", uitleg:"De maïs verkleurt in de zon, en vogels eten ervan! Daarom komen er elk jaar nieuwe."}
+        {v:"Wat zie je? Kun je zien dat het van maïs is?", uitleg:"De plaatjes op de muur zijn gemaakt van maïskolven in verschillende kleuren. Van ver lijkt het een schilderij."},
+        {v:"Welke kleuren zie je? Waar komen die kleuren vandaan?", uitleg:"Maïs is er in veel kleuren: geel, rood, bruin, paars, wit. Er is geen verf gebruikt."},
+        {v:"Waarom zouden ze de plaatjes elk jaar opnieuw maken?", uitleg:"De maïs verkleurt in de zon, en vogels eten ervan. Daarom komen er elk jaar nieuwe."}
       ],
       g78:[
         {v:"Wat zie je? Kun je zien dat het van maïs is?", uitleg:"De muurschilderingen zijn gemaakt van doorgezaagde maïskolven, vastgespijkerd op de muur."},

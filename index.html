@@ -39,7 +39,7 @@
 }
 *{box-sizing:border-box}
 html,body{height:100%}
-body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weight:700;font-size:clamp(16px,calc(var(--vw)*1.45),21px);line-height:1.4;margin:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-weight:600;font-size:clamp(16px,calc(var(--vw)*1.45),21px);line-height:1.4;margin:0}
 button{font:inherit;color:inherit;cursor:pointer}
 button:focus-visible,a:focus-visible{outline:4px solid var(--purple);outline-offset:3px}
 h1,h2,h3{font-family:var(--display);font-weight:800;line-height:1.05;margin:0;text-wrap:balance}
@@ -689,6 +689,9 @@ html.dia .obles:has(.obzp) .obrow{margin-top:0}
 .band h2::after{content:"";position:absolute;left:0;bottom:-2px;width:min(140px,40%);height:6px;border-radius:6px;background:var(--orange);transform:rotate(-1deg)}
 html.dia .band{padding:14px 44px 0}
 html.dia .band h2{font-size:40px}
+/* 7. Rustiger letters: het ronde Baloo alleen voor koppen en grote getallen; labels en knoppen in Nunito */
+.obknop,.obgoedkaart,.obkleurkaart,.obitem,.obvak,.obschaduw,.soepkaart,.obzpring b,.obtelvraag,.face b,.obbak h3,.obmemkaart .voor,.obster,.vote button,.item,.opt,.card,.ing{font-family:var(--body);font-weight:800}
+.juf b,.say .bubble b{font-weight:800}
 /* telefoon staand: kleuterspellen passend maken */
 @media (max-width:520px){
   .obplek{gap:6px;width:100%}
@@ -728,7 +731,7 @@ html.dia .band h2{font-size:40px}
   </footer>
 </div>
 
-<script>const VERSIE="2026-11-15d";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
+<script>const VERSIE="2026-11-15e";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
 document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</script>
 <script>
 /* ============ INHOUD ============
@@ -916,7 +919,7 @@ function actKaarten(a){
   return `<div class="count"><span>Gevonden: <b>${gev} van ${goed.length}</b></span><span class="slots">${goed.map((_,i)=>`<span class="slot ${i<gev?"full":""}"></span>`).join("")}</span></div>
     <div class="bodies" style="--n:${a.opties.length}">${a.opties.map(o=>{ const open=state.kaartOpen.has(o.key);
       return `<button class="body ${open?(o.goed?"yes":"nope"):""}" data-kaart="${o.key}" ${open||klaar?"disabled":""}>${img(pad.lijf(o.key), o.naam)}<b>${esc(o.naam)}</b>
-        ${open?`<small>${esc(o.uitleg)}</small><span class="mark ${o.goed?"ok":"no"}">${o.goed?"Klopt!":"Nee"}</span>`:""}</button>`; }).join("")}</div>
+        ${open?`<small>${esc(o.uitleg)}</small><span class="mark ${o.goed?"ok":"no"}">${o.goed?"Klopt.":"Nee"}</span>`:""}</button>`; }).join("")}</div>
     ${klaar ? "" : `<div class="row"><button class="ghost" id="kaartAll">Toon het antwoord</button></div>`}`;
 }
 function actSorteer(a, opdracht, plaatje){
@@ -967,7 +970,7 @@ SCHERM.quiz = () => {
         <div class="opts ${done?"revealed":""}">${q.a.map((t,i)=>{
           const cls = done && i===q.goed ? "good" : done && i===state.gekozen ? "bad" : "";
           return `<button class="opt ${cls}" data-ans="${i}" ${done?"disabled":""}><span class="l">${"ABC"[i]}</span><span>${esc(t)}</span></button>`; }).join("")}</div>
-        ${done ? `<div class="fact ${juist?"":"miss"}"><b>${juist?"Goed zo!":"Bijna! Het goede antwoord is "+"ABC"[q.goed]+"."}</b><p>${esc(q.weetje)}</p></div>`
+        ${done ? `<div class="fact ${juist?"":"miss"}"><b>${juist?"Goed zo.":"Bijna! Het goede antwoord is "+"ABC"[q.goed]+"."}</b><p>${esc(q.weetje)}</p></div>`
                : zeg("Kies samen A, B of C. Tik daarna op het antwoord van de klas.")}
         <div class="row">${done ? (last ? verder() : `<button class="btn" id="nextQ">Volgende vraag</button>`) : ""}${state.q>0?`<button class="ghost" id="prevQ">Vorige vraag</button>`:""}</div>
       </div>
@@ -997,7 +1000,7 @@ SCHERM.galgje = () => {
     </div>
   </div>
     <div class="row">${klaar ? `${verder()}<button class="ghost" id="galgOpnieuw">Nog een keer</button>` : ""}</div>
-    ${geraden ? zeg(`Goed zo! Het woord was <b>${esc(woord)}</b>. ${esc(g.uitleg||"")}`,"win") : over ? zeg(`Het woord was <b>${esc(woord)}</b>. ${esc(g.uitleg||"")}`) : zeg("Kies samen een letter. Zit hij in het woord? Begin maar met een klinker: A, E, I, O of U!")}</div>`;
+    ${geraden ? zeg(`Goed zo! Het woord was <b>${esc(woord)}</b>. ${esc(g.uitleg||"")}`,"win") : over ? zeg(`Het woord was <b>${esc(woord)}</b>. ${esc(g.uitleg||"")}`) : zeg("Kies samen een letter. Zit hij in het woord? Begin maar met een klinker: A, E, I, O of U.")}</div>`;
 };
 function galgRaad(c){
   if (state.scherm<0 || stappen()[state.scherm].id!=="galgje" || state.gLetters.includes(c)) return;
@@ -1096,7 +1099,7 @@ SCHERM["ob-kleur"] = () => {
       <div class="obkleuren">${keuzes.map(k=>`<button class="obkleur ${state.obKleurKeus===k?(goed?"goed":"mis"):""} ${state.obSchud===k?"shake":""}" data-obkleur="${k}">${vlek(k)}<b>${k}</b></button>`).join("")}</div>
     </div>
     <div class="row obrow">${goed ? (spel ? `<button class="btn obgroot" id="obKleurSpel">${spel.type==="meng"?`Kun jij ${doel} maken?`:`Wat is er nog meer ${doel}?`}</button>` : verder()) : ""}${obFb()}</div>
-    ${juf(goed ? `Ja, de soep is ${doel}! Wie ziet er in de klas nog meer iets wat ${doel} is?` : "Kijk naar je soep. Welke kleur heeft hij? Kom maar tikken!")}</div>`;
+    ${juf(goed ? `Ja, de soep is ${doel}! Wie ziet er in de klas nog meer iets wat ${doel} is?` : "Kijk naar je soep. Welke kleur heeft hij? Kom maar tikken.")}</div>`;
   }
   return spel.type==="meng" ? obMeng(doel) : obZoek(doel, spel);
 };
@@ -1129,7 +1132,7 @@ SCHERM["ob-proef"] = () => {
       return `<button class="obknop obsmaak ${aan?"gekozen":""} ${juist?"juist":""}" data-obsmaak="${k}" aria-pressed="${aan}"><span class="emo">${e}</span><b>${k}</b></button>`; }).join("")}</div>
   </div>
     <div class="row obrow">${toon ? verder() : (state.obSmaak.length ? `<button class="btn obgroot" id="obSmaakToon">Wat proef je in ${esc(LES.naam.toLowerCase())}?</button>` : "")}${toon && sm.uitleg ? `<div class="obfb ok">${esc(sm.uitleg)}</div>` : ""}</div>
-    ${juf(toon ? "Proefde jij dat ook? Neem nog een hapje en proef het nog eens!" : "Neem een hapje van je soep. Hoe proeft hij? Zoet, zuur, zout of pittig? Je mag meer smaakjes kiezen.")}</div>`;
+    ${juf(toon ? "Proefde jij dat ook? Neem nog een hapje en proef het nog eens." : "Neem een hapje van je soep. Hoe proeft hij? Zoet, zuur, zout of pittig? Je mag meer smaakjes kiezen.")}</div>`;
 };
 
 /* 2. Hoe lekker? */
@@ -1149,7 +1152,7 @@ SCHERM["ob-schaduw"] = () => {
   if (klaar) return band("Dit waren de groenten!") + `<div class="inner obles">
       <div class="obklaar">${lijst.map(k=>`<figure>${img(pad.ing(k))}<figcaption>${esc(INGREDIENTEN[k])}</figcaption></figure>`).join("")}</div>
       <div class="row">${verder()}<button class="ghost" id="obSchaduwOpnieuw">Nog een keer</button></div>
-      ${juf("Welke groenten zouden er in de soep zitten? Dat gaan we nu ontdekken!")}</div>`;
+      ${juf("Welke groenten zouden er in de soep zitten? Dat gaan we nu ontdekken.")}</div>`;
   const k=lijst[state.obI], naam=INGREDIENTEN[k];
   return band("Wie ben ik?") + `<div class="inner obles"><div class="obspel">
       <button class="obschaduw ${state.obOnthuld?"onthuld":""}" id="obOnthul" ${state.obOnthuld?"disabled":""} aria-label="${state.obOnthuld?esc(naam):"Wie ben ik? Tik om te zien"}">${img(pad.ing(k))}<b>${state.obOnthuld?esc(naam):"?"}</b></button>
@@ -1158,7 +1161,7 @@ SCHERM["ob-schaduw"] = () => {
         ${!state.obOnthuld ? `<button class="btn obgroot" id="obOnthul2">Laat zien!</button>`
           : `<div class="obfb ok">Ik ben een ${esc(naam.toLowerCase())}!</div><button class="btn obgroot" id="obVolgende">${state.obI===lijst.length-1?"Klaar!":"Volgende schaduw"}</button>`}
       </div></div>
-    ${juf(state.obOnthuld ? `Had je het goed? Wie heeft weleens een ${esc(naam.toLowerCase())} in het echt gezien?` : "Welke groente zit er achter de schaduw? Kijk goed naar de vorm. Weet je het? Fluister het tegen je buurman!")}</div>`;
+    ${juf(state.obOnthuld ? `Had je het goed? Wie heeft weleens een ${esc(naam.toLowerCase())} in het echt gezien?` : "Welke groente zit er achter de schaduw? Kijk goed naar de vorm. Weet je het? Fluister het tegen je buurman.")}</div>`;
 };
 
 /* 4. Wat zit erin? Groenten naar de pan tikken of slepen. */
@@ -1166,17 +1169,17 @@ const obErin = () => [...obGoed(), ...["water","zout"].filter(k=>LES.speur.goed.
 SCHERM["ob-erin"] = () => {
   const goed=obErin(), alle = state.obMix2 || (state.obMix2 = shuffle([...goed, ...obNiet()]));
   const klaar = goed.every(k=>state.obPan.includes(k));
-  return band(klaar ? "Dit zat er in de soep!" : "Wat zit er in de soep?") + `<div class="inner obles"><div class="oberin">
+  return band(klaar ? "Dit zat er in de soep." : "Wat zit er in de soep?") + `<div class="inner obles"><div class="oberin">
     <div class="obgroenten">${alle.map(k=> state.obPan.includes(k) ? `<span class="obleeg"></span>`
       : `<button class="obgroente ${state.obNee.includes(k)?"nee":""} ${state.obSchud===k?"shake":""}" data-obgroente="${k}" ${state.obNee.includes(k)||klaar?"disabled":""}>${img(pad.ing(k))}</button>`).join("")}</div>
     <div class="obpan" id="obPan">${img(pad.soep("pan"),"De pan")}<div class="obinpan">${state.obPan.map(k=>img(pad.ing(k))).join("")}</div></div>
   </div>
     <div class="row obrow">${klaar ? verder() : `<span class="obteller">${state.obPan.length} van ${goed.length}</span>`}${obFb()}</div>
-    ${juf(klaar ? "Welke groente proef jij het best in de soep? En wist je dat er ook water en een snufje zout in gaan?" : "Wat zou er in de soep zitten? Proef nog eens! Sleep het naar de pan, of tik erop.")}</div>`;
+    ${juf(klaar ? "Welke groente proef jij het best in de soep? En wist je dat er ook water en een snufje zout in gaan?" : "Wat zou er in de soep zitten? Proef nog eens. Sleep het naar de pan, of tik erop.")}</div>`;
 };
 function obInPan(k){
   if (obErin().includes(k)) { speel("plons"); state.obPan.push(k); const nog=obErin().filter(x=>!state.obPan.includes(x)).length;
-    state.obMelding={ok:true,t:nog?`Ja! ${INGREDIENTEN[k]} gaat in de soep.`:"Goed zo! Alles zit in de pan."}; if(!nog) confetti(); }
+    state.obMelding={ok:true,t:nog?`Ja, ${INGREDIENTEN[k]} gaat in de soep.`:"Alles zit in de pan."}; if(!nog) confetti(); }
   else { state.obNee.push(k); state.obSchud=k; state.obMelding={ok:false,t:`Nee hoor, ${INGREDIENTEN[k].toLowerCase()} gaat er niet in!`}; }
   render(); state.obSchud=null;
 }
@@ -1246,9 +1249,9 @@ SPEL.sorteer = sp => {
 };
 function obPlaats(i, bak){
   const sp=spelNu(), it=sp.items[i], b=sp.bakken.find(x=>x.id===bak);
-  if (it.bak===bak){ state.obGeplaatst[i]=bak; state.obMelding={ok:true,t:`Ja! ${Hoofd(it.naam)}: ${b.naam.toLowerCase()}.`};
-    if (Object.keys(state.obGeplaatst).length===sp.items.length){ state.obMelding={ok:true,t:sp.klaar||"Goed zo! Alles staat in de goede mand."}; confetti(); } }
-  else { state.obSchud=i; state.obMelding={ok:false,t:"Hmm, denk nog eens na. Probeer de andere mand!"}; }
+  if (it.bak===bak){ state.obGeplaatst[i]=bak; state.obMelding={ok:true,t:`Ja, ${Hoofd(it.naam)}: ${b.naam.toLowerCase()}.`};
+    if (Object.keys(state.obGeplaatst).length===sp.items.length){ state.obMelding={ok:true,t:sp.klaar||"Alles staat in de goede mand."}; confetti(); } }
+  else { state.obSchud=i; state.obMelding={ok:false,t:"Hmm, denk nog eens na. Probeer de andere mand."}; }
   state.obSel=null; render(); state.obSchud=null;
 }
 
@@ -1356,7 +1359,7 @@ SCHERM["ob-memory"] = () => {
         <span class="achter">${ico("vergrootglas")}</span><span class="voor">${img(pad.ing(k),"")}<b>${esc(INGREDIENTEN[k])}</b></span></button>`; }).join("")}
   </div>
     <div class="row obrow">${klaar ? `<button class="ghost" id="obMemOpnieuw">Nog een keer!</button>` : `<span class="obteller">${state.obPaar.length} van ${n}</span>`}${obFb()}</div>
-    ${juf(klaar ? "Goed zo! Welke groenten zaten er allemaal in de soep? Noem ze nog eens!" : "Om de beurt mag iemand twee kaartjes omdraaien. Zijn ze hetzelfde? Dan heb je een paar! Zeg hardop wat je ziet.")}</div>`;
+    ${juf(klaar ? "Welke groenten zaten er allemaal in de soep? Noem ze nog eens." : "Om de beurt mag iemand twee kaartjes omdraaien. Zijn ze hetzelfde? Dan heb je een paar. Zeg hardop wat je ziet.")}</div>`;
 };
 
 /* ---- de durfpot: vast eindritueel. De sterren blijven op dit apparaat bewaard, zodat de pot week na week voller wordt. ---- */
@@ -1377,7 +1380,7 @@ SCHERM["ob-durf"] = () => {
     </div>
   </div>
     <div class="row"><button class="ghost small" id="obPotLeeg">Pot leegmaken</button></div>
-    ${juf("Wie heeft vandaag iets geproefd wat hij nog niet kende, of nog niet lekker vond? Kom naar het bord en doe een ster in de pot! Proeven is oefenen.")}</div>`;
+    ${juf("Wie heeft vandaag iets geproefd wat hij nog niet kende, of nog niet lekker vond? Kom naar het bord en doe een ster in de pot. Proeven is oefenen.")}</div>`;
 };
 
 /* ============ RENDER ============ */
@@ -1443,7 +1446,7 @@ function probeer(k){
     speel("plons");
     state.inPan.add(k); state.plons=true;
     const rest = d.goed.filter(x=>!state.inPan.has(x)).length;
-    state.melding={ok:true,t:`Ja! ${INGREDIENTEN[k]} zit erin.`+(rest?` Nog ${rest} te gaan.`:"")};
+    state.melding={ok:true,t:`Ja, ${INGREDIENTEN[k]} zit erin.`+(rest?` Nog ${rest} te gaan.`:"")};
     if(!rest) confetti();
   } else { state.fout.add(k); state.schud=k; state.melding={ok:false,t:`Nee, ${INGREDIENTEN[k].toLowerCase()} zit er niet in.`}; }
   render(); state.plons=false;
@@ -1451,7 +1454,7 @@ function probeer(k){
 function plaats(i,bak){
   const a=L(LES.lichaam.act), it=a.items[i];
   if (it.bak===bak){ state.geplaatst[i]=bak; state.sortMelding={ok:true,t:`Ja! Dat is een ${bak}.`}; if(Object.keys(state.geplaatst).length===a.items.length) confetti(); }
-  else { state.sortSchud=i; state.sortMelding={ok:false,t:"Hmm, kijk nog eens goed. Probeer het andere vak!"}; }
+  else { state.sortSchud=i; state.sortMelding={ok:false,t:"Hmm, kijk nog eens goed. Probeer het andere vak."}; }
   state.sortSel=null; render();
 }
 function koppel(k,naam){
@@ -1477,7 +1480,7 @@ async function openSoep(id){
   const soep = SOEPEN.find(s=>s.id===id && s.klaar);
   if (!soep){ naarKiezer(); return; }
   try { await laadSoep(id); } catch { LES=null; state.soep=null; Object.assign(state,vers()); state.laadFout=`Oeps, de ${soep.naam.toLowerCase()} kon niet geladen worden.`; render(); return; }
-  state.soep=id; state.laadFout=null; LES=LESSEN[id]; Object.assign(state,vers()); state.scherm=-1; render(); window.scrollTo({top:0});
+  zetAccent(soep); state.soep=id; state.laadFout=null; LES=LESSEN[id]; Object.assign(state,vers()); state.scherm=-1; render(); window.scrollTo({top:0});
   setTimeout(laadVooraf, 600);
 }
 /* Laadt alle plaatjes van de gekozen soep alvast in, zodat de les ook op trage schoolwifi zonder haperen doorloopt. */
@@ -1493,7 +1496,11 @@ function laadVooraf(){
   ["bah","nietlekker","gaatwel","lekker","heerlijk"].forEach(n=>s.add(pad.alg("smiley-"+n)));
   s.forEach(src=>{ new Image().src=src; });
 }
-function naarKiezer(){ LES=null; state.soep=null; Object.assign(state,vers()); state.scherm=-1; if(location.hash) history.pushState(null,"",location.pathname+location.search); render(); }
+/* Eigen kleur per soep (soepen.js → accent). Op de beginpagina de huiskleur. */
+function zetAccent(soep){ const st=document.documentElement.style;
+  if (soep && soep.accent){ st.setProperty('--orange',soep.accent); st.setProperty('--band',soep.accent); st.setProperty('--orange-dark',soep.accentDonker||soep.accent); }
+  else ['--orange','--band','--orange-dark'].forEach(v=>st.removeProperty(v)); }
+function naarKiezer(){ zetAccent(null); LES=null; state.soep=null; Object.assign(state,vers()); state.scherm=-1; if(location.hash) history.pushState(null,"",location.pathname+location.search); render(); }
 const vanUrl = () => { const id=decodeURIComponent(location.hash.slice(1)); id ? openSoep(id) : naarKiezer(); };
 addEventListener("hashchange", vanUrl);
 
@@ -1530,7 +1537,7 @@ document.addEventListener("click",e=>{
   if(t.id==="closeZoom"){ state.groot=false; render(); return; }
   // onderbouw
   if(d.obkleur){ const doel=ob().kleur; state.obKleurKeus=d.obkleur;
-    state.obMelding = d.obkleur===doel ? {ok:true,t:`Ja! De soep is ${doel}.`} : {ok:false,t:"Kijk nog eens goed naar de soep!"};
+    state.obMelding = d.obkleur===doel ? {ok:true,t:`Ja! De soep is ${doel}.`} : {ok:false,t:"Kijk nog eens goed naar de soep."};
     if(d.obkleur!==doel) state.obSchud=d.obkleur; render(); state.obSchud=null; return; }
   if(t.id==="obKleurSpel"){ state.obFase=2; state.obMelding=null; render(); return; }
   if(d.obverf){ if(!state.obPotten.includes(d.obverf) && state.obPotten.length<2) state.obPotten.push(d.obverf);
@@ -1538,12 +1545,12 @@ document.addEventListener("click",e=>{
   if(t.id==="obMengOpnieuw"){ state.obPotten=[]; render(); return; }
   if(d.obzoek!==undefined){ const i=+d.obzoek, it=ob().kleurspel.items[i];
     if(it.goed){ state.obGezocht.push(i); const klaar=state.obGezocht.length===ob().kleurspel.items.filter(x=>x.goed).length;
-      state.obMelding={ok:true,t:klaar?`Goed zo! Je hebt alles gevonden wat ${ob().kleur} is.`:`Ja! ${INGREDIENTEN[it.k]} is ook ${ob().kleur}.`}; if(klaar) confetti(); }
+      state.obMelding={ok:true,t:klaar?`Goed zo! Je hebt alles gevonden wat ${ob().kleur} is.`:`Ja, ${INGREDIENTEN[it.k]} is ook ${ob().kleur}.`}; if(klaar) confetti(); }
     else { state.obSchud=i; state.obMelding={ok:false,t:`Nee, ${INGREDIENTEN[it.k].toLowerCase()} is niet ${ob().kleur}.`}; }
     render(); state.obSchud=null; return; }
   if(d.obvorm!==undefined){ const sp=spelNu(), i=+d.obvorm, nu=state.obMix[state.obGevonden.length], v=sp.vormen[i].vorm, lw=x=>(x==="ster"||x==="maan")?"de":"het";
     if(i===nu){ state.obGevonden.push(i); const klaar=state.obGevonden.length===sp.vormen.length;
-      state.obMelding={ok:true,t:klaar?(sp.klaar||"Goed zo! Je hebt alle vormen gevonden."):`Ja! Dat is ${lw(v)} ${v}.`}; if(klaar) confetti(); }
+      state.obMelding={ok:true,t:klaar?(sp.klaar||"Je hebt alle vormen gevonden."):`Ja! Dat is ${lw(v)} ${v}.`}; if(klaar) confetti(); }
     else { state.obSchud=i; const zoek=sp.vormen[nu].vorm; state.obMelding={ok:false,t:`Nee, dat is ${lw(v)} ${v}. Zoek ${lw(zoek)} ${zoek}!`}; }
     render(); state.obSchud=null; return; }
   if(d.obplek){ state.obGezicht={...state.obGezicht,[d.obplek]:d.obkeusvorm}; render(); return; }
@@ -1564,7 +1571,7 @@ document.addEventListener("click",e=>{
   if(d.obtel!==undefined){ speel("tik"); const i=+d.obtel; if(!state.obGeteld.includes(i)) state.obGeteld.push(i); state.obMelding=null; render(); return; }
   if(d.obtelgetal){ const sp=spelNu(), n=sp.rondes[state.obRonde], g=+d.obtelgetal; state.obTelKeus=g;
     if(g===n){ state.obMelding={ok:true,t:`Ja! Het zijn ${n} roosjes.`}; confetti(); }
-    else { state.obSchud=g; state.obMelding={ok:false,t:"Tel nog eens samen. Wijs ze maar aan!"}; }
+    else { state.obSchud=g; state.obMelding={ok:false,t:"Tel nog eens samen. Wijs ze maar aan."}; }
     render(); state.obSchud=null; if(g!==n) state.obTelKeus=null; return; }
   if(t.id==="obTelVolgende"){ state.obRonde++; state.obGeteld=[]; state.obTelKeus=null; state.obMelding=null; render(); return; }
   if(d.obsmaak){ const k=d.obsmaak; state.obSmaak = state.obSmaak.includes(k) ? state.obSmaak.filter(x=>x!==k) : [...state.obSmaak,k]; render(); return; }
@@ -1573,7 +1580,7 @@ document.addEventListener("click",e=>{
     if(o.goed) confetti(); else { state.obGoedNee.push(d.obgoed); state.obSchud=d.obgoed; } render(); state.obSchud=null; return; }
   if(d.obkleurk!==undefined){ const sp=spelNu(), i=+d.obkleurk, nu=state.obMix[state.obGevonden.length];
     if(i===nu){ state.obGevonden.push(i); const klaar=state.obGevonden.length===sp.items.length;
-      state.obMelding={ok:true,t:klaar?(sp.klaar||"Goed zo! Je kent alle kleuren."):`Ja! Dat is de ${BUIG[sp.items[i].kleur]||sp.items[i].kleur} ${sp.ding||"wortel"}.`}; if(klaar) confetti(); }
+      state.obMelding={ok:true,t:klaar?(sp.klaar||"Je kent alle kleuren."):`Ja! Dat is de ${BUIG[sp.items[i].kleur]||sp.items[i].kleur} ${sp.ding||"wortel"}.`}; if(klaar) confetti(); }
     else { state.obSchud=i; state.obMelding={ok:false,t:`Nee, dat is de ${BUIG[sp.items[i].kleur]||sp.items[i].kleur} ${sp.ding||"wortel"}. Zoek nog eens!`}; }
     render(); state.obSchud=null; return; }
   if(d.obbak){ if(state.obSel!==null) obPlaats(state.obSel,d.obbak); else { state.obMelding={ok:false,t:"Kies eerst een plaatje."}; render(); } return; }
@@ -1585,15 +1592,15 @@ document.addEventListener("click",e=>{
   if(t.id==="obSchaduwOpnieuw"){ state.obI=0; state.obOnthuld=false; render(); return; }
   if(d.obgroente){ obInPan(d.obgroente); return; }
   if(d.obvolg!==undefined){ const sp=spelNu(), i=+d.obvolg;
-    if(i===state.obRij.length){ state.obRij.push(i); state.obMelding={ok:true,t:`Ja! ${Hoofd(sp.stappen[i].naam)}!`}; if(state.obRij.length===sp.stappen.length){ state.obMelding={ok:true,t:sp.klaar}; confetti(); } }
-    else { state.obSchud=i; state.obMelding={ok:false,t:"Nee, die komt later! Wat komt er eerst?"}; }
+    if(i===state.obRij.length){ state.obRij.push(i); state.obMelding={ok:true,t:`Ja, ${Hoofd(sp.stappen[i].naam)}!`}; if(state.obRij.length===sp.stappen.length){ state.obMelding={ok:true,t:sp.klaar}; confetti(); } }
+    else { state.obSchud=i; state.obMelding={ok:false,t:"Nee, die komt later. Wat komt er eerst?"}; }
     render(); state.obSchud=null; return; }
   if(t.id==="obVolgAlles"){ state.obRij=spelNu().stappen.map((_,i)=>i); state.obMelding=null; render(); return; }
   if(t.id==="obVolgOpnieuw"){ state.obRij=[]; state.obMix=null; state.obMelding=null; render(); return; }
   if(d.obzp){ const sp=spelNu(), rc=t.getBoundingClientRect(), x=(e.clientX-rc.left)/rc.width*100, y=(e.clientY-rc.top)/rc.height*100;
     const i=sp.dingen.findIndex((q,j)=>!state.obZoek.includes(j) && Math.hypot(x-q.x,(y-q.y)*rc.height/rc.width) <= q.r);
-    if(i>=0){ state.obZoek.push(i); const klaar=state.obZoek.length===sp.dingen.length; state.obMelding={ok:true,t:klaar?sp.klaar:`Ja! ${sp.dingen[i].naam} is wit.`}; if(klaar) confetti(); }
-    else { state.obSchud="zp"; state.obMelding={ok:false,t:sp.mis||"Hier niet. Kijk nog eens goed!"}; }
+    if(i>=0){ state.obZoek.push(i); const klaar=state.obZoek.length===sp.dingen.length; state.obMelding={ok:true,t:klaar?sp.klaar:`Ja, ${sp.dingen[i].naam} is wit.`}; if(klaar) confetti(); }
+    else { state.obSchud="zp"; state.obMelding={ok:false,t:sp.mis||"Hier niet. Kijk nog eens goed."}; }
     render(); state.obSchud=null; return; }
   if(t.id==="obZoekAlles"){ state.obZoek=spelNu().dingen.map((_,i)=>i); state.obMelding=null; render(); return; }
   if(d.obpluk!==undefined){ const sp=spelNu(), i=+d.obpluk, it=sp.items[i];
