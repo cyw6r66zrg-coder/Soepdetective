@@ -30,9 +30,10 @@ LESSEN.bloemkool = {
     spellen:[
       { type:"zoekplaat", naam:"Zoek iets wits", titel:"Wat is er wit in de keuken?", plaat:"ob-zoekplaat",
         vraag:"Tik op iets wits!",
-        // x, y = midden van het ding in % van de plaat, r = straal in % van de breedte. AANPASSEN zodra de plaat er is.
-        dingen:[ {x:30, y:60, r:9, naam:"De bloemkool"}, {x:55, y:70, r:5, naam:"Het ei"}, {x:70, y:55, r:6, naam:"De melk"},
-                 {x:45, y:75, r:5, naam:"De knoflook"}, {x:85, y:80, r:8, naam:"De poes"}, {x:75, y:15, r:8, naam:"De wolk"} ],
+        // x, y = midden van het ding in % van de plaat, r = straal in % van de breedte.
+        dingen:[ {x:20, y:70, r:15, naam:"De bloemkool"}, {x:48, y:72, r:10, naam:"De soepkom"}, {x:15, y:39, r:9, naam:"Het vergiet"},
+                 {x:56, y:38, r:9, naam:"De pan"}, {x:78, y:17, r:8, naam:"De koksmuts"}, {x:90, y:38, r:7, naam:"Het schort"},
+                 {x:73, y:56, r:7, naam:"De kan"}, {x:87, y:67, r:5, naam:"De pepermolen"}, {x:62, y:84, r:7, naam:"De lepel"} ],
         mis:"Hier niet. Is dat wel wit? Kijk nog eens goed!",
         klaar:"Goed zo! Je hebt alle witte dingen gevonden.",
         start:"Een bloemkool is wit. Wat is er nog meer wit in deze keuken? Kom maar tikken!",
