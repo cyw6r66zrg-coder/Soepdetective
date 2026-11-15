@@ -47,7 +47,7 @@ LESSEN.bloemkool = {
         slot:"Waarom was je eerst je handen? (Zo komen er geen vieze bacteriën in je eten.) Wanneer was jij vandaag je handen?" },
       { type:"sorteer", naam:"Elke dag of af en toe?", titel:"Wit: elke dag of af en toe?",
         bakken:[ {id:"dag", naam:"Elke dag", ico:"elkedag", kleur:"#4F8F3A"}, {id:"soms", naam:"Af en toe", ico:"afentoe", kleur:"#7650A6"} ],
-        items:[ {ing:"bloemkool", naam:"bloemkool", bak:"dag"}, {ico:"slagroom", naam:"slagroom", bak:"soms"}, {ico:"melk", naam:"melk", bak:"dag"},
+        items:[ {ico:"bloemkool", naam:"bloemkool", bak:"dag"}, {ico:"slagroom", naam:"slagroom", bak:"soms"}, {ico:"melk", naam:"melk", bak:"dag"},
                 {ico:"wittechocola", naam:"witte chocola", bak:"soms"}, {ico:"ei", naam:"ei", bak:"dag"}, {ico:"spekjes", naam:"spekjes", bak:"soms"},
                 {ico:"yoghurt", naam:"yoghurt", bak:"dag"}, {ico:"suikerspin", naam:"suikerspin", bak:"soms"} ],
         klaar:"Goed zo! Alles staat in de goede mand.",
@@ -115,20 +115,20 @@ LESSEN.bloemkool = {
   },
   koppel:{
     titel:"Bloemkool in alle kleuren",
-    v:{ g56:"Bloemkool is niet altijd wit! Lees de hint, tik op het plaatje en daarna op de naam. Of sleep het plaatje naar de naam.",
+    v:{ g56:"Bloemkool is niet altijd wit! Elke soort heeft een eigen naam. Lees de hint goed, tik op het plaatje en daarna op de naam.",
         g78:"Zes soorten bloemkool. Lees de hints goed: kleur en vorm verraden welke het is." },
-    lijst:[
-      {key:"wit", naam:"Witte bloemkool", hint:"De bekendste: wit als sneeuw, met groene bladeren eromheen."},
-      {key:"paars", naam:"Paarse bloemkool", hint:"Paars! Bij het koken wordt hij een beetje blauw."},
-      {key:"oranje", naam:"Oranje bloemkool", hint:"Oranje, door hetzelfde stofje als in een wortel."},
-      {key:"groen", naam:"Groene bloemkool", hint:"Lichtgroen en rond, met bolletjes net als een witte."},
-      {key:"romanesco", naam:"Romanesco", hint:"Lichtgroen, met puntige torentjes."},
+    lijst:[   // rasnamen verklappen de kleur niet: de hint helpt
+      {key:"wit", naam:"Snowball", hint:"Heet naar iets wat je in de winter naar elkaar gooit. Welke kleur heeft dat?"},
+      {key:"paars", naam:"Graffiti", hint:"Heeft de kleur van druiven of een aubergine. Bij het koken wordt hij een beetje blauw."},
+      {key:"oranje", naam:"Cheddar", hint:"Heet naar een kaas, maar heeft de kleur van een wortel."},
+      {key:"groen", naam:"Vitaverde", hint:"'Verde' is Italiaans voor de kleur van gras."},
+      {key:"romanesco", naam:"Romanesco", hint:"Puntige torentjes, en elk torentje bestaat weer uit torentjes."},
       {key:"fioretto", naam:"Fioretto", hint:"Losse roosjes op lange, dunne steeltjes. De steel eet je ook op."}
     ],
     g56:["wit","paars","oranje","groen"],   // alleen deze bij de middenbouw
     goedZo:"Ja! Dat is de {naam}.",
     mis:"Nee, die past niet. Kijk nog eens naar de kleur en de vorm.",
-    slot:"Super! Wit, paars, oranje of groen: het blijft allemaal bloemkool."
+    slot:"Super! Wit, paars, oranje of groen: het blijft allemaal bloemkool. Welke zou jij willen proeven?"
   },
   quiz:{
     g56:[
@@ -156,19 +156,12 @@ LESSEN.bloemkool = {
     // Publiek domein (Roosenboom overleed in 1896). Afbeelding: De Mesdag Collectie, Den Haag (hwm0298, olieverf op doek, 70,5 × 110,2 cm). Herkomst: in 1898 gekocht door H.W. Mesdag op de tentoonstelling in Kunstzaal Biesing; in 1903 geschonken aan de Staat.
     titel:"Kijk-kunst: een stilleven met bloemkool", werk:"Stilleven met bloemkool en andijvie", maker:"Margaretha Roosenboom", jaar:"1892 of later", plek:"De Mesdag Collectie, Den Haag",
     intro:"Margaretha Roosenboom (1843–1896) was een Nederlandse schilder uit Den Haag. Ze schilderde vooral bloemen en groenten. Dit schilderij is 110 centimeter breed: de bloemkool is bijna net zo groot als in het echt.",
-    vragen:{
-      g56:[
-        {v:"Waarom zou iemand een schilderij maken van een bloemkool?", uitleg:"Om te laten zien hoe goed je kunt schilderen: het moet lijken alsof je hem zo kunt pakken. En mensen kochten zulke schilderijen om thuis aan de muur te hangen."},
-        {v:"Toen dit geschilderd werd, had bijna niemand een fototoestel. Hoe kon je dan iets moois bewaren?", uitleg:"Door het te tekenen of te schilderen. Een bloemkool is na een week bedorven, maar op dit schilderij is hij na 130 jaar nog vers!"},
-        {v:"Wie zou dit schilderij gekocht hebben?", uitleg:"De beroemde schilder Hendrik Willem Mesdag kocht het in 1898 op een tentoonstelling in Den Haag. Hij verzamelde schilderijen van anderen. Zijn verzameling is nu een museum."}
-      ],
-      g78:[
+    vragen:(()=>{ const v=[   // midden- en bovenbouw dezelfde vragen
+        {v:"Wat zie je allemaal op het schilderij?", uitleg:"In het midden een bloemkool op zijn eigen grote bladeren. Rechts andijvie, achter de bloemkool een bruine kan, links een schaal en een takje dat naar beneden hangt."},
         {v:"Waarom schilderde iemand ruim 130 jaar geleden gewone groente?", uitleg:"Om vakmanschap te laten zien: hoe echt kun je licht, vorm en kleur maken? En om te verkopen: mensen hingen zulke stillevens thuis op."},
         {v:"Vrouwen mochten toen meestal niet naar de kunstacademie en niet tekenen naar levende modellen. Waarom kozen veel schilderessen voor stillevens?", uitleg:"Een stilleven kun je thuis maken. Je hebt geen model nodig en de groente blijft stil liggen. Zo kon Margaretha Roosenboom toch een bekende schilder worden."},
-        {v:"Kijk naar de bladeren: sommige worden al bruin. Waarom zou ze dat óók schilderen?", uitleg:"Het maakt het echter. In oudere stillevens betekende verwelkende groente ook: niets blijft voor altijd vers. Wat denk jij dat zij wilde laten zien?"},
-        {v:"De beroemde schilder Mesdag kocht dit schilderij in 1898, twee jaar nadat Margaretha Roosenboom was overleden. Waarom zou een schilder werk van een ander kopen?", uitleg:"Omdat hij het mooi vond, om ervan te leren, of om het werk te bewaren. In 1903 schonk hij zijn hele verzameling aan Nederland. Nu is het een museum in Den Haag."}
-      ]
-    }
+        {v:"Kijk naar de bladeren: sommige worden al bruin. Waarom zou ze dat óók schilderen?", uitleg:"Het maakt het echter. In oudere stillevens betekende verwelkende groente ook: niets blijft voor altijd vers. Wat denk jij dat zij wilde laten zien?"}
+      ]; return { g56:v, g78:v }; })()
   },
   maak:{
     titel:"Aan de slag: wit op wit!",
