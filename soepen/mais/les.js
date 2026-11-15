@@ -28,7 +28,7 @@ LESSEN.mais = {
     kleurspel:{ type:"zoek", items:[ {k:"banaan",goed:true}, {k:"broccoli",goed:false}, {k:"mais",goed:true}, {k:"tomaat",goed:false},
                                      {k:"aardbei",goed:false}, {k:"wortel",goed:false}, {k:"pompoen",goed:false}, {k:"paprika",goed:false} ] },
     smaak:{ goed:["zoet"], uitleg:"Maïs is van zichzelf een beetje zoet. Daarom proeft maïssoep zoet en zacht." },
-    kennis:{ kleur:{ kleuren:["#F2C200", "#7DB24A"], tekst:"Geel! Met groene blaadjes eromheen." }, grond:{ plek:"boven", tekst:"Erboven! Aan een hele hoge plant." } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
+    kennis:{ kleur:{ kleuren:["#F2C200", "#7DB24A"], tekst:"Geel! Met groene blaadjes eromheen." }, grond:{ plek:"boven", tekst:"Erboven! Aan een hele hoge plant." }, weetje:{ v:"Waarvoor zijn de haartjes aan een maïskolf?", a:"Elk haartje hoort bij één korreltje. Zonder haartje geen korrel!" } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
     // spellen: elk spel is een eigen dia, in deze volgorde. Spelvormen: volgorde, pluk, goedvoor, kleuren, sorteer, vormen, maakgezicht, tel, pop.
     spellen:[
       { type:"pop", naam:"Pop!", titel:"Pop! Maak popcorn!", korrel:"ob-korrel", popcorn:"ob-popcorn", aantal:6,

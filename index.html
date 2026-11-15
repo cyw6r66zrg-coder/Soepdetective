@@ -714,10 +714,11 @@ html.dia .kkaart{min-height:0}
 @media (max-width:820px){.kennis{grid-template-columns:1fr}.kfoto img{aspect-ratio:4/3}}
 @media (max-width:520px){.kkaarten{grid-template-columns:1fr}.kkaart{min-height:110px}}
 .obkennis{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,calc(var(--vw)*2.6),36px);flex:1 1 auto;min-height:0}
-.obkkaarten{display:grid;grid-template-rows:1fr 1fr;gap:16px;min-height:0}
-.obkkaart{min-height:clamp(150px,calc(var(--vw)*15),230px)}
-.obkkaart .kvoor b{font-size:clamp(24px,calc(var(--vw)*2.4),36px);padding-right:0}
-.obkkaart .kachter{flex-direction:row;align-items:center;gap:16px;font-family:var(--display);font-size:clamp(20px,calc(var(--vw)*2),30px)}
+.obkkaarten{display:grid;grid-auto-rows:1fr;gap:14px;min-height:0}
+.obkmasc{height:clamp(60px,calc(var(--vw)*7),100px);width:auto;flex:none;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+.obkkaart{min-height:clamp(110px,calc(var(--vw)*10),170px)}
+.obkkaart .kvoor b{font-size:clamp(22px,calc(var(--vw)*2.1),32px);padding-right:0}
+.obkkaart .kachter{flex-direction:row;align-items:center;gap:16px;font-family:var(--display);font-size:clamp(18px,calc(var(--vw)*1.7),26px)}
 .obkleurtjes{display:flex;gap:8px;flex:none}
 .obkleurtjes i{width:clamp(36px,calc(var(--vw)*4),56px);aspect-ratio:1;border-radius:50%;border:3px solid #fff;box-shadow:0 2px 6px rgba(0,0,0,.2)}
 .obgrond{width:clamp(90px,calc(var(--vw)*10),150px);flex:none;border-radius:12px;border:3px solid #fff}
@@ -762,7 +763,7 @@ html.dia .obkennis{flex:1 1 0}
   </footer>
 </div>
 
-<script>const VERSIE="2026-11-15i";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
+<script>const VERSIE="2026-11-15j";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
 document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</script>
 <script>
 /* ============ INHOUD ============
@@ -1197,10 +1198,12 @@ const grondSvg = (plek, kleur) => `<svg class="obgrond" viewBox="0 0 120 90" ari
   ${plek==="onder"
     ? `<path d="M60 47 L52 34 M60 47 L60 30 M60 47 L68 34" stroke="#4F8F3A" stroke-width="4" stroke-linecap="round"/><path d="M52 50 Q60 46 68 50 L61 84 Q60 87 59 84 Z" fill="${kleur}"/>`
     : `<path d="M60 47 L60 26" stroke="#4F8F3A" stroke-width="4"/><path d="M60 38 Q46 30 44 40 M60 34 Q74 26 76 36" stroke="#4F8F3A" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="60" cy="22" r="11" fill="${kleur}" stroke="rgba(0,0,0,.15)"/>`}</svg>`;
-SCHERM["ob-kennis"] = () => { const o=ob().kennis, naam=INGREDIENTEN[LES.mascotte].toLowerCase(), alle=state.kOpen.length===2;
+SCHERM["ob-kennis"] = () => { const o=ob().kennis, naam=INGREDIENTEN[LES.mascotte].toLowerCase();
   const kaarten=[
     {v:"Welke kleur heeft hij?", beeld:`<span class="obkleurtjes">${o.kleur.kleuren.map(c=>`<i style="background:${c}"></i>`).join("")}</span>`, a:o.kleur.tekst},
-    {v:"Groeit hij onder de grond of erboven?", beeld:grondSvg(o.grond.plek, o.kleur.kleuren[0]), a:o.grond.tekst}];
+    {v:"Groeit hij onder de grond of erboven?", beeld:grondSvg(o.grond.plek, o.kleur.kleuren[0]), a:o.grond.tekst},
+    ...(o.weetje ? [{v:o.weetje.v, beeld:`<img class="obkmasc" src="${pad.ing(LES.mascotte)}" alt="">`, a:o.weetje.a}] : [])];
+  const alle=state.kOpen.length===kaarten.length;
   return band(`Kijk, een echte ${naam}!`) + `<div class="inner obles"><div class="obkennis">
     <figure class="kfoto">${img(pad.soep("foto"),LES.kennis.fotoAlt||"")}</figure>
     <div class="obkkaarten">${kaarten.map((c,i)=>{ const om=state.kOpen.includes(i);
@@ -1620,7 +1623,7 @@ document.addEventListener("click",e=>{
   if(t.id==="obLichtAan"){ state.obLicht=true; speel("licht"); confetti(); render(); return; }
   if(t.id==="obLichtUit"){ state.obLicht=false; state.obGezicht={}; render(); return; }
   if(d.galg){ galgRaad(d.galg); return; }
-  if(d.kflip!==undefined){ const i=+d.kflip; state.kOpen = state.kOpen.includes(i) ? state.kOpen.filter(x=>x!==i) : [...state.kOpen,i]; speel("flip"); render(); if(state.kOpen.length===2 && stappen()[state.scherm].id==="ob-kennis") confetti(); return; }
+  if(d.kflip!==undefined){ const i=+d.kflip; state.kOpen = state.kOpen.includes(i) ? state.kOpen.filter(x=>x!==i) : [...state.kOpen,i]; speel("flip"); render(); if(stappen()[state.scherm].id==="ob-kennis" && state.kOpen.length===(ob().kennis.weetje?3:2)) confetti(); return; }
   if(t.id==="kennisAll"){ state.kOpen=L(LES.kennis.kaarten).map((_,i)=>i); render(); return; }
   if(t.id==="galgTip"){ state.gTip=true; speel("flip"); render(); return; }
   if(t.id==="galgOpnieuw"){ state.gLetters=[]; state.gTip=false; render(); return; }
