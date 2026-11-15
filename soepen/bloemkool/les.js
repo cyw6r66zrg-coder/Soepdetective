@@ -6,7 +6,7 @@
    LET OP: de ingrediënten (speur.goed) zijn een AANNAME. Controleer ze op het etiket van Good Soup.
    Thema: wit en licht. Bewust anders dan broccoli (dat gaat over bloemknoppen).
    Kunstwerk: Margaretha Roosenboom, Stilleven met bloemkool en andijvie (1892 of later), De Mesdag Collectie, Den Haag.
-   Publiek domein (Roosenboom overleed in 1896). Tot het plaatje er is: link naar de collectie.
+   Publiek domein (Roosenboom overleed in 1896). Afbeelding via De Mesdag Collectie.
    ========================================================================== */
 LESSEN.bloemkool = {
   naam:"Bloemkoolsoep",
@@ -152,23 +152,20 @@ LESSEN.bloemkool = {
     g78:{ woord:"BLADGROEN", tip:"Het groene kleurstofje dat planten maken met zonlicht. Een bloemkool heeft het bijna niet.", uitleg:"Zonder zon geen bladgroen. Daarom is een bloemkool wit." }
   },
   kunst:{
-    // Publiek domein. Zodra kunst.webp er is: link en linkUitleg weghalen, dan toont de les het schilderij zelf.
-    // De kijkvragen zijn algemeen gehouden: nog controleren aan de hand van het echte schilderij.
+    // Publiek domein (Roosenboom overleed in 1896). Afbeelding: De Mesdag Collectie, Den Haag.
     titel:"Kijk-kunst: een stilleven met bloemkool", werk:"Stilleven met bloemkool en andijvie", maker:"Margaretha Roosenboom", jaar:"1892 of later", plek:"De Mesdag Collectie, Den Haag",
-    link:"https://www.demesdagcollectie.nl/en/collection/hwm0298",
-    linkUitleg:"Opent de pagina van het museum met het schilderij.",
     intro:"Margaretha Roosenboom was een Nederlandse schilder uit Den Haag. Ze schilderde vooral bloemen en groenten, ruim 130 jaar geleden.",
     vragen:{
       g56:[
-        {v:"Zoek de bloemkool. Waar ligt hij?", uitleg:"Een stilleven is een schilderij van dingen die stil liggen: groente, fruit, een kan of een mand."},
-        {v:"Is de bloemkool echt helemaal wit? Welke kleuren zie je erin?", uitleg:"Kijk goed: een schilder gebruikt voor wit ook geel, grijs en een beetje blauw. Zo lijkt hij echt."},
-        {v:"Wat ligt er nog meer op het schilderij?", uitleg:"In de titel staat ook andijvie: een groene groente met krullende bladeren."}
+        {v:"Zoek de bloemkool. Wat ligt eronder?", uitleg:"Hij ligt op zijn eigen grote groene bladeren, net als een kussen. Zo groeit hij ook op het veld: midden tussen de bladeren."},
+        {v:"Wat zie je nog meer op het schilderij?", uitleg:"Rechts ligt andijvie, een groene groente met lange bladeren. Achter de bloemkool staat een bruine kan, links een schaal en er hangt een takje naar beneden."},
+        {v:"Is de bloemkool echt helemaal wit? Welke kleuren zie je erin?", uitleg:"Kijk goed: de schilder gebruikte ook geel, beige en grijs. Zo lijkt hij echt en zie je de bolletjes."}
       ],
       g78:[
-        {v:"Zoek de bloemkool. Waarom zou de schilder hem juist daar neerleggen?", uitleg:"In een stilleven kiest de schilder alles zelf: waar het ligt, waar het licht vandaan komt en wat opvalt."},
-        {v:"Hoeveel soorten wit zie je in de bloemkool?", uitleg:"Wit schilderen is moeilijk. Met gele, grijze en blauwe tinten laat de schilder zien waar licht en schaduw zitten."},
-        {v:"Waar komt het licht vandaan? Hoe zie je dat?", uitleg:"Kijk naar de lichtste plekken en naar de schaduwen. Die verraden waar het licht vandaan komt."},
-        {v:"Waarom zou iemand ruim 130 jaar geleden gewone groente schilderen?", uitleg:"Er waren nog bijna geen foto's. En voor een schilder is gewone groente een mooie oefening in vorm, kleur en licht."}
+        {v:"Waar valt je oog het eerst op? Hoe komt dat?", uitleg:"Op de bloemkool. De achtergrond is heel donker, en de lichte bloemkool ligt precies in het midden. Zo stuurt de schilder je blik."},
+        {v:"Hoeveel soorten wit zie je in de bloemkool?", uitleg:"Wit schilderen is moeilijk. Met gele, beige en grijze tinten laat ze zien waar licht en schaduw zitten."},
+        {v:"Waar komt het licht vandaan? Hoe zie je dat?", uitleg:"Kijk welke kant van de bloemkool en de bladeren het lichtst is, en waar de schaduwen vallen."},
+        {v:"Waarom zou iemand ruim 130 jaar geleden gewone groente schilderen?", uitleg:"Er waren nog bijna geen kleurenfoto's. En voor een schilder is gewone groente een mooie oefening in vorm, kleur en licht."}
       ]
     }
   },

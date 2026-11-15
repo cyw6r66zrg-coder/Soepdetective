@@ -61,7 +61,7 @@ Zes bloemkolen naast elkaar in twee rijen van drie, zonder gezichtjes, effen WIT
   een suikerspin op een stokje
   ```
 
-## Kunstwerk
+## Kunstwerk (klaar)
 Niet laten maken. Download het schilderij *Stilleven met bloemkool en andijvie* van Margaretha Roosenboom
 van de site van De Mesdag Collectie (https://www.demesdagcollectie.nl/en/collection/hwm0298) en stuur het mee.
 Het is publiek domein. Tot het er is, opent de les de museumpagina.
