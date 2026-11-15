@@ -653,6 +653,15 @@ html.dia .art>div{overflow:auto}
 /* aan de slag */
 html.dia .example{height:100%;min-height:0}
 html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:contain}
+.obzp{display:grid;grid-template-columns:minmax(0,1fr) clamp(160px,calc(var(--vw)*16),240px);gap:24px;align-items:center;flex:1 1 auto;min-height:0}
+.obzpvlak{position:relative;display:block;aspect-ratio:4/3;height:100%;max-width:100%;justify-self:center;padding:0;border:4px solid var(--orange);border-radius:24px;overflow:hidden;background:var(--card);cursor:pointer;min-height:0}
+.obzpvlak img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.obzpring{position:absolute;translate:-50% -50%;width:calc(var(--r) * 2%);aspect-ratio:1;border:6px solid var(--green);border-radius:50%;box-shadow:0 0 0 4px #fff;pointer-events:none;animation:pop .35s}
+.obzpring b{position:absolute;left:50%;top:100%;translate:-50% 6px;background:var(--green);color:#fff;border-radius:999px;padding:2px 12px;font-family:var(--display);font-size:clamp(14px,calc(var(--vw)*1.4),22px);white-space:nowrap}
+.obtelstand small{font-size:.35em;color:var(--muted)}
+html:not(.dia) .obzp{grid-template-columns:1fr}
+html:not(.dia) .obzpvlak{height:auto;width:100%}
+html.dia .obzp{flex:1 1 0}
 /* telefoon staand: kleuterspellen passend maken */
 @media (max-width:520px){
   .obplek{gap:6px;width:100%}
@@ -692,7 +701,7 @@ html.dia .example img{flex:1 1 0;min-height:0;width:100%;height:100%;object-fit:
   </footer>
 </div>
 
-<script>const VERSIE="2026-11-13c";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
+<script>const VERSIE="2026-11-15a";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
 document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</script>
 <script>
 /* ============ INHOUD ============
@@ -702,7 +711,7 @@ document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</scrip
 let LES = null;   // de les van de gekozen soep (LESSEN[state.soep])
 
 /* ============ STAAT ============ */
-const vers = () => ({ gLetters:[], gTip:false, obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obRonde:0, obGeteld:[], obTelKeus:null, obGepopt:[], obMem:null, obOpen:[], obPaar:[], obBezig:false, obSterren:0, obSchud:null, obMelding:null,
+const vers = () => ({ gLetters:[], gTip:false, obStem:[0,0,0], obSmaak:[], obSmaakToon:false, obFase:1, obKleurKeus:null, obPotten:[], obGezocht:[], obI:0, obOnthuld:false, obPan:[], obNee:[], obMix2:null, obRij:[], obMix:null, obGeplukt:[], obGoedKeus:null, obGoedNee:[], obGevonden:[], obGeplaatst:{}, obSel:null, obGezicht:{}, obLicht:false, obRonde:0, obGeteld:[], obTelKeus:null, obGepopt:[], obZoek:[], obMem:null, obOpen:[], obPaar:[], obBezig:false, obSterren:0, obSchud:null, obMelding:null,
   woorden:new Set(), stemmen:[0,0,0,0,0], inPan:new Set(), fout:new Set(), volgorde:null, melding:null, schud:null, plons:false,
   wat:[0,0,0], kernOpen:false, kaartOpen:new Set(), geplaatst:{}, sortSel:null, sortVolgorde:null, sortMelding:null, sortSchud:null,
   paren:new Set(), sel:null, naamVolgorde:null, rasMelding:null, misser:null, q:0, gekozen:null, kijk:0, uitleg:new Set(), groot:false });
@@ -1296,6 +1305,19 @@ SPEL.pop = sp => {
     ${juf(klaar ? sp.slot : sp.start)}</div>`;
 };
 
+// ZOEKPLAAT: één grote plaat; tik de goede dingen aan (bv. alles wat wit is). sp.plaat = plaatje (4:3),
+// sp.dingen = [{x, y, r, naam}] in procenten van de plaat (x,y = midden, r = straal t.o.v. de breedte).
+SPEL.zoekplaat = sp => {
+  const n=sp.dingen.length, klaar=state.obZoek.length===n;
+  return band(sp.titel) + `<div class="inner obles"><div class="obzp">
+    <button class="obzpvlak ${state.obSchud==="zp"?"shake":""}" data-obzp="1" ${klaar?"disabled":""} aria-label="Zoekplaat">${img(pad.soep(sp.plaat),"")}
+      ${sp.dingen.map((d,i)=>state.obZoek.includes(i)?`<span class="obzpring" style="left:${d.x}%;top:${d.y}%;--r:${d.r}"><b>${esc(d.naam)}</b></span>`:"").join("")}</button>
+    <div class="obtelzij"><p class="obtelvraag">${klaar ? "Alles gevonden!" : esc(sp.vraag||"Tik op iets wits!")}</p><div class="obtelstand">${state.obZoek.length}<small> van ${n}</small></div></div>
+  </div>
+    <div class="row obrow">${klaar ? verder() : `<button class="ghost" id="obZoekAlles">Toon het antwoord</button>`}${obFb()}</div>
+    ${juf(klaar ? sp.slot : sp.start)}</div>`;
+};
+
 /* ---- Memory: vaste laatste dia. Paren van de ingrediënten van deze soep (les.js → onderbouw.memory om zelf te kiezen). ---- */
 const obMemoryKeys = () => { const o=ob(); return (o.memory || (typeof obErin==="function" ? obErin() : obGoed())).slice(0,6); };
 SCHERM["ob-memory"] = () => {
@@ -1412,7 +1434,7 @@ function koppel(k,naam){
   state.sel=null; render();
 }
 function go(i){ if(!LES) return; state.obMelding=null;
-  if (i!==state.scherm) Object.assign(state,{obRij:[],obMix:null,obGeplukt:[],obGoedKeus:null,obGoedNee:[],obGevonden:[],obGeplaatst:{},obSel:null,obGezicht:{},obLicht:false,obRonde:0,obGeteld:[],obTelKeus:null,obGepopt:[]});   /* elk spel begint fris */
+  if (i!==state.scherm) Object.assign(state,{obRij:[],obMix:null,obGeplukt:[],obGoedKeus:null,obGoedNee:[],obGevonden:[],obGeplaatst:{},obSel:null,obGezicht:{},obLicht:false,obRonde:0,obGeteld:[],obTelKeus:null,obGepopt:[],obZoek:[]});   /* elk spel begint fris */
   if(i<-1){ naarKiezer(); return; } state.scherm=Math.min(stappen().length-1,i); render(); window.scrollTo({top:0}); }
 
 /* ============ SOEP KIEZEN ============
@@ -1541,6 +1563,12 @@ document.addEventListener("click",e=>{
     render(); state.obSchud=null; return; }
   if(t.id==="obVolgAlles"){ state.obRij=spelNu().stappen.map((_,i)=>i); state.obMelding=null; render(); return; }
   if(t.id==="obVolgOpnieuw"){ state.obRij=[]; state.obMix=null; state.obMelding=null; render(); return; }
+  if(d.obzp){ const sp=spelNu(), rc=t.getBoundingClientRect(), x=(e.clientX-rc.left)/rc.width*100, y=(e.clientY-rc.top)/rc.height*100;
+    const i=sp.dingen.findIndex((q,j)=>!state.obZoek.includes(j) && Math.hypot(x-q.x,(y-q.y)*rc.height/rc.width) <= q.r);
+    if(i>=0){ state.obZoek.push(i); const klaar=state.obZoek.length===sp.dingen.length; state.obMelding={ok:true,t:klaar?sp.klaar:`Ja! ${sp.dingen[i].naam} is wit.`}; if(klaar) confetti(); }
+    else { state.obSchud="zp"; state.obMelding={ok:false,t:sp.mis||"Hier niet. Kijk nog eens goed!"}; }
+    render(); state.obSchud=null; return; }
+  if(t.id==="obZoekAlles"){ state.obZoek=spelNu().dingen.map((_,i)=>i); state.obMelding=null; render(); return; }
   if(d.obpluk!==undefined){ const sp=spelNu(), i=+d.obpluk, it=sp.items[i];
     if(it.goed){ state.obGeplukt.push(i); const nog=sp.items.filter((x,j)=>x.goed&&!state.obGeplukt.includes(j)).length;
       state.obMelding={ok:true,t:nog?sp.goedZo:sp.klaar}; if(!nog) confetti(); }

@@ -42,12 +42,14 @@ for (const soep of SOEPEN.filter(s => s.klaar || (alles && fs.existsSync(path.jo
   if (L.kunst && !L.kunst.link && (L.stappen||[]).some(st => st.id==="kunst")) plaatjes.add("kunst");   // met link (auteursrecht) geen eigen plaatje   // alleen als de dia ook in de les staat
   const ob = L.onderbouw || {}, spellen = ob.spellen || (ob.spel ? [ob.spel] : []);   // kleuterles: plaatjes van de spellen
   spellen.forEach((sp, nr) => {
-    if (!["volgorde","pluk","goedvoor","kleuren","sorteer","vormen","maakgezicht","tel","pop"].includes(sp.type)) fout(`onderbouw.spellen[${nr}].type "${sp.type}" bestaat niet (kan: volgorde, pluk, goedvoor, kleuren, sorteer, vormen, maakgezicht, tel, pop)`);
+    if (!["volgorde","pluk","goedvoor","kleuren","sorteer","vormen","maakgezicht","tel","pop","zoekplaat"].includes(sp.type)) fout(`onderbouw.spellen[${nr}].type "${sp.type}" bestaat niet (kan: volgorde, pluk, goedvoor, kleuren, sorteer, vormen, maakgezicht, tel, pop, zoekplaat)`);
     (sp.stappen || sp.items || []).forEach(x => { if (x.img) plaatjes.add(x.img); if (x.ing) ing.add(x.ing); });
     if (sp.basis) plaatjes.add(sp.basis);
     if (sp.roosje) plaatjes.add(sp.roosje);
     if (sp.korrel) plaatjes.add(sp.korrel);
     if (sp.popcorn) plaatjes.add(sp.popcorn);
+    if (sp.plaat) plaatjes.add(sp.plaat);
+    (sp.items || []).forEach(x => { if (x.ico && !fs.existsSync(path.join(root, `img/iconen/${x.ico}.webp`))) fout(`icoon ontbreekt: img/iconen/${x.ico}.webp`); });
     (sp.opties || []).forEach(x => lijf.add(x.lijf));
   });
   if (L.maak) plaatjes.add("voorbeeld");
