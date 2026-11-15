@@ -152,20 +152,20 @@ LESSEN.bloemkool = {
     g78:{ woord:"BLADGROEN", tip:"Het groene kleurstofje dat planten maken met zonlicht. Een bloemkool heeft het bijna niet.", uitleg:"Zonder zon geen bladgroen. Daarom is een bloemkool wit." }
   },
   kunst:{
-    // Publiek domein (Roosenboom overleed in 1896). Afbeelding: De Mesdag Collectie, Den Haag.
+    // Publiek domein (Roosenboom overleed in 1896). Afbeelding: De Mesdag Collectie, Den Haag (hwm0298, olieverf op doek, 70,5 × 110,2 cm). Herkomst: in 1898 gekocht door H.W. Mesdag op de tentoonstelling in Kunstzaal Biesing; in 1903 geschonken aan de Staat.
     titel:"Kijk-kunst: een stilleven met bloemkool", werk:"Stilleven met bloemkool en andijvie", maker:"Margaretha Roosenboom", jaar:"1892 of later", plek:"De Mesdag Collectie, Den Haag",
-    intro:"Margaretha Roosenboom was een Nederlandse schilder uit Den Haag. Ze schilderde vooral bloemen en groenten, ruim 130 jaar geleden.",
+    intro:"Margaretha Roosenboom (1843–1896) was een Nederlandse schilder uit Den Haag. Ze schilderde vooral bloemen en groenten. Dit schilderij is 110 centimeter breed: de bloemkool is bijna net zo groot als in het echt.",
     vragen:{
       g56:[
         {v:"Waarom zou iemand een schilderij maken van een bloemkool?", uitleg:"Om te laten zien hoe goed je kunt schilderen: het moet lijken alsof je hem zo kunt pakken. En mensen kochten zulke schilderijen om thuis aan de muur te hangen."},
         {v:"Toen dit geschilderd werd, had bijna niemand een fototoestel. Hoe kon je dan iets moois bewaren?", uitleg:"Door het te tekenen of te schilderen. Een bloemkool is na een week bedorven, maar op dit schilderij is hij na 130 jaar nog vers!"},
-        {v:"Wie zou dit schilderij gekocht hebben?", uitleg:"De beroemde schilder Hendrik Willem Mesdag. Hij verzamelde schilderijen van anderen. Nu hangt het in zijn oude huis in Den Haag, dat een museum is."}
+        {v:"Wie zou dit schilderij gekocht hebben?", uitleg:"De beroemde schilder Hendrik Willem Mesdag kocht het in 1898 op een tentoonstelling in Den Haag. Hij verzamelde schilderijen van anderen. Zijn verzameling is nu een museum."}
       ],
       g78:[
         {v:"Waarom schilderde iemand ruim 130 jaar geleden gewone groente?", uitleg:"Om vakmanschap te laten zien: hoe echt kun je licht, vorm en kleur maken? En om te verkopen: mensen hingen zulke stillevens thuis op."},
         {v:"Vrouwen mochten toen meestal niet naar de kunstacademie en niet tekenen naar levende modellen. Waarom kozen veel schilderessen voor stillevens?", uitleg:"Een stilleven kun je thuis maken. Je hebt geen model nodig en de groente blijft stil liggen. Zo kon Margaretha Roosenboom toch een bekende schilder worden."},
         {v:"Kijk naar de bladeren: sommige worden al bruin. Waarom zou ze dat óók schilderen?", uitleg:"Het maakt het echter. In oudere stillevens betekende verwelkende groente ook: niets blijft voor altijd vers. Wat denk jij dat zij wilde laten zien?"},
-        {v:"De beroemde schilder Mesdag kocht dit schilderij. Waarom zou een schilder werk van een ander kopen?", uitleg:"Om van te leren, omdat hij het mooi vond, of om andere schilders te steunen. Zijn verzameling is nu een museum in Den Haag."}
+        {v:"De beroemde schilder Mesdag kocht dit schilderij in 1898, twee jaar nadat Margaretha Roosenboom was overleden. Waarom zou een schilder werk van een ander kopen?", uitleg:"Omdat hij het mooi vond, om ervan te leren, of om het werk te bewaren. In 1903 schonk hij zijn hele verzameling aan Nederland. Nu is het een museum in Den Haag."}
       ]
     }
   },
