@@ -157,15 +157,15 @@ LESSEN.bloemkool = {
     intro:"Margaretha Roosenboom was een Nederlandse schilder uit Den Haag. Ze schilderde vooral bloemen en groenten, ruim 130 jaar geleden.",
     vragen:{
       g56:[
-        {v:"Zoek de bloemkool. Wat ligt eronder?", uitleg:"Hij ligt op zijn eigen grote groene bladeren, net als een kussen. Zo groeit hij ook op het veld: midden tussen de bladeren."},
-        {v:"Wat zie je nog meer op het schilderij?", uitleg:"Rechts ligt andijvie, een groene groente met lange bladeren. Achter de bloemkool staat een bruine kan, links een schaal en er hangt een takje naar beneden."},
-        {v:"Is de bloemkool echt helemaal wit? Welke kleuren zie je erin?", uitleg:"Kijk goed: de schilder gebruikte ook geel, beige en grijs. Zo lijkt hij echt en zie je de bolletjes."}
+        {v:"Waarom zou iemand een schilderij maken van een bloemkool?", uitleg:"Om te laten zien hoe goed je kunt schilderen: het moet lijken alsof je hem zo kunt pakken. En mensen kochten zulke schilderijen om thuis aan de muur te hangen."},
+        {v:"Toen dit geschilderd werd, had bijna niemand een fototoestel. Hoe kon je dan iets moois bewaren?", uitleg:"Door het te tekenen of te schilderen. Een bloemkool is na een week bedorven, maar op dit schilderij is hij na 130 jaar nog vers!"},
+        {v:"Wie zou dit schilderij gekocht hebben?", uitleg:"De beroemde schilder Hendrik Willem Mesdag. Hij verzamelde schilderijen van anderen. Nu hangt het in zijn oude huis in Den Haag, dat een museum is."}
       ],
       g78:[
-        {v:"Waar valt je oog het eerst op? Hoe komt dat?", uitleg:"Op de bloemkool. De achtergrond is heel donker, en de lichte bloemkool ligt precies in het midden. Zo stuurt de schilder je blik."},
-        {v:"Hoeveel soorten wit zie je in de bloemkool?", uitleg:"Wit schilderen is moeilijk. Met gele, beige en grijze tinten laat ze zien waar licht en schaduw zitten."},
-        {v:"Waar komt het licht vandaan? Hoe zie je dat?", uitleg:"Kijk welke kant van de bloemkool en de bladeren het lichtst is, en waar de schaduwen vallen."},
-        {v:"Waarom zou iemand ruim 130 jaar geleden gewone groente schilderen?", uitleg:"Er waren nog bijna geen kleurenfoto's. En voor een schilder is gewone groente een mooie oefening in vorm, kleur en licht."}
+        {v:"Waarom schilderde iemand ruim 130 jaar geleden gewone groente?", uitleg:"Om vakmanschap te laten zien: hoe echt kun je licht, vorm en kleur maken? En om te verkopen: mensen hingen zulke stillevens thuis op."},
+        {v:"Vrouwen mochten toen meestal niet naar de kunstacademie en niet tekenen naar levende modellen. Waarom kozen veel schilderessen voor stillevens?", uitleg:"Een stilleven kun je thuis maken. Je hebt geen model nodig en de groente blijft stil liggen. Zo kon Margaretha Roosenboom toch een bekende schilder worden."},
+        {v:"Kijk naar de bladeren: sommige worden al bruin. Waarom zou ze dat óók schilderen?", uitleg:"Het maakt het echter. In oudere stillevens betekende verwelkende groente ook: niets blijft voor altijd vers. Wat denk jij dat zij wilde laten zien?"},
+        {v:"De beroemde schilder Mesdag kocht dit schilderij. Waarom zou een schilder werk van een ander kopen?", uitleg:"Om van te leren, omdat hij het mooi vond, of om andere schilders te steunen. Zijn verzameling is nu een museum in Den Haag."}
       ]
     }
   },
