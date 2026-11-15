@@ -79,6 +79,15 @@ LESSEN.bloemkool = {
     opgelost:"Opgelost: in de soep zitten bloemkool, ui, knoflook, kerrie, water en een snufje zout.",
     goed:["bloemkool","ui","knoflook","kerrie","water","zout"],
     fout:["broccoli","banaan","aardappel","tomaat","wortel"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
+  kennis:{   // "Maak kennis": komt vanzelf na "Wat zit erin?". Echte foto (img/foto.webp) + 4 kaartjes: voorkant vraag, achterkant antwoord.
+    titel:"Maak kennis met de bloemkool", fotoAlt:"Een kraam vol witte bloemkolen met groene bladeren",
+    kaarten:[
+      {v:"Hoe zwaar is een bloemkool?", a:"Vaak ongeveer een kilo. Zo zwaar als een pak melk."},
+      {v:"Wanneer oogsten we bloemkool in Nederland?", a:"Van juni tot in november. In de winter komen ze vaak uit Frankrijk of Spanje."},
+      {v:"Kun je de bladeren eten?", a:"Ja! De groene bladeren en de steel kun je gewoon koken of roosteren."},
+      {v:"Waar lijkt één roosje op als je goed kijkt?", a:"Op een kleine bloemkool! Elk roosje bestaat weer uit kleinere roosjes."}
+    ]
+  },
   kern:{
     titel:"Waarom is een bloemkool wit?",
     beeldAlt:"De detective-bloemkool tuurt onder een dak van grote groene bladeren omhoog naar de zon",

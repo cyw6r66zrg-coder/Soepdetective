@@ -70,6 +70,15 @@ LESSEN.tomaat = {
     opgelost:"Opgelost: in de soep zitten tomaat, tomatenpuree, ui, tijm, water en een snufje zout.",
     goed:["tomaat","tomatenpuree","ui","tijm","water","zout"],
     fout:["banaan","broccoli","aardbei","gember","paprika"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
+  kennis:{   // "Maak kennis": komt vanzelf na "Wat zit erin?". Echte foto (img/foto.webp) + 4 kaartjes: voorkant vraag, achterkant antwoord.
+    titel:"Maak kennis met de tomaat", fotoAlt:"Een tros rode en oranje tomaten aan de plant",
+    kaarten:[
+      {v:"Hoe lang wordt een tomatenplant in de kas?", a:"Wel 10 tot 15 meter! Hij groeit langs een touw omhoog."},
+      {v:"Wanneer oogsten we tomaten in Nederland?", a:"Bijna het hele jaar, dankzij de kassen. Buiten alleen in de zomer."},
+      {v:"Kun je de blaadjes van de tomatenplant eten?", a:"Nee! Blad en stengel eet je niet. Alleen de tomaat zelf."},
+      {v:"Hoeveel zaadjes zitten er in een tomaat?", a:"Tientallen, soms wel meer dan honderd. Uit elk zaadje kan een nieuwe plant groeien."}
+    ]
+  },
   kern:{
     titel:"Is een tomaat een groente of een fruit?",
     beeldAlt:"De detective-tomaat onderzoekt een vraagteken tussen een fruitschaal en een groentemand",

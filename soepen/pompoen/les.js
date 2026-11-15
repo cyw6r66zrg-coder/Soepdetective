@@ -65,6 +65,15 @@ LESSEN.pompoen = {
     opgelost:"Opgelost: in de soep zitten pompoen, ui, knoflook, water en een snufje zout. Geen wortel: die is alleen even oranje.",
     goed:["pompoen","ui","knoflook","water","zout"],
     fout:["wortel","banaan","aardbei","broccoli","tomaat","paprika"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
+  kennis:{   // "Maak kennis": komt vanzelf na "Wat zit erin?". Echte foto (img/foto.webp) + 4 kaartjes: voorkant vraag, achterkant antwoord.
+    titel:"Maak kennis met de pompoen", fotoAlt:"Pompoenen in veel kleuren: oranje, wit, paars en gestreept",
+    kaarten:[
+      {v:"Wat doen bijen bij de pompoen?", a:"Ze brengen stuifmeel van bloem naar bloem. Zonder bijen geen pompoen!"},
+      {v:"Wanneer oogsten we pompoenen in Nederland?", a:"In de herfst, van september tot november. Daarom zie je ze overal rond Halloween."},
+      {v:"Kun je de schil eten?", a:"Bij sommige soorten wel. De schil van een hokkaido wordt zacht als je hem kookt."},
+      {v:"Hoe lang blijft een pompoen goed?", a:"Wel een paar maanden, op een koele, droge plek. Zo heb je in de winter nog groente."}
+    ]
+  },
   kern:{
     titel:"Hoe zwaar kan een pompoen worden?",
     beeldAlt:"De detective-pompoen kijkt verbaasd naar een reuzenpompoen op een weegschaal",

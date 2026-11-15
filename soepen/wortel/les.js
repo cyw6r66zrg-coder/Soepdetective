@@ -70,6 +70,15 @@ LESSEN.wortel = {
     opgelost:"Opgelost: in de soep zitten wortel, zoete aardappel, ui, bleekselderij, knoflook, water en een snufje zout.",
     goed:["wortel","ui","bleekselderij","zoeteaardappel","knoflook","zout","water"],
     fout:["banaan","broccoli","aardbei","gember","aardappel"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
+  kennis:{   // "Maak kennis": komt vanzelf na "Wat zit erin?". Echte foto (img/foto.webp) + 4 kaartjes: voorkant vraag, achterkant antwoord.
+    titel:"Maak kennis met de wortel", fotoAlt:"Een bos verse wortels met groen loof",
+    kaarten:[
+      {v:"Welke kleur hadden de eerste wortels?", a:"Paars en geel. Oranje wortels kwamen pas zo'n 400 jaar geleden."},
+      {v:"Wanneer oogsten we wortels in Nederland?", a:"Van de zomer tot de herfst. Daarna liggen ze nog maanden in koele schuren."},
+      {v:"Kun je ook het groene loof eten?", a:"Ja! Hak het fijn, net als peterselie. Toch gooien de meeste mensen het weg."},
+      {v:"Hoe lang is de langste wortel ooit?", a:"Ruim 6 meter! Dat is langer dan een giraf hoog is."}
+    ]
+  },
   kern:{
     titel:"Kun je van wortels beter in het donker zien?",
     beeldAlt:"De detective-wortel onderzoekt een wortel met een vergrootglas",

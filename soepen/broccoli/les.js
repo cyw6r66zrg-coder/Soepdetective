@@ -64,6 +64,15 @@ LESSEN.broccoli = {
     opgelost:"Opgelost: in de soep zitten broccoli, spinazie, ui, aardappel, water en een snufje zout.",
     goed:["broccoli","spinazie","ui","aardappel","water","zout"],
     fout:["banaan","aardbei","tomaat","basilicum","pompoen"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
+  kennis:{   // "Maak kennis": komt vanzelf na "Wat zit erin?". Echte foto (img/foto.webp) + 4 kaartjes: voorkant vraag, achterkant antwoord.
+    titel:"Maak kennis met de broccoli", fotoAlt:"Een kist vol verse broccoli met dikke stelen",
+    kaarten:[
+      {v:"Hoeveel broccoli groeit er aan één plant?", a:"Eén grote in het midden. Daarna groeien er soms nog kleine roosjes aan de zijkant."},
+      {v:"Wanneer oogsten we broccoli in Nederland?", a:"Van de zomer tot in de herfst, van juni tot oktober."},
+      {v:"Kun je de dikke steel eten?", a:"Ja! Schil hem en snijd hem in stukjes. Net zo lekker en gezond."},
+      {v:"Waarom ruikt gekookte broccoli soms vies?", a:"Kook je hem te lang, dan komt er een zwavelluchtje vrij. Kort koken ruikt lekker."}
+    ]
+  },
   kern:{
     titel:"Is broccoli eigenlijk een bloem?",
     beeldAlt:"De detective-broccoli kijkt verbaasd naar een broccoliplant met gele bloemetjes",

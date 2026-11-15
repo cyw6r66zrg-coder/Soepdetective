@@ -73,6 +73,15 @@ LESSEN.mais = {
     opgelost:"Opgelost: in de soep zitten maïs, ui, aardappel, knoflook, water en een snufje zout.",
     goed:["mais","ui","aardappel","knoflook","water","zout"],
     fout:["banaan","aardbei","broccoli","tomaat","pompoen"] },   // middenbouw en bovenbouw kiezen uit evenveel ingrediënten
+  kennis:{   // "Maak kennis": komt vanzelf na "Wat zit erin?". Echte foto (img/foto.webp) + 4 kaartjes: voorkant vraag, achterkant antwoord.
+    titel:"Maak kennis met de maïs", fotoAlt:"Een stapel gele maïskolven, half gepeld",
+    kaarten:[
+      {v:"Hoeveel korrels zitten er aan één kolf?", a:"Zo'n 500 tot 800! En het aantal rijen is altijd even."},
+      {v:"Wanneer oogsten we maïs in Nederland?", a:"In de nazomer, van augustus tot oktober."},
+      {v:"Kun je de kolf zelf eten?", a:"Nee, alleen de korrels. Behalve bij minimaïs: dat kolfje eet je helemaal op."},
+      {v:"Hoe hoog wordt een maïsplant?", a:"Vaak twee tot drie meter. Hoger dan je juf of meester!"}
+    ]
+  },
   kern:{
     titel:"Hoe wordt een maïskorrel popcorn?",
     beeldAlt:"De detective-maïskolf kijkt verbaasd naar een pan waar popcorn uit springt",

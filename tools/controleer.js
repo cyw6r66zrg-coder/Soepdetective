@@ -53,6 +53,7 @@ for (const soep of SOEPEN.filter(s => s.klaar || (alles && fs.existsSync(path.jo
     (sp.opties || []).forEach(x => lijf.add(x.lijf));
   });
   if (L.maak) plaatjes.add("voorbeeld");
+  if (L.kennis) plaatjes.add("foto");
 
   for (const k of ing) {
     if (!INGREDIENTEN[k]) fout(`ingrediënt "${k}" staat niet in INGREDIENTEN (soepen/soepen.js)`);
