@@ -29,3 +29,6 @@ Bron: Pexels (pexels.com). Pexels-licentie: gratis te gebruiken, naamsvermelding
 | wortel/groei | Chente Colindres |
 | pompoen/kleuren | Wolfgang Weiser |
 | bloemkool/veld | sanjibsmartthought123 |
+| broccoli/veld | laarkstudio |
+| tomaat/rijp | Fer Martinez Gonzalez |
+| bloemkool/kleuren | Kindel Media |

@@ -142,7 +142,7 @@ LESSEN.bloemkool = {
     g78:[
       { v:"Waarom wordt een bloemkool wit en niet groen?", a:["Hij krijgt weinig zonlicht, dus maakt hij geen bladgroen","Er zit kalk in de grond","Hij is nog niet rijp"], goed:0, img:"bladeren",
         weetje:"Planten maken bladgroen met zonlicht. De bladeren van de bloemkool houden het licht tegen. Boeren binden ze soms extra dicht." },
-      { v:"Oranje bloemkool is oranje door hetzelfde stofje als in wortels. Welk stofje?", a:["Bètacaroteen","IJzer","Suiker"], goed:0, img:"kleuren",
+      { v:"Oranje bloemkool is oranje door hetzelfde stofje als in wortels. Welk stofje?", a:["Bètacaroteen","IJzer","Suiker"], goed:0, img:"bladeren",
         weetje:"Oranje bloemkool heeft extra bètacaroteen. Van dat stofje maakt je lichaam vitamine A, net als bij wortels." },
       { v:"Hoe kook je bloemkool zo dat de meeste vitamines erin blijven?", a:["Kort koken of stomen","Een uur lang koken","Een nacht in water laten liggen"], goed:0, img:"veld",
         weetje:"Vitamine C lost op in kookwater en gaat kapot door lang verhitten. Kort koken of stomen is het beste." }
