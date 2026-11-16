@@ -5,8 +5,8 @@
    Afbeeldingen van deze soep staan in soepen/courgette/img/.
    Ingrediënten (speur.goed): volgens het recept van Good Soup (nov 2026).
    Thema: hoe snel een courgette groeit. Bewust anders dan pompoen (familie komkommer/pompoen staat daar al).
-   Kunstwerk: Juan Sánchez Cotán, Stilleven met kweepeer, kool, meloen en komkommer (ca. 1602), San Diego Museum of Art.
-   Publiek domein.
+   Kunstwerk: Sarah Lucas, Kevin (2013), bronzen courgette, stond bij het Centraal Museum in Utrecht.
+   Auteursrecht (kunstenaar leeft): alleen een link, geen afbeelding. Gesprek gaat over groei, grootte, materiaal en plek.
    ========================================================================== */
 LESSEN.courgette = {
   naam:"Courgettesoep",
@@ -157,23 +157,26 @@ LESSEN.courgette = {
     g78:{ woord:"GROEISPURT", tip:"Zo noem je het als iets in korte tijd heel hard groeit. Een courgette kan dat goed.", uitleg:"Een courgette kan op één warme dag een paar centimeter groeien." }
   },
   kunst:{
-    titel:"Kijk-kunst: groente aan een touwtje", werk:"Stilleven met kweepeer, kool, meloen en komkommer", maker:"Juan Sánchez Cotán", jaar:"ca. 1602", plek:"San Diego Museum of Art, Verenigde Staten",
-    intro:"Juan Sánchez Cotán was een Spaanse schilder. Ruim 400 jaar geleden schilderde hij groente en fruit in een donker venster. Twee ervan hangen aan een touwtje.",
+    // Sarah Lucas (geb. 1962): auteursrecht. Daarom tonen we het werk niet zelf, maar openen we een pagina met foto's.
+    titel:"Kijk-kunst: een courgette van goud", werk:"Kevin", maker:"Sarah Lucas", jaar:"2013", plek:"stond bij het Centraal Museum, Utrecht",
+    link:"https://www.duic.nl/cultuur/gigantische-gouden-courgette-geplaatst-op-sokkel-in-utrecht/",
+    linkUitleg:"Opent een nieuwsbericht met foto's van het beeld in Utrecht.",
+    intro:"Sarah Lucas is een kunstenaar uit Engeland. Ze maakte een reusachtige courgette van glimmend brons en noemde hem Kevin. Hij stond op een plein bij het Centraal Museum in Utrecht.",
     vragen:(()=>{ const v=[
-        {v:"Wat zie je allemaal?", uitleg:"Een kweepeer en een kool aan een touwtje, een stuk meloen en een komkommer op de rand. De meloen en de komkommer zijn familie van de courgette."},
-        {v:"Waarom zou hij groente aan een touwtje hangen?", uitleg:"In zijn tijd hing je groente op een koele plek, zodat het langer goed bleef. Zo was het ook een slimme voorraadkast."},
-        {v:"Kijk van links naar rechts. Zie je een boog?", uitleg:"De dingen gaan van hoog naar laag en weer naar voren. Zo maakt de schilder een mooie bocht. Volg hem maar met je vinger."},
-        {v:"Waarom is de achtergrond zo donker?", uitleg:"Zo valt al het licht op de groente. Het lijkt alsof ze naar je toe komen."}
+        {v:"Wat zie je? Hoe groot zou hij zijn?", uitleg:"Een courgette van brons, een metaal. Hij is ongeveer vier meter lang: zo lang als een auto."},
+        {v:"Waarom zou de kunstenaar hem van goudkleurig brons maken?", uitleg:"Goud laat zien dat iets bijzonder en kostbaar is. Zo wordt een gewone groente een schat. En hij glimt: je ziet de lucht en de huizen erin."},
+        {v:"De kunstenaar noemde hem Kevin. Waarom zou je een groente een naam geven?", uitleg:"Met een naam wordt hij een beetje een persoon. Hoe zou jij hem noemen?"},
+        {v:"Hij stond op een plein in de stad. Wat doet zo'n beeld met een plein?", uitleg:"Mensen blijven staan, kijken, lachen en praten erover. Een gewoon plein wordt opeens bijzonder."}
       ]; return { g56:v.slice(0,3), g78:v }; })()
   },
   maak:{
-    titel:"Aan de slag: hang je groente op!",
+    titel:"Aan de slag: een beeld voor jouw plein!",
     stappen:{
-      g56:["Kleur een groot venster helemaal donker, met zwart oliepastel of potlood. Laat de rand licht.","Kies vier groenten of vruchten. Teken twee aan een touwtje en twee op de rand.","Zet ze van hoog naar laag, net als bij Sánchez Cotán."],
-      g78:["Teken een groot venster en kleur de binnenkant helemaal donker.","Kies vier groenten of vruchten. Teken ze in een boog: van hoog links naar laag rechts, of andersom.","Hang er minstens één aan een touwtje.","Kies één kant waar het licht vandaan komt. Maak die kant van elke groente licht en de andere kant donker."]
+      g56:["Kies een groente en maak er een standbeeld van. Teken hem groot op een sokkel.","Kies het materiaal: goud, zilver, steen of glas. Kleur hem zo dat je dat ziet: laat witte plekjes over waar hij glimt.","Geef je beeld een naam, net als Kevin, en schrijf die op de sokkel."],
+      g78:["Kies een groente en bedenk een plek die je kent: het schoolplein, je straat of een plein in de stad.","Teken die plek en zet je groente er heel groot op, op een sokkel.","Kies het materiaal: goud, zilver, steen of glas. Laat zien hoe het glimt of hoe ruw het is.","Geef je beeld een naam en bedenk één zin: waarom staat jouw groente juist daar?"]
     },
-    nodig:["Wit tekenpapier","Zwart oliepastel of potlood","Kleurpotlood of oliepastel"],
-    zeg:"Ik ben benieuwd welke groenten jij laat zweven.",
-    voorbeeldAlt:"Voorbeeld: vier groenten in een donker venster, twee hangen aan een touwtje, in een boog van hoog naar laag"
+    nodig:["Wit tekenpapier","Potlood","Kleurpotlood of oliepastel (geel, oranje en bruin voor goud)"],
+    zeg:"Ik ben benieuwd welke groente jij op een sokkel zet, en hoe hij heet.",
+    voorbeeldAlt:"Voorbeeld: een gouden wortel als standbeeld op een sokkel op een schoolplein, met de naam op de sokkel"
   }
 };

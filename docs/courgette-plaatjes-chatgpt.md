@@ -32,7 +32,7 @@ Twee ingrediënten naast elkaar met een vrolijk gezichtje (grote glimmende ogen,
 - `bloem.png`: *Een courgetteplant met een grote open gele bloem, en achter de bloem een klein courgetteje dat begint te groeien.*
 - `reus.png`: *Een kind houdt verbaasd een enorme reuzencourgette vast, zo groot als zijn arm, in een moestuin.*
 - `soorten.png`: *Op een houten tafel: een groene, een gele, een ronde en een gestreepte courgette naast elkaar.*
-- `voorbeeld.png`: *Foto-achtig voorbeeld van kinderwerk uit groep 6 op tafel: een donker ingekleurd venster op papier, met daarin vier groenten (een courgette, een appel, een kool, een peer), twee hangen aan een touwtje, in een boog van hoog naar laag. Gemaakt met oliepastel. Ernaast een paar oliepastels.*
+- `voorbeeld.png`: *Foto-achtig voorbeeld van kinderwerk uit groep 6 op tafel: een tekening met kleurpotlood van een schoolplein met in het midden een grote goudkleurige wortel als standbeeld op een grijze sokkel. Haalbaar voor een kind, niet perfect. Ernaast een paar kleurpotloden.*
 - `feitfabel.png` (vierkant): *Twee courgettes, een groene en een gele, zonder gezicht, op een crème achtergrond.*
 
 ## 5. Koppelspel (één plaatje, ik knip het)
@@ -61,5 +61,4 @@ Zes losse dingen in twee rijen van drie, zonder gezichtjes, effen WITTE achtergr
 - `foto`: verse courgettes, liefst groen en geel. Zoekwoord: `zucchini`
 
 ## 8. Kunstwerk
-Download *Still Life with Quince, Cabbage, Melon and Cucumber* van Juan Sánchez Cotán (San Diego Museum of Art, publiek domein),
-bijvoorbeeld van Wikimedia Commons. Zoekwoord: `Sanchez Cotan quince cabbage melon cucumber`
+Niet nodig: het beeld *Kevin* van Sarah Lucas krijgt alleen een link (auteursrecht).
