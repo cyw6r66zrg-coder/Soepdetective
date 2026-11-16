@@ -29,7 +29,7 @@ LESSEN.courgette = {
     kennis:{ kleur:{ kleuren:["#4E7A2E","#F2C200"], tekst:"Groen! Maar er zijn ook gele courgettes." }, grond:{ plek:"boven", tekst:"Erboven! Hij groeit aan een plant met hele grote bladeren." }, weetje:{ v:"Hoe groot kan een courgette worden?", a:"Laat je hem hangen, dan wordt hij zo groot als je arm!" } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
     // spellen: elk spel is een eigen dia, in deze volgorde.
     spellen:[
-      { type:"groei", naam:"Hoe lang is hij?", titel:"Hoe lang is de courgette?", ding:"ob-courgette", rondes:[3,5,8],
+      { type:"groei", naam:"Hoe lang is hij?", titel:"Hoe lang is de courgette?", dingen:["ob-courgette-1","ob-courgette-2","ob-courgette-3"], rondes:[3,5,8],
         start:"Kijk, een kleine courgette aan de plant. Hoeveel blokjes is hij lang? Tel samen en tik op het getal.",
         verder:"Een dag later is hij gegroeid. Hoeveel blokjes is hij nu?",
         slot:"Een courgette groeit heel snel. Daarom plukken we hem als hij nog klein is: dan is hij het lekkerst." },
