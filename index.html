@@ -483,6 +483,8 @@ html:not(.dia) .obkleurkaart img{flex:none;height:min(24vw,130px)}
 .obbak{border:4px solid var(--bc);border-radius:26px;background:var(--card);padding:12px;display:flex;flex-direction:column;gap:10px;align-items:stretch}
 .obbak h3{color:var(--bc);font-size:clamp(28px,calc(var(--vw)*2.6),40px);display:flex;gap:12px;justify-content:center;align-items:center}
 .obbak h3 span{font-size:1.3em}
+.obbak h3 span{flex:none}
+.obbak h3 .ico{width:max(1.15em,28px);height:max(1.15em,28px)}
 .obbakin{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;align-items:center}
 .obmini img{width:72px;height:72px;object-fit:contain}
 .obmini .emo{font-size:58px}
@@ -728,7 +730,7 @@ html.dia .obkennis{flex:1 1 0}
 .obgroeivlak{position:relative;background:var(--paper);border:2px solid var(--line);border-radius:24px;padding:clamp(18px,calc(var(--vw)*2.4),36px);display:flex;flex-direction:column;justify-content:flex-end;gap:10px;min-height:clamp(220px,calc(var(--vw)*24),360px);--blok:calc((100% - (var(--max) - 1) * 6px) / var(--max))}
 .obdag{position:absolute;top:14px;left:18px;font-family:var(--display);font-size:clamp(20px,calc(var(--vw)*2),30px);color:var(--orange-dark)}
 .obgroeiding{width:calc(var(--n) * (100% + 6px) / var(--max) - 6px);transition:width .9s cubic-bezier(.3,1.4,.5,1)}
-.obgroeiding img{width:100%;height:clamp(60px,calc(var(--vw)*7),110px);object-fit:fill;display:block;filter:drop-shadow(0 4px 4px rgba(59,43,34,.2))}
+.obgroeiding img{width:100%;height:calc(clamp(50px,calc(var(--vw)*6),96px) * (.6 + .6 * var(--n) / var(--max)));object-fit:fill;transition:height .9s cubic-bezier(.3,1.4,.5,1);display:block;filter:drop-shadow(0 4px 4px rgba(59,43,34,.2))}
 .obblokjes{display:grid;grid-template-columns:repeat(var(--max),1fr);gap:6px}
 .obblokjes i{aspect-ratio:1;border-radius:8px;border:2px dashed var(--line);display:grid;place-items:center;font-style:normal;font-weight:800;color:#fff;font-size:clamp(14px,calc(var(--vw)*1.6),24px)}
 .obblokjes i.aan{border:0;background:hsl(calc(var(--h,200)) 70% 55%);box-shadow:inset 0 -4px 0 rgba(0,0,0,.18)}
@@ -777,7 +779,7 @@ html.dia .obgroei{flex:1 1 0}
   </footer>
 </div>
 
-<script>const VERSIE="2026-11-16a";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
+<script>const VERSIE="2026-11-16b";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
 document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</script>
 <script>
 /* ============ INHOUD ============
