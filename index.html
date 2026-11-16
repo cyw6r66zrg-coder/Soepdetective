@@ -763,7 +763,7 @@ html.dia .obkennis{flex:1 1 0}
   </footer>
 </div>
 
-<script>const VERSIE="2026-11-15j";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
+<script>const VERSIE="2026-11-16a";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
 document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</script>
 <script>
 /* ============ INHOUD ============
@@ -1415,11 +1415,15 @@ SPEL.zoekplaat = sp => {
 };
 
 /* ---- Memory: vaste laatste dia. Paren van de ingrediënten van deze soep (les.js → onderbouw.memory om zelf te kiezen). ---- */
-const obMemoryKeys = () => { const o=ob(); return (o.memory || (typeof obErin==="function" ? obErin() : obGoed())).slice(0,6); };
+const obMemoryKeys = () => { const o=ob(); if (o.memory) return o.memory.slice(0,6);
+  // alle ingrediënten van de soep (hoofdgroente eerst); zijn het er meer dan 6, dan eerst water en daarna zout eruit
+  let k=[LES.mascotte, ...LES.speur.goed.filter(x=>x!==LES.mascotte)];
+  for (const weg of ["water","zout"]) if (k.length>6) k=k.filter(x=>x!==weg);
+  return k.slice(0,6); };
 SCHERM["ob-memory"] = () => {
   if (!state.obMem) state.obMem = shuffle(obMemoryKeys().flatMap(k=>[k,k]));
   const deck=state.obMem, n=deck.length/2, klaar=state.obPaar.length===n;
-  return band(klaar ? "Alle paren gevonden!" : "Memory") + `<div class="inner obles"><div class="obmemory" style="--k:${deck.length>8?4:deck.length/2};--r:${Math.ceil(deck.length/(deck.length>8?4:deck.length/2))}">
+  return band(klaar ? "Alle paren gevonden!" : "Memory") + `<div class="inner obles"><div class="obmemory" style="--k:${deck.length===10?5:deck.length>8?4:deck.length/2};--r:${deck.length===10?2:Math.ceil(deck.length/(deck.length>8?4:deck.length/2))}">
     ${deck.map((k,i)=>{ const open=state.obOpen.includes(i)||state.obPaar.includes(k);
       return `<button class="obmemkaart ${open?"open":""} ${state.obPaar.includes(k)?"paar":""}" data-obmem="${i}" ${open||state.obBezig?"disabled":""} aria-label="${open?esc(INGREDIENTEN[k]):"Kaartje omdraaien"}">
         <span class="achter">${ico("vergrootglas")}</span><span class="voor">${img(pad.ing(k),"")}<b>${esc(INGREDIENTEN[k])}</b></span></button>`; }).join("")}
