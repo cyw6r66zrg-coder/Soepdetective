@@ -33,3 +33,5 @@ Bron: Pexels (pexels.com). Pexels-licentie: gratis te gebruiken, naamsvermelding
 | tomaat/rijp | Fer Martinez Gonzalez |
 | bloemkool/kleuren | Kindel Media |
 | wortel/konijn | Dmitry Rodionov |
+| courgette/foto | Pexels |
+| courgette/bloem | Pexels |
