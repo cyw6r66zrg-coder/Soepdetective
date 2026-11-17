@@ -788,7 +788,7 @@ html.dia .lekker .stembak{min-height:0}
   </footer>
 </div>
 
-<script>const VERSIE="2026-11-16f";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
+<script>const VERSIE="2026-11-17a";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
 document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</script>
 <script>
 /* ============ INHOUD ============
@@ -850,9 +850,17 @@ const KLANK = {
   aanbrand: ()=>{ ruis(0,.9,.18,700); [0,.12,.22,.36,.47,.6,.72].forEach((t,i)=>toon(160+i*35,t,.12,{type:"triangle",vol:.1,naar:90+i*20})); },
   licht: ()=>{ [1568,2093,2637,3136].forEach((f,i)=>toon(f,i*.07,.35,{vol:.07})); }
 };
+/* Onderbouw: bij een goed antwoord applaus en "jeej!" (geluid/jeej.mp3), niet vaker dan eens per 1,5 seconde. */
+let jeejLaatst=0;
+const jeej = typeof Audio!=="undefined" ? new Audio(`geluid/jeej.mp3?v=${VERSIE}`) : null;
+if (jeej) jeej.preload="auto";
 function speel(naam){
   klankNu=naam;
-  if(!geluidAan || !KLANK[naam]) return;
+  if(!geluidAan) return;
+  if((naam==="goed"||naam==="klaar") && LES && state.niveau==="g12" && jeej){
+    const nu=performance.now(); if(nu-jeejLaatst>1500){ jeejLaatst=nu; try{ jeej.currentTime=0; jeej.volume=.8; jeej.play().catch(()=>{}); }catch{} return; }
+  }
+  if(!KLANK[naam]) return;
   try { audio = audio || new (window.AudioContext||window.webkitAudioContext)(); if(audio.state==="suspended") audio.resume(); KLANK[naam](); } catch {}
 }
 // Elke tik of sleep telt als 'interactie': alleen dan mag er geluid klinken.
@@ -1211,7 +1219,7 @@ SCHERM["ob-proef"] = () => {
 
 /* 2. Hoe lekker? */
 SCHERM["ob-lekker"] = () => {
-  const g=[["nog niet lekker","smiley-nietlekker"],["gaat wel","smiley-gaatwel"],["lekker","smiley-lekker"]], max=Math.max(1,...state.obStem);
+  const g=[["nog niet lekker","smiley-nietlekker"],["een beetje","smiley-gaatwel"],["lekker","smiley-lekker"]], max=Math.max(1,...state.obStem);
   return band("Hoe lekker was de soep?") + `<div class="inner lekker obles">
     ${stemKolommen(g, state.obStem, "data-obstem")}
     <div class="row"><button class="ghost" id="obStemReset">Opnieuw tellen</button>${verder()}</div>
