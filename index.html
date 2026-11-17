@@ -788,7 +788,7 @@ html.dia .lekker .stembak{min-height:0}
   </footer>
 </div>
 
-<script>const VERSIE="2026-11-17a";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
+<script>const VERSIE="2026-11-17b";   /* ophogen bij elke live-zetting: dan halen browsers de nieuwe lessen op i.p.v. een oude kopie */
 document.write('<script src="soepen/soepen.js?v='+VERSIE+'"><\/script>');</script>
 <script>
 /* ============ INHOUD ============
@@ -850,15 +850,15 @@ const KLANK = {
   aanbrand: ()=>{ ruis(0,.9,.18,700); [0,.12,.22,.36,.47,.6,.72].forEach((t,i)=>toon(160+i*35,t,.12,{type:"triangle",vol:.1,naar:90+i*20})); },
   licht: ()=>{ [1568,2093,2637,3136].forEach((f,i)=>toon(f,i*.07,.35,{vol:.07})); }
 };
-/* Onderbouw: bij een goed antwoord applaus en "jeej!" (geluid/jeej.mp3), niet vaker dan eens per 1,5 seconde. */
-let jeejLaatst=0;
-const jeej = typeof Audio!=="undefined" ? new Audio(`geluid/jeej.mp3?v=${VERSIE}`) : null;
-if (jeej) jeej.preload="auto";
+/* Onderbouw: applaus (geluid/applaus.mp3) alleen als de hele dia goed is (dat is het moment van de confetti). */
+let applausLaatst=0;
+const applaus = typeof Audio!=="undefined" ? new Audio(`geluid/applaus.mp3?v=${VERSIE}`) : null;
+if (applaus) applaus.preload="auto";
 function speel(naam){
   klankNu=naam;
   if(!geluidAan) return;
-  if((naam==="goed"||naam==="klaar") && LES && state.niveau==="g12" && jeej){
-    const nu=performance.now(); if(nu-jeejLaatst>1500){ jeejLaatst=nu; try{ jeej.currentTime=0; jeej.volume=.8; jeej.play().catch(()=>{}); }catch{} return; }
+  if(naam==="klaar" && LES && state.niveau==="g12" && applaus){
+    const nu=performance.now(); if(nu-applausLaatst>1500){ applausLaatst=nu; try{ applaus.currentTime=0; applaus.volume=.8; applaus.play().catch(()=>{}); }catch{} return; }
   }
   if(!KLANK[naam]) return;
   try { audio = audio || new (window.AudioContext||window.webkitAudioContext)(); if(audio.state==="suspended") audio.resume(); KLANK[naam](); } catch {}
@@ -1703,7 +1703,7 @@ document.addEventListener("click",e=>{
   if(t.id==="obPopOpnieuw"){ state.obGepopt=[]; render(); return; }
   if(d.obtel!==undefined){ speel("tik"); const i=+d.obtel; if(!state.obGeteld.includes(i)) state.obGeteld.push(i); state.obMelding=null; render(); return; }
   if(d.obtelgetal){ const sp=spelNu(), n=sp.rondes[state.obRonde], g=+d.obtelgetal; state.obTelKeus=g;
-    if(g===n){ state.obMelding={ok:true,t:`Ja! Het zijn ${n} roosjes.`}; confetti(); }
+    if(g===n){ state.obMelding={ok:true,t:`Ja! Het zijn ${n} roosjes.`}; if(state.obRonde===sp.rondes.length-1) confetti(); else speel("goed"); }
     else { state.obSchud=g; state.obMelding={ok:false,t:"Tel nog eens samen. Wijs ze maar aan."}; }
     render(); state.obSchud=null; if(g!==n) state.obTelKeus=null; return; }
   if(d.obgroei){ const sp=spelNu(), n=sp.rondes[state.obRonde], g=+d.obgroei; state.obTelKeus=g;
