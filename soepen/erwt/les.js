@@ -28,10 +28,10 @@ LESSEN.erwt = {
     kennis:{ echt:"echte erwten", kleur:{ kleuren:["#7FA83A","#4F8F3A"], tekst:"Groen! Gedroogde erwtjes kunnen ook geel zijn." }, grond:{ plek:"boven", tekst:"Erboven! Ze groeien in een peul aan een plant met krulletjes." }, weetje:{ v:"Waarom is erwtensoep zo dik?", a:"De erwtjes koken helemaal zacht. Soms blijft de lepel er rechtop in staan!" } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
     // spellen: elk spel is een eigen dia, in deze volgorde.
     spellen:[
-      { type:"tel", naam:"Hoeveel erwtjes?", titel:"Hoeveel erwtjes zitten er in de peul?", roosje:"ob-erwtje", achter:"ob-peul", wat:"erwtjes", een:"erwtje",
-        achterVerhouding:2.45, plekken:[[34,53],[44,52],[54,51],[64,50],[74,48],[84,46]],   // op een rij in de open peul (in % van het peulplaatje)
+      { type:"tel", knal:true, naam:"Hoeveel erwtjes?", titel:"Hoeveel erwtjes zitten er in de peul?", roosje:"ob-erwtje", achter:"ob-peul", wat:"erwtjes",
+        // knal: tik op de peul, de erwtjes springen eruit, de klas telt en kiest het getal. (dicht:"ob-peul-dicht" zodra dat plaatje er is)
         rondes:[4,6,5],
-        start:"De peul is open. Hoeveel erwtjes zitten erin? Tik op elk erwtje en tel hardop mee.",
+        start:"Tik op de peul. Hoeveel erwtjes springen eruit? Tel samen hardop en tik dan op het goede getal.",
         slot:"Goed geteld. In één peul zitten vaak zes tot tien erwtjes." },
       { type:"volgorde", naam:"Van zaadje tot peul", titel:"Van zaadje tot peul",
         stappen:[ {img:"ob-stap-1", naam:"het zaadje"}, {img:"ob-stap-2", naam:"het kiempje"},

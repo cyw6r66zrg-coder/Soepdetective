@@ -754,6 +754,17 @@ html.dia .lekker .stembak{min-height:0}
 .obtelplaat{position:relative;width:min(100cqw,calc(100cqh * var(--ar)));aspect-ratio:var(--ar);container-type:inline-size}
 .obtelachter{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
 .obtelplaat .obtelroos{width:10.5cqw}
+.obknal{background:none;overflow:visible}
+.obknalpeul{position:absolute;left:50%;bottom:2%;translate:-50% 0;width:min(80%,520px);border:0;background:none;padding:0;cursor:pointer}
+.obknalpeul img{width:100%;height:auto;display:block;filter:drop-shadow(0 8px 8px rgba(59,43,34,.18))}
+.obknalpeul:not(:disabled){animation:wiebel 1.6s ease-in-out infinite}
+.obknalpeul:not(:disabled):hover{scale:1.04}
+.obknal.open .obknalpeul{cursor:default;opacity:.95}
+@keyframes wiebel{0%,70%,100%{rotate:0deg}76%{rotate:-4deg}84%{rotate:4deg}92%{rotate:-2deg}}
+.obknalerwt{position:absolute;width:min(120px,16%);aspect-ratio:1;translate:-50% -50%;animation:knal .7s cubic-bezier(.2,1.4,.4,1) var(--d) both;pointer-events:none}
+.obknalerwt img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 6px rgba(59,43,34,.2))}
+@keyframes knal{0%{left:50%;top:78%;scale:.3;opacity:0}25%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.obknalpeul:not(:disabled){animation:none}.obknalerwt{animation:none}}
 /* telefoon staand: kleuterspellen passend maken */
 @media (max-width:520px){
   .obplek{gap:6px;width:100%}
@@ -1406,7 +1417,28 @@ SPEL.maakgezicht = sp => {
 // TEL: een groente valt uit elkaar in stukjes; tik ze een voor een aan (de klas telt hardop) en kies dan het goede getal.
 // sp.basis = de hele groente, sp.roosje = één stukje, sp.rondes = [aantal per ronde]
 const TELPLEK = [[20,26],[56,20],[84,48],[34,74],[66,76],[48,46],[14,62]];   // verspreid over het vlak
-SPEL.tel = sp => {
+// KNAL (sp.knal): de peul is dicht. Tik erop: de erwtjes springen eruit en de klas telt ze. Geen erwtjes aantikken.
+// sp.dicht = plaatje van de dichte peul (anders sp.achter), sp.achter = de open peul
+const KNALPLEK = [[18,17],[50,11],[82,17],[32,38],[66,37],[90,40],[10,40]];   // boven de peul, in % van het vlak
+function telKnal(sp){
+  const r=state.obRonde, n=sp.rondes[r], open=state.obGeteld.length>0, laatste=r===sp.rondes.length-1, goed=state.obTelKeus===n, wat=sp.wat||"roosjes";
+  const plek=KNALPLEK.slice(0,n), max=Math.max(6,...sp.rondes);
+  return band(goed && laatste ? "Goed geteld!" : sp.titel) + `<div class="inner obles"><div class="obtel">
+    <div class="obtelvlak obknal ${open?"open":""}">
+      <button class="obknalpeul" id="obKnalPeul" ${open?"disabled":""} aria-label="Tik op de peul">${img(pad.soep(open||!sp.dicht ? sp.achter : sp.dicht),"")}</button>
+      ${open ? plek.map(([x,y],i)=>`<span class="obknalerwt" style="left:${x}%;top:${y}%;--d:${i*.07}s">${img(pad.soep(sp.roosje),"")}</span>`).join("") : ""}
+    </div>
+    <div class="obtelzij">
+      <span class="obdots">${sp.rondes.map((_,i)=>`<i class="${i<=r?"on":""}"></i>`).join("")}</span>
+      ${open ? `<p class="obtelvraag">Hoeveel ${wat}<br>zijn het?</p><div class="obtelgetallen">${Array.from({length:max},(_,g)=>g+1).map(g=>
+        `<button class="obtelgetal ${state.obTelKeus===g?(g===n?"goed":"mis"):""} ${state.obSchud===g?"shake":""}" data-obtelgetal="${g}" ${goed?"disabled":""}>${g}</button>`).join("")}</div>`
+        : `<p class="obtelvraag">Tik op de peul!</p>`}
+    </div>
+  </div>
+    <div class="row obrow">${goed ? (laatste ? verder() : `<button class="btn obgroot" id="obTelVolgende">Nog een peul!</button>`) : ""}${obFb()}</div>
+    ${juf(goed && laatste ? sp.slot : sp.start)}</div>`;
+}
+SPEL.tel = sp => { if (sp.knal) return telKnal(sp);
   const r=state.obRonde, n=sp.rondes[r], geteld=state.obGeteld.length, alles=geteld===n, laatste=r===sp.rondes.length-1, goed=state.obTelKeus===n;
   const alle=sp.plekken||TELPLEK, van=sp.achter?Math.floor((alle.length-n)/2):0, plek = alle.slice(van,van+n)   /* met achtergrond (peul): de erwtjes in het midden */, wat=sp.wat||"roosjes", een=sp.een||"roosje";   // sp.wat/sp.een: wat er geteld wordt (meervoud/enkelvoud)
   return band(goed && laatste ? "Goed geteld!" : sp.titel) + `<div class="inner obles"><div class="obtel">
@@ -1716,6 +1748,7 @@ document.addEventListener("click",e=>{
     else { state.obSchud=g; state.obMelding={ok:false,t:"Tel de blokjes onder de courgette nog eens. Wijs ze maar aan."}; }
     render(); state.obSchud=null; if(g!==n) state.obTelKeus=null; return; }
   if(t.id==="obGroeiVolgende"){ state.obRonde++; state.obTelKeus=null; state.obMelding=null; speel("pop"); render(); return; }
+  if(t.id==="obKnalPeul"){ const sp=ob().spellen.find(x=>x.knal)||{}; speel("pop"); state.obGeteld=[...Array(sp.rondes[state.obRonde]).keys()]; state.obMelding=null; render(); return; }
   if(t.id==="obTelVolgende"){ state.obRonde++; state.obGeteld=[]; state.obTelKeus=null; state.obMelding=null; render(); return; }
   if(d.obsmaak){ const k=d.obsmaak; state.obSmaak = state.obSmaak.includes(k) ? state.obSmaak.filter(x=>x!==k) : [...state.obSmaak,k]; render(); return; }
   if(t.id==="obSmaakToon"){ state.obSmaakToon=true; render(); return; }
