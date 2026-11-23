@@ -749,6 +749,8 @@ html.dia .obgroei{flex:1 1 0}
 .stemkol .face span{font-size:clamp(15px,calc(var(--vw)*1.4),21px)}
 html.dia .lekker .stemmen{flex:1 1 0}
 html.dia .lekker .stembak{min-height:0}
+.obtelvlak.metachter{background:none}
+.obtelachter{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
 /* telefoon staand: kleuterspellen passend maken */
 @media (max-width:520px){
   .obplek{gap:6px;width:100%}
@@ -1403,17 +1405,17 @@ SPEL.maakgezicht = sp => {
 const TELPLEK = [[20,26],[56,20],[84,48],[34,74],[66,76],[48,46],[14,62]];   // verspreid over het vlak
 SPEL.tel = sp => {
   const r=state.obRonde, n=sp.rondes[r], geteld=state.obGeteld.length, alles=geteld===n, laatste=r===sp.rondes.length-1, goed=state.obTelKeus===n;
-  const plek = TELPLEK.slice(0,n);
+  const plek = (sp.plekken||TELPLEK).slice(0,n), wat=sp.wat||"roosjes", een=sp.een||"roosje";   // sp.wat/sp.een: wat er geteld wordt (meervoud/enkelvoud)
   return band(goed && laatste ? "Goed geteld!" : sp.titel) + `<div class="inner obles"><div class="obtel">
-    <div class="obtelvlak">
+    <div class="obtelvlak ${sp.achter?"metachter":""}">${sp.achter?`<img class="obtelachter" src="${pad.soep(sp.achter)}" alt="">`:""}
       ${plek.map(([x,y],i)=>{ const nr=state.obGeteld.indexOf(i);
         return `<button class="obtelroos ${nr>=0?"geteld":""}" data-obtel="${i}" ${nr>=0?"disabled":""} style="left:${x}%;top:${y}%;--d:${i*.08}s">${img(pad.soep(sp.roosje),"")}${nr>=0?`<b>${nr+1}</b>`:""}</button>`; }).join("")}
     </div>
     <div class="obtelzij">
       <span class="obdots">${sp.rondes.map((_,i)=>`<i class="${i<=r?"on":""}"></i>`).join("")}</span>
-      ${alles ? `<p class="obtelvraag">Hoeveel roosjes zijn het?</p><div class="obtelgetallen">${[1,2,3,4,5,6].map(g=>
+      ${alles ? `<p class="obtelvraag">Hoeveel ${wat} zijn het?</p><div class="obtelgetallen">${[1,2,3,4,5,6].map(g=>
         `<button class="obtelgetal ${state.obTelKeus===g?(g===n?"goed":"mis"):""} ${state.obSchud===g?"shake":""}" data-obtelgetal="${g}" ${goed?"disabled":""}>${g}</button>`).join("")}</div>`
-        : `<p class="obtelvraag">Tik op elk roosje<br>en tel hardop mee!</p><div class="obtelstand">${geteld}</div>`}
+        : `<p class="obtelvraag">Tik op elk ${een}<br>en tel hardop mee!</p><div class="obtelstand">${geteld}</div>`}
     </div>
   </div>
     <div class="row obrow">${goed ? (laatste ? verder() : `<button class="btn obgroot" id="obTelVolgende">Nog een keer!</button>`) : ""}${obFb()}</div>
@@ -1703,7 +1705,7 @@ document.addEventListener("click",e=>{
   if(t.id==="obPopOpnieuw"){ state.obGepopt=[]; render(); return; }
   if(d.obtel!==undefined){ speel("tik"); const i=+d.obtel; if(!state.obGeteld.includes(i)) state.obGeteld.push(i); state.obMelding=null; render(); return; }
   if(d.obtelgetal){ const sp=spelNu(), n=sp.rondes[state.obRonde], g=+d.obtelgetal; state.obTelKeus=g;
-    if(g===n){ state.obMelding={ok:true,t:`Ja! Het zijn ${n} roosjes.`}; if(state.obRonde===sp.rondes.length-1) confetti(); else speel("goed"); }
+    if(g===n){ state.obMelding={ok:true,t:`Ja! Het zijn ${n} ${sp.wat||"roosjes"}.`}; if(state.obRonde===sp.rondes.length-1) confetti(); else speel("goed"); }
     else { state.obSchud=g; state.obMelding={ok:false,t:"Tel nog eens samen. Wijs ze maar aan."}; }
     render(); state.obSchud=null; if(g!==n) state.obTelKeus=null; return; }
   if(d.obgroei){ const sp=spelNu(), n=sp.rondes[state.obRonde], g=+d.obgroei; state.obTelKeus=g;

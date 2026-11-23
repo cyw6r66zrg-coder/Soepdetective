@@ -49,6 +49,7 @@ for (const soep of SOEPEN.filter(s => s.klaar || (alles && fs.existsSync(path.jo
     if (sp.korrel) plaatjes.add(sp.korrel);
     if (sp.popcorn) plaatjes.add(sp.popcorn);
     if (sp.plaat) plaatjes.add(sp.plaat);
+    if (sp.achter) plaatjes.add(sp.achter);
     if (sp.ding && sp.type==="groei") plaatjes.add(sp.ding);
     (sp.type==="groei" && sp.dingen || []).forEach(x=>plaatjes.add(x));
     (sp.items || []).forEach(x => { if (x.ico && !fs.existsSync(path.join(root, `img/iconen/${x.ico}.webp`))) fout(`icoon ontbreekt: img/iconen/${x.ico}.webp`); });

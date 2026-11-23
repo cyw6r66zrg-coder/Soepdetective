@@ -9,7 +9,7 @@
 const SOEPEN = [
   { id:"wortel",    naam:"Wortelsoep",      klaar:true,  kleur:"#FFD8AE", accent:"#E06A12", accentDonker:"#9E4508" },
   { id:"tomaat",    naam:"Tomatensoep",     klaar:true,  kleur:"#FFC9BF", accent:"#D7402B", accentDonker:"#9C2A1C" },
-  { id:"erwt",      naam:"Erwtensoep",      klaar:false, kleur:"#D6EDB8", accent:"#4E8A2E", accentDonker:"#335C1E" },
+  { id:"erwt",      naam:"Erwtensoep",      klaar:false, kleur:"#D6EDB8", accent:"#2F7F6B", accentDonker:"#1F5A4B" },
   { id:"broccoli",  naam:"Broccolisoep",    klaar:true, kleur:"#BFE0C2", accent:"#3E8A3A", accentDonker:"#2A5E27" },
   { id:"bloemkool", naam:"Bloemkoolsoep",   klaar:true, kleur:"#E9E2F3", accent:"#6C4FA0", accentDonker:"#4A3570" },
   { id:"mais",      naam:"Maïssoep",        klaar:true, kleur:"#FFEBA0", accent:"#B07D00", accentDonker:"#7A5600" },
@@ -21,7 +21,7 @@ const INGREDIENTEN = {
   wortel:"Wortel", ui:"Ui", bleekselderij:"Bleekselderij", zoeteaardappel:"Zoete aardappel", knoflook:"Knoflook", zout:"Zout", water:"Water",
   banaan:"Banaan", broccoli:"Broccoli", aardbei:"Aardbei", gember:"Gember", aardappel:"Aardappel",
   tomaat:"Tomaat", basilicum:"Basilicum", paprika:"Paprika", pompoen:"Pompoen", mais:"Maïs", bloemkool:"Bloemkool",
-  tijm:"Tijm", tomatenpuree:"Tomatenpuree", spinazie:"Spinazie", kerrie:"Kerrie", courgette:"Courgette", koolrabi:"Koolrabi"
+  tijm:"Tijm", tomatenpuree:"Tomatenpuree", spinazie:"Spinazie", kerrie:"Kerrie", courgette:"Courgette", koolrabi:"Koolrabi", erwt:"Spliterwten", knolselderij:"Knolselderij"
 };
 
 const LESSEN = {};   // elke soepen/<id>/les.js vult hier LESSEN.<id> = { … }
