@@ -117,12 +117,12 @@ LESSEN.erwt = {
     lijst:[
       {key:"doperwt", naam:"Doperwten", hint:"Klein, rond en knalgroen. Vers uit de peul."},
       {key:"kikkererwt", naam:"Kikkererwten", hint:"Lichtbruin en rond, met een klein puntje. Daar maak je hummus van."},
-      {key:"bruinebonen", naam:"Bruine bonen", hint:"Bruin en een beetje niervormig."},
+      {key:"kievitsbonen", naam:"Kievitsbonen", hint:"Lichtbruin met rode spikkels, net een vogeleitje. Ze heten naar de kievit."},
       {key:"linzen", naam:"Linzen", hint:"Klein en plat, als piepkleine schijfjes. Rood, groen of bruin."},
-      {key:"kapucijner", naam:"Kapucijners", hint:"Rond, rimpelig en grijsbruin."},
+      {key:"kapucijner", naam:"Kapucijners", hint:"Rond en rimpelig. Bruin, grijs of een beetje paars."},
       {key:"kidneybonen", naam:"Kidneybonen", hint:"Donkerrood en in de vorm van een nier."}
     ],
-    g56:["doperwt","kikkererwt","bruinebonen","linzen"],   // alleen deze bij de middenbouw
+    g56:["doperwt","kikkererwt","kidneybonen","linzen"],   // alleen deze bij de middenbouw
     goedZo:"Ja, dat zijn {naam}.",
     mis:"Nee, die past niet. Kijk nog eens naar de vorm en de kleur.",
     slot:"Super. Erwten, bonen en linzen: allemaal peulvruchten."
