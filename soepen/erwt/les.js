@@ -6,7 +6,6 @@
    Ingrediënten (speur.goed): volgens het recept van Good Soup (nov 2026).
    Thema: de wintersoep van Nederland. Erwten drogen om te bewaren; erwtensoep bij het schaatsen.
    Kunstwerk: Hendrick Avercamp, Winterlandschap met ijsvermaak (ca. 1608), Rijksmuseum (SK-A-1718). Publiek domein.
-   Tot kunst.webp er is: link naar het Rijksmuseum.
    ========================================================================== */
 LESSEN.erwt = {
   naam:"Erwtensoep",
@@ -150,10 +149,8 @@ LESSEN.erwt = {
     g78:{ woord:"ERFELIJKHEID", tip:"Gregor Mendel ontdekte hier de regels van, met erwtenplanten.", uitleg:"Erfelijkheid: hoe eigenschappen van ouders naar kinderen gaan." }
   },
   kunst:{
-    // Publiek domein. Zodra kunst.webp er is: link en linkUitleg weghalen, dan toont de les het schilderij zelf.
+    // Publiek domein. Afbeelding: Rijksmuseum, Amsterdam (SK-A-1718).
     titel:"Kijk-kunst: een winterdag op het ijs", werk:"Winterlandschap met ijsvermaak", maker:"Hendrick Avercamp", jaar:"ca. 1608", plek:"Rijksmuseum, Amsterdam",
-    link:"https://www.rijksmuseum.nl/nl/collectie/SK-A-1718",
-    linkUitleg:"Opent de pagina van het Rijksmuseum met het schilderij.",
     intro:"Hendrick Avercamp was een Nederlandse schilder. Ruim 400 jaar geleden schilderde hij een bevroren rivier vol mensen. In die tijd waren de winters vaak heel koud.",
     vragen:(()=>{ const v=[
         {v:"Wat zie je allemaal op het ijs?", uitleg:"Schaatsers, mensen op een slee, kinderen die spelen, iemand die valt, een paard met een slee. Zoek maar!"},
