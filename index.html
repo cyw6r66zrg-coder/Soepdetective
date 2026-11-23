@@ -1244,14 +1244,14 @@ SCHERM["ob-kennis"] = () => { const o=ob().kennis, naam=INGREDIENTEN[LES.mascott
     {v:"Welke kleur heeft hij?", beeld:`<span class="obkleurtjes">${o.kleur.kleuren.map(c=>`<i style="background:${c}"></i>`).join("")}</span>`, a:o.kleur.tekst},
     {v:"Groeit hij onder de grond of erboven?", beeld:grondSvg(o.grond.plek, o.kleur.kleuren[0]), a:o.grond.tekst},
     ...(o.weetje ? [{v:o.weetje.v, beeld:`<img class="obkmasc" src="${pad.ing(LES.mascotte)}" alt="">`, a:o.weetje.a}] : [])];
-  const alle=state.kOpen.length===kaarten.length;
-  return band(`Kijk, een echte ${naam}!`) + `<div class="inner obles"><div class="obkennis">
+  const alle=state.kOpen.length===kaarten.length, echt=o.echt||`een echte ${naam}`;   // o.echt: bv. "echte erwten" als de naam meervoud is
+  return band(`Kijk, ${echt}!`) + `<div class="inner obles"><div class="obkennis">
     <figure class="kfoto">${img(pad.soep("foto"),LES.kennis.fotoAlt||"")}</figure>
     <div class="obkkaarten">${kaarten.map((c,i)=>{ const om=state.kOpen.includes(i);
       return `<button class="kkaart obkkaart ${om?"om":""}" data-kflip="${i}" aria-pressed="${om}"><span class="kvoor"><b>${esc(c.v)}</b><small>Tik om te draaien</small></span><span class="kachter">${c.beeld}<span>${esc(c.a)}</span></span></button>`; }).join("")}</div>
   </div>
     <div class="row obrow">${alle ? verder() : ""}</div>
-    ${juf(alle ? `Wie heeft weleens een echte ${naam} vastgehouden? Hoe voelde hij?` : `Kijk goed naar de foto. Lees de vraag voor en laat de kinderen eerst raden. Tik dan op het kaartje.`)}</div>`;
+    ${juf(alle ? `Wie heeft weleens ${echt} vastgehouden? Hoe voelde ${o.echt?"dat":"hij"}?` : `Kijk goed naar de foto. Lees de vraag voor en laat de kinderen eerst raden. Tik dan op het kaartje.`)}</div>`;
 };
 
 SCHERM["ob-schaduw"] = () => {

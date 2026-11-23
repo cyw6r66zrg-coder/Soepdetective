@@ -26,7 +26,7 @@ LESSEN.erwt = {
   onderbouw:{   // onderbouw: korte les op het digibord, terwijl de soep nog op tafel staat
     kleur:"groen",
     smaak:{ goed:["zout"], uitleg:"Erwtensoep is hartig: er gaat een snufje zout in. En voel je hoe dik en zacht hij is?" },
-    kennis:{ kleur:{ kleuren:["#7FA83A","#4F8F3A"], tekst:"Groen! Gedroogde erwtjes kunnen ook geel zijn." }, grond:{ plek:"boven", tekst:"Erboven! Ze groeien in een peul aan een plant met krulletjes." }, weetje:{ v:"Waarom is erwtensoep zo dik?", a:"De erwtjes koken helemaal zacht. Soms blijft de lepel er rechtop in staan!" } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
+    kennis:{ echt:"echte erwten", kleur:{ kleuren:["#7FA83A","#4F8F3A"], tekst:"Groen! Gedroogde erwtjes kunnen ook geel zijn." }, grond:{ plek:"boven", tekst:"Erboven! Ze groeien in een peul aan een plant met krulletjes." }, weetje:{ v:"Waarom is erwtensoep zo dik?", a:"De erwtjes koken helemaal zacht. Soms blijft de lepel er rechtop in staan!" } },   // dia "In het echt" na "Wie ben ik?" (foto = img/foto.webp)
     // spellen: elk spel is een eigen dia, in deze volgorde.
     spellen:[
       { type:"tel", naam:"Hoeveel erwtjes?", titel:"Hoeveel erwtjes zitten er in de peul?", roosje:"ob-erwtje", achter:"ob-peul", wat:"erwtjes", een:"erwtje",
