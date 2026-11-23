@@ -139,7 +139,7 @@ LESSEN.erwt = {
     g78:[
       { v:"Een monnik deed ruim 150 jaar geleden proeven met duizenden erwtenplanten. Wat ontdekte hij?", a:["Hoe je eigenschappen van je ouders erft","Hoe je erwten droogt","Hoe snel erwten groeien"], goed:0, img:"mendel",
         weetje:"Gregor Mendel keek naar de kleur en de vorm van erwten in elke generatie. Zo ontdekte hij de regels van erfelijkheid." },
-      { v:"Waarom aten mensen vroeger erwtensoep bij het schaatsen?", a:["Het geeft lang warmte en energie","Het is goed voor je schaatsen","Het was gratis"], goed:0, img:"drogen",
+      { v:"Waarom aten mensen vroeger erwtensoep bij het schaatsen?", a:["Het geeft lang warmte en energie","Het is goed voor je schaatsen","Het was gratis"], goed:0, img:"lepel",
         weetje:"Dikke, warme soep vol erwten geeft lang energie. Bij de koek-en-zopie op het ijs kon je een kom kopen." },
       { v:"Erwten zijn peulvruchten. Welke stof zit er veel in?", a:["Eiwit","Suiker","Vet"], goed:0, img:"peul",
         weetje:"Peulvruchten zitten vol eiwit. Daarom zijn ze een goede vervanger van vlees." }
