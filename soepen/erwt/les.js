@@ -30,7 +30,7 @@ LESSEN.erwt = {
     // spellen: elk spel is een eigen dia, in deze volgorde.
     spellen:[
       { type:"tel", naam:"Hoeveel erwtjes?", titel:"Hoeveel erwtjes zitten er in de peul?", roosje:"ob-erwtje", achter:"ob-peul", wat:"erwtjes", een:"erwtje",
-        plekken:[[20,50],[33,48],[46,47],[59,47],[72,48],[85,50]],   // op een rij in de open peul (in % van het vlak)
+        achterVerhouding:2.45, plekken:[[34,53],[44,52],[54,51],[64,50],[74,48],[84,46]],   // op een rij in de open peul (in % van het peulplaatje)
         rondes:[4,6,5],
         start:"De peul is open. Hoeveel erwtjes zitten erin? Tik op elk erwtje en tel hardop mee.",
         slot:"Goed geteld. In één peul zitten vaak zes tot tien erwtjes." },

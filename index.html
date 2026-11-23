@@ -750,7 +750,10 @@ html.dia .obgroei{flex:1 1 0}
 html.dia .lekker .stemmen{flex:1 1 0}
 html.dia .lekker .stembak{min-height:0}
 .obtelvlak.metachter{background:none}
+.obtelvlak.metachter{container-type:size;display:grid;place-items:center}
+.obtelplaat{position:relative;width:min(100cqw,calc(100cqh * var(--ar)));aspect-ratio:var(--ar);container-type:inline-size}
 .obtelachter{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+.obtelplaat .obtelroos{width:10.5cqw}
 /* telefoon staand: kleuterspellen passend maken */
 @media (max-width:520px){
   .obplek{gap:6px;width:100%}
@@ -1405,12 +1408,12 @@ SPEL.maakgezicht = sp => {
 const TELPLEK = [[20,26],[56,20],[84,48],[34,74],[66,76],[48,46],[14,62]];   // verspreid over het vlak
 SPEL.tel = sp => {
   const r=state.obRonde, n=sp.rondes[r], geteld=state.obGeteld.length, alles=geteld===n, laatste=r===sp.rondes.length-1, goed=state.obTelKeus===n;
-  const plek = (sp.plekken||TELPLEK).slice(0,n), wat=sp.wat||"roosjes", een=sp.een||"roosje";   // sp.wat/sp.een: wat er geteld wordt (meervoud/enkelvoud)
+  const alle=sp.plekken||TELPLEK, van=sp.achter?Math.floor((alle.length-n)/2):0, plek = alle.slice(van,van+n)   /* met achtergrond (peul): de erwtjes in het midden */, wat=sp.wat||"roosjes", een=sp.een||"roosje";   // sp.wat/sp.een: wat er geteld wordt (meervoud/enkelvoud)
   return band(goed && laatste ? "Goed geteld!" : sp.titel) + `<div class="inner obles"><div class="obtel">
-    <div class="obtelvlak ${sp.achter?"metachter":""}">${sp.achter?`<img class="obtelachter" src="${pad.soep(sp.achter)}" alt="">`:""}
+    <div class="obtelvlak ${sp.achter?"metachter":""}">${sp.achter?`<div class="obtelplaat" style="--ar:${sp.achterVerhouding||1.5}"><img class="obtelachter" src="${pad.soep(sp.achter)}" alt="">`:""}
       ${plek.map(([x,y],i)=>{ const nr=state.obGeteld.indexOf(i);
         return `<button class="obtelroos ${nr>=0?"geteld":""}" data-obtel="${i}" ${nr>=0?"disabled":""} style="left:${x}%;top:${y}%;--d:${i*.08}s">${img(pad.soep(sp.roosje),"")}${nr>=0?`<b>${nr+1}</b>`:""}</button>`; }).join("")}
-    </div>
+    ${sp.achter?"</div>":""}</div>
     <div class="obtelzij">
       <span class="obdots">${sp.rondes.map((_,i)=>`<i class="${i<=r?"on":""}"></i>`).join("")}</span>
       ${alles ? `<p class="obtelvraag">Hoeveel ${wat} zijn het?</p><div class="obtelgetallen">${[1,2,3,4,5,6].map(g=>
